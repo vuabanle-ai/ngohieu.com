@@ -301,7 +301,7 @@ const cars=[];const carCol=['#ffffff','#c0392b','#2c3e50','#d4ac0d','#7f8c8d','#
 function lot(x0,z0,x1,z1,n){rect(x0,z0,x1,z1,'#55595e',.5);for(let i=0;i<n;i++){const r=Math.floor(i/ Math.ceil(n/2)),c=i%Math.ceil(n/2);if(rnd()<.25)continue;cars.push([x0+3+c*((x1-x0-6)/Math.ceil(n/2)),r?z1-4:z0+4,Math.PI/2])}}
 lot(360,150,428,186,22);lot(64,-50,98,-34,10);
 for(let i=0;i<5;i++)box(.6,2,.6,M('#2e86c1'),66+i*7,1,-50.5);
-along(ROADS[0].p,38,-14).concat(along(ROADS[0].p,47,14),along(TP_ROAD,41,-5),along(DL,52,-5)).forEach(p=>{if(rnd()<.6&&p.z>-1300&&p.z<900)cars.push([p.x,p.z,0])});
+
 {const im=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),M('#fff',{roughness:.4}),cars.length);cars.forEach(([x,z,r],i)=>{dm.position.set(x,1,z);dm.rotation.set(0,r,0);dm.scale.set(2,1.5,4.4);dm.updateMatrix();im.setMatrixAt(i,dm.matrix);im.setColorAt(i,new THREE.Color(carCol[i%6]))});im.castShadow=true;S.add(im)}
 // 08 bãi cỏ sự kiện, 15 sân bóng rổ, 14/17 vườn
 rect(128,-50,168,-24,'#8cc257',.5);
@@ -496,6 +496,27 @@ EDU.forEach(e=>{let c;
  gardens.forEach(([x,z],i)=>{const r=2.5+rnd()*3;dm.position.set(x,r+1,z);dm.rotation.set(rnd(),rnd(),0);dm.scale.set(r,r*1.1,r);dm.updateMatrix();gt.setMatrixAt(i,dm.matrix);gt.setColorAt(i,new THREE.Color(['#4a7f33','#5c9140','#3d6e2c','#6b9c45'][i%4]))});
  gt.castShadow=true;S.add(gt);
  window.__houses=N;}
+
+// ================= XE ĐIỆN CHẠY TRÊN ĐƯỜNG (kiểu SUV, màu theo bảng màu xe điện phổ biến, không logo) =================
+const movers=[];let carMesh=null;
+{const body=new THREE.BoxGeometry(2,1.05,4.6);body.translate(0,.85,0);const cab=new THREE.BoxGeometry(1.8,.75,2.7);cab.translate(0,1.75,-.2);
+ const lampF=new THREE.BoxGeometry(1.7,.18,.06);lampF.translate(0,1.05,2.31);
+ const g=mergeGeometries([body,cab,lampF]);
+ const COL=['#f4f4f2','#c8102e','#1f4fa0','#8e9499','#d7e24a','#1d1f22','#f4f4f2','#2a7fbf','#e8e6df'];
+ const routes=ROADS.filter(r=>r.w>=9&&r.p.length>=2).map(r=>{const pts=r.p;const cum=[0];for(let i=1;i<pts.length;i++)cum.push(cum[i-1]+Math.hypot(pts[i].x-pts[i-1].x,pts[i].z-pts[i-1].z));return{pts,cum,L:cum[cum.length-1],w:r.w}}).filter(r=>r.L>60);
+ routes.forEach(r=>{const n=Math.max(1,Math.round(r.L/(r.w>=20?45:70)));for(let k=0;k<n;k++){const dir=rnd()<.5?1:-1;const lanes=r.w>=28?2:1;const lane=Math.floor(rnd()*lanes);
+  movers.push({r,dir,s:rnd()*r.L,v:(r.w>=20?11:6)+rnd()*5,off:dir*(r.w*.18+lane*r.w*.16)})}});
+ carMesh=new THREE.InstancedMesh(g,M('#fff',{roughness:.35,metalness:.3}),movers.length);
+ movers.forEach((m,i)=>carMesh.setColorAt(i,new THREE.Color(COL[i%COL.length])));
+ carMesh.castShadow=true;S.add(carMesh);}
+const _p=new THREE.Vector3();
+function updateCars(dt){if(!carMesh)return;
+ movers.forEach((m,i)=>{const r=m.r;m.s=(m.s+m.dir*m.v*dt+r.L)%r.L;
+  let j=1;while(j<r.cum.length-1&&r.cum[j]<m.s)j++;const a=r.pts[j-1],b=r.pts[j],seg=r.cum[j]-r.cum[j-1]||1,t=(m.s-r.cum[j-1])/seg;
+  const dx=(b.x-a.x)/seg,dz=(b.z-a.z)/seg;const x=a.x+(b.x-a.x)*t+(-dz)*m.off*-1,z=a.z+(b.z-a.z)*t+dx*m.off*-1;
+  dm.position.set(x,.6,z);dm.rotation.set(0,Math.atan2(dx*m.dir,dz*m.dir),0);dm.scale.set(1,1,1);dm.updateMatrix();carMesh.setMatrixAt(i,dm.matrix)});
+ carMesh.instanceMatrix.needsUpdate=true}
+updateCars(0);
 // ================= CAMERA =================
 const VIEWS={
  'toan-canh':[W(110,150),950,.88,-.25],'hanh-phuc':[P(320,640),900,.9,-.2],'thinh-vuong':[W(110,150),520,.85,-.15],
@@ -581,7 +602,8 @@ addEventListener('resize',size);size();
 cam.position.set(300,2600,1400);ctl.target.copy(W(110,150));
 const h0=location.hash.slice(1);go(VIEWS[h0]?h0:'toan-canh');
 const ease=t=>t<.5?4*t*t*t:1-(-2*t+2)**3/2;
-function loop(now){requestAnimationFrame(loop);
+let lastT=0;const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function loop(now){requestAnimationFrame(loop);{const dt=Math.min(.1,(now-(lastT||now))/1000);lastT=now;if(!RM)updateCars(dt)}
  if(fly){const k=Math.min(1,(now-fly.t0)/fly.d),e=ease(k);cam.position.lerpVectors(fly.fp,fly.tp,e);ctl.target.lerpVectors(fly.ft,fly.tt,e);if(k>=1)fly=null}
  ctl.update();{const d=cam.position.distanceTo(ctl.target);S.fog.near=Math.max(1700,d*.9);S.fog.far=Math.max(3800,d*2.6)}R.render(S,cam);placeLabels()}
 requestAnimationFrame(loop);
