@@ -44,7 +44,8 @@ const TH=Math.atan(0.4255);
 try{await Promise.race([document.fonts.load('800 64px "Be Vietnam Pro"'),new Promise(r=>setTimeout(r,2500))])}catch(_){}
 // ================= KHỞI TẠO =================
 const cv=document.getElementById('c');
-const R=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+let R;try{R=new THREE.WebGLRenderer({canvas:cv,antialias:true})}catch(err){
+ const ld=document.getElementById('load');ld.innerHTML='<div style="max-width:640px;padding:20px;text-align:center"><p style="margin:0 0 12px">Thiết bị này chưa hỗ trợ xem 3D. Mời anh/chị xem mặt bằng dự án:</p><img src="img/mat-bang-thinh-vuong.jpg" alt="Mặt bằng khu Thịnh Vượng" style="width:100%;border-radius:12px"><p style="margin:14px 0 0"><a href="https://zalo.me/0914669669" style="color:#ee6a1f;font-weight:800">Nhắn Zalo Ngô Hiếu để nhận bảng hàng</a></p></div>';ld.style.overflow='auto';throw err}
 R.setPixelRatio(Math.min(devicePixelRatio,2));R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
 R.outputColorSpace=THREE.SRGBColorSpace;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.05;
 const S=new THREE.Scene();S.background=new THREE.Color('#d6e6ec');S.fog=new THREE.Fog('#d6e6ec',1700,3800);
