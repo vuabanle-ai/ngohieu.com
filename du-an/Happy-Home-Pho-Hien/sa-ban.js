@@ -107,7 +107,7 @@ function roundPoly(pts,r){const out=[];const n=pts.length;for(let i=0;i<n;i++){c
  const p1=W(p.x+(a.x-p.x)*rr/da,p.z+(a.z-p.z)*rr/da),p2=W(p.x+(b.x-p.x)*rr/db,p.z+(b.z-p.z)*rr/db);
  for(let q=0;q<=8;q++){const t=q/8,u=1-t;out.push(W(u*u*p1.x+2*u*t*p.x+t*t*p2.x,u*u*p1.z+2*u*t*p.z+t*t*p2.z))}}return out}
 [[5,35,1,170],[5,35,185,'d'],[50,82.5,1,105],[50,82.5,240,'d'],[97.5,130,1,105],[97.5,130,240,'d'],[145,180,1,170],[145,180,185,'d']].forEach(([x0,x1,z0,z1])=>{
- const a=x0-4,b=x1+4,za=z0-5;const pts=z1==='d'?[W(a,za),W(b,za),W(b,diagZ(b)-10),W(a,diagZ(a)-10)]:[W(a,za),W(b,za),W(b,z1+4),W(a,z1+4)];
+ const a=x0-4,b=x1+4,za=z0-5;const pts=z1==='d'?[W(a,za),W(b,za),W(b,diagZ(b)-4),W(a,diagZ(a)-4)]:[W(a,za),W(b,za),W(b,z1+4),W(a,z1+4)];
  flat(roundPoly(pts,11),'#d9d4c8',.33);});
 // ================= ĐƯỜNG =================
 const roadM=M('#3d4248',{roughness:.95,side:THREE.DoubleSide}),lineM=new THREE.MeshBasicMaterial({color:'#f3f1ea',side:THREE.DoubleSide});
@@ -179,13 +179,13 @@ const lots=[];
 LOTS.forEach(([col,half,blk,items])=>{
  const sumA=items.reduce((s,it)=>s+(it[1]||80),0);
  if(col<5){const [x0,x1]=COLX[col],mid=(x0+x1)/2,a=half==='w'?x0:mid,b=half==='w'?mid:x1;
-  const [z0,z1r]=BLOCKZ[col][blk];const z1=z1r==='d'?diagZ(half==='w'?a:b)-14:z1r;const L=z1-z0;let z=z0;
+  const [z0,z1r]=BLOCKZ[col][blk];const z1=z1r==='d'?diagZ((a+b)/2)-8:z1r;const L=z1-z0;let z=z0;
   items.forEach(([code,area],i)=>{const lw=L*(area||80)/sumA;const pre=code.split('-')[0];
    let type='noikhu';
    if(i===0||i===items.length-1)type='goc';
    else if((col===2||col===3)&&((blk===0&&i>=items.length-3)||(blk===1&&i<=2)))type='congvien';
    else if(pre==='HK'||pre==='ĐLTC'||pre==='TP')type='matduong';
-   lots.push({code,area,x:(a+b)/2,z:z+lw/2,w:b-a-1.2,l:lw-.5,rot:0,type,face:ROADNAME[pre],col,fx:half==='w'?-1:1,end:i===0?-1:i===items.length-1?1:0});z+=lw})}
+   lots.push({code,area,x:(a+b)/2,z:z+lw/2,w:b-a-1.2,l:lw-.5,rot:0,type,face:ROADNAME[pre],col,fx:half==='w'?-1:1,end:i===0?-1:i===items.length-1?1:0,dEnd:z1r==='d'&&i===items.length-1});z+=lw})}
  else{const len=(375-222)/Math.cos(TH);let s=0;const [o1,o2]=half==='s'?[-14,-28]:[-29,-43];
   const sumS=items.reduce((t,it)=>t+(it[1]||80),0);items.forEach(([code,area],i)=>{const lw=len*(area||80)/sumS;const t=s+lw/2;const x=222+t*Math.cos(TH);const off=(o1+o2)/2;
    lots.push({code,area,x:x,z:diagZ(x)+off,w:lw-.5,l:Math.abs(o1-o2)-1,rot:TH,ew:1,type:(i===0||i===items.length-1)?'goc':(half==='s'?'matduong':'noikhu'),face:ROADNAME[code.split('-')[0]],col:5,fx:half==='n'?1:-1,end:i===0?-1:i===items.length-1?1:0});s+=lw})}});
@@ -231,19 +231,20 @@ const cornerMesh={};const CW_BASE=new THREE.Color('#eadcc6');
 {const roofM=M('#ebe5da');
  lots.forEach((L,i)=>{if(L.ew||!L.end)return;const w=L.w,l=L.l,h=L.h,f=L.fx,e=L.end,c=Math.min(6.5,w*.45,l*.6);
   // đa giác chân nhà (x ngang lô, y = -z dọc dãy), vát góc tại (f*w/2, e*l/2)
-  const P=[[-w/2,-l/2],[w/2,-l/2],[w/2,l/2],[-w/2,l/2]].map(([x,z])=>[x,z]);const k=P.findIndex(([x,z])=>Math.sign(x)===f&&Math.sign(z)===e);
-  const [cx,cz]=P[k];const a=[cx-f*c,cz],b=[cx,cz-e*c];
-  const order=(k%2===0)?[b,a]:[a,b];
-  const C=[cx-f*c,cz-e*c],ang=p=>Math.atan2(p[1]-C[1],p[0]-C[0]);let t0=ang(order[0]),t1=ang(order[1]);let dt=t1-t0;if(dt>Math.PI)dt-=2*Math.PI;if(dt<-Math.PI)dt+=2*Math.PI;
-  const arc=[];for(let q=0;q<=10;q++){const t=t0+dt*q/10;arc.push([C[0]+c*Math.cos(t),C[1]+c*Math.sin(t)])}
+  const zs=x=>L.dEnd?diagZ(L.x+x)-8-L.z:l/2;
+  const P=[[-w/2,-l/2],[w/2,-l/2],[w/2,zs(w/2)],[-w/2,zs(-w/2)]];
+  const k=e<0?(f>0?1:0):(f>0?2:3);
+  const p=P[k],pa=P[(k+3)%4],pb=P[(k+1)%4];const da=Math.hypot(pa[0]-p[0],pa[1]-p[1]),db=Math.hypot(pb[0]-p[0],pb[1]-p[1]);
+  const p1=[p[0]+(pa[0]-p[0])*c/da,p[1]+(pa[1]-p[1])*c/da],p2=[p[0]+(pb[0]-p[0])*c/db,p[1]+(pb[1]-p[1])*c/db];
+  const arc=[];for(let q=0;q<=10;q++){const t=q/10,u=1-t;arc.push([u*u*p1[0]+2*u*t*p[0]+t*t*p2[0],u*u*p1[1]+2*u*t*p[1]+t*t*p2[1]])}
   const poly=[...P.slice(0,k),...arc,...P.slice(k+1)];
   const sh=new THREE.Shape(poly.map(([x,z])=>new THREE.Vector2(x,-z)));
   const g=new THREE.ExtrudeGeometry(sh,{depth:h,bevelEnabled:false});g.rotateX(-Math.PI/2);
   const mat=M('#eadcc6',{roughness:.85});const m=new THREE.Mesh(g,[roofM,mat]);m.position.set(L.x,.3,L.z);m.castShadow=m.receiveShadow=true;m.userData.lot=i;S.add(m);pick.push(m);cornerMesh[i]=mat;
   // dải kính tầng trệt & cửa sổ các tầng chạy quanh mặt vát
-  const gl=new THREE.MeshStandardMaterial({color:'#3b4650',roughness:.3,metalness:.2});
-  for(let fl=0;fl<4;fl++){const y=fl===0?1.4:4.5+(fl-1)*3.6+1.6,hh=fl===0?2.6:1.6;
-   const s2=new THREE.Shape(poly.map(([x,z])=>new THREE.Vector2(x*1.012,-z*1.012)));const gg=new THREE.ExtrudeGeometry(s2,{depth:hh,bevelEnabled:false});gg.rotateX(-Math.PI/2);
+  const gl=new THREE.MeshStandardMaterial({color:'#6f808c',roughness:.3,metalness:.2});
+  for(let fl=0;fl<4;fl++){const y=fl===0?1.2:4.5+(fl-1)*3.6+1.4,hh=fl===0?2.6:1.2;
+   const s2=new THREE.Shape(poly.map(([x,z])=>new THREE.Vector2(x*1.006,-z*1.006)));const gg=new THREE.ExtrudeGeometry(s2,{depth:hh,bevelEnabled:false});gg.rotateX(-Math.PI/2);
    const gm=new THREE.Mesh(gg,[new THREE.MeshBasicMaterial({visible:false}),fl===0?M('#f2d7a8',{roughness:.4}):gl]);gm.position.set(L.x,.3+y,L.z);S.add(gm)}
   dm.position.set(0,-50,0);dm.scale.set(.001,.001,.001);dm.rotation.set(0,0,0);dm.updateMatrix();body.setMatrixAt(i,dm.matrix)});
  body.instanceMatrix.needsUpdate=true;}
