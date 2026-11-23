@@ -73,10 +73,16 @@ function along(pts,step,off){const out=[];for(let i=0;i<pts.length-1;i++){const 
  for(let t=0;t<l;t+=step)out.push(W(a.x+dx*t/l+nx*off,a.z+dz*t/l+nz*off))}return out}
 
 // ================= MẶT ĐẤT: thảm cỏ như sa bàn =================
-{const cn=document.createElement('canvas');cn.width=cn.height=512;const g=cn.getContext('2d');
- g.fillStyle='#6fa43f';g.fillRect(0,0,512,512);
- for(let i=0;i<2600;i++){g.fillStyle=['#76ab44','#68993a','#7db24a','#6a9f3d'][i%4];g.globalAlpha=.5;g.beginPath();g.arc(rnd()*512,rnd()*512,2+rnd()*10,0,7);g.fill()}
- const t=new THREE.CanvasTexture(cn);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(115,115);t.colorSpace=THREE.SRGBColorSpace;
+{const cn=document.createElement('canvas');cn.width=cn.height=1024;const g=cn.getContext('2d');
+ // ruộng lúa chia ô: xanh non, xanh đậm, vàng chín, đất cày; bờ ruộng sáng
+ g.fillStyle='#c9c09a';g.fillRect(0,0,1024,1024);
+ const PC=['#7fae4a','#6c9c3c','#8fbc55','#a7b85a','#c2b768','#93a94c','#5f8f37','#b0a77a'];
+ for(let by=0;by<1024;by+=128)for(let bx=0;bx<1024;bx+=256){const vert=rnd()<.5;
+  for(let k=0;k<(vert?8:4);k++){g.fillStyle=PC[Math.floor(rnd()*PC.length)];
+   if(vert)g.fillRect(bx+k*32+1.5,by+1.5,29,125);else g.fillRect(bx+1.5,by+k*32+1.5,253,29)}}
+ for(let i=0;i<4000;i++){g.fillStyle='rgba(40,70,20,.08)';g.fillRect(rnd()*1024,rnd()*1024,2,2)}
+ g.fillStyle='rgba(235,228,200,.9)';for(let k=0;k<=1024;k+=128)g.fillRect(0,k-2,1024,4);for(let k=0;k<=1024;k+=256)g.fillRect(k-2,0,4,1024);
+ const t=new THREE.CanvasTexture(cn);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.repeat.set(65,65);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;
  const gr=new THREE.Mesh(new THREE.PlaneGeometry(26000,26000),M('#fff',{map:t}));gr.rotation.x=-Math.PI/2;gr.position.set(150,-.5,-350);gr.receiveShadow=true;S.add(gr);}
 
 const HP=poly([[108,432],[175,392],[360,282],[470,240],[545,575],[525,770],[360,852],[360,1172],[148,1172],[148,862],[108,840]]);
@@ -93,6 +99,8 @@ flat([W(-8,-6),W(212,-6),W(212,diagZ(212)),W(-8,diagZ(-8))],'#d9d4c8',.15);
 flat([W(212,90),W(400,40),W(400,diagZ(400)+2),W(212,diagZ(212)+2)],'#7fb24c',.15);
 flat(poly([[490,200],[650,180],[660,330],[500,345]]),'#d9d4c8',.2);
 
+// dải cây xanh & vỉa hè đầu các dãy Thịnh Vượng
+[[5,35],[50,82.5],[97.5,130],[145,180]].forEach(([x0,x1])=>{rect(x0,-4,x1,23,'#d6d0c2',.32);rect(x0+3,0,x1-3,20,'#86bb52',.36)});
 // ================= ĐƯỜNG =================
 const roadM=M('#3d4248',{roughness:.95,side:THREE.DoubleSide}),lineM=new THREE.MeshBasicMaterial({color:'#f3f1ea',side:THREE.DoubleSide});
 function road(pts,w){const m=new THREE.Mesh(strip(pts,w,.6),roadM);m.receiveShadow=true;S.add(m)}
@@ -106,9 +114,9 @@ const ROADS=[
  {p:poly([[112,842],[362,842]]),w:22,name:'Đường Hạnh Phúc 22m',at:P(205,842),l:4},
  {p:[W(-35,-12),W(210,-12)],w:12,name:'Đường Thương Cảng',at:W(95,-12),tv:1},
  {p:[W(-8,-12),W(-8,diagZ(-8)+4)],w:13,name:'Đường Hoàng Kim 17m',at:W(-8,250),tv:1},
- {p:[W(42.5,-8),W(42.5,diagZ(42)+4)],w:12,name:'Thương Cảng 1 · 15m',at:W(42.5,140),tv:1},
- {p:[W(90,-8),W(90,diagZ(90)+4)],w:9,name:'Thương Cảng 2 · 15m',at:W(90,62),tv:1},
- {p:[W(137.5,-8),W(137.5,diagZ(137)+4)],w:12,name:'Thương Cảng 3 · 15m',at:W(137.5,140),tv:1},
+ {p:[W(42.5,-8),W(42.5,diagZ(42)+4)],w:13,name:'Thương Cảng 1 · 15m',at:W(42.5,140),tv:1},
+ {p:[W(90,-8),W(90,diagZ(90)+4)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,62),tv:1},
+ {p:[W(137.5,-8),W(137.5,diagZ(137)+4)],w:13,name:'Thương Cảng 3 · 15m',at:W(137.5,140),tv:1},
  {p:[W(-8,177.5),W(212,177.5)],w:11,name:'Đường nội khu',at:W(20,177.5),tv:1},{p:[W(48,112),W(140,112)],w:8,name:'Đường nội khu',at:W(95,112),tv:1},{p:[W(48,232),W(140,232)],w:8,name:'',tv:1},
  {p:TP_ROAD,w:30,name:'Đường Thành Phố 47m',at:W(300,diagZ(300)+10),l:4},
  {p:[208,400].map(x=>W(x,diagZ(x)-52)),w:12,name:'Đường Thịnh Vượng 15m',at:W(300,diagZ(300)-52),tv:1},
@@ -120,7 +128,7 @@ ROADS.forEach(r=>road(r.p,r.w));
   dm.position.set(p.x,.7,p.z);dm.rotation.set(-Math.PI/2,0,ang);dm.scale.set(1,1,1);dm.updateMatrix();im.setMatrixAt(i,dm.matrix)});S.add(im);}
 // vạch tim đường & vạch qua đường nội khu Thịnh Vượng
 {const bars=[];const zebra=(x,z,dir,w)=>{for(let k=-w/2+1;k<w/2;k+=1.6)bars.push(dir?[x+k,z,0]:[x,z+k,Math.PI/2])};
- [42.5,90,137.5].forEach(x=>{[-4,8,104,120,165,190,224,240].forEach(z=>{if(z<diagZ(x))zebra(x,z,1,x===90?8:11)})});
+ [42.5,90,137.5].forEach(x=>{[-4,8,104,120,165,190,224,240].forEach(z=>{if(z<diagZ(x))zebra(x,z,1,11)})});
  [42.5,90,137.5].forEach(x=>{for(let z=10;z<diagZ(x)-6;z+=7)if(Math.abs(z-177.5)>8&&!(z>106&&z<118)&&!(z>226&&z<238))bars.push([x,z,0,1])});
  [-8].forEach(x=>{[0,177.5].forEach(z=>zebra(x,z+8,1,12))});
  const im=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),lineM,bars.length);
@@ -157,7 +165,7 @@ TOW.forEach(([n,cx,cy,o,a])=>{const L=74,Wd=24,H=48+(n.charCodeAt(1)%3)*3;const 
  pick.push(m);towers.push({m,n,H,a:a*Math.PI/180,w,d})});
 
 // ================= 303 CĂN LIỀN KỀ THỊNH VƯỢNG =================
-const COLX={1:[5,35],2:[50,85],3:[95,130],4:[145,180]};
+const COLX={1:[5,35],2:[50,82.5],3:[97.5,130],4:[145,180]};
 const BLOCKZ={1:[[25,170],[185,'d']],2:[[25,105],[250,'d']],3:[[25,105],[250,'d']],4:[[25,170],[185,'d']]};
 const lots=[];
 LOTS.forEach(([col,half,blk,items])=>{
@@ -322,7 +330,7 @@ const inPoly=(x,z,pl)=>{let c=false;for(let i=0,j=pl.length-1;i<pl.length;j=i++)
 const nearTower=(x,z)=>towers.some(t=>{const dx=x-t.m.position.x,dz=z-t.m.position.z;const c=Math.cos(t.a),s=Math.sin(t.a);const u=dx*c-dz*s,v=dx*s+dz*c;return Math.abs(u)<t.w/2+6&&Math.abs(v)<t.d/2+6});
 const dctX=z=>{for(let i=0;i<DCT.length-1;i++){const a=DCT[i],b=DCT[i+1];if((z<=a.z&&z>=b.z)||(z>=a.z&&z<=b.z)){return a.x+(b.x-a.x)*(z-a.z)/(b.z-a.z)}}return 0};
 // cau dọc mọi tuyến phố Thịnh Vượng (như sa bàn thật)
-[[-1,'v'],[37,'v'],[48,'v'],[87.5,'v'],[92.5,'v'],[132,'v'],[143,'v'],[183,'v']].forEach(([x])=>{for(let z=22;z<diagZ(x)-12;z+=11){if(z>172&&z<183)continue;if(x>40&&x<140&&z>108&&z<116)continue;palms.push([x,z,1])}});
+[[-1,'v'],[37,'v'],[48,'v'],[84.5,'v'],[95.5,'v'],[132,'v'],[143,'v'],[183,'v']].forEach(([x])=>{for(let z=22;z<diagZ(x)-12;z+=11){if(z>172&&z<183)continue;if(x>40&&x<140&&z>108&&z<116)continue;palms.push([x,z,1])}});
 for(let x=2;x<210;x+=12)palms.push([x,-5,1],[x,-19,1]);
 for(let x=225;x<395;x+=10){palms.push([x,diagZ(x)-45,1],[x,diagZ(x)-6,1])}
 palms.push(bigPalm);
@@ -337,7 +345,7 @@ along(ROADS[1].p,16,19).concat(along(ROADS[1].p,16,-19)).forEach(p=>trees.push([
 for(let i=0;i<4000&&trees.length<1500;i++){const x=-15+rnd()*420,z=-880+rnd()*870;if(inPoly(x,z,HP)&&!nearTower(x,z)&&rnd()<.55){(rnd()<.05?flowers:trees).push([x,z,.7+rnd()*.6])}}
 // cảnh quan quanh sa bàn: cụm cây trên thảm cỏ
 const off=(x,z)=>inPoly(x,z,HP)||(x>-20&&x<410&&z>-40&&z<diagZ(x)+30)||Math.abs(x-dctX(z))<48||Math.abs(z-diagZ(x)-10)<22||(x>480&&x<670&&z>-1020&&z<-850);
-for(let c=0;c<260;c++){const cx=-700+rnd()*1900,cz=-1500+rnd()*2600;const n=4+Math.floor(rnd()*12);for(let k=0;k<n;k++){const x=cx+(rnd()-.5)*60,z=cz+(rnd()-.5)*60;if(!off(x,z))trees.push([x,z,.8+rnd()*.9])}}
+for(let c=0;c<120;c++){const cx=-700+rnd()*1900,cz=-1500+rnd()*2600;const n=4+Math.floor(rnd()*12);for(let k=0;k<n;k++){const x=cx+(rnd()-.5)*60,z=cz+(rnd()-.5)*60;if(!off(x,z))trees.push([x,z,.8+rnd()*.9])}}
 // --- hình học cây
 const canopyG=new THREE.IcosahedronGeometry(1,1);
 const tr=new THREE.InstancedMesh(canopyG,M('#fff',{flatShading:true}),trees.length+flowers.length);
@@ -398,6 +406,66 @@ EDU.forEach(e=>{let c;
   for(let i=0;i<e.b;i++){const a=i/e.b*Math.PI*2,r=e.w*.28;const h=18+(i%3)*10;box(e.w*.3,h,e.d*.14,M('#f4efe6'),c.x+Math.cos(a)*r,h/2,c.z+Math.sin(a)*r*.7,a)}
   box(e.w*.3,30,e.d*.2,M('#d9b98a'),c.x,15,c.z);}
  const o=addL(e.n+(e.t?' · '+e.t:''),e.zone?'edu zone-edu':'edu',e.lp||c,e.zone?30:60,{near:900});eduLabels.push(o)});
+
+// ================= LÀNG XÓM & PHỐ THỊ QUANH DỰ ÁN (dựng theo bố cục khu vực, minh hoạ) =================
+{const inP=(x,z,pl)=>{let c=false;for(let i=0,j=pl.length-1;i<pl.length;j=i++){const a=pl[i],b=pl[j];if((a.z>z)!==(b.z>z)&&x<(b.x-a.x)*(z-a.z)/(b.z-a.z)+a.x)c=!c}return c};
+ const distSeg=(x,z,pl)=>{let d=1e9;for(let i=0;i<pl.length-1;i++){const a=pl[i],b=pl[i+1];const dx=b.x-a.x,dz=b.z-a.z,l2=dx*dx+dz*dz;let t=((x-a.x)*dx+(z-a.z)*dz)/l2;t=Math.max(0,Math.min(1,t));d=Math.min(d,Math.hypot(x-a.x-t*dx,z-a.z-t*dz))}return d};
+ const bigRoads=ROADS.filter(r=>r.w>=20);
+ const blocked=(x,z)=>{
+  if(inP(x,z,HP))return true;
+  if(x>-40&&x<420&&z>-60&&z<diagZ(x)+30)return true;                 // Thịnh Vượng + Đường Thành Phố
+  if(x>480&&x<680&&z>-1030&&z<-830)return true;                       // công trình công cộng phía Bắc
+  for(const r of bigRoads)if(distSeg(x,z,r.p)<r.w/2+12)return true;
+  for(const e of EDU){if(e.zone&&inP(x,z,e.zone))return true;if(e.p&&Math.abs(x-e.p.x)<e.w/2+10&&Math.abs(z-e.p.z)<e.d/2+10)return true}
+  return false};
+ const houses=[],lanes=[],gardens=[],ponds=[];
+ const WALL=['#f3efe6','#efe4c8','#f2dcc0','#e9eef0','#f4e7a8','#f1d1c4','#d9e7f1','#e8e8e2','#f6f1e1','#e3d5bd'];
+ // đặt dãy nhà ống hai bên một con đường
+ function street(ax,az,bx,bz,setback,dens,hmin,hmax){const dx=bx-ax,dz=bz-az,L=Math.hypot(dx,dz);if(L<20)return;const ux=dx/L,uz=dz/L,nx=-uz,nz=ux,ang=Math.atan2(dx,dz);
+  lanes.push([W(ax,az),W(bx,bz)]);
+  for(const side of[-1,1]){let t=4;while(t<L-4){const w=4+rnd()*2.5;if(rnd()<dens){const d=11+rnd()*9;const off=setback+d/2;const cx=ax+ux*(t+w/2)+nx*side*off,cz=az+uz*(t+w/2)+nz*side*off;
+     if(!blocked(cx,cz)){const fl=hmin+Math.floor(rnd()*(hmax-hmin+1));houses.push([cx,cz,w-.4,d,fl*3.4,ang,rnd()<.38]);if(rnd()<.25)gardens.push([cx+nx*side*(d/2+3),cz+nz*side*(d/2+3)])}}
+    else if(rnd()<.5)gardens.push([ax+ux*t+nx*side*(setback+6),az+uz*t+nz*side*(setback+6)]);
+    t+=w}}}
+ // làng: một trục chính và các ngõ nhánh
+ function village(cx,cz,R,dir,dens){const ux=Math.cos(dir),uz=Math.sin(dir);
+  street(cx-ux*R,cz-uz*R,cx+ux*R,cz+uz*R,4,dens,2,4);
+  const n=Math.max(2,Math.floor(R/45));for(let k=-n;k<=n;k++){if(rnd()<.2)continue;const px=cx+ux*k*R/n,pz=cz+uz*k*R/n,l=R*(.35+rnd()*.5),sg=rnd()<.5?1:-1;
+   street(px,pz,px-uz*l*sg,pz+ux*l*sg,2.5,dens*.85,1,3)}
+  if(rnd()<.6)ponds.push([cx+(rnd()-.5)*R,cz+(rnd()-.5)*R,15+rnd()*25,10+rnd()*18])}
+ // phố thị Phố Hiến phía Tây ĐCT: lưới phố dày
+ for(let z=-1350;z<1050;z+=95){street(-1150,z,dctX(z)-45,z,4,.85,2,5)}
+ for(let x=-1100;x<-250;x+=130){street(x,-1350,x,1050,4,.75,2,5)}
+ // các làng phía Bắc (Nhật Tân), phía Đông, phía Nam và quanh dự án
+ [[ -50,-1250,240,.3,.85],[300,-1350,220,-.2,.8],[650,-1450,200,.1,.8],[950,-1250,230,1.3,.75],[1650,-900,260,.4,.8],[1800,-300,260,1.2,.8],
+  [1750,400,260,.2,.8],[1500,900,240,1.4,.75],[1050,1500,260,.1,.8],[500,1650,260,-.3,.85],[-100,1500,260,.4,.8],[700,-650,0,0,0],
+  [1250,-1650,220,.9,.75],[2100,-1100,240,.3,.7],[2200,700,240,1.1,.7],[150,2000,240,.2,.75],[-650,1700,220,.6,.85]]
+  .forEach(([x,z,r,d,de])=>{if(r)village(x,z,r,d,de)});
+ // ---- dựng nhà
+ const N=houses.length;
+ const fac=(()=>{const cn=document.createElement('canvas');cn.width=64;cn.height=128;const g=cn.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,64,128);
+  for(let f=0;f<4;f++){g.fillStyle='#55606a';g.fillRect(10,f*32+8,44,16);g.fillStyle='#d8d8d8';g.fillRect(4,f*32+28,56,3)}
+  const t=new THREE.CanvasTexture(cn);t.colorSpace=THREE.SRGBColorSpace;return t})();
+ const hb=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),[M('#fff',{map:fac}),M('#fff',{map:fac}),M('#ddd7cc'),M('#fff'),M('#fff',{map:fac}),M('#fff',{map:fac})],N);
+ const roofs=houses.filter(h=>h[6]),flats=houses.filter(h=>!h[6]);
+ const roofG=new THREE.ConeGeometry(Math.SQRT1_2,1,4);roofG.rotateY(Math.PI/4);
+ const hr=new THREE.InstancedMesh(roofG,M('#fff',{flatShading:true}),roofs.length);
+ const ht=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),M('#e8e3d8'),flats.length);
+ const RC=['#b5533c','#a8473a','#c2643f','#8f4b3b','#6f7b86','#4f6b7a'];
+ let ri=0,ti=0;
+ houses.forEach(([x,z,w,d,h,a,pitched],i)=>{dm.position.set(x,h/2,z);dm.rotation.set(0,a,0);dm.scale.set(w,h,d);dm.updateMatrix();hb.setMatrixAt(i,dm.matrix);hb.setColorAt(i,new THREE.Color(WALL[i%WALL.length]));
+  if(pitched){dm.position.set(x,h+1.4,z);dm.rotation.set(0,a,0);dm.scale.set(w*1.1,2.8,d*1.04);dm.updateMatrix();hr.setMatrixAt(ri,dm.matrix);hr.setColorAt(ri++,new THREE.Color(RC[i%RC.length]))}
+  else{dm.position.set(x,h+1.2,z);dm.rotation.set(0,a,0);dm.scale.set(w*.8,2.4,Math.min(d*.3,4));dm.updateMatrix();ht.setMatrixAt(ti++,dm.matrix)}});
+ [hb,hr,ht].forEach(m=>{m.castShadow=true;m.receiveShadow=true;S.add(m)});
+ // ngõ xóm bê tông
+ const lg=mergeGeometries(lanes.map(([a,b])=>strip([a,b],4.5,.35)));const lm=new THREE.Mesh(lg,M('#c9c4b6',{side:THREE.DoubleSide}));lm.receiveShadow=true;S.add(lm);
+ // ao làng
+ ponds.forEach(([x,z,rx,rz])=>{if(!blocked(x,z)){const m=flat(ell(x,z,rx,rz,24),'#5f8ea0',.3);m.material.roughness=.25}});
+ // vườn cây quanh nhà
+ const gt=new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1,0),M('#fff',{flatShading:true}),gardens.length);
+ gardens.forEach(([x,z],i)=>{const r=2.5+rnd()*3;dm.position.set(x,r+1,z);dm.rotation.set(rnd(),rnd(),0);dm.scale.set(r,r*1.1,r);dm.updateMatrix();gt.setMatrixAt(i,dm.matrix);gt.setColorAt(i,new THREE.Color(['#4a7f33','#5c9140','#3d6e2c','#6b9c45'][i%4]))});
+ gt.castShadow=true;S.add(gt);
+ window.__houses=N;}
 // ================= CAMERA =================
 const VIEWS={
  'toan-canh':[P(300,900),1550,.92,-.25],'hanh-phuc':[P(320,640),900,.9,-.2],'thinh-vuong':[W(150,190),560,.85,-.15],
