@@ -123,9 +123,9 @@ const ROADS=[
  {p:[W(-35,-12),W(210,-12)],w:12,name:'Đường Thương Cảng',at:W(95,-12),tv:1},
  {p:[W(-8,-12),W(-8,diagZ(-8)+4)],w:13,name:'Đường Hoàng Kim 17m',at:W(-8,250),tv:1},
  {p:[W(42.5,-8),W(42.5,diagZ(42)+4)],w:13,name:'Thương Cảng 1 · 15m',at:W(42.5,140),tv:1},
- {p:[W(90,-8),W(90,diagZ(90)+4)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,62),tv:1},
+ {p:[W(90,-8),W(90,116)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,62),tv:1},{p:[W(90,228),W(90,diagZ(90)+4)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,300),tv:1},
  {p:[W(137.5,-8),W(137.5,diagZ(137)+4)],w:13,name:'Thương Cảng 3 · 15m',at:W(137.5,140),tv:1},
- {p:[W(-8,177.5),W(212,177.5)],w:11,name:'Đường nội khu',at:W(20,177.5),tv:1},{p:[W(48,112),W(140,112)],w:8,name:'Đường nội khu',at:W(95,112),tv:1},{p:[W(48,232),W(140,232)],w:8,name:'',tv:1},
+ {p:[W(-8,177.5),W(49,177.5)],w:11,name:'Đường nội khu',at:W(20,177.5),tv:1},{p:[W(131,177.5),W(212,177.5)],w:11,name:'',tv:1},{p:[W(42,112),W(138,112)],w:12,name:'Đường nội khu',at:W(66,112),tv:1},{p:[W(42,232),W(138,232)],w:12,name:'Đường nội khu',at:W(66,232),tv:1},
  {p:TP_ROAD,w:30,name:'Đường Thành Phố 47m',at:W(300,diagZ(300)+10),l:4},
  {p:[208,400].map(x=>W(x,diagZ(x)-52)),w:12,name:'Đường Thịnh Vượng 15m',at:W(300,diagZ(300)-52),tv:1},
  {p:poly([[860,600],[800,950],[700,1350],[650,1700],[640,2100]]),w:20,name:'',l:2}];
@@ -136,8 +136,8 @@ ROADS.forEach(r=>road(r.p,r.w));
   dm.position.set(p.x,.7,p.z);dm.rotation.set(-Math.PI/2,0,ang);dm.scale.set(1,1,1);dm.updateMatrix();im.setMatrixAt(i,dm.matrix)});S.add(im);}
 // vạch tim đường & vạch qua đường nội khu Thịnh Vượng
 {const bars=[];const zebra=(x,z,dir,w)=>{for(let k=-w/2+1;k<w/2;k+=1.6)bars.push(dir?[x+k,z,0]:[x,z+k,Math.PI/2])};
- [42.5,90,137.5].forEach(x=>{[-4,104,120,165,190,224,240].forEach(z=>{if(z<diagZ(x))zebra(x,z,1,11)})});
- [42.5,90,137.5].forEach(x=>{for(let z=10;z<diagZ(x)-6;z+=7)if(Math.abs(z-177.5)>8&&!(z>106&&z<118)&&!(z>226&&z<238))bars.push([x,z,0,1])});
+ [42.5,90,137.5].forEach(x=>{[-4,104,120,165,190,224,240].forEach(z=>{if(z<diagZ(x)&&!(x===90&&z>110&&z<234))zebra(x,z,1,11)})});
+ [42.5,90,137.5].forEach(x=>{for(let z=10;z<diagZ(x)-6;z+=7)if(Math.abs(z-177.5)>8&&!(z>106&&z<118)&&!(z>226&&z<238)&&!(x===90&&z>106&&z<238))bars.push([x,z,0,1])});
  [-8].forEach(x=>{[0,177.5].forEach(z=>zebra(x,z+8,1,12))});
  const im=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),lineM,bars.length);
  bars.forEach(([x,z,r,c],i)=>{dm.position.set(x,.72,z);dm.rotation.set(-Math.PI/2,0,r);c?dm.scale.set(.3,3.2,1):dm.scale.set(.7,3.2,1);dm.updateMatrix();im.setMatrixAt(i,dm.matrix)});S.add(im);}
@@ -316,10 +316,11 @@ rect(220,70,262,100,'#86bb52',.4);ribbon(ell(241,85,14,9),2,.5,'#e9e1cf');
 rect(296,108,372,172,'#86bb52',.3);ribbon([W(298,165),W(320,130),W(345,150),W(370,112)],3,.45,'#e9e1cf');
 
 // ---------- CÔNG VIÊN TRUNG TÂM THỊNH VƯỢNG (theo phối cảnh) ----------
-rect(55,117,135,225,'#7cb94a',.35);
+flat(roundPoly([W(50,118),W(130,118),W(130,226),W(50,226)],14),'#d9d4c8',.33);flat(roundPoly([W(53,121),W(127,121),W(127,223),W(53,223)],12),'#7cb94a',.36);
 ribbon(ell(95,171,36,49,64),3.2,.5,'#3f7fc4');                     // đường chạy bộ xanh dương
 ribbon(ell(95,171,32.5,45.5,64),2.2,.5,'#e7dfcd');                  // lối dạo lát đá
-ribbon([W(59,171),W(131,171)],2.4,.52,'#e7dfcd');ribbon([W(95,120),W(95,222)],2.4,.52,'#e7dfcd');
+// lối dạo cong trong vườn (không xuyên qua giữa)
+ribbon([W(52,150),W(60,128),W(78,121)],2.4,.52,'#e7dfcd');ribbon([W(128,196),W(122,218),W(104,224)],2.4,.52,'#e7dfcd');
 // 05 pickleball: 3 sân xanh ngọc/tím trong hàng tre + lưới rào
 {const cx=95,cz=203;rect(72,192,118,215,'#5aa0a0',.55);
  court(83,198,11,6.5,'#4fc0b7','#4fc0b7','#ffffff');court(107,198,11,6.5,'#b79ad6','#4fc0b7','#ffffff');court(95,209,11,6.5,'#4fc0b7','#b79ad6','#ffffff');
@@ -359,7 +360,7 @@ const inPoly=(x,z,pl)=>{let c=false;for(let i=0,j=pl.length-1;i<pl.length;j=i++)
 const nearTower=(x,z)=>towers.some(t=>{const dx=x-t.m.position.x,dz=z-t.m.position.z;const c=Math.cos(t.a),s=Math.sin(t.a);const u=dx*c-dz*s,v=dx*s+dz*c;return Math.abs(u)<t.w/2+6&&Math.abs(v)<t.d/2+6});
 const dctX=z=>{for(let i=0;i<DCT.length-1;i++){const a=DCT[i],b=DCT[i+1];if((z<=a.z&&z>=b.z)||(z>=a.z&&z<=b.z)){return a.x+(b.x-a.x)*(z-a.z)/(b.z-a.z)}}return 0};
 // cau dọc mọi tuyến phố Thịnh Vượng (như sa bàn thật)
-[[-1,'v'],[37,'v'],[48,'v'],[84.5,'v'],[95.5,'v'],[132,'v'],[143,'v'],[183,'v']].forEach(([x])=>{for(let z=5;z<diagZ(x)-12;z+=11){if(z>172&&z<183)continue;if(x>40&&x<140&&z>108&&z<116)continue;palms.push([x,z,1])}});
+[[-1,'v'],[37,'v'],[48,'v'],[84.5,'v'],[95.5,'v'],[132,'v'],[143,'v'],[183,'v']].forEach(([x])=>{for(let z=5;z<diagZ(x)-12;z+=11){if(z>172&&z<183)continue;if(x>40&&x<140&&((z>106&&z<118)||(z>226&&z<238)))continue;if(x>80&&x<100&&z>104&&z<240)continue;if(x>45&&x<135&&z>168&&z<187)continue;palms.push([x,z,1])}});
 for(let x=2;x<210;x+=12)palms.push([x,-5,1],[x,-19,1]);
 for(let x=225;x<395;x+=10){palms.push([x,diagZ(x)-45,1],[x,diagZ(x)-6,1])}
 palms.push(bigPalm);
