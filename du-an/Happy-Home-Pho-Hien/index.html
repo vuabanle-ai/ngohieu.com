@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sa bàn 3D Happy Home Phố Hiến – Phố Hiến Heritage Collection</title>
+<meta name="description" content="Sa bàn 3D tương tác dự án Happy Home Phố Hiến, Hưng Yên – khu Hạnh Phúc và Thịnh Vượng.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+/*
+VOICE: confident sales-gallery, warm and clear, Vietnamese first.
+IDEA: the physical sa bàn in a Vinhomes sales gallery – a model table you walk around and point at.
+PICTURE: full-bleed 3D massing model of the 31ha site, towers and 303 townhouses, roads and greenery.
+COLOUR and TYPE: Happy Home orange #ee6a1f lead, deep maroon #7b1f1f support, white panels; Be Vietnam Pro.
+LAYOUT: model fills the screen; top bar with zones, left info panel, unit card bottom-right, contact pill.
+*/
+:root{color-scheme:light dark;--bg:light-dark(#fff,#16110f);--ink:light-dark(#2a1512,#f6ece6);--mut:light-dark(#6d5a55,#bfaea7);--pan:light-dark(rgba(255,255,255,.94),rgba(28,20,18,.93));--line:light-dark(#eadbd3,#3d2e29);--or:#ee6a1f;--mr:#7b1f1f}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0;height:100%;overflow:hidden}
+body{background:#cfe0e6;color:var(--ink);font:15px/1.5 "Be Vietnam Pro",system-ui,sans-serif}
+#c{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:grab}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.top{position:fixed;left:12px;right:12px;top:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;pointer-events:none}
+.top>*{pointer-events:auto}
+.brand{background:var(--mr);color:#fff;border-radius:14px;padding:8px 16px;line-height:1.1;box-shadow:0 6px 20px rgba(60,10,10,.25)}
+.brand b{display:block;font-size:19px;font-weight:800;letter-spacing:.2px}.brand b i{color:#ffb27f;font-style:normal}
+.brand span{font-size:12px;opacity:.85}
+.chips{display:flex;gap:6px;overflow-x:auto;background:var(--pan);border-radius:14px;padding:6px;box-shadow:0 6px 20px rgba(0,0,0,.12);scrollbar-width:none;max-width:100%}
+.chips button{flex:none;border:0;background:none;border-radius:10px;padding:0 13px;min-height:38px;font-weight:600;font-size:14px;white-space:nowrap}
+.chips button.on{background:var(--or);color:#fff}
+.tools{margin-left:auto;display:flex;gap:6px}
+.tools button{border:0;background:var(--pan);border-radius:12px;min-height:44px;padding:0 14px;font-weight:600;box-shadow:0 6px 20px rgba(0,0,0,.12);white-space:nowrap}
+.tools button.on{background:var(--mr);color:#fff}
+.side{position:fixed;left:12px;top:86px;width:330px;max-height:calc(100% - 340px);overflow:auto;background:var(--pan);border-radius:18px;padding:18px 18px 14px;box-shadow:0 10px 30px rgba(0,0,0,.16);backdrop-filter:blur(6px)}
+.side h2{margin:0 0 2px;font-size:22px;line-height:1.15;font-weight:800;color:var(--mr)}
+:root[data-theme=dark] .side h2{color:#ffb27f}
+.side .sub{color:var(--mut);font-size:13px;margin:0 0 12px}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}
+.kv div{border-top:2px solid var(--line);padding-top:6px}
+.kv small{display:block;color:var(--mut);font-size:12px}
+.kv strong{font-size:17px;white-space:nowrap}
+.sec{font-weight:800;font-size:14px;margin:14px 0 6px;color:var(--or)}
+.am{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.am button{width:100%;text-align:left;border:0;background:none;display:flex;gap:9px;align-items:center;padding:5px 4px;border-radius:8px;font-size:14px;min-height:34px}
+.am button:hover{background:light-dark(#fbeee6,#2c201c)}
+.num{flex:none;width:24px;height:24px;border-radius:50%;background:var(--or);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center}
+.lk{list-style:none;margin:0;padding:0;font-size:14px}
+.lk li{display:flex;gap:10px;padding:5px 0;border-bottom:1px solid var(--line)}
+.lk b{flex:none;width:58px;color:var(--mr);white-space:nowrap}
+:root[data-theme=dark] .lk b{color:#ffb27f}
+.note{font-size:12px;color:var(--mut);margin-top:12px}
+.card{position:fixed;right:12px;bottom:76px;width:350px;background:var(--pan);border-radius:18px;overflow:hidden;box-shadow:0 14px 40px rgba(0,0,0,.25);display:none}
+.card.show{display:block}
+.card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#ddd;cursor:zoom-in}
+.card .in{padding:14px 16px 16px}
+.card h3{margin:0;font-size:20px;line-height:1.2;font-weight:800}
+.card .tag{display:inline-block;background:var(--or);color:#fff;font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px;margin:0 0 6px}
+.card p{margin:6px 0 0;font-size:14px;color:var(--mut)}
+.card .row{display:flex;gap:8px;margin-top:12px}
+.card .row a,.card .row button{flex:1;text-align:center;border:0;border-radius:12px;min-height:44px;display:grid;place-items:center;font-weight:700;text-decoration:none;font-size:14px}
+.card .row a{background:var(--mr);color:#fff}
+.card .row button{background:light-dark(#f3e6df,#2c201c)}
+.x{position:absolute;top:8px;right:8px;width:36px;height:36px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:20px;line-height:1}
+.contact{position:fixed;right:12px;bottom:12px;display:flex;gap:10px;align-items:center;background:var(--mr);color:#fff;border-radius:999px;padding:6px 6px 6px 16px;box-shadow:0 8px 24px rgba(60,10,10,.3)}
+.contact small{display:block;font-size:11px;opacity:.85;line-height:1.1}
+.contact b{font-size:14px;white-space:nowrap}
+.contact a{background:var(--or);color:#fff;text-decoration:none;font-weight:800;border-radius:999px;padding:0 16px;min-height:44px;display:grid;place-items:center;white-space:nowrap}
+.srch{display:flex;gap:6px;margin:0 0 6px}.srch input{flex:1;font:16px/1 inherit;font-family:inherit;border:2px solid var(--line);border-radius:10px;padding:0 10px;min-height:44px;background:transparent;color:inherit}.srch button{border:0;border-radius:10px;background:var(--or);color:#fff;font-weight:700;padding:0 14px;min-height:44px}.srch-msg{font-size:12px;color:var(--mut);min-height:16px;margin:0}
+.legend{position:fixed;left:12px;bottom:12px;width:330px;background:var(--pan);border-radius:16px;padding:12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.14);font-size:13px}
+.lgt{font-weight:800;margin-bottom:6px}.modes{display:flex;gap:4px;background:light-dark(#f3ebe5,#2c201c);border-radius:10px;padding:3px}
+.modes button{flex:1;border:0;background:none;border-radius:8px;min-height:36px;font-weight:600;font-size:13px}.modes button.on{background:var(--mr);color:#fff}
+#lgItems{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:3px 12px}
+#lgItems li{display:flex;align-items:center;gap:6px}#lgItems li b{margin-left:auto;font-variant-numeric:tabular-nums}#lgItems li.sm{grid-column:1/-1;color:var(--mut);font-size:12px}
+#lgItems i{width:14px;height:14px;border-radius:4px;border:1px solid rgba(0,0,0,.2);flex:none}
+.tip{color:var(--mut);font-size:11.5px;margin-top:6px}
+.card dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;margin:10px 0 0;font-size:13.5px}.card dt{color:var(--mut)}.card dd{margin:0;font-weight:600}
+.card.open .tag{background:#25b768}#cFront{display:none}.card.lot #cFront{display:grid}
+.card{max-height:calc(100% - 170px);overflow:auto}
+.lb.edu{font-weight:800;font-size:13px;color:#fff;background:#1f5f9e;padding:4px 10px;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,.3);white-space:normal;max-width:220px;text-align:center;line-height:1.25}.lb.edu.zone-edu{background:#2f7d32}
+.quy{list-style:none;margin:0;padding:0;max-height:260px;overflow:auto;border:1px solid var(--line);border-radius:10px}.quy button{width:100%;border:0;background:none;display:grid;grid-template-columns:72px 1fr auto;gap:8px;align-items:center;text-align:left;padding:7px 10px;min-height:38px;border-bottom:1px solid var(--line);font-size:14px}.quy button:hover{background:light-dark(#fbeee6,#2c201c)}.quy em{font-style:normal;font-weight:800;color:#c8102e;white-space:nowrap}.quy em.g{color:#6d6560}.quy span{color:var(--mut);font-size:13px}
+.card dd.big{font-size:16px;font-weight:800;color:#c8102e}.card dd.sm{font-weight:400;font-size:12px;color:var(--mut)}
+#tip{position:fixed;display:none;z-index:12;pointer-events:none;background:#fff;color:#2a1512;border-radius:10px;padding:7px 11px;font-size:13px;line-height:1.35;box-shadow:0 6px 18px rgba(0,0,0,.25)}#tip em{font-style:normal;font-weight:800;color:#14853f}#tip span{color:#6d5a55;font-size:12px}
+.card img{aspect-ratio:21/9}.card .in{display:flex;flex-direction:column}
+.lb.road.tv{background:rgba(123,31,31,.85)}
+#labels{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.lb{position:absolute;left:0;top:0;white-space:nowrap;will-change:transform}
+.lb.zone{font-weight:800;font-size:15px;color:#fff;background:var(--mr);padding:3px 12px;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,.3)}
+.lb.zone.tv{background:#d9891c}
+.lb.sub{font-weight:700;font-size:12px;color:#fff;background:var(--or);padding:2px 9px;border-radius:6px}
+.lb.road{font-size:11px;font-weight:600;color:#fff;background:rgba(30,30,34,.72);padding:2px 8px;border-radius:5px}
+.lb.tw{font-size:11px;font-weight:800;color:var(--mr);background:#fff;padding:1px 6px;border-radius:5px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+.lb.cd{font-size:9px;font-weight:700;color:#5a2a12;background:rgba(255,248,236,.92);padding:0 3px;border-radius:3px}
+.lb.pin{pointer-events:auto;width:26px;height:26px;border-radius:50%;background:var(--or);color:#fff;font-size:11px;font-weight:800;display:grid;place-items:center;border:2px solid #fff;box-shadow:0 3px 8px rgba(0,0,0,.35);cursor:pointer}
+.lb.pin:hover::after,.lb.pin.act::after{content:attr(data-t);position:absolute;left:30px;top:2px;background:#fff;color:#2a1512;font-weight:600;font-size:12px;padding:2px 8px;border-radius:6px;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.gal{position:fixed;inset:0;background:rgba(18,8,6,.92);display:none;flex-direction:column;z-index:20}
+.gal.show{display:flex}
+.gal .strip{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gal figure{flex:0 0 100%;scroll-snap-align:center;margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:56px 16px 12px}
+.gal img{max-width:100%;max-height:calc(100vh - 150px);object-fit:contain;border-radius:10px}
+.gal figcaption{color:#fff;margin-top:10px;font-weight:600;text-align:center}
+.gal .nav{display:flex;justify-content:center;gap:10px;padding:0 0 16px}
+.gal .nav button{border:0;border-radius:12px;min-height:44px;padding:0 20px;background:#fff;color:#2a1512;font-weight:700}
+.gal .x{top:12px;right:12px;width:44px;height:44px}
+.load{position:fixed;inset:0;display:grid;place-items:center;background:#cfe0e6;color:var(--mr);font-weight:800;font-size:18px;z-index:30;transition:opacity .6s}
+@media(max-width:820px){
+ .side{top:auto;bottom:0;left:0;right:0;width:auto;max-height:42vh;border-radius:18px 18px 0 0;display:none}
+ .side.open{display:block;z-index:15}
+ .tools{margin-left:0}
+ .brand b{font-size:16px}
+ .card{left:8px;right:8px;width:auto;bottom:70px}
+ .legend{left:8px;right:8px;width:auto;bottom:66px;padding:8px 10px}.tip{display:none}#lgItems{grid-template-columns:1fr 1fr 1fr;font-size:12px}
+ .card{bottom:66px;z-index:16;max-height:calc(100% - 150px)}
+ .contact{left:8px;right:8px;justify-content:space-between}
+}
+@media(min-width:821px){.side.open{display:none}}
+@media(prefers-reduced-motion:reduce){.load{transition:none}}
+</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head>
+<body>
+<canvas id="c" aria-label="Sa bàn 3D dự án Happy Home Phố Hiến"></canvas>
+<div id="labels"></div>
+<div id="tip" role="tooltip"></div>
+<div class="load" id="load">Đang dựng sa bàn Happy Home Phố Hiến…</div>
+
+<header class="top">
+ <div class="brand"><b>H<i>A</i>PPY HOME</b><span>Phố Hiến Heritage Collection · Sa bàn 3D</span></div>
+ <nav class="chips" id="chips" aria-label="Chọn khu">
+  <button data-v="toan-canh" class="on">Toàn cảnh</button>
+  <button data-v="hanh-phuc">Hạnh Phúc</button>
+  <button data-v="thinh-vuong">Thịnh Vượng</button>
+  <button data-v="the-link">The Link</button>
+  <button data-v="the-nest">The Nest</button>
+  <button data-v="the-haven">The Haven</button>
+  <button data-v="the-rise">The Rise</button>
+  <button data-v="giao-duc">Kết nối giáo dục</button>
+ </nav>
+ <div class="tools">
+  <button id="bInfo">Thông tin</button>
+  <button id="bRot" class="on" aria-pressed="true">Tự xoay</button>
+  <button id="bGal">Hình ảnh</button>
+ </div>
+</header>
+
+<aside class="side" id="side">
+ <h2>Happy Home Phố Hiến</h2>
+ <p class="sub">Phố Hiến, Hưng Yên · Chủ đầu tư: Công ty CP Vinhomes</p>
+ <div class="kv">
+  <div><small>Quy mô</small><strong>311.226,9 m²</strong></div>
+  <div><small>Mật độ xây dựng</small><strong>26,5%</strong></div>
+ </div>
+ <div class="sec">Khu Hạnh Phúc · NOXH cao tầng</div>
+ <div class="kv">
+  <div><small>Số căn hộ</small><strong>4.400 căn</strong></div>
+  <div><small>Số tòa</small><strong>25 tòa · 4 khu</strong></div>
+  <div><small>Quy mô</small><strong>112.453,4 m²</strong></div>
+  <div><small>Loại căn</small><strong>Studio – 3PN</strong></div>
+ </div>
+ <div class="sec">Phố Hiến Heritage Collection · Khu Thịnh Vượng</div>
+ <form class="srch" id="srch"><input id="q" placeholder="Tìm mã căn, VD: HK-01" aria-label="Tìm mã căn" autocomplete="off"><button>Tìm</button></form><p class="srch-msg" id="qm"></p>
+ <div class="kv">
+  <div><small>Số căn</small><strong>303 căn</strong></div>
+  <div><small>Loại căn</small><strong>Liền kề shophouse</strong></div>
+  <div><small>Mật độ xây dựng</small><strong>90%</strong></div>
+  <div><small>Pháp lý</small><strong>Sở hữu lâu dài</strong></div>
+ </div>
+ <div class="sec">Quỹ căn đang bán · <span id="quyN"></span> căn</div>
+ <p class="note" style="margin:0 0 6px">Giá đỏ: giá tiến độ (TĐC) · giá xám: giá sau VAT & KPBT. Theo bảng hàng 22–24/11/2026, có thể thay đổi. Bấm để tới căn.</p>
+ <ul class="quy" id="quy"></ul>
+ <div class="sec">Tiện ích khu Thịnh Vượng</div>
+ <ul class="am" id="amList"></ul>
+ <p class="sub" style="margin:-4px 0 0"><a href="https://byvn.net/uVAs" target="_blank" rel="noopener" style="color:var(--or);font-weight:700">Xem vị trí dự án trên bản đồ ›</a></p>
+ <div class="sec">Kết nối</div>
+ <ul class="lk">
+  <li><b>5 phút</b>Khu đô thị Đại học Phố Hiến</li>
+  <li><b>5 phút</b>Đại học Thủy Lợi cơ sở Phố Hiến</li>
+  <li><b>8 phút</b>Trung tâm phường Phố Hiến</li>
+  <li><b>11 phút</b>Bệnh viện Đa khoa tỉnh Hưng Yên</li>
+  <li><b>12 phút</b>Cầu Hưng Hà</li>
+  <li><b>16 phút</b>KCN số 5, KCN Sạch Hưng Yên, cụm CN Quảng Lãng – Đặng Lễ</li>
+ </ul>
+ <p class="note">Số liệu theo tài liệu dự án. Hình khối, chiều cao và vị trí căn trên sa bàn mang tính minh họa; thông tin chính thức theo chủ đầu tư.</p>
+</aside>
+
+<div class="card" id="card" role="dialog" aria-live="polite">
+ <button class="x" id="cardX" aria-label="Đóng">×</button>
+ <img id="cImg" alt="">
+ <div class="in">
+  <span class="tag" id="cTag"></span>
+  <h3 id="cTitle"></h3>
+  <p id="cText"></p><dl id="cRows"></dl>
+  <div class="row"><a href="https://zalo.me/0914669669" target="_blank" rel="noopener">Hỏi giá căn này</a><button id="cFront">Xem mặt tiền</button><button id="cPic">Ảnh lớn</button></div>
+ </div>
+</div>
+
+<div class="legend" id="legend"><div class="lgt">Tô màu sơ đồ Thịnh Vượng</div><div class="modes" id="lgModes"><button data-m="mac-dinh" class="on">Mặc định</button><button data-m="loai">Loại căn</button><button data-m="mo-ban">Đang mở bán</button></div><ul id="lgItems"></ul><div class="tip">Kéo để xoay · cuộn/chụm để phóng · mã căn ghi trên mái</div></div>
+<div class="contact"><div><b>Ngô Hiếu</b></div><a href="https://zalo.me/0914669669" target="_blank" rel="noopener">Zalo</a></div>
+
+<div class="gal" id="gal" role="dialog" aria-label="Hình ảnh dự án">
+ <button class="x" id="galX" aria-label="Đóng">×</button>
+ <div class="strip" id="strip"></div>
+ <div class="nav"><button id="gPrev">‹ Trước</button><button id="gNext">Sau ›</button></div>
+</div>
+
+<script type="module" src="sa-ban.js"></script>
+</body>
+</html>
