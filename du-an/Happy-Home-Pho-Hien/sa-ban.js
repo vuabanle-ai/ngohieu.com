@@ -106,7 +106,7 @@ function roundPoly(pts,r){const out=[];const n=pts.length;for(let i=0;i<n;i++){c
  const da=Math.hypot(a.x-p.x,a.z-p.z),db=Math.hypot(b.x-p.x,b.z-p.z),rr=Math.min(r,da/2,db/2);
  const p1=W(p.x+(a.x-p.x)*rr/da,p.z+(a.z-p.z)*rr/da),p2=W(p.x+(b.x-p.x)*rr/db,p.z+(b.z-p.z)*rr/db);
  for(let q=0;q<=8;q++){const t=q/8,u=1-t;out.push(W(u*u*p1.x+2*u*t*p.x+t*t*p2.x,u*u*p1.z+2*u*t*p.z+t*t*p2.z))}}return out}
-[[5,35,1,170],[5,35,185,'d'],[50,82.5,1,105],[50,82.5,250,'d'],[97.5,130,1,105],[97.5,130,250,'d'],[145,180,1,170],[145,180,185,'d']].forEach(([x0,x1,z0,z1])=>{
+[[5,35,1,170],[5,35,185,'d'],[50,82.5,1,105],[50,82.5,240,'d'],[97.5,130,1,105],[97.5,130,240,'d'],[145,180,1,170],[145,180,185,'d']].forEach(([x0,x1,z0,z1])=>{
  const a=x0-4,b=x1+4,za=z0-5;const pts=z1==='d'?[W(a,za),W(b,za),W(b,diagZ(b)-10),W(a,diagZ(a)-10)]:[W(a,za),W(b,za),W(b,z1+4),W(a,z1+4)];
  flat(roundPoly(pts,11),'#d9d4c8',.33);});
 // ================= ĐƯỜNG =================
@@ -174,7 +174,7 @@ TOW.forEach(([n,cx,cy,o,a])=>{const L=74,Wd=24,H=48+(n.charCodeAt(1)%3)*3;const 
 
 // ================= 303 CĂN LIỀN KỀ THỊNH VƯỢNG =================
 const COLX={1:[5,35],2:[50,82.5],3:[97.5,130],4:[145,180]};
-const BLOCKZ={1:[[1,170],[185,'d']],2:[[1,105],[250,'d']],3:[[1,105],[250,'d']],4:[[1,170],[185,'d']]};
+const BLOCKZ={1:[[1,170],[185,'d']],2:[[1,105],[240,'d']],3:[[1,105],[240,'d']],4:[[1,170],[185,'d']]};
 const lots=[];
 LOTS.forEach(([col,half,blk,items])=>{
  const sumA=items.reduce((s,it)=>s+(it[1]||80),0);
@@ -250,7 +250,7 @@ const cornerMesh={};const CW_BASE=new THREE.Color('#eadcc6');
 // ---- chi tiết khối: ban công, lan can, mái che tầng trệt, tum thang
 {const slabs=[],rails=[],cans=[],tums=[];const base=new THREE.Matrix4(),loc=new THREE.Matrix4(),q=new THREE.Quaternion(),one=new THREE.Vector3(1,1,1);
  const put=(arr,x,y,z,sx,sy,sz)=>{loc.compose(new THREE.Vector3(x,y,z),new THREE.Quaternion(),new THREE.Vector3(sx,sy,sz));arr.push(base.clone().multiply(loc))};
- lots.forEach(L=>{const ry=L.ew?L.rot+Math.PI/2:0;q.setFromAxisAngle(new THREE.Vector3(0,1,0),ry);base.compose(new THREE.Vector3(L.x,.3,L.z),q,one);
+ lots.forEach(L=>{if(L.end&&!L.ew)return;const ry=L.ew?L.rot+Math.PI/2:0;q.setFromAxisAngle(new THREE.Vector3(0,1,0),ry);base.compose(new THREE.Vector3(L.x,.3,L.z),q,one);
   const dh=(L.ew?L.l:L.w)/2,fr=L.ew?L.w:L.l,f=L.fx;
   for(let k=0;k<3;k++){const y=4.5+k*3.6;put(slabs,f*(dh+.45),y,0,.9,.18,fr*.86);put(rails,f*(dh+.88),y+.55,0,.06,1.1,fr*.86);
    if(L.cat==='goc'&&L.end){put(slabs,0,y,L.end*(fr/2+.45),dh*1.6,.18,.9);put(rails,0,y+.55,L.end*(fr/2+.88),dh*1.6,1.1,.06)}}
@@ -552,9 +552,12 @@ document.getElementById('cFront').onclick=()=>{if(sel>=0)viewFront(sel)};
 function hit(ev){const r=cv.getBoundingClientRect();mp.set((ev.clientX-r.left)/r.width*2-1,-(ev.clientY-r.top)/r.height*2+1);ray.setFromCamera(mp,cam);return ray.intersectObjects(pick,false)[0]}
 cv.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];setRot(false)});
 const tip=document.getElementById('tip');
-function showTip(id,e){if(id<0){tip.style.display='none';return}const L=lots[id],p=PRICE[L.code];
- tip.innerHTML=`<b>${L.code}</b> · ${fmt(p&&p.dt||L.area||0)} m²${p?` · <em>${p.tdc?'TĐC ':''}${ty(pv(p))}</em>`:''}<br><span>${CAT[L.cat][0]}${L.open?' · Đang mở bán':''}</span>`;
- tip.style.display='block';tip.style.left=(e.clientX+14)+'px';tip.style.top=(e.clientY+14)+'px'}
+function showTip(id,e){if(id<0){tip.style.display='none';return}const L=lots[id],p=PRICE[L.code],d=L.d||[];
+ const dt=(p&&p.dt)||L.area,x=(p&&p.x)||d[3];
+ const rows=[['Loại căn',CAT[L.cat][0]],['Diện tích đất',dt?fmt(dt)+' m²':''],['DTXD',x?fmt(x)+' m²':''],['Hướng',d[0]],['Vị trí',d[1]],['Mặt đường',L.face],['Tiện ích',d[4]],
+  ['Giá',p?(p.tdc?'TĐC '+ty(pv(p)):ty(pv(p))):'']].filter(r=>r[1]);
+ tip.innerHTML=`<b>${L.code}</b>${L.open?' <i>Đang mở bán</i>':''}<dl>${rows.map(([k,v])=>`<dt>${k}</dt><dd${k==='Giá'?' class="g"':''}>${esc(v)}</dd>`).join('')}</dl>`;
+ tip.style.display='block';const r=tip.getBoundingClientRect();let lx=e.clientX+14,ly=e.clientY+14;if(lx+r.width>innerWidth-8)lx=e.clientX-r.width-14;if(ly+r.height>innerHeight-8)ly=innerHeight-r.height-8;tip.style.left=lx+'px';tip.style.top=ly+'px'}
 cv.addEventListener('pointerleave',()=>tip.style.display='none');
 cv.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const h=hit(e);const id=h?(h.object===body?h.instanceId:(h.object.userData.lot??-1)):-1;showTip(id,e);
  if(id!==hov){if(hov>=0&&hov!==sel)paint(hov,lotCol(hov));if(id>=0&&id!==sel)paint(id,HOV);hov=id}cv.style.cursor=h?'pointer':'grab'});
