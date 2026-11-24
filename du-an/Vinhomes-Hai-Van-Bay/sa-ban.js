@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import * as PTG from './ptg.js';
 {
 // ===== Sa bàn 3D Vinhomes Hải Vân Bay – khu Đảo Ngọc =====
 // lots-dao-ngoc.json: {meta:{w,h} (mét), lots:[[mã, loại Y|P|K, [[x,z]…] (mét, gốc góc trên-trái ảnh nền)]]}
@@ -67,7 +68,7 @@ for (const [code, t, poly] of data.lots) {
   g.setAttribute('color', new THREE.BufferAttribute(col, 3));
   geos.push(g);
   const area = Math.abs(THREE.ShapeUtils.area(pts));
-  const L = { ax: lotAxis(poly.map(([x, z]) => [X(x), Z(z)])), code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
+  const L = { poly, ax: lotAxis(poly.map(([x, z]) => [X(x), Z(z)])), code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
   lots.push(L); byCode.set(code, L); vtx += n;
 }
 const merged = mergeGeometries(geos, false); geos.forEach(g => g.dispose());
@@ -235,10 +236,64 @@ function select(L, fly) {
     if (q.offers?.length > 1) html += `<dt class="h">Giá theo đại lý</dt><dd class="h"></dd>` + q.offers.map(o => `<dt>${SRC[o.src] || o.src}</dt><dd>${ty(o.gia)}${o.tcbg ? ' · ' + o.tcbg : ''}</dd>`).join('');
   }
   $('cRows').innerHTML = html;
+  extras(L, q);
   $('card').classList.add('show');
   if (fly) flyTo(L.cx, L.cz, 260, .9, controls.getAzimuthalAngle());
 }
 $('cardX').onclick = () => select(null);
+
+// ---------- phiếu tính giá + ảnh chỉ căn ----------
+let curL = null, curQ = null, ptgKey = 'tttd';
+function extras(L, q) {
+  curL = L; curQ = q;
+  const can = q?.gia && !SOLD[L.code];
+  $('ptg').hidden = !can;
+  if (can) {
+    const ks = PTG.plans(q); if (!ks.includes(ptgKey)) ptgKey = 'tttd';
+    $('ptgTabs').innerHTML = ks.map(k => `<button data-k="${k}" class="${k === ptgKey ? 'on' : ''}">${PTG.NAME[k]}</button>`).join('');
+    $('ptgBody').innerHTML = PTG.html(L.code, q, ptgKey);
+  }
+  const img = chiCan(L); $('ccImg').src = img.toDataURL('image/jpeg', .9);
+  const links = (q?.anh || []).map((u, i) => `<a href="${u}" target="_blank" rel="noopener">Ảnh căn ${q.anh.length > 1 ? i + 1 : ''} ›</a>`).join(' ');
+  $('ccLinks').innerHTML = links;
+}
+$('ptgTabs').onclick = e => { const b = e.target.closest('button'); if (!b) return; ptgKey = b.dataset.k; extras(curL, curQ); window.__track && window.__track('xem_ptg', { code: curL.code, plan: ptgKey }) };
+async function save(cn, name) {
+  const blob = await new Promise(r => cn.toBlob(r, 'image/png'));
+  const file = new File([blob], name, { type: 'image/png' });
+  if (navigator.canShare && navigator.canShare({ files: [file] }) && matchMedia('(pointer:coarse)').matches) { try { await navigator.share({ files: [file], title: name }); return } catch (_) {} }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+$('ptgDl').onclick = () => { save(PTG.png(curL.code, curQ, ptgKey), `PTG-${curL.code}-${ptgKey}.png`); window.__track && window.__track('tai_ptg', { code: curL.code, plan: ptgKey }) };
+$('ccDl').onclick = () => { save(chiCan(curL, 1600), `Chi-can-${curL.code}.png`); window.__track && window.__track('tai_chi_can', { code: curL.code }) };
+$('ccImg').onclick = () => $('ccDl').click();
+// ảnh chỉ căn: cắt mặt bằng quanh căn, khoanh đỏ căn và ghi mã
+function chiCan(L, size = 900) {
+  const im = tex.image, k = im.width / W, R = 70;   // bán kính ~70 m quanh căn
+  let mx = 0, mz = 0; L.poly.forEach(([x, z]) => { mx += x; mz += z }); mx /= L.poly.length; mz /= L.poly.length;
+  const cn = document.createElement('canvas'), Hh = Math.round(size * .75); cn.width = size; cn.height = Hh; const g = cn.getContext('2d');
+  const sw = R * 2 * k, sh = sw * .75, sx = mx * k - sw / 2, sy = mz * k - sh / 2;
+  g.fillStyle = '#cfe0e6'; g.fillRect(0, 0, size, Hh);
+  try { g.drawImage(im, sx, sy, sw, sh, 0, 0, size, Hh) } catch (_) {}
+  const s = size / sw, P = ([x, z]) => [(x * k - sx) * s, (z * k - sy) * s];
+  // làm mờ nhẹ phần còn lại
+  g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(0, 0, size, Hh);
+  g.beginPath(); L.poly.forEach((p, i) => { const [x, y] = P(p); i ? g.lineTo(x, y) : g.moveTo(x, y) }); g.closePath();
+  g.fillStyle = 'rgba(227,27,35,.55)'; g.fill(); g.lineWidth = size / 160; g.strokeStyle = '#e31b23'; g.stroke();
+  const [cx, cy] = P([mx, mz]), fs = Math.round(size / 22);
+  g.font = `800 ${fs}px "Be Vietnam Pro",Arial,sans-serif`; const tw = g.measureText(L.code).width;
+  const bx = Math.min(size - tw - 40, Math.max(10, cx - tw / 2 - 14)), by = Math.max(10, cy - fs * 2.8);
+  g.fillStyle = '#e31b23'; g.beginPath(); g.roundRect(bx, by, tw + 28, fs * 1.5, 10); g.fill();
+  g.beginPath(); g.moveTo(cx - 10, by + fs * 1.5); g.lineTo(cx + 10, by + fs * 1.5); g.lineTo(cx, cy - 4); g.fill();
+  g.fillStyle = '#fff'; g.fillText(L.code, bx + 14, by + fs * 1.1);
+  g.fillStyle = 'rgba(28,29,33,.78)'; g.fillRect(0, Hh - fs * 1.3, size, fs * 1.3);
+  g.fillStyle = '#fff'; g.font = `600 ${Math.round(fs * .55)}px "Be Vietnam Pro",Arial,sans-serif`;
+  g.fillText(`Vinhomes Hải Vân Bay · Đảo Ngọc · Dãy ${L.pre} · ${TYPE[L.t].name}`, 16, Hh - fs * .45);
+  // la bàn
+  g.font = `800 ${Math.round(fs * .6)}px "Be Vietnam Pro",Arial,sans-serif`; g.fillStyle = '#fff'; g.strokeStyle = 'rgba(0,0,0,.5)'; g.lineWidth = 4;
+  g.strokeText('B ↑', size - fs * 2.2, fs * 1.1); g.fillText('B ↑', size - fs * 2.2, fs * 1.1);
+  return cn;
+}
 
 // ---------- picking ----------
 const ray = new THREE.Raycaster(), mp = new THREE.Vector2(); let down = null;
