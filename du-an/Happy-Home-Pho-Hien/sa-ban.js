@@ -217,7 +217,7 @@ const lotSideFac=M('#ffffff',{map:shopFacade(3),roughness:.8});
 const lotRoof=M('#ebe5da');
 const body=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),[lotWall,lotWall,lotRoof,lotRoof,lotSideFac,lotSideFac],NL);
 body.castShadow=body.receiveShadow=true;
-const BASE=new THREE.Color('#ffffff'),GOC=new THREE.Color('#fff0dc'),HOV=new THREE.Color('#ffb27f'),SEL=new THREE.Color('#ee6a1f');
+const BASE=new THREE.Color('#ffffff'),GOC=new THREE.Color('#fff0dc'),HOV=new THREE.Color('#ff8c91'),SEL=new THREE.Color('#e31b23');
 let MODE='mac-dinh';const CC={};Object.entries(CAT).forEach(([k,[,c]])=>CC[k]=new THREE.Color(c));
 const OPENC=new THREE.Color('#25b768'),SOLD=new THREE.Color('#d6d1c8');
 const lotCol=i=>{const L=lots[i];if(!L)return BASE;if(MODE==='loai')return CC[L.cat];if(MODE==='mo-ban')return L.open?OPENC:SOLD;return L.cat==='goc'?GOC:BASE};
@@ -266,7 +266,7 @@ const byCode=new Map(lots.map((L,i)=>[L.code.replace('Đ','D'),i]));
  g.textBaseline='middle';const F=(w,px)=>`${w} ${px}px "Be Vietnam Pro",Arial,sans-serif`;
  const fit=(t,w,px,max)=>{g.font=F(800,px);while(g.measureText(t).width>max&&px>24){px-=2;g.font=F(800,px)}return px};
  lots.forEach((L,i)=>{const pp=PRICE[L.code];const x0=(i%COLS)*CW,y0=Math.floor(i/COLS)*CH,cy=y0+CH/2;
-  {fit(L.code,800,70,CW-40);g.textAlign='center';g.lineWidth=10;g.strokeStyle='rgba(255,255,255,.95)';g.strokeText(L.code,x0+CW/2,cy);g.fillStyle='#7b1f1f';g.fillText(L.code,x0+CW/2,cy)}});
+  {fit(L.code,800,70,CW-40);g.textAlign='center';g.lineWidth=10;g.strokeStyle='rgba(255,255,255,.95)';g.strokeText(L.code,x0+CW/2,cy);g.fillStyle='#e31b23';g.fillText(L.code,x0+CW/2,cy)}});
  const tex=new THREE.CanvasTexture(cn);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=8;
  const pos=[],uv=[],idx=[];const v=new THREE.Vector3(),q=new THREE.Quaternion(),mtx=new THREE.Matrix4();
  lots.forEach((L,i)=>{const ry=L.ew?L.rot+Math.PI/2:0;q.setFromAxisAngle(new THREE.Vector3(0,1,0),ry);mtx.compose(new THREE.Vector3(L.x,L.h+.36,L.z),q,new THREE.Vector3(1,1,1));
@@ -526,7 +526,7 @@ let fly=null;
 function flyTo(t,dist,pol=.9,az=null){const a=az??Math.atan2(cam.position.x-ctl.target.x,cam.position.z-ctl.target.z);
  const to=new THREE.Vector3(t.x+dist*Math.sin(pol)*Math.sin(a),dist*Math.cos(pol),t.z+dist*Math.sin(pol)*Math.cos(a));
  fly={t0:performance.now(),d:matchMedia('(prefers-reduced-motion:reduce)').matches?1:1400,fp:cam.position.clone(),ft:ctl.target.clone(),tp:to,tt:t.clone()}}
-function go(v){const [t,d,p,a]=VIEWS[v]||VIEWS['toan-canh'];flyTo(t,d,p,a);document.querySelectorAll('#chips button').forEach(b=>b.classList.toggle('on',b.dataset.v===v))}
+function go(v){window.__track&&window.__track('xem_khu',{view:v});const [t,d,p,a]=VIEWS[v]||VIEWS['toan-canh'];flyTo(t,d,p,a);document.querySelectorAll('#chips button').forEach(b=>b.classList.toggle('on',b.dataset.v===v))}
 document.getElementById('chips').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;try{history.replaceState(null,'','#'+b.dataset.v)}catch(_){}go(b.dataset.v)});
 addEventListener('hashchange',()=>{if(VIEWS[location.hash.slice(1)])go(location.hash.slice(1))});
 
@@ -538,7 +538,7 @@ function show(info){cur=info;const im=document.getElementById('cImg');im.src=inf
  document.getElementById('cTag').textContent=info.tag;document.getElementById('cTitle').textContent=info.title;document.getElementById('cText').textContent=info.text;document.getElementById('cRows').innerHTML=info.rows||'';card.classList.toggle('open',!!info.open);card.classList.toggle('lot',!!info.rows);card.classList.add('show')}
 function paint(i,c){if(i<0)return;body.setColorAt(i,c);body.instanceColor.needsUpdate=true;if(cornerMesh[i])cornerMesh[i].color.copy(CW_BASE).multiply(c)}
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function selectLot(i,fly){paint(sel,lotCol(sel));sel=i;paint(i,SEL);const L=lots[i],m=MAU[L.type],d=L.d;
+function selectLot(i,fly){paint(sel,lotCol(sel));sel=i;paint(i,SEL);const L=lots[i],m=MAU[L.type],d=L.d;window.__track&&window.__track('xem_can',{code:L.code});
  const p=PRICE[L.code];const vnd=n=>n?n.toLocaleString('vi-VN')+' đ':'';
  const rows=[['Loại căn',(p?'LK · ':'')+CAT[L.cat][0]],['TCBG',p?p.tc:''],['Hướng',d[0]],['Vị trí',d[1]],['Mặt đường',L.face],['DT đất',(p&&p.dt?fmt(p.dt):L.area?fmt(L.area):'')+(p&&p.dt||L.area?' m²':'')],['DTXD',(p&&p.x)?fmt(p.x)+' m²':d[3]?fmt(d[3])+' m²':''],
   ['Giá trước VAT',p&&p.pre?vnd(p.pre):''],['VAT',p&&p.vat?vnd(p.vat):''],['KPBT',p&&p.kp?vnd(p.kp):''],[p&&p.allin?'Giá all in':'Tổng giá sau VAT & KPBT',p&&p.tot?vnd(p.tot):''],['Giá tiến độ (TĐC)',p&&p.tdc?trd(p.tdc):''],['Thanh toán sớm (TTS)',p&&p.tts?trd(p.tts):''],['Vay 18 tháng',p&&p.v18?trd(p.v18):''],['Vay 24 tháng',p&&p.v24?trd(p.v24):''],['Vay 30 tháng',p&&p.v30?trd(p.v30):''],['Vay 36 tháng',p&&p.v36?trd(p.v36):''],['Tiện ích lân cận',d[4]]].filter(r=>r[1]);
@@ -598,6 +598,8 @@ document.getElementById('bGal').onclick=()=>openGal();
 document.getElementById('cPic').onclick=()=>openGal(cur&&cur.img);document.getElementById('cImg').onclick=()=>openGal(cur&&cur.img);
 document.getElementById('galX').onclick=()=>gal.classList.remove('show');
 document.getElementById('gPrev').onclick=()=>step(-1);document.getElementById('gNext').onclick=()=>step(1);
+document.getElementById('gDl').onclick=()=>{const i=Math.round(stripEl.scrollLeft/stripEl.clientWidth),g=GAL[Math.max(0,Math.min(GAL.length-1,i))];
+ const a=document.createElement('a');a.href='img/'+g[0]+'.jpg';a.download='Happy-Home-Pho-Hien-'+g[0]+'.jpg';document.body.appendChild(a);a.click();a.remove();window.__track&&window.__track('tai_anh',{img:g[0]})};
 addEventListener('keydown',e=>{if(!gal.classList.contains('show'))return;if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1);if(e.key==='Escape')gal.classList.remove('show')});
 
 // ================= VÒNG LẶP =================
