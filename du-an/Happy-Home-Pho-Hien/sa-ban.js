@@ -226,8 +226,8 @@ const body=new THREE.InstancedMesh(new THREE.BoxGeometry(1,1,1),[lotWall,lotWall
 body.castShadow=body.receiveShadow=true;
 const BASE=new THREE.Color('#ffffff'),GOC=new THREE.Color('#fff0dc'),HOV=new THREE.Color('#ff8c91'),SEL=new THREE.Color('#e31b23');
 let MODE='mac-dinh';const CC={};Object.entries(CAT).forEach(([k,[,c]])=>CC[k]=new THREE.Color(c));
-const OPENC=new THREE.Color('#25b768'),SOLD=new THREE.Color('#d6d1c8');
-const lotCol=i=>{const L=lots[i];if(!L)return BASE;if(MODE==='loai')return CC[L.cat];if(MODE==='mo-ban')return L.open?OPENC:SOLD;return L.cat==='goc'?GOC:BASE};
+const OPENC=new THREE.Color('#25b768'),SOLD=new THREE.Color('#d6d1c8'),SOLDC=new THREE.Color('#3a3a3d');
+const lotCol=i=>{const L=lots[i];if(!L)return BASE;if(MODE==='loai')return CC[L.cat];if(MODE==='mo-ban')return L.open?OPENC:L.sold?SOLDC:SOLD;return L.cat==='goc'?GOC:BASE};
 lots.forEach((L,i)=>{const h=15.5;L.h=h;
  // mặt tiền luôn là trục x của hộp: dãy dọc mặt tiền quay Đông/Tây, dãy chéo quay về đường
  if(L.ew){dm.scale.set(L.l,h,L.w);dm.rotation.set(0,L.rot+Math.PI/2,0)}else{dm.scale.set(L.w,h,L.l);dm.rotation.set(0,0,0)}
@@ -295,7 +295,7 @@ const badges=[];
   g.fillStyle=isT?'#c8102e':'#55504b';g.textAlign='center';g.textBaseline='middle';g.fillText(t,256,104);
   const tex=new THREE.CanvasTexture(cn);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=8;
   const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,depthWrite:false}));sp.scale.set(15,5.9,1);sp.position.set(L.x,L.h+10.5,L.z);sp.renderOrder=5;sp.userData.lot=i;S.add(sp);
-  const st=new THREE.Mesh(new THREE.CylinderGeometry(.18,.18,7.4,6),pp.tdc?stickM:new THREE.MeshBasicMaterial({color:'#8a8580'}));st.position.set(L.x,L.h+4,L.z);S.add(st);
+  const st=new THREE.Mesh(new THREE.CylinderGeometry(.18,.18,7.4,6),pp.tdc?stickM:new THREE.MeshBasicMaterial({color:'#8a8580'}));st.position.set(L.x,L.h+4,L.z);S.add(st);sp.userData.st=st;
   badges.push(sp);pick.push(sp)});}
 
 // ================= TIỆN ÍCH =================
@@ -582,7 +582,7 @@ function selectLot(i,fly){paint(sel,lotCol(sel));sel=i;paint(i,SEL);const L=lots
  const p=PRICE[L.code];const vnd=n=>n?n.toLocaleString('vi-VN')+' đ':'';
  const rows=[['Loại căn',(p?'LK · ':'')+CAT[L.cat][0]],['TCBG',p?p.tc:''],['Hướng',d[0]],['Vị trí',d[1]],['Mặt đường',L.face],['DT đất',(p&&p.dt?fmt(p.dt):L.area?fmt(L.area):'')+(p&&p.dt||L.area?' m²':'')],['DTXD',(p&&p.x)?fmt(p.x)+' m²':d[3]?fmt(d[3])+' m²':''],
   ['Giá trước VAT',p&&p.pre?vnd(p.pre):''],['VAT',p&&p.vat?vnd(p.vat):''],['KPBT',p&&p.kp?vnd(p.kp):''],[p&&p.allin?'Giá all in':'Tổng giá sau VAT & KPBT',p&&p.tot?vnd(p.tot):''],['Giá tiến độ (TĐC)',p&&p.tdc?trd(p.tdc):''],['Thanh toán sớm (TTS)',p&&p.tts?trd(p.tts):''],['Vay 18 tháng',p&&p.v18?trd(p.v18):''],['Vay 24 tháng',p&&p.v24?trd(p.v24):''],['Vay 30 tháng',p&&p.v30?trd(p.v30):''],['Vay 36 tháng',p&&p.v36?trd(p.v36):''],['Tiện ích lân cận',d[4]]].filter(r=>r[1]);
- show({open:L.open,title:'Căn '+L.code,tag:L.open?'Đang mở bán · '+(PRICE[L.code]?(PRICE[L.code].tdc?'Giá tiến độ ':'')+ty(pv(PRICE[L.code])):''):'Phố Hiến Heritage Collection',img:m.img,text:m.name+' – '+m.text,
+ show({open:L.open,title:'Căn '+L.code,tag:L.sold?'Đã bán · cập nhật '+(L.soldSince||''):L.open?'Đang mở bán · '+(PRICE[L.code]?(PRICE[L.code].tdc?'Giá tiến độ ':'')+ty(pv(PRICE[L.code])):''):'Phố Hiến Heritage Collection',img:m.img,text:m.name+' – '+m.text,
   rows:rows.map(([k,v])=>`<dt>${k}</dt><dd${/TĐC/.test(k)||(!p.tdc&&/Tổng giá|all in/.test(k))?' class="big"':''}>${esc(v)}</dd>`).join('')+(p?`<dt></dt><dd class="sm">Giá theo bảng hàng ngày ${p.d}, có thể thay đổi.</dd>`:'')});
  if(fly)flyTo(W(L.x,L.z),150,.8)}
 function viewFront(i){const L=lots[i];const ry=L.ew?L.rot+Math.PI/2:0;const dh=(L.ew?L.l:L.w)/2;
@@ -597,7 +597,7 @@ function showTip(id,e){if(id<0){tip.style.display='none';return}const L=lots[id]
  const dt=(p&&p.dt)||L.area,x=(p&&p.x)||d[3];
  const rows=[['Loại căn',CAT[L.cat][0]],['Diện tích đất',dt?fmt(dt)+' m²':''],['DTXD',x?fmt(x)+' m²':''],['Hướng',d[0]],['Vị trí',d[1]],['Mặt đường',L.face],['Tiện ích',d[4]],
   ['Giá',p?(p.tdc?'TĐC '+ty(pv(p)):ty(pv(p))):'']].filter(r=>r[1]);
- tip.innerHTML=`<b>${L.code}</b>${L.open?' <i>Đang mở bán</i>':''}<dl>${rows.map(([k,v])=>`<dt>${k}</dt><dd${k==='Giá'?' class="g"':''}>${esc(v)}</dd>`).join('')}</dl>`;
+ tip.innerHTML=`<b>${L.code}</b>${L.sold?' <i class="sold">Đã bán</i>':L.open?' <i>Đang mở bán</i>':''}<dl>${rows.map(([k,v])=>`<dt>${k}</dt><dd${k==='Giá'?' class="g"':''}>${esc(v)}</dd>`).join('')}</dl>`;
  tip.style.display='block';const r=tip.getBoundingClientRect();let lx=e.clientX+14,ly=e.clientY+14;if(lx+r.width>innerWidth-8)lx=e.clientX-r.width-14;if(ly+r.height>innerHeight-8)ly=innerHeight-r.height-8;tip.style.left=lx+'px';tip.style.top=ly+'px'}
 cv.addEventListener('pointerleave',()=>tip.style.display='none');
 cv.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const h=hit(e);const id=h?(h.object===body?h.instanceId:(h.object.userData.lot??-1)):-1;showTip(id,e);
@@ -660,4 +660,16 @@ function loop(now){requestAnimationFrame(loop);{const dt=Math.min(.1,(now-(lastT
 requestAnimationFrame(loop);
 const ld=document.getElementById('load');ld.style.opacity=0;setTimeout(()=>ld.remove(),700);
 window.__lots=NL;window.__go=(x,z,d,p,az)=>{setRot(false);flyTo(W(x,z),d,p,az)};window.__sel=c=>selectLot(byCode.get(c),true);
+
+// ---- quỹ hàng: căn đã bán (bôi đỏ trên bảng hàng, hoặc hôm trước có – hôm sau mất) → nóc nhà màu đen
+const roofBlack=new THREE.MeshBasicMaterial({color:'#141416'});const soldRoofs=[];
+function applyQuy(q){if(!q||!q.sold)return;soldRoofs.forEach(m=>S.remove(m));soldRoofs.length=0;
+ const av=q.available||{};const avail=new Set(Array.isArray(av)?av:Object.keys(av));
+ lots.forEach((L,i)=>{const sd=q.sold[L.code];L.sold=!!sd;L.soldSince=sd?sd.since:'';if(L.sold)L.open=false;else if(avail.has(L.code))L.open=true;
+  if(!L.sold)return;const w=(L.ew?L.l:L.w)*.97,l=(L.ew?L.w:L.l)*.97;
+  const m=new THREE.Mesh(new THREE.PlaneGeometry(w,l),roofBlack);m.rotation.set(-Math.PI/2,0,L.ew?L.rot+Math.PI/2:0);m.rotation.order='YXZ';m.rotation.set(-Math.PI/2,L.ew?L.rot+Math.PI/2:0,0);
+  m.position.set(L.x,L.h+.34,L.z);m.renderOrder=1;m.userData.lot=i;S.add(m);soldRoofs.push(m)});
+ badges.forEach(sp=>{const L=lots[sp.userData.lot];const hide=L&&L.sold;sp.visible=!hide;if(sp.userData.st)sp.userData.st.visible=!hide});
+ lots.forEach((L,i)=>paint(i,lotCol(i)));window.__quy=q}
+fetch('quy-hang.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applyQuy).catch(()=>{});
 }

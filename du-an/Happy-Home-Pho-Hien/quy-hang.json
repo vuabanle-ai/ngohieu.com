@@ -1,0 +1,204 @@
+{
+ "updated": "23:55 24/11/2026",
+ "available": {
+  "HK-25": [
+   "MH"
+  ],
+  "HK-45": [
+   "VHS"
+  ],
+  "HK-51": [
+   "MH"
+  ],
+  "HK-55": [
+   "MH",
+   "RM",
+   "RMQC",
+   "THP",
+   "VHS"
+  ],
+  "HK-57": [
+   "THP"
+  ],
+  "HK-69": [
+   "RM"
+  ],
+  "HK-73": [
+   "MH",
+   "RM",
+   "RMQC",
+   "THP",
+   "VHS"
+  ],
+  "HK-75": [
+   "MH",
+   "RM",
+   "RMQC",
+   "THP",
+   "VHS"
+  ],
+  "TC1-17": [
+   "MH"
+  ],
+  "TC1-22": [
+   "MH"
+  ],
+  "TC1-29": [
+   "RM"
+  ],
+  "TC1-37": [
+   "RM"
+  ],
+  "TC1-49": [
+   "VHS"
+  ],
+  "TC1-54": [
+   "RM"
+  ],
+  "TC1-58": [
+   "RM"
+  ],
+  "TC1-68": [
+   "MH",
+   "RM",
+   "RMQC",
+   "THP",
+   "VHS"
+  ],
+  "TC1-72": [
+   "MH",
+   "RM",
+   "RMQC",
+   "THP",
+   "VHS"
+  ],
+  "TC1-78": [
+   "THP"
+  ],
+  "TC1-84": [
+   "MH",
+   "RM",
+   "RMQC",
+   "THP",
+   "VHS"
+  ],
+  "TC2-24": [
+   "RM"
+  ],
+  "TC2-32": [
+   "RM"
+  ],
+  "TC2-44": [
+   "MH",
+   "RM",
+   "RMQC",
+   "THP",
+   "VHS"
+  ],
+  "TC3-49": [
+   "MH",
+   "RM",
+   "RMQC",
+   "THP",
+   "VHS"
+  ],
+  "TC3-57": [
+   "MH"
+  ],
+  "TC3-65": [
+   "RM"
+  ],
+  "TC3-67": [
+   "MH",
+   "RM",
+   "RMQC",
+   "THP",
+   "VHS"
+  ],
+  "ĐLTC-56": [
+   "RM"
+  ]
+ },
+ "sold": {
+  "HK-07": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "HK-27": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "HK-33": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "HK-35": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "HK-77": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC1-09": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "TC1-13": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "TC1-14": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "TC1-34": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC1-36": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC1-56": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC1-66": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "TC2-26": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC2-28": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "TC2-46": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC3-13": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC3-31": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC3-47": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "TC3-71": {
+   "since": "24/11/2026",
+   "why": "không còn trên bảng hàng"
+  },
+  "ĐLTC-58": {
+   "since": "24/11/2026",
+   "why": "bôi đỏ"
+  }
+ }
+}
