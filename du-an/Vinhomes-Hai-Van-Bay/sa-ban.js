@@ -1,12 +1,14 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import * as PTG from './ptg.js?v=1795548000';
+import * as PTG from './ptg.js?v=1795549866';
 {
 // ===== Sa bàn 3D Vinhomes Hải Vân Bay – khu Đảo Ngọc =====
 // lots-dao-ngoc.json: {meta:{w,h} (mét), lots:[[mã, loại Y|P|K, [[x,z]…] (mét, gốc góc trên-trái ảnh nền)]]}
 // quy-hang.json: {updated, available:{mã:{src,tcbg,loai,dt,dtxd,gia,huong}}, sold:{}}
 const $ = id => document.getElementById(id);
+const KHU = new URLSearchParams(location.search).get('khu') === 'vinh-may' ? 'vinh-may' : 'dao-ngoc';
+const ZN = KHU === 'vinh-may' ? 'Vịnh Mây' : 'Đảo Ngọc';
 const small = matchMedia('(max-width:900px)').matches;
 const TYPE = {
   Y: { name: 'Nhà liền kề', short: 'LK', h: 15, roof: 0xf2d35b },
@@ -20,8 +22,8 @@ const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) 
 
 try { await Promise.race([document.fonts.load('800 25px "Be Vietnam Pro"'), new Promise(r => setTimeout(r, 2500))]) } catch (_) {}
 const [data, quy] = await Promise.all([
-  fetch('lots-dao-ngoc.json').then(r => r.json()),
-  fetch('quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : { available: {} }).catch(() => ({ available: {} }))
+  fetch(`lots-${KHU}.json?v=2`).then(r => r.json()),
+  fetch((KHU === 'dao-ngoc' ? 'quy-hang.json' : `quy-hang-${KHU}.json`) + '?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : { available: {} }).catch(() => ({ available: {} }))
 ]);
 const W = data.meta.w, H = data.meta.h;
 const AVL = quy.available || {}, SOLD = quy.sold || {}, CHK = quy.check || {};
@@ -43,7 +45,7 @@ scene.add(new THREE.HemisphereLight(0xffffff, 0x8a9a7a, 1.15));
 const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(-600, 900, 500); scene.add(sun);
 
 // ground: mặt bằng làm nền
-const tex = new THREE.TextureLoader().load(small ? 'nen-dao-ngoc-nho.jpg' : 'nen-dao-ngoc.jpg', () => { hideLoad(); if (curL) extras(curL, curQ) });
+const tex = new THREE.TextureLoader().load(small ? `nen-${KHU}-nho.jpg` : `nen-${KHU}.jpg`, () => { hideLoad(); if (curL) extras(curL, curQ) });
 tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
 const ground = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshLambertMaterial({ map: tex }));
 ground.rotation.x = -Math.PI / 2; scene.add(ground);
@@ -160,7 +162,7 @@ function addLabel(cls, text, x, y, z, minD = 0, maxD = 1e9) {
 const groups = new Map();
 lots.forEach(L => { const g = groups.get(L.pre) || { x: 0, z: 0, n: 0 }; g.x += L.cx; g.z += L.cz; g.n++; groups.set(L.pre, g) });
 for (const [pre, g] of groups) if (g.n >= 3) addLabel('day', pre, g.x / g.n, 22, g.z / g.n, 0, 1500);
-const AMEN = [['VinWonders Hải Vân', 760, 330], ['Botanica Park', 430, 1138], ['Pearl Park', 642, 980], ['Emerald Boulevard', 1392, 937], ['Vinpearl Legend Lux Làng Vân', 1658, 875], ['Hệ thống trường học', 1755, 790], ['Sunlight Park', 1850, 600]];
+const AMEN = KHU !== 'dao-ngoc' ? [] : [['VinWonders Hải Vân', 760, 330], ['Botanica Park', 430, 1138], ['Pearl Park', 642, 980], ['Emerald Boulevard', 1392, 937], ['Vinpearl Legend Lux Làng Vân', 1658, 875], ['Hệ thống trường học', 1755, 790], ['Sunlight Park', 1850, 600]];
 // toạ độ tiện ích theo ảnh nền 2048px -> mét
 const k2m = W / 2048;
 for (const [t, px, pz] of AMEN) addLabel('zone tv', t, X(px * k2m), 30, Z(pz * k2m), 0, 2600);
@@ -193,11 +195,24 @@ function groupView(prefixes) {
   L.forEach(l => { x0 = Math.min(x0, l.cx); x1 = Math.max(x1, l.cx); z0 = Math.min(z0, l.cz); z1 = Math.max(z1, l.cz) });
   flyTo((x0 + x1) / 2, (z0 + z1) / 2, Math.max(260, Math.hypot(x1 - x0, z1 - z0) * 1.15), .85);
 }
+const exactView = p => () => { const L = lots.filter(l => l.pre === p); if (!L.length) return;
+  let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9; L.forEach(l => { x0 = Math.min(x0, l.cx); x1 = Math.max(x1, l.cx); z0 = Math.min(z0, l.cz); z1 = Math.max(z1, l.cz) });
+  flyTo((x0 + x1) / 2, (z0 + z1) / 2, Math.max(240, Math.hypot(x1 - x0, z1 - z0) * 1.2), .85) };
 const VIEWS = {
-  'toan-canh': () => flyTo(-140, -80, 1500, .9, -.25),
+  'toan-canh': () => KHU === 'dao-ngoc' ? flyTo(-140, -80, 1500, .9, -.25) : flyTo(60, 0, 1500, .85, 0),
   ln: () => groupView(['LN']), lp: () => groupView(['LP']), an: () => groupView(['AN']),
   sv: () => groupView(['SV']), hc: () => groupView(['HC']), lv: () => groupView(['LV', 'ĐLĐN'])
 };
+{ const zone = `<a class="z${KHU === 'dao-ngoc' ? ' on' : ''}" href="?khu=dao-ngoc">Đảo Ngọc</a><a class="z${KHU === 'vinh-may' ? ' on' : ''}" href="?khu=vinh-may">Vịnh Mây</a><button class="soon" data-v="soon">Bạch Vân<small>sắp có</small></button><i class="zs"></i>`;
+  let days = '';
+  if (KHU !== 'dao-ngoc') { const ps = [...new Set(lots.map(l => l.pre))].sort((a, b) => a.localeCompare(b, 'vi', { numeric: true }));
+    ps.forEach(p => VIEWS['d-' + p] = exactView(p)); days = ps.map(p => `<button data-v="d-${p}">Dãy ${p}</button>`).join('') }
+  else days = [...$('chips').querySelectorAll('button:not(.soon)')].map(b => b.outerHTML).join('').replace(' class="on"', '');
+  $('chips').innerHTML = zone + `<button data-v="toan-canh" class="on">Toàn cảnh</button>` + days.replace('<button data-v="toan-canh">Toàn cảnh</button>', '');
+  document.querySelector('.brand span').textContent = `Khu ${ZN} · Sa bàn 3D`; document.title = `Sa bàn 3D Vinhomes Hải Vân Bay – Khu ${ZN}`;
+  if (KHU !== 'dao-ngoc') { const kv = $('side').querySelectorAll('.kv strong'); kv[0].textContent = 'Vịnh Mây (Khu 2)'; kv[1].textContent = 'Malibu Hills – Mỹ';
+    const am = [...$('side').querySelectorAll('.sec')].find(x => x.textContent.startsWith('Tiện ích')); if (am) { am.textContent = 'Tiện ích khu Vịnh Mây'; am.nextElementSibling.innerHTML = '<li><b>1,6ha</b>Malibu Wellness Hub – spa, phòng khám Vinmec, fitness</li><li><b>6.500m²</b>Oceania Clubhouse – ẩm thực & giải trí</li><li><b>183 căn</b>Khu đóng 1 cổng bảo vệ biệt thự đơn lập</li><li><b>6.200m²</b>Công viên vui chơi gia đình Palm Park</li>' }
+    $('q').placeholder = 'Tìm mã căn, VD: VM2-21' } }
 $('chips').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   if (b.dataset.v === 'soon') { $('qm').textContent = 'Phân khu ' + b.textContent.replace('sắp có', '').trim() + ' đang được dựng, anh chị quay lại sau nhé.'; openSide(); return }
@@ -218,7 +233,7 @@ function select(L, fly) {
   $('card').classList.toggle('open', !!AVL[L.code]); $('card').classList.toggle('sold', !!sd);
   $('cTitle').textContent = L.code;
   $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
-  const rows = [['Phân khu', 'Đảo Ngọc'], ['Dãy', L.pre], ['Loại hình', q?.loai ? q.loai + ' · ' + TYPE[L.t].name : TYPE[L.t].name]];
+  const rows = [['Phân khu', ZN], ['Dãy', L.pre], ['Loại hình', q?.loai ? q.loai + ' · ' + TYPE[L.t].name : TYPE[L.t].name]];
   if (q?.dt) rows.push(['DT đất', q.dt + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
   if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
   if (q?.so_tang) rows.push(['Số tầng', q.so_tang]);
@@ -246,7 +261,7 @@ $('cardX').onclick = () => select(null);
 let curL = null, curQ = null, ptgKey = 'tttd';
 function extras(L, q) {
   curL = L; curQ = q;
-  const can = q?.gia && !SOLD[L.code];
+  const can = KHU === 'dao-ngoc' && q?.gia && !SOLD[L.code];
   $('ptg').hidden = !can;
   if (can) {
     const ks = PTG.plans(q); if (!ks.includes(ptgKey)) ptgKey = 'tttd';
@@ -288,7 +303,7 @@ function chiCan(L, size = 900) {
   g.fillStyle = '#fff'; g.fillText(L.code, bx + 14, by + fs * 1.1);
   g.fillStyle = 'rgba(28,29,33,.78)'; g.fillRect(0, Hh - fs * 1.3, size, fs * 1.3);
   g.fillStyle = '#fff'; g.font = `600 ${Math.round(fs * .55)}px "Be Vietnam Pro",Arial,sans-serif`;
-  g.fillText(`Vinhomes Hải Vân Bay · Đảo Ngọc · Dãy ${L.pre} · ${TYPE[L.t].name}`, 16, Hh - fs * .45);
+  g.fillText(`Vinhomes Hải Vân Bay · ${ZN} · Dãy ${L.pre} · ${TYPE[L.t].name}`, 16, Hh - fs * .45);
   // la bàn
   g.font = `800 ${Math.round(fs * .6)}px "Be Vietnam Pro",Arial,sans-serif`; g.fillStyle = '#fff'; g.strokeStyle = 'rgba(0,0,0,.5)'; g.lineWidth = 4;
   g.strokeText('B ↑', size - fs * 2.2, fs * 1.1); g.fillText('B ↑', size - fs * 2.2, fs * 1.1);
@@ -321,7 +336,7 @@ const norm = s => s.toUpperCase().replace(/\s+/g, '').replace(/^DL/, 'ĐL').repl
 $('srch').onsubmit = e => {
   e.preventDefault(); const q = norm($('q').value); if (!q) return;
   const L = byCode.get(q) || lots.find(l => l.code.replace('-', '') === q.replace('-', ''));
-  $('qm').textContent = L ? '' : `Chưa tìm thấy căn ${q} trên sa bàn Đảo Ngọc.`;
+  $('qm').textContent = L ? '' : `Chưa tìm thấy căn ${q} trên sa bàn ${ZN}.`;
   if (L) { select(L, true); window.__track && window.__track('tim_can', { code: L.code }) }
 };
 const avl = Object.entries(AVL).sort((a, b) => (tttd(a[1]) || 9e15) - (tttd(b[1]) || 9e15));
