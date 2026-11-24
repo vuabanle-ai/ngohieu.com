@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import * as PTG from './ptg.js';
+import * as PTG from './ptg.js?v=1795548000';
 {
 // ===== Sa bàn 3D Vinhomes Hải Vân Bay – khu Đảo Ngọc =====
 // lots-dao-ngoc.json: {meta:{w,h} (mét), lots:[[mã, loại Y|P|K, [[x,z]…] (mét, gốc góc trên-trái ảnh nền)]]}
@@ -43,7 +43,7 @@ scene.add(new THREE.HemisphereLight(0xffffff, 0x8a9a7a, 1.15));
 const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(-600, 900, 500); scene.add(sun);
 
 // ground: mặt bằng làm nền
-const tex = new THREE.TextureLoader().load(small ? 'nen-dao-ngoc-nho.jpg' : 'nen-dao-ngoc.jpg', () => hideLoad());
+const tex = new THREE.TextureLoader().load(small ? 'nen-dao-ngoc-nho.jpg' : 'nen-dao-ngoc.jpg', () => { hideLoad(); if (curL) extras(curL, curQ) });
 tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
 const ground = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshLambertMaterial({ map: tex }));
 ground.rotation.x = -Math.PI / 2; scene.add(ground);
@@ -269,7 +269,7 @@ $('ccDl').onclick = () => { save(chiCan(curL, 1600), `Chi-can-${curL.code}.png`)
 $('ccImg').onclick = () => $('ccDl').click();
 // ảnh chỉ căn: cắt mặt bằng quanh căn, khoanh đỏ căn và ghi mã
 function chiCan(L, size = 900) {
-  const im = tex.image, k = im.width / W, R = 70;   // bán kính ~70 m quanh căn
+  const im = tex.image; if (!im || !im.width) { const c = document.createElement('canvas'); c.width = 4; c.height = 3; return c } const k = im.width / W, R = 70;   // bán kính ~70 m quanh căn
   let mx = 0, mz = 0; L.poly.forEach(([x, z]) => { mx += x; mz += z }); mx /= L.poly.length; mz /= L.poly.length;
   const cn = document.createElement('canvas'), Hh = Math.round(size * .75); cn.width = size; cn.height = Hh; const g = cn.getContext('2d');
   const sw = R * 2 * k, sh = sw * .75, sx = mx * k - sw / 2, sy = mz * k - sh / 2;
