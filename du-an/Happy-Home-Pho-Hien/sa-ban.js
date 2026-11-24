@@ -661,8 +661,8 @@ requestAnimationFrame(loop);
 const ld=document.getElementById('load');ld.style.opacity=0;setTimeout(()=>ld.remove(),700);
 window.__lots=NL;window.__go=(x,z,d,p,az)=>{setRot(false);flyTo(W(x,z),d,p,az)};window.__sel=c=>selectLot(byCode.get(c),true);
 
-// ---- quỹ hàng: căn đã bán (bôi đỏ trên bảng hàng, hoặc hôm trước có – hôm sau mất) → nóc nhà màu đen
-const roofBlack=new THREE.MeshBasicMaterial({color:'#141416'});const soldRoofs=[];
+// ---- quỹ hàng: căn đã bán (bôi đỏ trên bảng hàng, hoặc hôm trước có – hôm sau mất) → nóc nhà màu xám
+const roofBlack=new THREE.MeshBasicMaterial({color:'#9a9ca0'});const soldRoofs=[];
 function applyQuy(q){if(!q||!q.sold)return;soldRoofs.forEach(m=>S.remove(m));soldRoofs.length=0;
  const av=q.available||{};const avail=new Set(Array.isArray(av)?av:Object.keys(av));
  lots.forEach((L,i)=>{const sd=q.sold[L.code];L.sold=!!sd;L.soldSince=sd?sd.since:'';if(L.sold)L.open=false;else if(avail.has(L.code))L.open=true;
