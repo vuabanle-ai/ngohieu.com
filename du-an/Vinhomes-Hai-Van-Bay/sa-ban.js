@@ -17,6 +17,7 @@ const SRC = { MV: 'Mai Việt Land', RBS: 'RBS', MH: 'Mayhomes', TP: 'Trường 
 const VN = n => n.toLocaleString('vi-VN');
 const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' tỷ';
 
+try { await Promise.race([document.fonts.load('800 25px "Be Vietnam Pro"'), new Promise(r => setTimeout(r, 2500))]) } catch (_) {}
 const [data, quy] = await Promise.all([
   fetch('lots-dao-ngoc.json').then(r => r.json()),
   fetch('quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : { available: {} }).catch(() => ({ available: {} }))
@@ -66,7 +67,7 @@ for (const [code, t, poly] of data.lots) {
   g.setAttribute('color', new THREE.BufferAttribute(col, 3));
   geos.push(g);
   const area = Math.abs(THREE.ShapeUtils.area(pts));
-  const L = { code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
+  const L = { ax: lotAxis(poly.map(([x, z]) => [X(x), Z(z)])), code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
   lots.push(L); byCode.set(code, L); vtx += n;
 }
 const merged = mergeGeometries(geos, false); geos.forEach(g => g.dispose());
@@ -93,8 +94,61 @@ function paint(L) {
     colors.setXYZ(k, Math.min(1, c.r * hv), Math.min(1, c.g * hv), Math.min(1, c.b * hv));
   }
 }
-function paintAll() { lots.forEach(paint); colors.needsUpdate = true; legend() }
+function paintAll() { lots.forEach(paint); colors.needsUpdate = true; legend(); drawRoofs() }
 
+
+// ---------- mã căn + giá in trên mái (atlas canvas) ----------
+const roofMeshes = [];
+function lotAxis(poly) {
+  let mx = 0, mz = 0; poly.forEach(([x, z]) => { mx += x; mz += z }); mx /= poly.length; mz /= poly.length;
+  let a = 0, b = 0, c = 0; poly.forEach(([x, z]) => { const dx = x - mx, dz = z - mz; a += dx * dx; b += dx * dz; c += dz * dz });
+  let th = .5 * Math.atan2(2 * b, a - c); let ux = Math.cos(th), uz = Math.sin(th);
+  let lo = 1e9, hi = -1e9, wl = 1e9, wh = -1e9;
+  poly.forEach(([x, z]) => { const p = (x - mx) * ux + (z - mz) * uz, q = -(x - mx) * uz + (z - mz) * ux; lo = Math.min(lo, p); hi = Math.max(hi, p); wl = Math.min(wl, q); wh = Math.max(wh, q) });
+  if (ux < 0) { ux = -ux; uz = -uz }
+  return { ux, uz, len: hi - lo, wid: wh - wl };
+}
+// giá thanh toán theo tiến độ (TTTĐ): lấy cột TTTĐ của đại lý nếu có, không thì giá niêm yết gồm VAT & KPBT
+const tttd = q => q ? (q.bg?.tttd || q.gia) : null;
+const F = px => `800 ${px}px "Be Vietnam Pro",Arial,sans-serif`;
+function atlas(list, CW, CH, linesOf) {
+  const COLS = Math.floor(2048 / CW), ROWS = Math.floor(2048 / CH), PER = COLS * ROWS;
+  for (let p0 = 0; p0 < list.length; p0 += PER) {
+    const part = list.slice(p0, p0 + PER), rows = Math.ceil(part.length / COLS);
+    const cn = document.createElement('canvas'); cn.width = CW * COLS; cn.height = CH * rows; const g = cn.getContext('2d');
+    g.textAlign = 'center'; g.textBaseline = 'middle'; g.lineJoin = 'round';
+    const pos = [], uv = [], idx = [];
+    part.forEach((L, k) => {
+      const x0 = (k % COLS) * CW, y0 = ((k / COLS) | 0) * CH, lines = linesOf(L);
+      lines.forEach(([t, color, frac, size], j) => {
+        let px = Math.round(CH * size); g.font = F(px);
+        while (g.measureText(t).width > CW - 10 && px > 10) { px--; g.font = F(px) }
+        const y = y0 + CH * frac;
+        if (color === '#fff') { const w = g.measureText(t).width + 14; g.fillStyle = '#c8102e'; g.beginPath(); g.roundRect(x0 + (CW - w) / 2, y - px * .62, w, px * 1.24, px * .3); g.fill() }
+        else { g.lineWidth = Math.max(3, px * .2); g.strokeStyle = 'rgba(255,255,255,.95)'; g.strokeText(t, x0 + CW / 2, y) }
+        g.fillStyle = color; g.fillText(t, x0 + CW / 2, y);
+      });
+      const A = L.ax, w = Math.min(A.len * .9, A.wid * .92 * CW / CH), h = w * CH / CW;
+      const vx = -A.uz, vz = A.ux, y = L.h + .1, cx = L.cx, cz = L.cz, base = pos.length / 3;
+      for (const [s, t] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) pos.push(cx + A.ux * s * w / 2 + vx * t * h / 2, y, cz + A.uz * s * w / 2 + vz * t * h / 2);
+      const u0 = x0 / cn.width, u1 = (x0 + CW) / cn.width, v0 = 1 - (y0 + CH) / cn.height, v1 = 1 - y0 / cn.height;
+      uv.push(u0, v1, u1, v1, u1, v0, u0, v0); idx.push(base, base + 2, base + 1, base, base + 3, base + 2);
+    });
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2)); geo.setIndex(idx);
+    const t = new THREE.CanvasTexture(cn); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+    const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, side: THREE.DoubleSide }));
+    m.renderOrder = 2; scene.add(m); roofMeshes.push(m);
+  }
+}
+function drawRoofs() {
+  roofMeshes.forEach(m => { scene.remove(m); m.geometry.dispose(); m.material.map.dispose(); m.material.dispose() }); roofMeshes.length = 0;
+  const priced = mode === 'mo-ban' ? lots.filter(L => L.av && tttd(AVL[L.code])) : [];
+  const ps = new Set(priced);
+  atlas(lots.filter(L => !ps.has(L)), 128, 40, L => [[L.code, L.sd ? '#3d3f44' : '#1c1d21', .5, .6]]);
+  // căn còn hàng: mã căn + ô đỏ giá TTTĐ
+  atlas(priced, 256, 84, L => [[L.code, '#1c1d21', .28, .44], [ty(tttd(AVL[L.code])), '#fff', .74, .4]]);
+}
 // ---------- labels ----------
 const lbBox = $('labels'); const labels = [];
 function addLabel(cls, text, x, y, z, minD = 0, maxD = 1e9) {
@@ -105,8 +159,6 @@ function addLabel(cls, text, x, y, z, minD = 0, maxD = 1e9) {
 const groups = new Map();
 lots.forEach(L => { const g = groups.get(L.pre) || { x: 0, z: 0, n: 0 }; g.x += L.cx; g.z += L.cz; g.n++; groups.set(L.pre, g) });
 for (const [pre, g] of groups) if (g.n >= 3) addLabel('day', pre, g.x / g.n, 22, g.z / g.n, 0, 1500);
-// mã căn: chỉ hiện khi phóng gần (tạo lười theo khung nhìn)
-const codeLabels = lots.map(L => ({ L, el: null }));
 const AMEN = [['VinWonders Hải Vân', 760, 330], ['Botanica Park', 430, 1138], ['Pearl Park', 642, 980], ['Emerald Boulevard', 1392, 937], ['Vinpearl Legend Lux Làng Vân', 1658, 875], ['Hệ thống trường học', 1755, 790], ['Sunlight Park', 1850, 600]];
 // toạ độ tiện ích theo ảnh nền 2048px -> mét
 const k2m = W / 2048;
@@ -121,18 +173,7 @@ function placeLabels() {
     o.el.style.display = vis ? '' : 'none';
     if (vis) o.el.style.transform = `translate(-50%,-50%) translate(${(v.x + 1) / 2 * w}px,${(1 - v.y) / 2 * h}px)`;
   }
-  const show = d < 420; let shown = 0;
-  for (const o of codeLabels) {
-    let vis = false;
-    if (show && shown < 260) {
-      v.set(o.L.cx, o.L.h + 1, o.L.cz).project(camera);
-      vis = v.z < 1 && Math.abs(v.x) < 1 && Math.abs(v.y) < 1;
-    }
-    if (vis) {
-      if (!o.el) { o.el = document.createElement('div'); o.el.className = 'lb code' + (o.L.av ? ' av' : o.L.sd ? ' sd' : o.L.ck ? ' ck' : ''); o.el.textContent = o.L.code; lbBox.appendChild(o.el) }
-      o.el.style.display = ''; o.el.style.transform = `translate(-50%,-50%) translate(${(v.x + 1) / 2 * w}px,${(1 - v.y) / 2 * h}px)`; shown++;
-    } else if (o.el) o.el.style.display = 'none';
-  }
+
 }
 
 // ---------- camera moves ----------
@@ -179,10 +220,21 @@ function select(L, fly) {
   const rows = [['Phân khu', 'Đảo Ngọc'], ['Dãy', L.pre], ['Loại hình', q?.loai ? q.loai + ' · ' + TYPE[L.t].name : TYPE[L.t].name]];
   if (q?.dt) rows.push(['DT đất', q.dt + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
   if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
+  if (q?.so_tang) rows.push(['Số tầng', q.so_tang]);
+  if (q?.mat_tien) rows.push(['Mặt tiền', q.mat_tien + ' m']);
   if (q?.tcbg) rows.push(['Tiêu chuẩn bàn giao', q.tcbg]);
   if (q?.huong) rows.push(['Hướng', q.huong]);
-  if (q?.gia) rows.push(['Giá gồm VAT & KPBT', VN(q.gia) + ' đ']);
-  $('cRows').innerHTML = rows.map(([a, b]) => `<dt>${a}</dt><dd${a.startsWith('Giá') ? ' class="big"' : ''}>${b}</dd>`).join('');
+  let html = rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('');
+  const bg = q?.bg || {}, d = n => n ? VN(n) : '–';
+  if (q?.gia || Object.keys(bg).length) {
+    html += `<dt class="h">Bảng giá</dt><dd class="h">${sd ? 'giá lúc mở bán' : 'đ, tạm tính'}</dd>`;
+    const P = [['Thanh toán theo tiến độ', AVL[L.code] || ck ? tttd(q) : bg.tttd, 'big'], ['Giá gồm VAT & KPBT (niêm yết)', q.gia], ['Giá chưa VAT', bg.chua_vat], ['VAT', bg.vat], ['Kinh phí bảo trì', bg.kpbt],
+      ['Đơn giá / m² đất', bg.don_gia], ['Tổng tiền xây', bg.tong_xay], ['Tổng tiền đất', bg.tong_dat],
+      ['Thanh toán sớm', bg.tts], ['Giá vay', bg.vay]];
+    for (const [a, v, c] of P) if (v) html += `<dt>${a}</dt><dd${c ? ' class="big"' : ''}>${d(v)}</dd>`;
+    if (q.offers?.length > 1) html += `<dt class="h">Giá theo đại lý</dt><dd class="h"></dd>` + q.offers.map(o => `<dt>${SRC[o.src] || o.src}</dt><dd>${ty(o.gia)}${o.tcbg ? ' · ' + o.tcbg : ''}</dd>`).join('');
+  }
+  $('cRows').innerHTML = html;
   $('card').classList.add('show');
   if (fly) flyTo(L.cx, L.cz, 260, .9, controls.getAzimuthalAngle());
 }
@@ -204,7 +256,7 @@ canvas.addEventListener('pointermove', e => {
   if (old !== L) { if (old) paint(old); if (L) paint(L); colors.needsUpdate = true }
   if (!L) { tip.style.display = 'none'; canvas.style.cursor = 'grab'; return }
   canvas.style.cursor = 'pointer'; const q = AVL[L.code] || SOLD[L.code] || CHK[L.code];
-  tip.innerHTML = `<b>${L.code}</b>${AVL[L.code] ? '<i>Còn hàng</i>' : SOLD[L.code] ? '<i class="sold">Đã bán</i>' : CHK[L.code] ? '<i class="chk">Check hàng</i>' : ''}<span class="s">${TYPE[L.t].name}${q?.gia ? ' · ' + ty(q.gia) : ''}</span>`;
+  tip.innerHTML = `<b>${L.code}</b>${AVL[L.code] ? '<i>Còn hàng</i>' : SOLD[L.code] ? '<i class="sold">Đã bán</i>' : CHK[L.code] ? '<i class="chk">Check hàng</i>' : ''}<span class="s">${TYPE[L.t].name}${AVL[L.code] && tttd(q) ? ' · TTTĐ ' + ty(tttd(q)) : ''}</span>`;
   tip.style.display = 'block'; tip.style.left = (e.clientX + 14) + 'px'; tip.style.top = (e.clientY + 14) + 'px';
 });
 canvas.addEventListener('pointerleave', () => tip.style.display = 'none');
@@ -217,10 +269,10 @@ $('srch').onsubmit = e => {
   $('qm').textContent = L ? '' : `Chưa tìm thấy căn ${q} trên sa bàn Đảo Ngọc.`;
   if (L) { select(L, true); window.__track && window.__track('tim_can', { code: L.code }) }
 };
-const avl = Object.entries(AVL).sort((a, b) => (a[1].gia || 9e15) - (b[1].gia || 9e15));
+const avl = Object.entries(AVL).sort((a, b) => (tttd(a[1]) || 9e15) - (tttd(b[1]) || 9e15));
 const onMap = avl.filter(([c]) => byCode.has(c)), off = [...Object.keys(AVL), ...Object.keys(CHK), ...Object.keys(SOLD)].filter(c => !byCode.has(c)).map(c => [c]);
 $('quyN').textContent = onMap.length; $('quyD').textContent = quy.updated || '';
-$('quy').innerHTML = onMap.map(([c, q]) => `<li><button data-c="${c}"><b>${c}</b><span>${q.loai || ''} · ${q.dt || '?'} m²</span><em${q.gia ? '' : ' class="g"'}>${q.gia ? ty(q.gia) : 'liên hệ'}</em></button></li>`).join('');
+$('quy').innerHTML = onMap.map(([c, q]) => `<li><button data-c="${c}"><b>${c}</b><span>${q.loai || ''} · ${q.dt || '?'} m²</span><em${tttd(q) ? '' : ' class="g"'}>${tttd(q) ? ty(tttd(q)) : 'liên hệ'}</em></button></li>`).join('');
 const ckl = Object.entries(CHK).filter(([c]) => byCode.has(c));
 $('ckN').textContent = ckl.length;
 $('chk').innerHTML = ckl.map(([c, q]) => `<li><button data-c="${c}"><b>${c}</b><span>${q.loai || ''} · ${q.dt || '?'} m²</span><em class="o">${q.gia ? ty(q.gia) : 'check'}</em></button></li>`).join('');

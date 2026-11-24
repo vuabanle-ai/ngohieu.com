@@ -150,6 +150,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 .lb.code.av{background:#25b768;color:#fff}.lb.code.sd{background:#8a8c90;color:#fff}.lb.code.ck{background:#f5a623;color:#fff}.card.chk .tag{background:#f5a623}#tip i.chk{background:#f5a623}.quy em.o{color:#c77800}.card.sold .tag{background:#8a8c90}
 #tip .s{display:block;color:#6b7077;font-size:12px}
 .quy button{grid-template-columns:78px 1fr auto}
+.card dt.h,.card dd.h{grid-column:auto;margin-top:8px;padding-top:6px;border-top:1px solid var(--line);font-weight:800;color:var(--mr)}.card dd.h{font-weight:400;color:var(--mut);font-size:12px}
 .nopos{font-size:12px;color:var(--mut);margin:6px 0 0}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
@@ -190,7 +191,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
  </div>
  <form class="srch" id="srch"><input id="q" placeholder="Tìm mã căn, VD: LV4-16" aria-label="Tìm mã căn" autocomplete="off"><button>Tìm</button></form><p class="srch-msg" id="qm"></p>
  <div class="sec">Quỹ căn còn hàng · <span id="quyN"></span> căn</div>
- <p class="note" style="margin:0 0 6px">Đã bán: căn trong quỹ đã bán hoặc bôi đỏ/gạch ngang trên bảng hàng đại lý. Check hàng: căn đại lý ghi CHECK/tô vàng, cần hỏi lại admin. Giá gồm VAT &amp; KPBT, lấy giá thấp nhất. Cập nhật <span id="quyD"></span>, có thể thay đổi. Bấm để tới căn.</p>
+ <p class="note" style="margin:0 0 6px">Đã bán: căn trong quỹ đã bán hoặc bôi đỏ/gạch ngang trên bảng hàng đại lý. Check hàng: căn đại lý ghi CHECK/tô vàng, cần hỏi lại admin. Giá trên mái và trong danh sách là giá thanh toán theo tiến độ (TTTĐ), lấy giá thấp nhất giữa các đại lý. Cập nhật <span id="quyD"></span>, có thể thay đổi. Bấm để tới căn.</p>
  <ul class="quy" id="quy"></ul>
  <div class="sec">Check hàng · <span id="ckN"></span> căn</div>
  <ul class="quy" id="chk"></ul>
@@ -221,7 +222,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
  </div>
 </div>
 
-<div class="legend" id="legend"><div class="lgt">Tô màu sa bàn</div><div class="modes" id="lgModes"><button data-m="mo-ban" class="on">Còn / đã bán</button><button data-m="loai">Loại căn</button></div><ul id="lgItems"></ul><div class="tip">Kéo để xoay · cuộn/chụm để phóng · phóng gần để thấy mã căn</div></div>
+<div class="legend" id="legend"><div class="lgt">Tô màu sa bàn</div><div class="modes" id="lgModes"><button data-m="mo-ban" class="on">Còn / đã bán</button><button data-m="loai">Loại căn</button></div><ul id="lgItems"></ul><div class="tip">Kéo để xoay · cuộn/chụm để phóng · mã căn ghi trên mái · bấm căn để xem bảng giá</div></div>
 
 <div id="gate" role="dialog" aria-modal="true" aria-label="Đăng ký sử dụng sa bàn">
  <div class="gbox">
