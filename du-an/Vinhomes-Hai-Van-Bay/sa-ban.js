@@ -12,7 +12,7 @@ const TYPE = {
   P: { name: 'Biệt thự song lập', short: 'SL', h: 12.5, roof: 0x8f86d6 },
   K: { name: 'Biệt thự đơn lập', short: 'ĐL', h: 11.5, roof: 0xf07fb5 }
 };
-const WALL = new THREE.Color(0xfbf8f2), AV = new THREE.Color(0x25b768), SD = new THREE.Color(0x8a8c90), DIM = new THREE.Color(0xe4e2dc), SEL = new THREE.Color(0xe31b23);
+const WALL = new THREE.Color(0xfbf8f2), AV = new THREE.Color(0x25b768), SD = new THREE.Color(0x8a8c90), CK = new THREE.Color(0xf5a623), DIM = new THREE.Color(0xe4e2dc), SEL = new THREE.Color(0xe31b23);
 const SRC = { MV: 'Mai Việt Land', RBS: 'RBS', MH: 'Mayhomes', TP: 'Trường Phát (CEN)', RM: 'Roman', VHS: 'VHS' };
 const VN = n => n.toLocaleString('vi-VN');
 const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' tỷ';
@@ -22,7 +22,7 @@ const [data, quy] = await Promise.all([
   fetch('quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : { available: {} }).catch(() => ({ available: {} }))
 ]);
 const W = data.meta.w, H = data.meta.h;
-const AVL = quy.available || {}, SOLD = quy.sold || {};
+const AVL = quy.available || {}, SOLD = quy.sold || {}, CHK = quy.check || {};
 
 // ---------- scene ----------
 const canvas = $('c');
@@ -66,7 +66,7 @@ for (const [code, t, poly] of data.lots) {
   g.setAttribute('color', new THREE.BufferAttribute(col, 3));
   geos.push(g);
   const area = Math.abs(THREE.ShapeUtils.area(pts));
-  const L = { code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code] };
+  const L = { code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
   lots.push(L); byCode.set(code, L); vtx += n;
 }
 const merged = mergeGeometries(geos, false); geos.forEach(g => g.dispose());
@@ -81,7 +81,7 @@ $('nLots').textContent = VN(lots.length) + ' căn';
 let mode = 'mo-ban', sel = -1, hov = -1;
 function roofCol(L) {
   if (L.i === sel) return SEL;
-  if (mode === 'mo-ban') return L.av ? AV : L.sd ? SD : DIM;
+  if (mode === 'mo-ban') return L.av ? AV : L.sd ? SD : L.ck ? CK : DIM;
   if (L.sd) return SD;
   return new THREE.Color(TYPE[L.t].roof);
 }
@@ -129,7 +129,7 @@ function placeLabels() {
       vis = v.z < 1 && Math.abs(v.x) < 1 && Math.abs(v.y) < 1;
     }
     if (vis) {
-      if (!o.el) { o.el = document.createElement('div'); o.el.className = 'lb code' + (o.L.av ? ' av' : o.L.sd ? ' sd' : ''); o.el.textContent = o.L.code; lbBox.appendChild(o.el) }
+      if (!o.el) { o.el = document.createElement('div'); o.el.className = 'lb code' + (o.L.av ? ' av' : o.L.sd ? ' sd' : o.L.ck ? ' ck' : ''); o.el.textContent = o.L.code; lbBox.appendChild(o.el) }
       o.el.style.display = ''; o.el.style.transform = `translate(-50%,-50%) translate(${(v.x + 1) / 2 * w}px,${(1 - v.y) / 2 * h}px)`; shown++;
     } else if (o.el) o.el.style.display = 'none';
   }
@@ -170,11 +170,12 @@ function select(L, fly) {
   const prev = lots[sel]; sel = L ? L.i : -1; if (prev) paint(prev); if (L) paint(L); colors.needsUpdate = true;
   if (!L) { $('card').classList.remove('show'); return }
   window.__track && window.__track('xem_can', { code: L.code });
-  const sd = SOLD[L.code], q = AVL[L.code] || sd;
-  $('cTag').textContent = AVL[L.code] ? 'Còn hàng' : sd ? 'Đã bán' : TYPE[L.t].name;
+  const sd = SOLD[L.code], ck = CHK[L.code], q = AVL[L.code] || sd || ck;
+  $('cTag').textContent = AVL[L.code] ? 'Còn hàng' : sd ? 'Đã bán' : ck ? 'Check hàng' : TYPE[L.t].name;
+  $('card').classList.toggle('chk', !!ck);
   $('card').classList.toggle('open', !!AVL[L.code]); $('card').classList.toggle('sold', !!sd);
   $('cTitle').textContent = L.code;
-  $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '').replace(/MV|RBS|MH|TP|RM|VHS/g, m => SRC[m]) + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
+  $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
   const rows = [['Phân khu', 'Đảo Ngọc'], ['Dãy', L.pre], ['Loại hình', q?.loai ? q.loai + ' · ' + TYPE[L.t].name : TYPE[L.t].name]];
   if (q?.dt) rows.push(['DT đất', q.dt + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
   if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
@@ -202,8 +203,8 @@ canvas.addEventListener('pointermove', e => {
   const L = pick(e); const old = lots[hov]; hov = L ? L.i : -1;
   if (old !== L) { if (old) paint(old); if (L) paint(L); colors.needsUpdate = true }
   if (!L) { tip.style.display = 'none'; canvas.style.cursor = 'grab'; return }
-  canvas.style.cursor = 'pointer'; const q = AVL[L.code] || SOLD[L.code];
-  tip.innerHTML = `<b>${L.code}</b>${AVL[L.code] ? '<i>Còn hàng</i>' : SOLD[L.code] ? '<i class="sold">Đã bán</i>' : ''}<span class="s">${TYPE[L.t].name}${q?.gia ? ' · ' + ty(q.gia) : ''}</span>`;
+  canvas.style.cursor = 'pointer'; const q = AVL[L.code] || SOLD[L.code] || CHK[L.code];
+  tip.innerHTML = `<b>${L.code}</b>${AVL[L.code] ? '<i>Còn hàng</i>' : SOLD[L.code] ? '<i class="sold">Đã bán</i>' : CHK[L.code] ? '<i class="chk">Check hàng</i>' : ''}<span class="s">${TYPE[L.t].name}${q?.gia ? ' · ' + ty(q.gia) : ''}</span>`;
   tip.style.display = 'block'; tip.style.left = (e.clientX + 14) + 'px'; tip.style.top = (e.clientY + 14) + 'px';
 });
 canvas.addEventListener('pointerleave', () => tip.style.display = 'none');
@@ -217,9 +218,13 @@ $('srch').onsubmit = e => {
   if (L) { select(L, true); window.__track && window.__track('tim_can', { code: L.code }) }
 };
 const avl = Object.entries(AVL).sort((a, b) => (a[1].gia || 9e15) - (b[1].gia || 9e15));
-const onMap = avl.filter(([c]) => byCode.has(c)), off = avl.filter(([c]) => !byCode.has(c));
-$('quyN').textContent = avl.length; $('quyD').textContent = quy.updated || '';
+const onMap = avl.filter(([c]) => byCode.has(c)), off = [...Object.keys(AVL), ...Object.keys(CHK), ...Object.keys(SOLD)].filter(c => !byCode.has(c)).map(c => [c]);
+$('quyN').textContent = onMap.length; $('quyD').textContent = quy.updated || '';
 $('quy').innerHTML = onMap.map(([c, q]) => `<li><button data-c="${c}"><b>${c}</b><span>${q.loai || ''} · ${q.dt || '?'} m²</span><em${q.gia ? '' : ' class="g"'}>${q.gia ? ty(q.gia) : 'liên hệ'}</em></button></li>`).join('');
+const ckl = Object.entries(CHK).filter(([c]) => byCode.has(c));
+$('ckN').textContent = ckl.length;
+$('chk').innerHTML = ckl.map(([c, q]) => `<li><button data-c="${c}"><b>${c}</b><span>${q.loai || ''} · ${q.dt || '?'} m²</span><em class="o">${q.gia ? ty(q.gia) : 'check'}</em></button></li>`).join('');
+$('chk').onclick = e => { const b = e.target.closest('button'); if (b) select(byCode.get(b.dataset.c), true) };
 const sdl = Object.entries(SOLD).filter(([c]) => byCode.has(c));
 $('sdN').textContent = sdl.length;
 $('sold').innerHTML = sdl.map(([c, q]) => `<li><button data-c="${c}"><b>${c}</b><span>${q.loai || ''} · ${q.dt || '?'} m²</span><em class="g">Đã bán</em></button></li>`).join('');
@@ -230,7 +235,7 @@ $('quy').onclick = e => { const b = e.target.closest('button'); if (b) select(by
 // ---------- legend ----------
 function legend() {
   const items = mode === 'mo-ban'
-    ? [[AV.getStyle(), 'Còn hàng', lots.filter(l => l.av).length], [SD.getStyle(), 'Đã bán', lots.filter(l => l.sd).length], [DIM.getStyle(), 'Chưa có trên bảng hàng', lots.filter(l => !l.av && !l.sd).length]]
+    ? [[AV.getStyle(), 'Còn hàng', lots.filter(l => l.av).length], [CK.getStyle(), 'Check hàng', lots.filter(l => l.ck).length], [SD.getStyle(), 'Đã bán', lots.filter(l => l.sd).length], [DIM.getStyle(), 'Chưa có trên bảng hàng', lots.filter(l => !l.av && !l.sd && !l.ck).length]]
     : Object.entries(TYPE).map(([k, t]) => ['#' + new THREE.Color(t.roof).getHexString(), t.name, lots.filter(l => l.t === k).length]);
   $('lgItems').innerHTML = items.map(([c, t, n]) => `<li><i style="background:${c}"></i>${t}<b>${VN(n)}</b></li>`).join('');
 }
