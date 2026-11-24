@@ -9,6 +9,7 @@ Quy tắc:
   * Ô mã căn nền đỏ (R>0.55, G<0.45, B<0.45) hoặc gạch ngang  -> đã bán.
   * Căn lần trước còn trên bảng hàng, lần này không còn ở nguồn nào (mà các nguồn cũ của nó đều đọc được) -> đã bán.
   * Căn đã bán do "mất khỏi bảng hàng" mà xuất hiện lại không bôi -> còn hàng lại.
+  * why='báo thủ công' (anh Hiếu báo trực tiếp) -> luôn giữ là đã bán.
 """
 import json, re, sys, datetime
 CODE = re.compile(r'^(HK|TC[123]|ĐLTC|TP|TV)-\d+$')
@@ -61,6 +62,7 @@ def main():
         if srcs and not set(srcs) <= ok: continue          # nguồn cũ lỗi -> chưa kết luận
         sold.setdefault(c, {'since': today, 'why': 'không còn trên bảng hàng'})
     for c in list(sold):
+        if sold[c].get('why') == 'báo thủ công': avail.pop(c, None); continue   # anh Hiếu báo đã bán -> giữ nguyên
         if c in avail: del sold[c]                           # xuất hiện lại, không bôi -> còn hàng
     res = {'updated': now.strftime('%H:%M %d/%m/%Y'), 'available': dict(sorted(avail.items())),
            'sold': dict(sorted(sold.items()))}
