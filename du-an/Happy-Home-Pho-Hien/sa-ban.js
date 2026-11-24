@@ -598,8 +598,13 @@ document.getElementById('bGal').onclick=()=>openGal();
 document.getElementById('cPic').onclick=()=>openGal(cur&&cur.img);document.getElementById('cImg').onclick=()=>openGal(cur&&cur.img);
 document.getElementById('galX').onclick=()=>gal.classList.remove('show');
 document.getElementById('gPrev').onclick=()=>step(-1);document.getElementById('gNext').onclick=()=>step(1);
-document.getElementById('gDl').onclick=()=>{const i=Math.round(stripEl.scrollLeft/stripEl.clientWidth),g=GAL[Math.max(0,Math.min(GAL.length-1,i))];
- const a=document.createElement('a');a.href='img/'+g[0]+'.jpg';a.download='Happy-Home-Pho-Hien-'+g[0]+'.jpg';document.body.appendChild(a);a.click();a.remove();window.__track&&window.__track('tai_anh',{img:g[0]})};
+document.getElementById('gDl').onclick=async()=>{const i=Math.round(stripEl.scrollLeft/stripEl.clientWidth),g=GAL[Math.max(0,Math.min(GAL.length-1,i))];
+ const url='img/'+g[0]+'.jpg',name='Happy-Home-Pho-Hien-'+g[0]+'.jpg';window.__track&&window.__track('tai_anh',{img:g[0]});
+ try{const blob=await (await fetch(url)).blob();const file=new File([blob],name,{type:'image/jpeg'});
+  // iPhone/iPad: mở bảng chia sẻ để "Lưu hình ảnh" vào Ảnh
+  if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:g[1]});return}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500);
+ }catch(err){if(err&&err.name==='AbortError')return;location.href=url}};
 addEventListener('keydown',e=>{if(!gal.classList.contains('show'))return;if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1);if(e.key==='Escape')gal.classList.remove('show')});
 
 // ================= VÒNG LẶP =================
