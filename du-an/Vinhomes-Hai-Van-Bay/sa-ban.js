@@ -7,8 +7,8 @@ import * as PTG from './ptg.js?v=1795549866';
 // lots-dao-ngoc.json: {meta:{w,h} (mét), lots:[[mã, loại Y|P|K, [[x,z]…] (mét, gốc góc trên-trái ảnh nền)]]}
 // quy-hang.json: {updated, available:{mã:{src,tcbg,loai,dt,dtxd,gia,huong}}, sold:{}}
 const $ = id => document.getElementById(id);
-const KHU = new URLSearchParams(location.search).get('khu') === 'vinh-may' ? 'vinh-may' : 'dao-ngoc';
-const ZN = KHU === 'vinh-may' ? 'Vịnh Mây' : 'Đảo Ngọc';
+const KHU = 'hai-van-bay';
+const ZNAME = { DN: 'Đảo Ngọc', VM: 'Vịnh Mây', BV: 'Bạch Vân' }; let ZN = 'Hải Vân Bay';
 const small = matchMedia('(max-width:900px)').matches;
 const TYPE = {
   Y: { name: 'Nhà liền kề', short: 'LK', h: 15, roof: 0xf2d35b },
@@ -23,7 +23,7 @@ const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) 
 try { await Promise.race([document.fonts.load('800 25px "Be Vietnam Pro"'), new Promise(r => setTimeout(r, 2500))]) } catch (_) {}
 const [data, quy] = await Promise.all([
   fetch(`lots-${KHU}.json?v=2`).then(r => r.json()),
-  fetch((KHU === 'dao-ngoc' ? 'quy-hang.json' : `quy-hang-${KHU}.json`) + '?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : { available: {} }).catch(() => ({ available: {} }))
+  Promise.all(['quy-hang.json', 'quy-hang-vinh-may.json'].map(f => fetch(f + '?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({})))).then(([a, b]) => ({ updated: a.updated, available: { ...a.available, ...b.available }, check: { ...a.check, ...b.check }, sold: { ...a.sold, ...b.sold } }))
 ]);
 const W = data.meta.w, H = data.meta.h;
 const AVL = quy.available || {}, SOLD = quy.sold || {}, CHK = quy.check || {};
@@ -35,11 +35,11 @@ renderer.setPixelRatio(Math.min(devicePixelRatio, small ? 1.5 : 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xcfe0e6);
-scene.fog = new THREE.Fog(0xcfe0e6, 2600, 5200);
-const camera = new THREE.PerspectiveCamera(42, 1, 2, 12000);
+scene.fog = new THREE.Fog(0xcfe0e6, 6000, 11000);
+const camera = new THREE.PerspectiveCamera(42, 1, 2, 20000);
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true; controls.dampingFactor = .08;
-controls.maxPolarAngle = Math.PI * .46; controls.minDistance = 40; controls.maxDistance = 3200;
+controls.maxPolarAngle = Math.PI * .46; controls.minDistance = 40; controls.maxDistance = 7000;
 controls.screenSpacePanning = false;
 scene.add(new THREE.HemisphereLight(0xffffff, 0x8a9a7a, 1.15));
 const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(-600, 900, 500); scene.add(sun);
@@ -56,7 +56,7 @@ sea.rotation.x = -Math.PI / 2; sea.position.y = -0.6; scene.add(sea);
 const X = x => x - W / 2, Z = z => z - H / 2;
 const lots = []; const geos = []; let vtx = 0;
 const byCode = new Map();
-for (const [code, t, poly] of data.lots) {
+for (const [code, t, poly, zone] of data.lots) {
   const pts = poly.map(([x, z]) => new THREE.Vector2(X(x), -Z(z)));
   // thu nhỏ nhẹ quanh tâm để tách các căn
   let cx = 0, cz = 0; pts.forEach(p => { cx += p.x; cz += p.y }); cx /= pts.length; cz /= pts.length;
@@ -70,7 +70,7 @@ for (const [code, t, poly] of data.lots) {
   g.setAttribute('color', new THREE.BufferAttribute(col, 3));
   geos.push(g);
   const area = Math.abs(THREE.ShapeUtils.area(pts));
-  const L = { poly, ax: lotAxis(poly.map(([x, z]) => [X(x), Z(z)])), code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
+  const L = { zone: zone || 'DN', poly, ax: lotAxis(poly.map(([x, z]) => [X(x), Z(z)])), code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
   lots.push(L); byCode.set(code, L); vtx += n;
 }
 const merged = mergeGeometries(geos, false); geos.forEach(g => g.dispose());
@@ -162,10 +162,11 @@ function addLabel(cls, text, x, y, z, minD = 0, maxD = 1e9) {
 const groups = new Map();
 lots.forEach(L => { const g = groups.get(L.pre) || { x: 0, z: 0, n: 0 }; g.x += L.cx; g.z += L.cz; g.n++; groups.set(L.pre, g) });
 for (const [pre, g] of groups) if (g.n >= 3) addLabel('day', pre, g.x / g.n, 22, g.z / g.n, 0, 1500);
-const AMEN = KHU !== 'dao-ngoc' ? [] : [['VinWonders Hải Vân', 760, 330], ['Botanica Park', 430, 1138], ['Pearl Park', 642, 980], ['Emerald Boulevard', 1392, 937], ['Vinpearl Legend Lux Làng Vân', 1658, 875], ['Hệ thống trường học', 1755, 790], ['Sunlight Park', 1850, 600]];
+const AMEN0 = [['VinWonders Hải Vân', 760, 330], ['Botanica Park', 430, 1138], ['Pearl Park', 642, 980], ['Emerald Boulevard', 1392, 937], ['Vinpearl Legend Lux Làng Vân', 1658, 875], ['Hệ thống trường học', 1755, 790], ['Sunlight Park', 1850, 600]];
 // toạ độ tiện ích theo ảnh nền 2048px -> mét
 const k2m = W / 2048;
-for (const [t, px, pz] of AMEN) addLabel('zone tv', t, X(px * k2m), 30, Z(pz * k2m), 0, 2600);
+for (const [t, x, z] of data.meta.amen || []) addLabel('zone tv', t, X(x), 30, Z(z), 0, 3400);
+for (const [t, x, z] of data.meta.zones || []) addLabel('zone', 'Khu ' + t, X(x), 40, Z(z), 900, 9000);
 
 const v = new THREE.Vector3();
 function placeLabels() {
@@ -195,24 +196,23 @@ function groupView(prefixes) {
   L.forEach(l => { x0 = Math.min(x0, l.cx); x1 = Math.max(x1, l.cx); z0 = Math.min(z0, l.cz); z1 = Math.max(z1, l.cz) });
   flyTo((x0 + x1) / 2, (z0 + z1) / 2, Math.max(260, Math.hypot(x1 - x0, z1 - z0) * 1.15), .85);
 }
+const zoneView = z => { const L = lots.filter(l => l.zone === z); let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9; L.forEach(l => { x0 = Math.min(x0, l.cx); x1 = Math.max(x1, l.cx); z0 = Math.min(z0, l.cz); z1 = Math.max(z1, l.cz) }); flyTo((x0 + x1) / 2, (z0 + z1) / 2, Math.hypot(x1 - x0, z1 - z0) * 1.05, .85) };
 const exactView = p => () => { const L = lots.filter(l => l.pre === p); if (!L.length) return;
   let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9; L.forEach(l => { x0 = Math.min(x0, l.cx); x1 = Math.max(x1, l.cx); z0 = Math.min(z0, l.cz); z1 = Math.max(z1, l.cz) });
   flyTo((x0 + x1) / 2, (z0 + z1) / 2, Math.max(240, Math.hypot(x1 - x0, z1 - z0) * 1.2), .85) };
 const VIEWS = {
-  'toan-canh': () => KHU === 'dao-ngoc' ? flyTo(-140, -80, 1500, .9, -.25) : flyTo(60, 0, 1500, .85, 0),
+  'toan-canh': () => flyTo(-500, -150, 4100, .8, 0),
+  'z-DN': () => zoneView('DN'), 'z-VM': () => zoneView('VM'),
   ln: () => groupView(['LN']), lp: () => groupView(['LP']), an: () => groupView(['AN']),
   sv: () => groupView(['SV']), hc: () => groupView(['HC']), lv: () => groupView(['LV', 'ĐLĐN'])
 };
-{ const zone = `<a class="z${KHU === 'dao-ngoc' ? ' on' : ''}" href="?khu=dao-ngoc">Đảo Ngọc</a><a class="z${KHU === 'vinh-may' ? ' on' : ''}" href="?khu=vinh-may">Vịnh Mây</a><button class="soon" data-v="soon">Bạch Vân<small>sắp có</small></button><i class="zs"></i>`;
-  let days = '';
-  if (KHU !== 'dao-ngoc') { const ps = [...new Set(lots.map(l => l.pre))].sort((a, b) => a.localeCompare(b, 'vi', { numeric: true }));
-    ps.forEach(p => VIEWS['d-' + p] = exactView(p)); days = ps.map(p => `<button data-v="d-${p}">Dãy ${p}</button>`).join('') }
-  else days = [...$('chips').querySelectorAll('button:not(.soon)')].map(b => b.outerHTML).join('').replace(' class="on"', '');
-  $('chips').innerHTML = zone + `<button data-v="toan-canh" class="on">Toàn cảnh</button>` + days.replace('<button data-v="toan-canh">Toàn cảnh</button>', '');
-  document.querySelector('.brand span').textContent = `Khu ${ZN} · Sa bàn 3D`; document.title = `Sa bàn 3D Vinhomes Hải Vân Bay – Khu ${ZN}`;
-  if (KHU !== 'dao-ngoc') { const kv = $('side').querySelectorAll('.kv strong'); kv[0].textContent = 'Vịnh Mây (Khu 2)'; kv[1].textContent = 'Malibu Hills – Mỹ';
-    const am = [...$('side').querySelectorAll('.sec')].find(x => x.textContent.startsWith('Tiện ích')); if (am) { am.textContent = 'Tiện ích khu Vịnh Mây'; am.nextElementSibling.innerHTML = '<li><b>1,6ha</b>Malibu Wellness Hub – spa, phòng khám Vinmec, fitness</li><li><b>6.500m²</b>Oceania Clubhouse – ẩm thực & giải trí</li><li><b>183 căn</b>Khu đóng 1 cổng bảo vệ biệt thự đơn lập</li><li><b>6.200m²</b>Công viên vui chơi gia đình Palm Park</li>' }
-    $('q').placeholder = 'Tìm mã căn, VD: VM2-21' } }
+{ const ps = [...new Set(lots.map(l => l.pre))].sort((a, b) => a.localeCompare(b, 'vi', { numeric: true }));
+  ps.forEach(p => VIEWS['d-' + p] = exactView(p));
+  $('chips').innerHTML = `<button data-v="toan-canh" class="on">Toàn dự án</button><button data-v="z-DN">Đảo Ngọc</button><button data-v="z-VM">Vịnh Mây</button><button class="soon" data-v="soon">Bạch Vân<small>sắp có</small></button><i class="zs"></i><select id="daySel" aria-label="Chọn dãy"><option value="">Chọn dãy…</option>${ps.map(p => `<option value="${p}">Dãy ${p}</option>`).join('')}</select>`;
+  $('daySel').onchange = e => { if (e.target.value) VIEWS['d-' + e.target.value]() };
+  document.querySelector('.brand span').textContent = 'Đảo Ngọc · Vịnh Mây · Sa bàn 3D'; document.title = 'Sa bàn 3D Vinhomes Hải Vân Bay';
+  const kv = $('side').querySelectorAll('.kv strong'); kv[0].textContent = 'Đảo Ngọc · Vịnh Mây'; kv[1].textContent = 'Ý · Mỹ'; kv[0].textContent = '2 khu (+Bạch Vân)';
+  $('q').placeholder = 'Tìm mã căn, VD: LV4-16, VM2-21' }
 $('chips').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   if (b.dataset.v === 'soon') { $('qm').textContent = 'Phân khu ' + b.textContent.replace('sắp có', '').trim() + ' đang được dựng, anh chị quay lại sau nhé.'; openSide(); return }
@@ -233,7 +233,7 @@ function select(L, fly) {
   $('card').classList.toggle('open', !!AVL[L.code]); $('card').classList.toggle('sold', !!sd);
   $('cTitle').textContent = L.code;
   $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
-  const rows = [['Phân khu', ZN], ['Dãy', L.pre], ['Loại hình', q?.loai ? q.loai + ' · ' + TYPE[L.t].name : TYPE[L.t].name]];
+  const rows = [['Phân khu', ZNAME[L.zone]], ['Dãy', L.pre], ['Loại hình', q?.loai ? q.loai + ' · ' + TYPE[L.t].name : TYPE[L.t].name]];
   if (q?.dt) rows.push(['DT đất', q.dt + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
   if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
   if (q?.so_tang) rows.push(['Số tầng', q.so_tang]);
@@ -261,7 +261,7 @@ $('cardX').onclick = () => select(null);
 let curL = null, curQ = null, ptgKey = 'tttd';
 function extras(L, q) {
   curL = L; curQ = q;
-  const can = KHU === 'dao-ngoc' && q?.gia && !SOLD[L.code];
+  const can = L.zone === 'DN' && q?.gia && !SOLD[L.code];
   $('ptg').hidden = !can;
   if (can) {
     const ks = PTG.plans(q); if (!ks.includes(ptgKey)) ptgKey = 'tttd';
@@ -303,7 +303,7 @@ function chiCan(L, size = 900) {
   g.fillStyle = '#fff'; g.fillText(L.code, bx + 14, by + fs * 1.1);
   g.fillStyle = 'rgba(28,29,33,.78)'; g.fillRect(0, Hh - fs * 1.3, size, fs * 1.3);
   g.fillStyle = '#fff'; g.font = `600 ${Math.round(fs * .55)}px "Be Vietnam Pro",Arial,sans-serif`;
-  g.fillText(`Vinhomes Hải Vân Bay · ${ZN} · Dãy ${L.pre} · ${TYPE[L.t].name}`, 16, Hh - fs * .45);
+  g.fillText(`Vinhomes Hải Vân Bay · ${ZNAME[L.zone]} · Dãy ${L.pre} · ${TYPE[L.t].name}`, 16, Hh - fs * .45);
   // la bàn
   g.font = `800 ${Math.round(fs * .6)}px "Be Vietnam Pro",Arial,sans-serif`; g.fillStyle = '#fff'; g.strokeStyle = 'rgba(0,0,0,.5)'; g.lineWidth = 4;
   g.strokeText('B ↑', size - fs * 2.2, fs * 1.1); g.fillText('B ↑', size - fs * 2.2, fs * 1.1);
@@ -336,7 +336,7 @@ const norm = s => s.toUpperCase().replace(/\s+/g, '').replace(/^DL/, 'ĐL').repl
 $('srch').onsubmit = e => {
   e.preventDefault(); const q = norm($('q').value); if (!q) return;
   const L = byCode.get(q) || lots.find(l => l.code.replace('-', '') === q.replace('-', ''));
-  $('qm').textContent = L ? '' : `Chưa tìm thấy căn ${q} trên sa bàn ${ZN}.`;
+  $('qm').textContent = L ? '' : `Chưa tìm thấy căn ${q} trên sa bàn.`;
   if (L) { select(L, true); window.__track && window.__track('tim_can', { code: L.code }) }
 };
 const avl = Object.entries(AVL).sort((a, b) => (tttd(a[1]) || 9e15) - (tttd(b[1]) || 9e15));
