@@ -147,7 +147,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 .chips button.soon{opacity:.55}.chips button.soon small{font-size:10px;margin-left:4px}
 .lb.day{font-size:11px;font-weight:800;color:#fff;background:rgba(40,42,48,.78);padding:1px 7px;border-radius:5px}
 .lb.code{font-size:9.5px;font-weight:700;color:#1c1d21;background:rgba(255,255,255,.85);padding:0 3px;border-radius:3px}
-.lb.code.av{background:#25b768;color:#fff}
+.lb.code.av{background:#25b768;color:#fff}.lb.code.sd{background:#8a8c90;color:#fff}.card.sold .tag{background:#8a8c90}
 #tip .s{display:block;color:#6b7077;font-size:12px}
 .quy button{grid-template-columns:78px 1fr auto}
 .nopos{font-size:12px;color:var(--mut);margin:6px 0 0}
@@ -189,9 +189,11 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
   <div><small>Loại hình</small><strong>LK · SL · ĐL</strong></div>
  </div>
  <form class="srch" id="srch"><input id="q" placeholder="Tìm mã căn, VD: LV4-16" aria-label="Tìm mã căn" autocomplete="off"><button>Tìm</button></form><p class="srch-msg" id="qm"></p>
- <div class="sec">Quỹ căn đang bán · <span id="quyN"></span> căn</div>
- <p class="note" style="margin:0 0 6px">Giá gồm VAT &amp; KPBT, lấy giá thấp nhất giữa các đại lý. Theo bảng hàng đại lý ngày <span id="quyD"></span>, có thể thay đổi. Bấm để tới căn.</p>
+ <div class="sec">Quỹ căn còn hàng · <span id="quyN"></span> căn</div>
+ <p class="note" style="margin:0 0 6px">Căn bôi đỏ hoặc gạch ngang trên bảng hàng đại lý tính là đã bán (trừ khi còn trên quỹ độc quyền). Giá gồm VAT &amp; KPBT, lấy giá thấp nhất. Cập nhật <span id="quyD"></span>, có thể thay đổi. Bấm để tới căn.</p>
  <ul class="quy" id="quy"></ul>
+ <div class="sec">Đã bán · <span id="sdN"></span> căn</div>
+ <ul class="quy" id="sold"></ul>
  <p class="nopos" id="nopos" hidden></p>
  <div class="sec">Tiện ích khu Đảo Ngọc</div>
  <ul class="lk">
@@ -217,7 +219,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
  </div>
 </div>
 
-<div class="legend" id="legend"><div class="lgt">Tô màu sa bàn</div><div class="modes" id="lgModes"><button data-m="loai" class="on">Loại căn</button><button data-m="mo-ban">Đang mở bán</button></div><ul id="lgItems"></ul><div class="tip">Kéo để xoay · cuộn/chụm để phóng · phóng gần để thấy mã căn</div></div>
+<div class="legend" id="legend"><div class="lgt">Tô màu sa bàn</div><div class="modes" id="lgModes"><button data-m="mo-ban" class="on">Còn / đã bán</button><button data-m="loai">Loại căn</button></div><ul id="lgItems"></ul><div class="tip">Kéo để xoay · cuộn/chụm để phóng · phóng gần để thấy mã căn</div></div>
 
 <div id="gate" role="dialog" aria-modal="true" aria-label="Đăng ký sử dụng sa bàn">
  <div class="gbox">
