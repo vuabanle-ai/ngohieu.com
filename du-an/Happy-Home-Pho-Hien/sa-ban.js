@@ -125,13 +125,13 @@ const DIV_W=cornerPath(-17.5,-18,8.5,32,181),DIV_E=[W(213,diagZ(213)+8.5),W(400,
 const ROADS=[
  {p:DCT,w:70,name:'ĐCT Hưng Yên – Thái Bình 80,5m',at:W(-22,290),l:8,lh:21,lo:17},
  {p:poly([[-150,450],[40,345],[250,225],[560,90],[900,-40]]),w:30,name:'QL38B',at:P(150,286),l:4},
- {p:DL,w:28,name:'Đại lộ Thương Cảng 34m',at:W(197,150),l:4},
+ {p:DL,w:28,name:'Đại lộ Thương Cảng 34m',at:[W(197,85),W(197,290)],l:4},
  {p:poly([[112,842],[362,842]]),w:22,name:'Đường Hạnh Phúc 22m',at:P(205,842),l:4},
- {p:[W(-35,-12),W(210,-12)],w:12,name:'Đường Thương Cảng',at:W(95,-12),tv:1},
- {p:RING,w:13,name:'Đường Hoàng Kim 17m',at:W(-8,250),tv:1},
- {p:[W(42.5,-8),W(42.5,diagZ(42)+4)],w:13,name:'Thương Cảng 1 · 15m',at:W(42.5,140),tv:1},
- {p:[W(90,-8),W(90,116)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,62),tv:1},{p:[W(90,228),W(90,diagZ(90)+4)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,300),tv:1},
- {p:[W(137.5,-8),W(137.5,diagZ(137)+4)],w:13,name:'Thương Cảng 3 · 15m',at:W(137.5,140),tv:1},
+ {p:[W(-35,-12),W(210,-12)],w:12,name:'Đường Thương Cảng',at:W(66,-12),tv:1},
+ {p:RING,w:13,name:'Đường Hoàng Kim 17m',at:[W(-8,85),W(-8,295)],tv:1},
+ {p:[W(42.5,-8),W(42.5,diagZ(42)+4)],w:13,name:'Thương Cảng 1 · 15m',at:[W(42.5,53),W(42.5,312)],tv:1},
+ {p:[W(90,-8),W(90,116)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,53),tv:1},{p:[W(90,228),W(90,diagZ(90)+4)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,308),tv:1},
+ {p:[W(137.5,-8),W(137.5,diagZ(137)+4)],w:13,name:'Thương Cảng 3 · 15m',at:[W(137.5,53),W(137.5,305)],tv:1},
  {p:[W(-8,177.5),W(49,177.5)],w:11,name:'Đường nội khu',at:W(20,177.5),tv:1},{p:[W(131,177.5),W(212,177.5)],w:11,name:'',tv:1},{p:[W(42,112),W(138,112)],w:12,name:'Đường nội khu',at:W(66,112),tv:1},{p:[W(42,232),W(138,232)],w:12,name:'Đường nội khu',at:W(66,232),tv:1},
  {p:TP_ROAD,w:24,name:'Đường Thành Phố 47m',at:W(45,diagZ(45)+23),l:4},
  {p:[208,400].map(x=>W(x,diagZ(x)-52)),w:12,name:'Đường Thịnh Vượng 15m',at:W(300,diagZ(300)-52),tv:1},
@@ -413,9 +413,9 @@ addL('HẠNH PHÚC','zone',P(330,520),95,{near:220});addL('THỊNH VƯỢNG','zo
 [['THE LINK',165,560],['THE NEST',350,430],['THE HAVEN',250,980],['THE RISE',470,330]].forEach(([t,x,y])=>addL(t,'sub',P(x,y),70,{near:160,far:2600}));
 // tên đường in nằm trên mặt đường, chạy dọc theo đường; chỉ lật 180° để chữ luôn đọc xuôi
 const roadTags=[];
-ROADS.forEach(r=>{if(!r.name||!r.at)return;
+ROADS.forEach(r=>{if(!r.name||!r.at)return;[].concat(r.at).forEach(at=>{
  let best=null,bd=1e9;for(let i=0;i<r.p.length-1;i++){const a=r.p[i],b=r.p[i+1],dx=b.x-a.x,dz=b.z-a.z,L2=dx*dx+dz*dz||1;
-  const t=Math.max(0,Math.min(1,((r.at.x-a.x)*dx+(r.at.z-a.z)*dz)/L2)),px=a.x+dx*t,pz=a.z+dz*t,d=Math.hypot(px-r.at.x,pz-r.at.z);if(d<bd){bd=d;best={x:px,z:pz,dx,dz}}}
+  const t=Math.max(0,Math.min(1,((at.x-a.x)*dx+(at.z-a.z)*dz)/L2)),px=a.x+dx*t,pz=a.z+dz*t,d=Math.hypot(px-at.x,pz-at.z);if(d<bd){bd=d;best={x:px,z:pz,dx,dz}}}
  const fs=72,cn=document.createElement('canvas'),g=cn.getContext('2d');g.font=`700 ${fs}px "Be Vietnam Pro",Arial,sans-serif`;
  const tw=Math.ceil(g.measureText(r.name).width);cn.width=tw+fs;cn.height=fs*1.5;g.font=`700 ${fs}px "Be Vietnam Pro",Arial,sans-serif`;
  g.shadowColor='rgba(0,0,0,.55)';g.shadowBlur=6;g.fillStyle='#fff';g.textBaseline='middle';g.fillText(r.name,fs/2,cn.height/2+2);
@@ -423,7 +423,7 @@ ROADS.forEach(r=>{if(!r.name||!r.at)return;
  const h=r.lh||(r.tv?Math.min(r.w*.72,9):Math.min(r.w*.5,15)),w=h*cn.width/cn.height;
  const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4}));
  const ang=Math.atan2(-best.dz,best.dx);m.rotation.order='YXZ';m.rotation.set(-Math.PI/2,ang,0);{const L=Math.hypot(best.dx,best.dz),o=r.lo||0;let nx=best.dz/L,nz=-best.dx/L;if(nx<0){nx=-nx;nz=-nz}best.x+=nx*o;best.z+=nz*o}m.position.set(best.x,.95,best.z);m.renderOrder=3;S.add(m);
- roadTags.push({m,ang,dx:best.dx/Math.hypot(best.dx,best.dz),dz:best.dz/Math.hypot(best.dx,best.dz),far:r.tv?900:4000,flip:false})});
+ roadTags.push({m,ang,dx:best.dx/Math.hypot(best.dx,best.dz),dz:best.dz/Math.hypot(best.dx,best.dz),far:r.tv?900:4000,flip:false})})});
 const _cr=new THREE.Vector3();
 function orientRoadTags(){_cr.setFromMatrixColumn(cam.matrixWorld,0);const d=cam.position.distanceTo(ctl.target);
  for(const t of roadTags){t.m.visible=d<t.far;const f=t.dx*_cr.x+t.dz*_cr.z<0;if(f!==t.flip){t.flip=f;t.m.rotation.y=t.ang+(f?Math.PI:0)}}}
