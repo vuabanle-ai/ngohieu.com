@@ -411,7 +411,23 @@ const LB=document.getElementById('labels');const labels=[];
 const addL=(txt,cls,v,y,extra={})=>{const e=document.createElement('div');e.className='lb '+cls;e.textContent=txt;LB.appendChild(e);const o={e,p:new THREE.Vector3(v.x,y,v.z),cls,...extra};labels.push(o);return o};
 addL('HẠNH PHÚC','zone',P(330,520),95,{near:220});addL('THỊNH VƯỢNG','zone tv',W(95,150),60,{near:220});
 [['THE LINK',165,560],['THE NEST',350,430],['THE HAVEN',250,980],['THE RISE',470,330]].forEach(([t,x,y])=>addL(t,'sub',P(x,y),70,{near:160,far:2600}));
-ROADS.forEach(r=>{if(r.name&&r.at)addL(r.name,r.tv?'road tv':'road',r.at,3,{far:r.tv?700:3000})});
+// tên đường in nằm trên mặt đường, chạy dọc theo đường; chỉ lật 180° để chữ luôn đọc xuôi
+const roadTags=[];
+ROADS.forEach(r=>{if(!r.name||!r.at)return;
+ let best=null,bd=1e9;for(let i=0;i<r.p.length-1;i++){const a=r.p[i],b=r.p[i+1],dx=b.x-a.x,dz=b.z-a.z,L2=dx*dx+dz*dz||1;
+  const t=Math.max(0,Math.min(1,((r.at.x-a.x)*dx+(r.at.z-a.z)*dz)/L2)),px=a.x+dx*t,pz=a.z+dz*t,d=Math.hypot(px-r.at.x,pz-r.at.z);if(d<bd){bd=d;best={x:px,z:pz,dx,dz}}}
+ const fs=72,cn=document.createElement('canvas'),g=cn.getContext('2d');g.font=`700 ${fs}px "Be Vietnam Pro",Arial,sans-serif`;
+ const tw=Math.ceil(g.measureText(r.name).width);cn.width=tw+fs;cn.height=fs*1.5;g.font=`700 ${fs}px "Be Vietnam Pro",Arial,sans-serif`;
+ g.fillStyle=r.tv?'rgba(227,27,35,.92)':'rgba(36,39,43,.88)';g.beginPath();g.roundRect(0,0,cn.width,cn.height,cn.height/2);g.fill();
+ g.fillStyle='#fff';g.textBaseline='middle';g.fillText(r.name,fs/2,cn.height/2+2);
+ const tex=new THREE.CanvasTexture(cn);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=8;
+ const h=r.tv?Math.min(r.w*.5,6):Math.min(r.w*.34,9.5),w=h*cn.width/cn.height;
+ const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4}));
+ const ang=Math.atan2(-best.dz,best.dx);m.rotation.order='YXZ';m.rotation.set(-Math.PI/2,ang,0);m.position.set(best.x,.95,best.z);m.renderOrder=3;S.add(m);
+ roadTags.push({m,ang,dx:best.dx/Math.hypot(best.dx,best.dz),dz:best.dz/Math.hypot(best.dx,best.dz),far:r.tv?900:4000,flip:false})});
+const _cr=new THREE.Vector3();
+function orientRoadTags(){_cr.setFromMatrixColumn(cam.matrixWorld,0);const d=cam.position.distanceTo(ctl.target);
+ for(const t of roadTags){t.m.visible=d<t.far;const f=t.dx*_cr.x+t.dz*_cr.z<0;if(f!==t.flip){t.flip=f;t.m.rotation.y=t.ang+(f?Math.PI:0)}}}
 towers.forEach(t=>addL(t.n,'tw',t.m.position,t.H+6,{far:900}));
 const pins=AMEN.map(([n,t,x,z])=>{const o=addL(String(n).padStart(2,'0'),'pin',W(x,z),16,{far:1500});o.e.dataset.t=t;o.e.addEventListener('click',()=>flyTo(W(x,z),200,.9));return o});
 const amList=document.getElementById('amList');
@@ -641,8 +657,8 @@ const ease=t=>t<.5?4*t*t*t:1-(-2*t+2)**3/2;
 let lastT=0;const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function loop(now){requestAnimationFrame(loop);{const dt=Math.min(.1,(now-(lastT||now))/1000);lastT=now;if(!RM)updateCars(dt)}
  if(fly){const k=Math.min(1,(now-fly.t0)/fly.d),e=ease(k);cam.position.lerpVectors(fly.fp,fly.tp,e);ctl.target.lerpVectors(fly.ft,fly.tt,e);if(k>=1)fly=null}
- ctl.update();{const d=cam.position.distanceTo(ctl.target);S.fog.near=Math.max(1700,d*.9);S.fog.far=Math.max(3800,d*2.6)}R.render(S,cam);placeLabels()}
+ ctl.update();{const d=cam.position.distanceTo(ctl.target);S.fog.near=Math.max(1700,d*.9);S.fog.far=Math.max(3800,d*2.6)}orientRoadTags();R.render(S,cam);placeLabels()}
 requestAnimationFrame(loop);
 const ld=document.getElementById('load');ld.style.opacity=0;setTimeout(()=>ld.remove(),700);
-window.__lots=NL;window.__go=(x,z,d,p)=>{setRot(false);flyTo(W(x,z),d,p)};window.__sel=c=>selectLot(byCode.get(c),true);
+window.__lots=NL;window.__go=(x,z,d,p,az)=>{setRot(false);flyTo(W(x,z),d,p,az)};window.__sel=c=>selectLot(byCode.get(c),true);
 }
