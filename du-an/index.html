@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Danh sách dự án – ngohieu.com</title>
+<meta name="description" content="Danh sách dự án Vinhomes, Masterise, MIK, CapitaLand… kèm sa bàn 3D và quỹ căn.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+/* VOICE: practical catalogue. IDEA: the sales-office project wall. PICTURE: filterable card grid with a "hot" rail. COLOUR/TYPE: red + graphite. LAYOUT: title, search + chips, grid beside a sticky rail; detail sheet. */
+.ttl{padding:34px 0 8px}.ttl h1{font-size:clamp(30px,4vw,44px);font-weight:800}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:18px 0 22px}
+.bar input,.bar select{font:16px inherit;font-family:inherit;min-height:46px;border:2px solid var(--line);border-radius:12px;padding:0 14px;background:#fff;color:inherit}
+.bar input{flex:1 1 260px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chips button{font:inherit;font-weight:600;font-size:14px;border:2px solid var(--line);background:#fff;border-radius:999px;min-height:40px;padding:0 14px;cursor:pointer}.chips button.on{background:var(--red);border-color:var(--red);color:#fff}
+.lay{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start;padding-bottom:60px}
+.rail{position:sticky;top:86px;display:grid;gap:16px}.rail section{border:1px solid var(--line);border-radius:18px;padding:16px}
+.rail h3{font-size:16px;margin:0 0 8px}.rail ol{margin:0;padding-left:20px}.rail li{margin:5px 0}.rail a{text-decoration:none;font-weight:600}.rail a:hover{color:var(--red)}
+.count{color:var(--mut);font-size:14px;margin:-8px 0 14px}
+.empty{padding:40px;text-align:center;color:var(--mut);border:2px dashed var(--line);border-radius:18px}
+.more{display:flex;justify-content:center;margin-top:22px}
+dialog{border:0;border-radius:22px;padding:0;width:min(520px,calc(100% - 24px));box-shadow:0 30px 80px rgba(0,0,0,.35)}dialog::backdrop{background:rgba(20,20,25,.5)}
+.dl .ph{aspect-ratio:16/8;background:linear-gradient(135deg,#3a3f45,#24272b);display:grid;place-items:center;color:#fff;font-size:44px;font-weight:800}
+.dl .ph img{width:100%;height:100%;object-fit:cover}
+.dl .in{padding:18px 20px 20px}.dl h2{font-size:24px}.dl dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:12px 0}.dl dt{color:var(--mut)}.dl dd{margin:0;font-weight:600}
+.dl .row{display:flex;gap:8px;flex-wrap:wrap}.dl .x{position:absolute;right:10px;top:10px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:22px;cursor:pointer}
+@media(max-width:900px){.lay{grid-template-columns:1fr}.rail{position:static}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+ <a class="logo" href="/"><i>N</i><span>Ngô Hiếu<small>Có "hiếu" với nhà</small></span></a>
+ <nav class="menu" aria-label="Menu chính"><a class="on" href="/du-an/">Dự án</a><a href="/du-an/Happy-Home-Pho-Hien/">Sa bàn 3D</a><a class="hide-s" href="/#huong-dan">Hướng dẫn</a></nav>
+ <a class="btn red" href="/du-an/Happy-Home-Pho-Hien/">Đăng ký miễn phí</a>
+</div></header>
+
+<main class="wrap">
+ <div class="ttl"><p class="eyebrow">Danh sách dự án</p><h1>Tìm dự án, mở sa bàn, gửi khách</h1></div>
+ <div class="bar">
+  <input id="q" type="search" placeholder="Tìm theo tên dự án, khu vực…" aria-label="Tìm dự án">
+  <select id="dev" aria-label="Chủ đầu tư"><option value="">Tất cả chủ đầu tư</option></select>
+  <div class="chips" id="chips" role="group" aria-label="Lọc loại hình">
+   <button data-f="" class="on">Tất cả</button><button data-f="thap">Thấp tầng</button><button data-f="cao">Cao tầng</button><button data-f="sb">Có sa bàn 3D</button><button data-f="hot">HOT</button>
+  </div>
+ </div>
+ <div class="lay">
+  <div><p class="count" id="count"></p><div class="grid" id="grid"></div><div class="more"><button class="btn line" id="moreBtn" hidden>Xem thêm dự án</button></div></div>
+  <aside class="rail">
+   <section><h3>Dự án HOT</h3><ol id="rHot"></ol></section>
+   <section><h3>Mới cập nhật</h3><ol id="rNew"></ol></section>
+   <section style="background:var(--soft);border:0"><h3>Có sa bàn 3D</h3><p style="margin:0 0 10px;color:var(--mut);font-size:14px">Xem giá, hướng, mặt tiền từng căn trên mô hình.</p><a class="btn red" style="width:100%" href="/du-an/Happy-Home-Pho-Hien/">Phố Hiến Heritage ›</a></section>
+  </aside>
+ </div>
+</main>
+
+<dialog id="dlg" class="dl"><div style="position:relative"><div class="ph" id="dPh"></div><button class="x" id="dX" aria-label="Đóng">×</button></div><div class="in"><div id="dTags"></div><h2 id="dName"></h2><dl id="dInfo"></dl><p id="dNote" style="color:var(--mut);margin:0 0 14px"></p><div class="row" id="dAct"></div></div></dialog>
+
+<footer><div class="wrap">
+ <div><h4>Ngô Hiếu – Có "hiếu" với nhà</h4><p style="margin:0;max-width:46ch">Thông tin dự án mang tính tham khảo, giá và chính sách chính thức theo chủ đầu tư.</p></div>
+ <div><h4>Khám phá</h4><a href="/">Trang chủ</a><a href="/du-an/Happy-Home-Pho-Hien/">Sa bàn 3D Phố Hiến</a></div>
+ <div><h4>Thông tin</h4><a href="/chinh-sach-bao-mat/">Chính sách bảo mật</a><a href="https://zalo.me/0914669669" target="_blank" rel="noopener">Liên hệ qua Zalo: 0914.669.669</a></div>
+ <p class="copy">© 2026 ngohieu.com</p>
+</div></footer>
+
+<script type="module">
+import { PROJECTS, TYPE, TAG } from '/assets/projects.js';
+{
+const $=id=>document.getElementById(id);
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fold=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/gi,'d').toLowerCase();
+const ini=n=>n.split(/\s+/).filter(w=>/^[A-ZÀ-Ỹ]/.test(w)).slice(0,3).map(w=>w[0]).join('');
+const tags=p=>p.tags.map(t=>`<span class="tag ${t}">${TAG[t]}</span>`).join('')+(p.saban?'<span class="tag sb">Sa bàn 3D</span>':'');
+const card=p=>`<a class="pcard" href="${p.saban||'#'+p.id}" data-id="${p.id}"><div class="ph">${p.img?`<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">`:`<b>${esc(ini(p.name))}</b>`}<span class="tags">${tags(p)}</span></div><div class="bd"><span class="meta">${TYPE[p.type]}${p.dev?' · '+esc(p.dev):''}</span><h3>${esc(p.name)}</h3><span class="meta">${esc(p.area)}</span><span class="go">${p.saban?'Mở sa bàn 3D ›':'Xem thông tin ›'}</span></div></a>`;
+[...new Set(PROJECTS.map(p=>p.dev).filter(Boolean))].sort().forEach(d=>$('dev').insertAdjacentHTML('beforeend',`<option>${esc(d)}</option>`));
+let F='',shown=12;
+function list(){const q=fold($('q').value),dv=$('dev').value;
+ return PROJECTS.filter(p=>(!q||fold(p.name+' '+p.area+' '+p.dev).includes(q))&&(!dv||p.dev===dv)&&(!F||(F==='sb'?p.saban:F==='hot'?p.tags.includes('hot'):p.type===F||p.type==='ca-hai')))
+  .sort((a,b)=>(!!b.saban-!!a.saban)||(b.tags.includes('hot')-a.tags.includes('hot')))}
+function render(){const L=list();$('count').textContent=`${L.length} dự án`;
+ $('grid').innerHTML=L.length?L.slice(0,shown).map(card).join(''):'<div class="empty">Chưa có dự án phù hợp. Thử bỏ bớt bộ lọc.</div>';
+ $('moreBtn').hidden=L.length<=shown}
+$('q').oninput=()=>{shown=12;render()};$('dev').onchange=()=>{shown=12;render()};
+$('chips').onclick=e=>{const b=e.target.closest('button');if(!b)return;F=b.dataset.f;shown=12;$('chips').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));render()};
+$('moreBtn').onclick=()=>{shown+=12;render()};
+const li=p=>`<li><a href="${p.saban||'#'+p.id}">${esc(p.name)}</a></li>`;
+$('rHot').innerHTML=PROJECTS.filter(p=>p.tags.includes('hot')).map(li).join('');
+$('rNew').innerHTML=PROJECTS.filter(p=>p.tags.includes('moi')||p.tags.includes('sap-mo-ban')).map(li).join('');
+const dlg=$('dlg');
+function open(id){const p=PROJECTS.find(x=>x.id===id);if(!p)return;
+ $('dPh').innerHTML=p.img?`<img src="${p.img}" alt="">`:esc(ini(p.name));$('dTags').innerHTML=tags(p);$('dName').textContent=p.name;
+ $('dInfo').innerHTML=[['Loại hình',TYPE[p.type]],['Chủ đầu tư',p.dev],['Vị trí',p.area]].filter(r=>r[1]).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join('');
+ $('dNote').textContent=p.saban?(p.note||''):'Sa bàn 3D của dự án đang được dựng. Liên hệ để nhận bảng hàng và chính sách mới nhất.';
+ $('dAct').innerHTML=(p.saban?`<a class="btn red" href="${p.saban}">Mở sa bàn 3D</a>`:'')+`<a class="btn ${p.saban?'line':'red'}" href="https://zalo.me/0914669669" target="_blank" rel="noopener">Nhận bảng hàng qua Zalo</a>`;
+ if(!dlg.open)dlg.showModal()}
+$('grid').addEventListener('click',e=>{const a=e.target.closest('a.pcard');if(a&&a.getAttribute('href').startsWith('#')){e.preventDefault();history.replaceState(null,'','#'+a.dataset.id);open(a.dataset.id)}});
+document.querySelectorAll('.rail').forEach(r=>r.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(a){e.preventDefault();open(a.getAttribute('href').slice(1))}}));
+$('dX').onclick=()=>dlg.close();dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+dlg.addEventListener('close',()=>history.replaceState(null,'',location.pathname));
+render();if(location.hash.length>1)open(location.hash.slice(1));
+}
+</script>
+</body>
+</html>

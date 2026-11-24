@@ -3,39 +3,107 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ngô Hiếu – Có "hiếu" với nhà</title>
-<meta name="description" content="Ngô Hiếu – Có 'hiếu' với nhà. Dự án bất động sản cao cấp, sa bàn 3D trực tuyến.">
+<title>Ngô Hiếu – Quỹ căn & sa bàn 3D dự án</title>
+<meta name="description" content="Quỹ căn, bảng giá và sa bàn 3D tương tác các dự án Vinhomes, Masterise, MIK. Miễn phí cho môi giới.">
+<meta property="og:title" content="Ngô Hiếu – Quỹ căn & sa bàn 3D dự án"><meta property="og:image" content="https://ngohieu.com/assets/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
 <style>
-:root{--mr:#e31b23;--or:#5d636b}
-*{box-sizing:border-box}body{margin:0;font:16px/1.55 "Be Vietnam Pro",system-ui,sans-serif;color:#26282b;background:#fff}
-header{background:#2f3337;color:#fff;padding:18px max(5vw,16px);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-header b{font-size:22px;font-weight:800}header span{opacity:.85;font-size:14px}
-a.btn{display:inline-grid;place-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:var(--mr);color:#fff;font-weight:800;text-decoration:none}
-main{padding:clamp(28px,5vw,64px) max(5vw,16px);max-width:1240px;margin:auto}
-h1{font-size:clamp(30px,4.5vw,48px);line-height:1.08;margin:0 0 10px;color:var(--mr)}
-.sub{color:#6b7077;margin:0 0 28px;max-width:62ch}
-.card{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);border-radius:20px;overflow:hidden;box-shadow:0 14px 40px rgba(30,30,35,.15);text-decoration:none;color:inherit}
-.card img{width:100%;height:100%;object-fit:cover;min-height:260px;display:block}
-.card div{padding:24px 26px;display:flex;flex-direction:column;gap:8px;justify-content:center}
-.card h2{margin:0;font-size:26px;line-height:1.15}.card p{margin:0;color:#6b7077}
-.tag{align-self:flex-start;background:var(--mr);color:#fff;font-weight:700;font-size:13px;border-radius:999px;padding:2px 12px}
-.go{margin-top:8px;font-weight:800;color:var(--mr)}
-footer{padding:24px max(5vw,16px);color:#6b7077;font-size:14px;border-top:1px solid #e3e5e8}
-@media(max-width:700px){.card{grid-template-columns:1fr}}
+/* VOICE: confident sales platform, clear and fast. IDEA: a sales gallery's front desk — the model table first, then the shelves of projects.
+PICTURE: the live 3D sa bàn render with a floating unit card. COLOUR/TYPE: bright red + graphite on white; Be Vietnam Pro. LAYOUT: hero split, numbered strengths, project grid, 3 steps, CTA band, footer. */
+.hero{padding:clamp(28px,5vw,64px) 0 clamp(36px,5vw,72px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(24px,4vw,56px);align-items:center}
+.hero h1{font-size:clamp(34px,4.6vw,56px);font-weight:800;letter-spacing:-.5px}.hero h1 em{font-style:normal;color:var(--red)}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px}.stats b{display:block;font-size:30px;line-height:1;color:var(--ink)}.stats span{color:var(--mut);font-size:14px}
+.shot{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 60px rgba(30,30,35,.2);aspect-ratio:16/11;background:#ccd}
+.shot img{width:100%;height:100%;object-fit:cover}
+.shot .chip{position:absolute;left:16px;top:16px;background:#fff;border-radius:12px;padding:8px 12px;font-weight:700;font-size:14px;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.shot .unit{position:absolute;right:16px;bottom:16px;width:min(250px,60%);background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 14px 30px rgba(0,0,0,.25);font-size:13.5px}
+.shot .unit b{font-size:17px}.shot .unit .p{display:inline-block;margin-top:6px;border:3px solid var(--red);border-radius:999px;padding:2px 12px;font-weight:800;color:var(--red);font-size:18px}
+.shot .unit dl{display:grid;grid-template-columns:auto 1fr;gap:1px 10px;margin:6px 0 0}.shot .unit dt{color:var(--mut)}.shot .unit dd{margin:0;font-weight:600}
+.feat{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:30px}
+.feat div{background:#fff;border-radius:18px;padding:22px 20px;border:1px solid var(--line)}
+.feat .n{font-size:40px;font-weight:800;color:var(--red);line-height:1}.feat h3{font-size:18px;margin:10px 0 6px}.feat p{margin:0;color:var(--mut);font-size:15px}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:30px;counter-reset:s}
+.steps div{position:relative;padding:22px 20px 20px 72px;border-radius:18px;background:#fff;border:1px solid var(--line)}
+.steps div::before{counter-increment:s;content:counter(s);position:absolute;left:20px;top:20px;width:38px;height:38px;border-radius:12px;background:var(--dark);color:#fff;font-weight:800;display:grid;place-items:center}
+.steps h3{font-size:17px;margin:0 0 4px}.steps p{margin:0;color:var(--mut);font-size:15px}
+.band{background:var(--red);color:#fff;border-radius:24px;padding:clamp(28px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.band h2{font-size:clamp(26px,3vw,36px)}.band p{margin:8px 0 0;opacity:.9;max-width:56ch}.band .btn{background:#fff;color:var(--red)}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.feat{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:1fr}}
+@media(max-width:520px){.feat{grid-template-columns:1fr}.shot .unit{display:none}}
 </style>
 </head>
 <body>
-<header><div><b>Ngô Hiếu</b><br><span>Có "hiếu" với nhà</span></div><a class="btn" href="https://zalo.me/0914669669" target="_blank" rel="noopener">Nhắn Zalo</a></header>
-<main>
-<h1>Dự án đang phân phối</h1>
-<p class="sub">Xem sa bàn 3D trực tuyến: vị trí từng căn, mã căn, mặt tiền, giá và tiện ích.</p>
-<a class="card" href="du-an/Happy-Home-Pho-Hien/">
- <img src="du-an/Happy-Home-Pho-Hien/img/phoi-canh-tren-cao.jpg" alt="Phối cảnh Happy Home Phố Hiến">
- <div><span class="tag">Sa bàn 3D</span><h2>Happy Home Phố Hiến – Phố Hiến Heritage Collection</h2><p>303 căn liền kề shophouse · Phố Hiến, Hưng Yên · Sở hữu lâu dài</p><span class="go">Xem sa bàn 3D ›</span></div>
-</a>
-</main>
-<footer>© Ngô Hiếu – Có "hiếu" với nhà</footer>
+<header class="top"><div class="wrap">
+ <a class="logo" href="/"><i>N</i><span>Ngô Hiếu<small>Có "hiếu" với nhà</small></span></a>
+ <nav class="menu" aria-label="Menu chính"><a href="/du-an/">Dự án</a><a href="/du-an/Happy-Home-Pho-Hien/">Sa bàn 3D</a><a class="hide-s" href="#the-manh">Vì sao chọn</a><a class="hide-s" href="#huong-dan">Hướng dẫn</a></nav>
+ <a class="btn red" href="/du-an/Happy-Home-Pho-Hien/">Đăng ký miễn phí</a>
+</div></header>
+
+<section class="hero"><div class="wrap">
+ <div>
+  <p class="eyebrow">Dành cho môi giới & khách mua nhà</p>
+  <h1>Quỹ căn và <em>sa bàn 3D</em> từng căn, cập nhật mỗi ngày</h1>
+  <p class="lead">Xem vị trí, hướng, diện tích, mặt tiền và giá từng căn ngay trên sa bàn. Tổng hợp từ bảng hàng các đại lý, dùng tốt trên điện thoại và iPad.</p>
+  <div class="cta"><a class="btn red" href="/du-an/Happy-Home-Pho-Hien/">Mở sa bàn 3D</a><a class="btn line" href="/du-an/">Khám phá dự án</a></div>
+  <div class="stats"><div><b id="nP">30+</b><span>dự án theo dõi</span></div><div><b>303</b><span>căn trên sa bàn Phố Hiến</span></div><div><b>Hằng ngày</b><span>cập nhật giá & quỹ căn</span></div></div>
+ </div>
+ <a class="shot" href="/du-an/Happy-Home-Pho-Hien/" aria-label="Mở sa bàn 3D Phố Hiến">
+  <img src="/assets/hero.jpg" alt="Phối cảnh Phố Hiến Heritage Collection" fetchpriority="high">
+  <span class="chip">Sa bàn 3D · Phố Hiến Heritage Collection</span>
+  <span class="unit"><b>Căn TC1-34</b> <span class="tag sb">Đang mở bán</span><dl><dt>Hướng</dt><dd>Đông Nam</dd><dt>Diện tích</dt><dd>70,0 m²</dd><dt>Vị trí</dt><dd>View công viên</dd></dl><span class="p">8,43 tỷ</span></span>
+ </a>
+</div></section>
+
+<section class="sec soft" id="the-manh"><div class="wrap">
+ <p class="eyebrow">Vì sao dùng ngohieu.com</p>
+ <h2>Bốn thứ giúp tư vấn nhanh và chính xác hơn</h2>
+ <div class="feat">
+  <div><span class="n">01</span><h3>Sa bàn 3D từng căn</h3><p>Mã căn trên mái, góc vát, mặt tiền, tiện ích và đường nội khu đúng mặt bằng.</p></div>
+  <div><span class="n">02</span><h3>Giá & quỹ căn mới nhất</h3><p>Tổng hợp từ bảng hàng các đại lý; giá tiến độ, thanh toán sớm, vay ngân hàng.</p></div>
+  <div><span class="n">03</span><h3>Gọn trên mọi màn hình</h3><p>Điện thoại, iPad, máy tính. Chạm vào căn là có đủ thông số để gửi khách.</p></div>
+  <div><span class="n">04</span><h3>Miễn phí, đăng ký 30 giây</h3><p>Chỉ cần số điện thoại. Máy tự nhớ, lần sau vào thẳng không cần đăng nhập lại.</p></div>
+ </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+ <div class="head"><div><p class="eyebrow">Dự án</p><h2>Dự án nổi bật</h2></div><a class="btn line" href="/du-an/">Xem tất cả dự án ›</a></div>
+ <div class="grid" id="feat"></div>
+</div></section>
+
+<section class="sec soft" id="huong-dan"><div class="wrap">
+ <p class="eyebrow">Hướng dẫn</p><h2>Bắt đầu trong ba bước</h2>
+ <div class="steps">
+  <div><h3>Chọn dự án</h3><p>Vào mục Dự án, tìm theo tên, khu vực hoặc chủ đầu tư.</p></div>
+  <div><h3>Đăng ký bằng số điện thoại</h3><p>Nhập họ tên, đại lý, xác thực mã SMS và đặt mật khẩu. Chỉ làm một lần.</p></div>
+  <div><h3>Mở sa bàn, chạm vào căn</h3><p>Xem giá, hướng, diện tích, mặt tiền; tô màu theo loại căn hoặc căn đang mở bán.</p></div>
+ </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+ <div class="band"><div><h2>Mở sa bàn 3D miễn phí ngay hôm nay</h2><p>Đăng ký một lần bằng số điện thoại, dùng cho mọi dự án có sa bàn trên ngohieu.com.</p></div><a class="btn" href="/du-an/Happy-Home-Pho-Hien/">Đăng ký thành viên</a></div>
+</div></section>
+
+<footer><div class="wrap">
+ <div><h4>Ngô Hiếu – Có "hiếu" với nhà</h4><p style="margin:0;max-width:46ch">Quỹ căn, bảng giá và sa bàn 3D tương tác các dự án bất động sản. Thông tin tham khảo, giá chính thức theo chủ đầu tư.</p></div>
+ <div><h4>Khám phá</h4><a href="/du-an/">Danh sách dự án</a><a href="/du-an/Happy-Home-Pho-Hien/">Sa bàn 3D Phố Hiến</a><a href="#huong-dan">Hướng dẫn sử dụng</a></div>
+ <div><h4>Thông tin</h4><a href="/chinh-sach-bao-mat/">Chính sách bảo mật</a><a href="https://zalo.me/0914669669" target="_blank" rel="noopener">Liên hệ qua Zalo: 0914.669.669</a></div>
+ <p class="copy">© 2026 ngohieu.com</p>
+</div></footer>
+
+<script type="module">
+import { PROJECTS, TYPE, TAG } from '/assets/projects.js';
+{
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ini=n=>n.split(/\s+/).filter(w=>/^[A-ZÀ-Ỹ]/.test(w)).slice(0,3).map(w=>w[0]).join('');
+const card=p=>`<a class="pcard" href="${p.saban||'/du-an/#'+p.id}"><div class="ph">${p.img?`<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">`:`<b>${esc(ini(p.name))}</b>`}<span class="tags">${p.tags.map(t=>`<span class="tag ${t}">${TAG[t]}</span>`).join('')}${p.saban?'<span class="tag sb">Sa bàn 3D</span>':''}</span></div><div class="bd"><span class="meta">${TYPE[p.type]}${p.dev?' · '+esc(p.dev):''}</span><h3>${esc(p.name)}</h3><span class="meta">${esc(p.area)}</span><span class="go">${p.saban?'Mở sa bàn 3D ›':'Xem thông tin ›'}</span></div></a>`;
+document.getElementById('feat').innerHTML=PROJECTS.filter(p=>p.tags.includes('hot')||p.saban).slice(0,6).map(card).join('');
+document.getElementById('nP').textContent=PROJECTS.length+'+';
+}
+</script>
 </body>
 </html>
