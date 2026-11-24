@@ -58,7 +58,7 @@ export function draw(code, p, key) {          // ảnh phiếu tính giá (canva
     g.font = F(700, 25); g.fillStyle = '#24272b'; const t = vnd(v); g.fillText(t, W - pad - g.measureText(t).width, y);
     g.strokeStyle = '#e4e6e9'; g.beginPath(); g.moveTo(pad, y + 14); g.lineTo(W - pad, y + 14); g.stroke(); y += rowH });
   y += 20; g.font = F(500, 21); g.fillStyle = '#666c73';
-  ['Phiếu tính giá mang tính tham khảo, tính theo chính sách bán hàng ngày ' + CSBH + '.', 'Số liệu chính thức theo bảng tính giá tại Hợp đồng mua bán của Chủ đầu tư.', 'Đơn vị: đồng. ngohieu.com']
+  ['Phiếu tính giá mang tính tham khảo, tính theo chính sách bán hàng ngày ' + CSBH + '.', 'Số liệu chính thức theo bảng tính giá tại Hợp đồng mua bán của Chủ đầu tư.', 'Đơn vị: đồng.']
     .forEach(t => { g.fillText(t, pad, y); y += 32 });
   return c;
 }
