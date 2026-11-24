@@ -12,6 +12,12 @@
 <style>
 /* VOICE: confident sales platform, clear and fast. IDEA: a sales gallery's front desk — the model table first, then the shelves of projects.
 PICTURE: the live 3D sa bàn render with a floating unit card. COLOUR/TYPE: bright red + graphite on white; Be Vietnam Pro. LAYOUT: hero split, numbered strengths, project grid, 3 steps, CTA band, footer. */
+.qs{padding:18px 0 4px}.qs .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;position:relative}
+.qs input,.qs select{font:16px inherit;font-family:inherit;min-height:48px;border:2px solid var(--line);border-radius:12px;padding:0 14px;background:#fff;color:inherit}
+.qs input{flex:1 1 280px}.qs input:focus,.qs select:focus{outline:none;border-color:var(--red)}
+.qs .chips{display:flex;gap:6px;flex-wrap:wrap}.qs .chips a{font-weight:600;font-size:14px;border:2px solid var(--line);background:#fff;border-radius:999px;min-height:42px;padding:0 14px;display:inline-flex;align-items:center;text-decoration:none;color:inherit}.qs .chips a.on{background:var(--red);border-color:var(--red);color:#fff}
+.qs .res{position:absolute;left:0;top:calc(100% + 6px);width:min(640px,100%);background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.14);z-index:20;overflow:hidden}.qs .res[hidden]{display:none}
+.qs .res a{display:flex;justify-content:space-between;gap:10px;padding:12px 16px;text-decoration:none;color:inherit;border-bottom:1px solid var(--line)}.qs .res a:hover,.qs .res a:focus{background:var(--soft)}.qs .res small{color:var(--mut)}.qs .res .all{color:var(--red);font-weight:700;justify-content:center}
 .hero{padding:clamp(28px,5vw,64px) 0 clamp(36px,5vw,72px)}
 .hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(24px,4vw,56px);align-items:center}
 .hero h1{font-size:clamp(34px,4.6vw,56px);font-weight:800;letter-spacing:-.5px}.hero h1 em{font-style:normal;color:var(--red)}
@@ -43,6 +49,13 @@ PICTURE: the live 3D sa bàn render with a floating unit card. COLOUR/TYPE: brig
  <nav class="menu" aria-label="Menu chính"><a href="/du-an/">Dự án</a><a href="/du-an/Happy-Home-Pho-Hien/">Sa bàn 3D</a><a class="hide-s" href="#the-manh">Vì sao chọn</a><a class="hide-s" href="#huong-dan">Hướng dẫn</a></nav>
  <a class="btn red" href="/du-an/Happy-Home-Pho-Hien/">Đăng ký miễn phí</a>
 </div></header>
+
+<section class="qs"><div class="wrap"><form class="bar" id="qs" action="/du-an/" role="search">
+ <input id="hq" name="q" type="search" placeholder="Tìm theo tên dự án, khu vực…" aria-label="Tìm dự án" autocomplete="off">
+ <select id="hdev" name="dev" aria-label="Chủ đầu tư"><option value="">Tất cả chủ đầu tư</option></select>
+ <div class="chips" aria-label="Lọc loại hình"><a href="/du-an/" class="on">Tất cả</a><a href="/du-an/?f=thap">Thấp tầng</a><a href="/du-an/?f=cao">Cao tầng</a><a href="/du-an/?f=sb">Có sa bàn 3D</a><a href="/du-an/?f=hot">HOT</a></div>
+ <div class="res" id="hres" hidden></div>
+</form></div></section>
 
 <section class="hero"><div class="wrap">
  <div>
@@ -103,6 +116,16 @@ const ini=n=>n.split(/\s+/).filter(w=>/^[A-ZÀ-Ỹ]/.test(w)).slice(0,3).map(w=>
 const card=p=>`<a class="pcard" href="${p.saban||'/du-an/#'+p.id}"><div class="ph">${p.img?`<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">`:`<b>${esc(ini(p.name))}</b>`}<span class="tags">${p.tags.map(t=>`<span class="tag ${t}">${TAG[t]}</span>`).join('')}${p.saban?'<span class="tag sb">Sa bàn 3D</span>':''}</span></div><div class="bd"><span class="meta">${TYPE[p.type]}${p.dev?' · '+esc(p.dev):''}</span><h3>${esc(p.name)}</h3><span class="meta">${esc(p.area)}</span><span class="go">${p.saban?'Mở sa bàn 3D ›':'Xem thông tin ›'}</span></div></a>`;
 document.getElementById('feat').innerHTML=PROJECTS.filter(p=>p.tags.includes('hot')||p.saban).slice(0,6).map(card).join('');
 document.getElementById('nP').textContent=PROJECTS.length+'+';
+{const $=id=>document.getElementById(id);const fold=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/gi,'d').toLowerCase();
+ [...new Set(PROJECTS.map(p=>p.dev).filter(Boolean))].sort().forEach(d=>$('hdev').insertAdjacentHTML('beforeend',`<option>${esc(d)}</option>`));
+ const go=()=>{const u=new URLSearchParams();if($('hq').value.trim())u.set('q',$('hq').value.trim());if($('hdev').value)u.set('dev',$('hdev').value);location.href='/du-an/'+(u+''?'?'+u:'')};
+ const show=()=>{const q=fold($('hq').value.trim()),dv=$('hdev').value;if(!q&&!dv){$('hres').hidden=true;return}
+  const L=PROJECTS.filter(p=>(!q||fold(p.name+' '+p.area+' '+p.dev).includes(q))&&(!dv||p.dev===dv)).sort((a,b)=>!!b.saban-!!a.saban);
+  $('hres').innerHTML=(L.length?L.slice(0,6).map(p=>`<a href="${p.saban||'/du-an/#'+p.id}"><span><b>${esc(p.name)}</b><br><small>${esc([TYPE[p.type],p.dev,p.area].filter(Boolean).join(' · '))}</small></span>${p.saban?'<small style="color:var(--red);font-weight:700">Sa bàn 3D ›</small>':''}</a>`).join(''):'<a href="/du-an/"><small>Chưa có dự án phù hợp</small></a>')+(L.length>6?`<a class="all" href="#" id="hall">Xem tất cả ${L.length} dự án ›</a>`:'');
+  $('hres').hidden=false;const a=$('hall');if(a)a.onclick=e=>{e.preventDefault();go()}};
+ $('hq').oninput=show;$('hdev').onchange=show;$('qs').onsubmit=e=>{e.preventDefault();go()};
+ document.addEventListener('click',e=>{if(!$('qs').contains(e.target))$('hres').hidden=true});$('hq').onfocus=show;
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')$('hres').hidden=true})}
 }
 </script>
 </body>

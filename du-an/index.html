@@ -84,6 +84,8 @@ function render(){const L=list();$('count').textContent=`${L.length} dự án`;
 $('q').oninput=()=>{shown=12;render()};$('dev').onchange=()=>{shown=12;render()};
 $('chips').onclick=e=>{const b=e.target.closest('button');if(!b)return;F=b.dataset.f;shown=12;$('chips').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));render()};
 $('moreBtn').onclick=()=>{shown+=12;render()};
+{const u=new URLSearchParams(location.search);if(u.get('q'))$('q').value=u.get('q');if(u.get('dev'))$('dev').value=u.get('dev');
+ const f=u.get('f');if(f!==null){const b=$('chips').querySelector(`button[data-f="${CSS.escape(f)}"]`);if(b){F=f;$('chips').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b))}}}
 const li=p=>`<li><a href="${p.saban||'#'+p.id}">${esc(p.name)}</a></li>`;
 $('rHot').innerHTML=PROJECTS.filter(p=>p.tags.includes('hot')).map(li).join('');
 $('rNew').innerHTML=PROJECTS.filter(p=>p.tags.includes('moi')||p.tags.includes('sap-mo-ban')).map(li).join('');
