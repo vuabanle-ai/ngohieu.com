@@ -418,10 +418,9 @@ ROADS.forEach(r=>{if(!r.name||!r.at)return;
   const t=Math.max(0,Math.min(1,((r.at.x-a.x)*dx+(r.at.z-a.z)*dz)/L2)),px=a.x+dx*t,pz=a.z+dz*t,d=Math.hypot(px-r.at.x,pz-r.at.z);if(d<bd){bd=d;best={x:px,z:pz,dx,dz}}}
  const fs=72,cn=document.createElement('canvas'),g=cn.getContext('2d');g.font=`700 ${fs}px "Be Vietnam Pro",Arial,sans-serif`;
  const tw=Math.ceil(g.measureText(r.name).width);cn.width=tw+fs;cn.height=fs*1.5;g.font=`700 ${fs}px "Be Vietnam Pro",Arial,sans-serif`;
- g.fillStyle=r.tv?'rgba(227,27,35,.92)':'rgba(36,39,43,.88)';g.beginPath();g.roundRect(0,0,cn.width,cn.height,cn.height/2);g.fill();
- g.fillStyle='#fff';g.textBaseline='middle';g.fillText(r.name,fs/2,cn.height/2+2);
+ g.shadowColor='rgba(0,0,0,.55)';g.shadowBlur=6;g.fillStyle='#fff';g.textBaseline='middle';g.fillText(r.name,fs/2,cn.height/2+2);
  const tex=new THREE.CanvasTexture(cn);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=8;
- const h=r.tv?Math.min(r.w*.5,6):Math.min(r.w*.34,9.5),w=h*cn.width/cn.height;
+ const h=r.tv?Math.min(r.w*.72,9):Math.min(r.w*.5,15),w=h*cn.width/cn.height;
  const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4}));
  const ang=Math.atan2(-best.dz,best.dx);m.rotation.order='YXZ';m.rotation.set(-Math.PI/2,ang,0);m.position.set(best.x,.95,best.z);m.renderOrder=3;S.add(m);
  roadTags.push({m,ang,dx:best.dx/Math.hypot(best.dx,best.dz),dz:best.dz/Math.hypot(best.dx,best.dz),far:r.tv?900:4000,flip:false})});
