@@ -1,0 +1,918 @@
+{
+"updated": "25/11/2026",
+"available": {
+"AN10-01": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "103,1",
+"dtxd": "225,3",
+"gia": 13338147652
+},
+"AN10-12": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "105",
+"dtxd": "233"
+},
+"AN10-14": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "212,9",
+"gia": 7783171691
+},
+"AN11-20": {
+"src": [
+"RBS"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "252,8",
+"gia": 9089414417
+},
+"AN12-02": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "105,9",
+"dtxd": "230,8",
+"gia": 13212216080
+},
+"AN12-12": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "105",
+"dtxd": "233",
+"gia": 9638152044
+},
+"AN13-17": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "245,3",
+"gia": 9078698871
+},
+"AN14-09": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "105",
+"dtxd": "233"
+},
+"AN3-29": {
+"src": [
+"MV"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "205,1",
+"gia": 12609214801
+},
+"AN5-03": {
+"src": [
+"MV"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "212,9",
+"gia": 12379272265
+},
+"AN5-05": {
+"src": [
+"RM"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "205,1",
+"huong": "Đông Bắc",
+"gia": 12147726306
+},
+"AN5-08": {
+"src": [
+"RM"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "212,9",
+"gia": 12181234853
+},
+"AN6-08": {
+"src": [
+"MV"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "80",
+"dtxd": "244,1",
+"gia": 14817078684
+},
+"AN6-10": {
+"src": [
+"MV"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "80",
+"dtxd": "242,8",
+"gia": 14711585493
+},
+"AN6-21": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "242,8",
+"gia": 10010868577
+},
+"AN7-13": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "252,8",
+"gia": 9078698871
+},
+"AN7-22": {
+"src": [
+"RBS"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "212,9",
+"gia": 7730909512
+},
+"AN7-25": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "252,8",
+"gia": 9518660764
+},
+"AN9-04": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "252,8",
+"gia": 8611588991
+},
+"HC3-26": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "207,6"
+},
+"HC3-27": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "207,6",
+"gia": 8092636422
+},
+"HC4-12": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "236,9"
+},
+"HC5-08": {
+"src": [
+"RM"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "202,8",
+"huong": "Đông Bắc",
+"gia": 11900404789
+},
+"LN-29": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "251,2",
+"gia": 12370304256
+},
+"LN-57": {
+"src": [
+"MH"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "120",
+"dtxd": "270,4",
+"gia": 15438437423
+},
+"LP-09": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "250,7",
+"dtxd": "444,4",
+"gia": 19651162302
+},
+"LP-100": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "229,7",
+"dtxd": "386,8",
+"gia": 33597585875
+},
+"LP-144": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "238,7",
+"dtxd": "370,9",
+"gia": 17725703898
+},
+"LP-16": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "255,9",
+"dtxd": "428,5",
+"gia": 20588087478
+},
+"LP-18": {
+"src": [
+"RBS"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "265,5",
+"dtxd": "454,9",
+"gia": 20979683592
+},
+"LP-19": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "251,4",
+"dtxd": "444,4",
+"gia": 19989922904
+},
+"LP-198": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "269,1",
+"dtxd": "472,1",
+"gia": 21016202638
+},
+"LP-22": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "278,1",
+"dtxd": "492,2",
+"gia": 22271208638
+},
+"LP-25": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "254,6",
+"dtxd": "444,4",
+"gia": 19367125280
+},
+"LP-35": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "273,3",
+"dtxd": "488",
+"gia": 21762525984
+},
+"LP-36": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "243,4",
+"dtxd": "394,9",
+"gia": 19317829923
+},
+"LP-45": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "264",
+"dtxd": "394,9",
+"gia": 20285691299
+},
+"LP-55": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "322,9",
+"dtxd": "556,6",
+"gia": 26284116559
+},
+"LP1-02": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "223,3",
+"dtxd": "377,2",
+"gia": 60972202928
+},
+"LV2-18": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "254",
+"gia": 10838008162
+},
+"LV2-20": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "120",
+"dtxd": "279,1"
+},
+"LV2-23": {
+"src": [
+"RM"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "214",
+"huong": "Đông Bắc",
+"gia": 9763306498
+},
+"LV3-27": {
+"src": [
+"MH"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "214",
+"gia": 9709308928
+},
+"LV4-07": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "254",
+"gia": 14633970938
+},
+"LV4-12": {
+"src": [
+"RM"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "252",
+"huong": "Đông Bắc",
+"gia": 11060640812
+},
+"LV4-16": {
+"src": [
+"MV",
+"RM"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "254",
+"gia": 11080255745,
+"huong": "Tây Nam"
+},
+"LV4-18": {
+"src": [
+"RM"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "254",
+"huong": "Tây Nam",
+"gia": 11080255745
+},
+"LV4-26": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "254",
+"gia": 10745042056
+},
+"LV4-29": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "252",
+"gia": 11314935324
+},
+"LV4-30": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "252",
+"gia": 11089700731
+},
+"LV5-28": {
+"src": [
+"RM"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "214",
+"gia": 9580502408
+},
+"LV6-10": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "248",
+"gia": 11779018084
+},
+"LV6-11": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "245,5",
+"gia": 11390666050
+},
+"LV6-14": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "248",
+"gia": 11587107488
+},
+"LV6-34": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "248",
+"gia": 11579637607
+},
+"LV7-19": {
+"src": [
+"MH"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "214",
+"gia": 9743318486
+},
+"LV7-35": {
+"src": [
+"RM"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "214",
+"huong": "Đông Bắc",
+"gia": 9906134659
+},
+"SV1-16": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "234,4",
+"gia": 10706432344
+},
+"SV1-24": {
+"src": [
+"MH"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "232,3",
+"gia": 10526295124
+},
+"SV10-07": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "217,1",
+"gia": 12930545395
+},
+"SV10-18": {
+"src": [
+"RBS"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "246,6",
+"gia": 10345200993
+},
+"SV10-24": {
+"src": [
+"MH"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "121,8",
+"dtxd": "274,5",
+"gia": 19780279288
+},
+"SV12-17": {
+"src": [
+"MH"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK xẻ khe",
+"dt": "120",
+"dtxd": "282,7",
+"gia": 14177536419
+},
+"SV12-24": {
+"src": [
+"MH"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK góc",
+"dt": "131,1",
+"dtxd": "312,2",
+"gia": 21442268398
+},
+"SV13-07": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "217,1",
+"gia": 13076138758
+},
+"SV13-08": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "217,1",
+"gia": 12685531822
+},
+"SV13-17": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "105",
+"dtxd": "238,7"
+},
+"SV13-19": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "207,7"
+},
+"SV13-24": {
+"src": [
+"MH"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK góc",
+"dt": "139,3",
+"dtxd": "348,2",
+"gia": 22934734362
+},
+"SV14-06": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "246,8"
+},
+"SV16-07": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "246,6",
+"gia": 14282654983
+},
+"SV17-19": {
+"src": [
+"RBS"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "217,1",
+"gia": 9233698560
+},
+"SV17-43": {
+"src": [
+"RM"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "121,1",
+"dtxd": "290,6",
+"huong": "Đông Bắc",
+"gia": 19962935649
+},
+"SV2-08": {
+"src": [
+"MH"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "192,3",
+"gia": 17325268902
+},
+"SV2-13": {
+"src": [
+"RM"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "194,4",
+"huong": "Đông Bắc",
+"gia": 9334004003
+},
+"SV2-17": {
+"src": [
+"RM"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK xẻ khe",
+"dt": "105",
+"dtxd": "210,5",
+"huong": "Đông Bắc",
+"gia": 12065466600
+},
+"SV3-33": {
+"src": [
+"MH"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "80",
+"dtxd": "232,3",
+"gia": 17281188466
+},
+"SV5-03": {
+"src": [
+"MV"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "105",
+"dtxd": "212,5",
+"gia": 46899423122
+},
+"SV5-04": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "105",
+"dtxd": "210,5",
+"gia": 34281188832
+},
+"SV5-05": {
+"src": [
+"MV"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "194,4",
+"gia": 24050573612
+},
+"SV5-07": {
+"src": [
+"MV"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "192,3",
+"gia": 18121730246
+},
+"SV5-08": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "194,4",
+"gia": 12854735326
+},
+"SV5-20": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "105",
+"dtxd": "212,8",
+"gia": 12006019938
+},
+"SV5-23": {
+"src": [
+"RM"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "192,3",
+"gia": 12933425371
+},
+"SV5-33": {
+"src": [
+"MH"
+],
+"tcbg": "Hoàn thiện",
+"loai": "LK",
+"dt": "70",
+"dtxd": "192,3",
+"gia": 13593550233
+},
+"SV6-06": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "246,6",
+"gia": 19486138660
+},
+"SV7-07": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "70",
+"dtxd": "207,7",
+"gia": 12766769477
+},
+"SV8-07": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "80",
+"dtxd": "257,2",
+"gia": 14678474341
+},
+"SV9-02": {
+"src": [
+"MV"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "ĐL",
+"dt": "252,4",
+"dtxd": "451,4"
+},
+"SV9-04": {
+"src": [
+"TP"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK",
+"dt": "120",
+"dtxd": "276",
+"gia": 41351390544
+},
+"SV9-16": {
+"src": [
+"MH"
+],
+"tcbg": "Giãn xây 18T",
+"loai": "LK xẻ khe",
+"dt": "120",
+"dtxd": "276",
+"gia": 15321243138
+}
+},
+"sold": {}
+}

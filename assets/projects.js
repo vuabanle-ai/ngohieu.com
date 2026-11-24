@@ -6,7 +6,7 @@ export const PROJECTS = [
  {id:'global-gate',name:'Vinhomes Global Gate',dev:'Vinhomes',area:'Đông Anh, Hà Nội',type:'thap',tags:['hot']},
  {id:'wonder-city',name:'Vinhomes Wonder City',dev:'Vinhomes',area:'Đan Phượng, Hà Nội',type:'thap',tags:[]},
  {id:'green-paradise',name:'Vinhomes Green Paradise',dev:'Vinhomes',area:'Cần Giờ, TP. Hồ Chí Minh',type:'thap',tags:['hot']},
- {id:'hai-van-bay',name:'Vinhomes Hải Vân Bay',dev:'Vinhomes',area:'Đà Nẵng',type:'thap',tags:[]},
+ {id:'hai-van-bay',name:'Vinhomes Hải Vân Bay',dev:'Vinhomes',area:'Đà Nẵng',type:'thap',tags:['moi'],img:'/du-an/Vinhomes-Hai-Van-Bay/anh-dao-ngoc.jpg',saban:'/du-an/Vinhomes-Hai-Van-Bay/',note:'Khu Đảo Ngọc · hơn 2.300 căn có mã trên sa bàn'},
  {id:'ha-long-xanh',name:'Vinhomes Global Gate Hạ Long',dev:'Vinhomes',area:'Hạ Long, Quảng Ninh',type:'thap',tags:[]},
  {id:'lumiere-spring-bay',name:'Lumière Spring Bay',dev:'Masterise Homes',area:'Vinhomes Ocean Park 2, Hưng Yên',type:'cao',tags:[]},
  {id:'masteri-lakeside',name:'Masteri Lakeside',dev:'Masterise Homes',area:'Vinhomes Ocean Park 1, Hà Nội',type:'cao',tags:[]},
