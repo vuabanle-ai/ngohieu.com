@@ -146,6 +146,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 .ptgtabs{display:flex;gap:4px;flex-wrap:wrap;margin:8px 0}.ptgtabs button{border:1px solid var(--line);background:none;border-radius:999px;font-size:12.5px;font-weight:600;min-height:32px;padding:0 10px}.ptgtabs button.on{background:var(--mr);border-color:var(--mr);color:#fff}
 #ptgImg{display:block;width:100%;border:1px solid var(--line);border-radius:10px;cursor:zoom-in;aspect-ratio:auto}
 .ptgbtn{width:100%;margin-top:8px;border:0;border-radius:12px;min-height:44px;background:var(--mr);color:#fff;font-weight:700}
+#csbhView{position:fixed;inset:0;z-index:30;background:rgba(18,18,22,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px}#csbhView[hidden]{display:none}#csbhView img{max-width:min(720px,100%);max-height:calc(100dvh - 100px);border-radius:10px;background:#fff;overflow:auto}.csbhb{display:flex;gap:8px}.csbhb button{border:0;border-radius:12px;min-height:46px;padding:0 22px;background:var(--mr);color:#fff;font-weight:700}.csbhb button.g{background:#5d636b}
 #ptgView{position:fixed;inset:0;z-index:30;background:rgba(18,18,22,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px}#ptgView[hidden]{display:none}
 #ptgView img{max-width:min(720px,100%);max-height:calc(100dvh - 100px);border-radius:10px;background:#fff}#ptgView button{border:0;border-radius:12px;min-height:46px;padding:0 22px;background:var(--mr);color:#fff;font-weight:700}
 </style>
@@ -173,6 +174,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
   <button id="bInfo">Thông tin</button>
   <button id="bRot" class="on" aria-pressed="true">Tự xoay</button>
   <button id="bGal">Hình ảnh</button>
+  <button id="bCsbh">Chính sách BH</button>
  </div>
 </header>
 
@@ -303,6 +305,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
  </div>
 </div>
 <div id="who" hidden><span>Xin chào, <b></b></span><button id="logout" type="button">Đăng xuất</button></div>
+<div id="csbhView" hidden><img id="csbhImg" alt="Tóm tắt chính sách bán hàng Phố Hiến"><div class="csbhb"><button id="csbhDl" type="button">⬇ Tải về</button><button id="csbhX" type="button" class="g">Đóng</button></div></div>
 <div id="ptgView" hidden><img id="ptgBig" alt="Phiếu tính giá"><button id="ptgDl2" type="button">⬇ Tải về</button></div>
 <div class="gal" id="gal" role="dialog" aria-label="Hình ảnh dự án">
  <button class="x" id="galX" aria-label="Đóng">×</button>
@@ -311,6 +314,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 </div>
 
 <script type="module" src="sa-ban.js"></script>
+<script type="module" src="csbh.js"></script>
 <script type="module" src="auth.js"></script>
 </body>
 </html>
