@@ -123,9 +123,9 @@ const RING=cornerPath(-8,-12,1,24,400);
 const DIVIDER=cornerPath(-17.5,-18,8.5,32,400).filter(p=>!(p.x>181&&p.x<213));
 const DIV_W=cornerPath(-17.5,-18,8.5,32,181),DIV_E=[W(213,diagZ(213)+8.5),W(400,diagZ(400)+8.5)];
 const ROADS=[
- {p:DCT,w:70,name:'ĐCT Hưng Yên – Thái Bình 80,5m',at:P(78,980),l:8},
+ {p:DCT,w:70,name:'ĐCT Hưng Yên – Thái Bình 80,5m',at:W(-22,290),l:8},
  {p:poly([[-150,450],[40,345],[250,225],[560,90],[900,-40]]),w:30,name:'QL38B',at:P(150,286),l:4},
- {p:DL,w:28,name:'Đại lộ Thương Cảng 34m',at:P(352,1000),l:4},
+ {p:DL,w:28,name:'Đại lộ Thương Cảng 34m',at:W(197,150),l:4},
  {p:poly([[112,842],[362,842]]),w:22,name:'Đường Hạnh Phúc 22m',at:P(205,842),l:4},
  {p:[W(-35,-12),W(210,-12)],w:12,name:'Đường Thương Cảng',at:W(95,-12),tv:1},
  {p:RING,w:13,name:'Đường Hoàng Kim 17m',at:W(-8,250),tv:1},
