@@ -123,7 +123,7 @@ const RING=cornerPath(-8,-12,1,24,400);
 const DIVIDER=cornerPath(-17.5,-18,8.5,32,400).filter(p=>!(p.x>181&&p.x<213));
 const DIV_W=cornerPath(-17.5,-18,8.5,32,181),DIV_E=[W(213,diagZ(213)+8.5),W(400,diagZ(400)+8.5)];
 const ROADS=[
- {p:DCT,w:70,name:'ĐCT Hưng Yên – Thái Bình 80,5m',at:W(-22,290),l:8},
+ {p:DCT,w:70,name:'ĐCT Hưng Yên – Thái Bình 80,5m',at:W(-22,290),l:8,lh:21,lo:17},
  {p:poly([[-150,450],[40,345],[250,225],[560,90],[900,-40]]),w:30,name:'QL38B',at:P(150,286),l:4},
  {p:DL,w:28,name:'Đại lộ Thương Cảng 34m',at:W(197,150),l:4},
  {p:poly([[112,842],[362,842]]),w:22,name:'Đường Hạnh Phúc 22m',at:P(205,842),l:4},
@@ -420,9 +420,9 @@ ROADS.forEach(r=>{if(!r.name||!r.at)return;
  const tw=Math.ceil(g.measureText(r.name).width);cn.width=tw+fs;cn.height=fs*1.5;g.font=`700 ${fs}px "Be Vietnam Pro",Arial,sans-serif`;
  g.shadowColor='rgba(0,0,0,.55)';g.shadowBlur=6;g.fillStyle='#fff';g.textBaseline='middle';g.fillText(r.name,fs/2,cn.height/2+2);
  const tex=new THREE.CanvasTexture(cn);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=8;
- const h=r.tv?Math.min(r.w*.72,9):Math.min(r.w*.5,15),w=h*cn.width/cn.height;
+ const h=r.lh||(r.tv?Math.min(r.w*.72,9):Math.min(r.w*.5,15)),w=h*cn.width/cn.height;
  const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-4}));
- const ang=Math.atan2(-best.dz,best.dx);m.rotation.order='YXZ';m.rotation.set(-Math.PI/2,ang,0);m.position.set(best.x,.95,best.z);m.renderOrder=3;S.add(m);
+ const ang=Math.atan2(-best.dz,best.dx);m.rotation.order='YXZ';m.rotation.set(-Math.PI/2,ang,0);{const L=Math.hypot(best.dx,best.dz),o=r.lo||0;let nx=best.dz/L,nz=-best.dx/L;if(nx<0){nx=-nx;nz=-nz}best.x+=nx*o;best.z+=nz*o}m.position.set(best.x,.95,best.z);m.renderOrder=3;S.add(m);
  roadTags.push({m,ang,dx:best.dx/Math.hypot(best.dx,best.dz),dz:best.dz/Math.hypot(best.dx,best.dz),far:r.tv?900:4000,flip:false})});
 const _cr=new THREE.Vector3();
 function orientRoadTags(){_cr.setFromMatrixColumn(cam.matrixWorld,0);const d=cam.position.distanceTo(ctl.target);
