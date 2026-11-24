@@ -115,19 +115,25 @@ const roadM=M('#3d4248',{roughness:.95,side:THREE.DoubleSide}),lineM=new THREE.M
 function road(pts,w){const m=new THREE.Mesh(strip(pts,w,.6),roadM);m.receiveShadow=true;S.add(m)}
 const DCT=poly([[92,2100],[88,1100],[75,600],[52,350],[10,0],[-40,-300]]);
 const DL=poly([[175,290],[200,370],[300,820],[352,880],[352,1560]]);
-const TP_ROAD=[-300,1100].map(x=>W(x,diagZ(x)+12));
+const TP_ROAD=[-300,1100].map(x=>W(x,diagZ(x)+23));   // lòng đường chính Đường Thành Phố
+// đường gom bo quanh dự án (Hoàng Kim → bo góc → dọc Đường Thành Phố) + dải phân cách trồng cây (theo mặt bằng CĐT)
+function cornerPath(xw,zTop,dz,R,xEnd){const zc=diagZ(xw)+dz,q=W(xw,zc),a=W(xw,zc-R),b=W(xw+R*Math.cos(TH),diagZ(xw+R*Math.cos(TH))+dz),out=[W(xw,zTop),a];
+ for(let k=1;k<12;k++){const t=k/12,u=1-t;out.push(W(u*u*a.x+2*u*t*q.x+t*t*b.x,u*u*a.z+2*u*t*q.z+t*t*b.z))}out.push(b,W(xEnd,diagZ(xEnd)+dz));return out}
+const RING=cornerPath(-8,-12,1,24,400);
+const DIVIDER=cornerPath(-17.5,-18,8.5,32,400).filter(p=>!(p.x>181&&p.x<213));
+const DIV_W=cornerPath(-17.5,-18,8.5,32,181),DIV_E=[W(213,diagZ(213)+8.5),W(400,diagZ(400)+8.5)];
 const ROADS=[
  {p:DCT,w:70,name:'ĐCT Hưng Yên – Thái Bình 80,5m',at:P(78,980),l:8},
  {p:poly([[-150,450],[40,345],[250,225],[560,90],[900,-40]]),w:30,name:'QL38B',at:P(150,286),l:4},
  {p:DL,w:28,name:'Đại lộ Thương Cảng 34m',at:P(352,1000),l:4},
  {p:poly([[112,842],[362,842]]),w:22,name:'Đường Hạnh Phúc 22m',at:P(205,842),l:4},
  {p:[W(-35,-12),W(210,-12)],w:12,name:'Đường Thương Cảng',at:W(95,-12),tv:1},
- {p:[W(-8,-12),W(-8,diagZ(-8)+4)],w:13,name:'Đường Hoàng Kim 17m',at:W(-8,250),tv:1},
+ {p:RING,w:13,name:'Đường Hoàng Kim 17m',at:W(-8,250),tv:1},
  {p:[W(42.5,-8),W(42.5,diagZ(42)+4)],w:13,name:'Thương Cảng 1 · 15m',at:W(42.5,140),tv:1},
  {p:[W(90,-8),W(90,116)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,62),tv:1},{p:[W(90,228),W(90,diagZ(90)+4)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,300),tv:1},
  {p:[W(137.5,-8),W(137.5,diagZ(137)+4)],w:13,name:'Thương Cảng 3 · 15m',at:W(137.5,140),tv:1},
  {p:[W(-8,177.5),W(49,177.5)],w:11,name:'Đường nội khu',at:W(20,177.5),tv:1},{p:[W(131,177.5),W(212,177.5)],w:11,name:'',tv:1},{p:[W(42,112),W(138,112)],w:12,name:'Đường nội khu',at:W(66,112),tv:1},{p:[W(42,232),W(138,232)],w:12,name:'Đường nội khu',at:W(66,232),tv:1},
- {p:TP_ROAD,w:30,name:'Đường Thành Phố 47m',at:W(300,diagZ(300)+10),l:4},
+ {p:TP_ROAD,w:24,name:'Đường Thành Phố 47m',at:W(300,diagZ(300)+23),l:4},
  {p:[208,400].map(x=>W(x,diagZ(x)-52)),w:12,name:'Đường Thịnh Vượng 15m',at:W(300,diagZ(300)-52),tv:1},
  {p:poly([[860,600],[800,950],[700,1350],[650,1700],[640,2100]]),w:20,name:'',l:2}];
 ROADS.forEach(r=>road(r.p,r.w));
@@ -143,9 +149,9 @@ ROADS.forEach(r=>road(r.p,r.w));
  const im=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),lineM,bars.length);
  bars.forEach(([x,z,r,c],i)=>{dm.position.set(x,.72,z);dm.rotation.set(-Math.PI/2,0,r);c?dm.scale.set(.3,3.2,1):dm.scale.set(.7,3.2,1);dm.updateMatrix();im.setMatrixAt(i,dm.matrix)});S.add(im);}
 // dải phân cách xanh
-ribbon(DCT,7,.8,'#5f9a3a');ribbon(DL.slice(0,3),3,.8,'#5f9a3a');ribbon(TP_ROAD,4,.8,'#5f9a3a');
+ribbon(DCT,7,.8,'#5f9a3a');ribbon(DL.slice(0,3),3,.8,'#5f9a3a');ribbon(TP_ROAD,2,.8,'#5f9a3a');ribbon(DIV_W,5.5,.85,'#5f9a3a');
 // vỉa hè
-[[DCT,74],[TP_ROAD,30]].forEach(([p,w])=>{ribbon(p,w,.45,'#cfc8b9')});
+[[DCT,74],[TP_ROAD,26]].forEach(([p,w])=>{ribbon(p,w,.45,'#cfc8b9')});
 
 // ================= KẾT CẤU MẶT ĐỨNG =================
 function facade(floors,bays,base,trim,win,ground){const cn=document.createElement('canvas');cn.width=256;cn.height=256;const g=cn.getContext('2d');
@@ -370,13 +376,14 @@ for(let i=0;i<14;i++){const t=i/14*Math.PI*2;flowers.push([95+40*Math.cos(t),171
 for(let i=0;i<40;i++){const x=58+rnd()*76,z=118+rnd()*105;const ins=(x>69&&x<121&&z>188&&z<219)||(x>100&&x<126&&z>123&&z<180)||(x>61&&x<87&&z>121&&z<172);if(!ins&&Math.abs(Math.hypot((x-95)/36,(z-171)/49)-1)>.08)trees.push([x,z,.8+rnd()*.5])}
 // cây dọc ĐCT: dải giữa + hai bên vỉa hè
 for(let z=-1250,k=0;z<1000;z+=14,k++){const x=dctX(z);trees.push([x,z,.55]);if(k%2===0){trees.push([x-38,z,.8]);if(x+38<-14||z<-60||z>diagZ(x)+5)trees.push([x+38,z,.8])}}
-along(TP_ROAD,14,0).forEach(p=>trees.push([p.x,p.z,.5]));along(TP_ROAD,16,15).forEach(p=>trees.push([p.x,p.z,.8]));along(TP_ROAD,16,-15).forEach(p=>{if(p.x<-12||p.x>400)trees.push([p.x,p.z,.8])});
+along(TP_ROAD,16,13.5).forEach(p=>trees.push([p.x,p.z,.8]));along(TP_ROAD,16,-13.5).forEach(p=>{if(p.x<-30||p.x>400)trees.push([p.x,p.z,.8])});
+[DIV_W].forEach(d=>along(d,9,0).forEach(p=>trees.push([p.x,p.z,.7])));
 along(DL,13,13).concat(along(DL,13,-13)).forEach(p=>{if(p.z<-20)trees.push([p.x,p.z,.75]);else palms.push([p.x,p.z,1])});
 along(ROADS[1].p,16,19).concat(along(ROADS[1].p,16,-19)).forEach(p=>trees.push([p.x,p.z,.8]));
 // Hạnh Phúc: sân vườn giữa các tòa + công viên lớn
 for(let i=0;i<4000&&trees.length<1500;i++){const x=-15+rnd()*420,z=-880+rnd()*870;if(inPoly(x,z,HP)&&!nearTower(x,z)&&rnd()<.55){(rnd()<.05?flowers:trees).push([x,z,.7+rnd()*.6])}}
 // cảnh quan quanh sa bàn: cụm cây trên thảm cỏ
-const off=(x,z)=>inPoly(x,z,HP)||(x>-20&&x<410&&z>-40&&z<diagZ(x)+30)||Math.abs(x-dctX(z))<48||Math.abs(z-diagZ(x)-10)<22||(x>480&&x<670&&z>-1020&&z<-850);
+const off=(x,z)=>inPoly(x,z,HP)||(x>-20&&x<410&&z>-40&&z<diagZ(x)+38)||Math.abs(x-dctX(z))<48||Math.abs(z-diagZ(x)-14)<26||(x>480&&x<670&&z>-1020&&z<-850);
 for(let c=0;c<120;c++){const cx=-700+rnd()*1900,cz=-1500+rnd()*2600;const n=4+Math.floor(rnd()*12);for(let k=0;k<n;k++){const x=cx+(rnd()-.5)*60,z=cz+(rnd()-.5)*60;if(!off(x,z))trees.push([x,z,.8+rnd()*.9])}}
 // --- hình học cây
 const canopyG=new THREE.IcosahedronGeometry(1,1);
@@ -445,7 +452,7 @@ EDU.forEach(e=>{let c;
  const bigRoads=ROADS.filter(r=>r.w>=20);
  const blocked=(x,z)=>{
   if(inP(x,z,HP))return true;
-  if(x>-40&&x<420&&z>-60&&z<diagZ(x)+30)return true;                 // Thịnh Vượng + Đường Thành Phố
+  if(x>-40&&x<420&&z>-60&&z<diagZ(x)+38)return true;                 // Thịnh Vượng + Đường Thành Phố
   if(x>480&&x<680&&z>-1030&&z<-830)return true;                       // công trình công cộng phía Bắc
   for(const r of bigRoads)if(distSeg(x,z,r.p)<r.w/2+12)return true;
   for(const e of EDU){if(e.zone&&inP(x,z,e.zone))return true;if(e.p&&Math.abs(x-e.p.x)<e.w/2+10&&Math.abs(z-e.p.z)<e.d/2+10)return true}
