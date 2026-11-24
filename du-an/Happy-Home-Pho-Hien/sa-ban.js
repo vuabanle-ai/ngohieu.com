@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { plan as ptgPlan, draw as ptgDraw, PLANS as PTG_PLANS } from './ptg.js';
 {
 // ================= DỮ LIỆU =================
 // Ảnh mẫu nhà – đổi đường dẫn ở đây khi có ảnh mới
@@ -534,11 +535,28 @@ addEventListener('hashchange',()=>{if(VIEWS[location.hash.slice(1)])go(location.
 const ray=new THREE.Raycaster(),mp=new THREE.Vector2();let hov=-1,down=null,sel=-1;
 const card=document.getElementById('card');let cur=null;
 const fmt=a=>a.toFixed(1).replace('.',',');const ty=n=>(n/1e9).toFixed(2).replace('.',',')+' tỷ';const trd=m=>(m/1000).toFixed(3).replace('.',',')+' tỷ';const pv=p=>p.tdc?p.tdc*1e6:p.tot;
-function show(info){cur=info;const im=document.getElementById('cImg');im.src=info.img;im.alt=info.title;
+// ---- phiếu tính giá trong thẻ căn
+const ptgBox=document.getElementById('ptg');let ptgCode=null,ptgKey='tdc';
+function showPTG(code){ptgCode=code;const p=PRICE[code];if(!p||!p.dt||!p.tot){ptgBox.hidden=true;return}ptgBox.hidden=false;renderPTG()}
+function renderPTG(){const p=PRICE[ptgCode];
+ document.getElementById('ptgTabs').innerHTML=PTG_PLANS.map(k=>`<button data-k="${k}" class="${k===ptgKey?'on':''}">${{tdc:'Tiến độ',tts:'TT sớm'}[k]||'Vay '+k.slice(1)+'T'}</button>`).join('');
+ const c=ptgDraw(ptgCode,p,ptgKey);const img=document.getElementById('ptgImg');img.src=c.toDataURL('image/png');img.alt='Phiếu tính giá căn '+ptgCode;
+ document.getElementById('ptgTot').textContent=ptgPlan(p,ptgKey).TOT.toLocaleString('vi-VN')+' đ'}
+document.getElementById('ptgTabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;ptgKey=b.dataset.k;renderPTG()});
+async function savePTG(){const p=PRICE[ptgCode];const c=ptgDraw(ptgCode,p,ptgKey);const name=`PTG-${ptgCode}-${ptgKey}.png`;window.__track&&window.__track('tai_ptg',{code:ptgCode,plan:ptgKey});
+ const blob=await new Promise(r=>c.toBlob(r,'image/png'));
+ try{const file=new File([blob],name,{type:'image/png'});
+  if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)&&navigator.maxTouchPoints>1&&navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:'Phiếu tính giá '+ptgCode});return}}catch(err){if(err&&err.name==='AbortError')return}
+ const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1500)}
+document.getElementById('ptgDl').onclick=savePTG;
+document.getElementById('ptgImg').onclick=()=>{const v=document.getElementById('ptgView');document.getElementById('ptgBig').src=document.getElementById('ptgImg').src;v.hidden=false};
+document.getElementById('ptgView').onclick=e=>{if(e.target.id!=='ptgDl2')document.getElementById('ptgView').hidden=true};
+document.getElementById('ptgDl2').onclick=e=>{e.stopPropagation();savePTG()};
+function show(info){cur=info;if(!info.rows)ptgBox.hidden=true;const im=document.getElementById('cImg');im.src=info.img;im.alt=info.title;
  document.getElementById('cTag').textContent=info.tag;document.getElementById('cTitle').textContent=info.title;document.getElementById('cText').textContent=info.text;document.getElementById('cRows').innerHTML=info.rows||'';card.classList.toggle('open',!!info.open);card.classList.toggle('lot',!!info.rows);card.classList.add('show')}
 function paint(i,c){if(i<0)return;body.setColorAt(i,c);body.instanceColor.needsUpdate=true;if(cornerMesh[i])cornerMesh[i].color.copy(CW_BASE).multiply(c)}
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-function selectLot(i,fly){paint(sel,lotCol(sel));sel=i;paint(i,SEL);const L=lots[i],m=MAU[L.type],d=L.d;window.__track&&window.__track('xem_can',{code:L.code});
+function selectLot(i,fly){paint(sel,lotCol(sel));sel=i;paint(i,SEL);const L=lots[i],m=MAU[L.type],d=L.d;showPTG(L.code);window.__track&&window.__track('xem_can',{code:L.code});
  const p=PRICE[L.code];const vnd=n=>n?n.toLocaleString('vi-VN')+' đ':'';
  const rows=[['Loại căn',(p?'LK · ':'')+CAT[L.cat][0]],['TCBG',p?p.tc:''],['Hướng',d[0]],['Vị trí',d[1]],['Mặt đường',L.face],['DT đất',(p&&p.dt?fmt(p.dt):L.area?fmt(L.area):'')+(p&&p.dt||L.area?' m²':'')],['DTXD',(p&&p.x)?fmt(p.x)+' m²':d[3]?fmt(d[3])+' m²':''],
   ['Giá trước VAT',p&&p.pre?vnd(p.pre):''],['VAT',p&&p.vat?vnd(p.vat):''],['KPBT',p&&p.kp?vnd(p.kp):''],[p&&p.allin?'Giá all in':'Tổng giá sau VAT & KPBT',p&&p.tot?vnd(p.tot):''],['Giá tiến độ (TĐC)',p&&p.tdc?trd(p.tdc):''],['Thanh toán sớm (TTS)',p&&p.tts?trd(p.tts):''],['Vay 18 tháng',p&&p.v18?trd(p.v18):''],['Vay 24 tháng',p&&p.v24?trd(p.v24):''],['Vay 30 tháng',p&&p.v30?trd(p.v30):''],['Vay 36 tháng',p&&p.v36?trd(p.v36):''],['Tiện ích lân cận',d[4]]].filter(r=>r[1]);

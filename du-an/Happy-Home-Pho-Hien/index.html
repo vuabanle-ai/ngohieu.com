@@ -140,6 +140,13 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 .safe{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--mut);margin-top:12px}
 #who{position:fixed;right:12px;bottom:12px;z-index:5;display:flex;gap:8px;align-items:center;background:var(--pan);border-radius:999px;padding:4px 4px 4px 14px;box-shadow:0 6px 20px rgba(0,0,0,.14);font-size:13px}#who button{border:0;border-radius:999px;background:light-dark(#eceef0,#2c2f33);min-height:36px;padding:0 12px;font-weight:600}
 #who[hidden]{display:none!important}@media(max-width:1180px){#who{display:none!important}}
+
+#ptg{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}.ptgh{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.ptgh b{font-size:15px}.ptgh span{font-weight:800;color:var(--mr);white-space:nowrap}
+.ptgtabs{display:flex;gap:4px;flex-wrap:wrap;margin:8px 0}.ptgtabs button{border:1px solid var(--line);background:none;border-radius:999px;font-size:12.5px;font-weight:600;min-height:32px;padding:0 10px}.ptgtabs button.on{background:var(--mr);border-color:var(--mr);color:#fff}
+#ptgImg{display:block;width:100%;border:1px solid var(--line);border-radius:10px;cursor:zoom-in;aspect-ratio:auto}
+.ptgbtn{width:100%;margin-top:8px;border:0;border-radius:12px;min-height:44px;background:var(--mr);color:#fff;font-weight:700}
+#ptgView{position:fixed;inset:0;z-index:30;background:rgba(18,18,22,.9);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px}#ptgView[hidden]{display:none}
+#ptgView img{max-width:min(720px,100%);max-height:calc(100dvh - 100px);border-radius:10px;background:#fff}#ptgView button{border:0;border-radius:12px;min-height:46px;padding:0 22px;background:var(--mr);color:#fff;font-weight:700}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 </head>
@@ -216,6 +223,10 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
   <span class="tag" id="cTag"></span>
   <h3 id="cTitle"></h3>
   <p id="cText"></p><dl id="cRows"></dl>
+  <section id="ptg" hidden><div class="ptgh"><b>Phiếu tính giá tạm tính</b><span id="ptgTot"></span></div>
+   <div class="ptgtabs" id="ptgTabs"></div>
+   <img id="ptgImg" alt="" title="Bấm để xem lớn">
+   <button id="ptgDl" class="ptgbtn" type="button">⬇ Tải phiếu tính giá</button></section>
   <div class="row"><button id="cFront">Xem mặt tiền</button><button id="cPic">Ảnh lớn</button></div>
  </div>
 </div>
@@ -291,6 +302,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
  </div>
 </div>
 <div id="who" hidden><span>Xin chào, <b></b></span><button id="logout" type="button">Đăng xuất</button></div>
+<div id="ptgView" hidden><img id="ptgBig" alt="Phiếu tính giá"><button id="ptgDl2" type="button">⬇ Tải về</button></div>
 <div class="gal" id="gal" role="dialog" aria-label="Hình ảnh dự án">
  <button class="x" id="galX" aria-label="Đóng">×</button>
  <div class="strip" id="strip"></div>
