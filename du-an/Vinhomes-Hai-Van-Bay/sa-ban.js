@@ -13,7 +13,7 @@ const TYPE = {
   K: { name: 'Biệt thự đơn lập', short: 'ĐL', h: 11.5, roof: 0xf07fb5 }
 };
 const WALL = new THREE.Color(0xfbf8f2), AV = new THREE.Color(0x25b768), SD = new THREE.Color(0x8a8c90), DIM = new THREE.Color(0xe4e2dc), SEL = new THREE.Color(0xe31b23);
-const SRC = { MV: 'Mai Việt Land', RBS: 'RBS', MH: 'Mayhomes', TP: 'Trường Phát (CEN)', RM: 'Roman' };
+const SRC = { MV: 'Mai Việt Land', RBS: 'RBS', MH: 'Mayhomes', TP: 'Trường Phát (CEN)', RM: 'Roman', VHS: 'VHS' };
 const VN = n => n.toLocaleString('vi-VN');
 const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' tỷ';
 
@@ -174,7 +174,7 @@ function select(L, fly) {
   $('cTag').textContent = AVL[L.code] ? 'Còn hàng' : sd ? 'Đã bán' : TYPE[L.t].name;
   $('card').classList.toggle('open', !!AVL[L.code]); $('card').classList.toggle('sold', !!sd);
   $('cTitle').textContent = L.code;
-  $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '').replace(/MV|RBS|MH|TP|RM/g, m => SRC[m]) + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
+  $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '').replace(/MV|RBS|MH|TP|RM|VHS/g, m => SRC[m]) + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
   const rows = [['Phân khu', 'Đảo Ngọc'], ['Dãy', L.pre], ['Loại hình', q?.loai ? q.loai + ' · ' + TYPE[L.t].name : TYPE[L.t].name]];
   if (q?.dt) rows.push(['DT đất', q.dt + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
   if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
