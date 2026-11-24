@@ -6,6 +6,10 @@ const SEC = [
   ['Thanh toán sớm', 'Chiết khấu 7,5% vào giá trước VAT'],
   ['Không nhận BL ngân hàng', 'Chiết khấu 0,5% vào giá trước VAT'],
   ['VinClub', 'Theo hạng thành viên (nếu có) – kiểm tra với đại lý'] ]],
+ ['Ưu đãi khác', [
+  ['Phí dịch vụ', 'Miễn phí dịch vụ quản lý 2 năm (24 tháng) đầu'],
+  ['Voucher', 'Giá trị voucher tối đa được áp khoảng 30% giá căn (tạm tính theo bảng hàng, tùy đối tượng đủ điều kiện)'],
+  ['Bàn giao · Pháp lý', 'Bàn giao thô · Sở hữu lâu dài'] ]],
  ['Phương án 1 · Tiến độ chuẩn', [
   ['Đặt cọc (T)', 'Ký TTKQ: 300.000.000 đ/căn'],
   ['Lần 2 · T+10 (D)', 'Ký HĐMB: 10% giá có VAT (gồm cọc) + 5% không VAT'],
