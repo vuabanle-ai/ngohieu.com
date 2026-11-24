@@ -133,7 +133,7 @@ const ROADS=[
  {p:[W(90,-8),W(90,116)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,62),tv:1},{p:[W(90,228),W(90,diagZ(90)+4)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,300),tv:1},
  {p:[W(137.5,-8),W(137.5,diagZ(137)+4)],w:13,name:'Thương Cảng 3 · 15m',at:W(137.5,140),tv:1},
  {p:[W(-8,177.5),W(49,177.5)],w:11,name:'Đường nội khu',at:W(20,177.5),tv:1},{p:[W(131,177.5),W(212,177.5)],w:11,name:'',tv:1},{p:[W(42,112),W(138,112)],w:12,name:'Đường nội khu',at:W(66,112),tv:1},{p:[W(42,232),W(138,232)],w:12,name:'Đường nội khu',at:W(66,232),tv:1},
- {p:TP_ROAD,w:24,name:'Đường Thành Phố 47m',at:W(300,diagZ(300)+23),l:4},
+ {p:TP_ROAD,w:24,name:'Đường Thành Phố 47m',at:W(45,diagZ(45)+23),l:4},
  {p:[208,400].map(x=>W(x,diagZ(x)-52)),w:12,name:'Đường Thịnh Vượng 15m',at:W(300,diagZ(300)-52),tv:1},
  {p:poly([[860,600],[800,950],[700,1350],[650,1700],[640,2100]]),w:20,name:'',l:2}];
 ROADS.forEach(r=>road(r.p,r.w));
