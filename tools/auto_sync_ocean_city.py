@@ -27,6 +27,7 @@ CHECK_TXT = re.compile(r'CHECK\s*ADMIN')
 SKIP_TAB = re.compile(r'THÔNG SỐ|THONG SO|DIỆN TÍCH|DIEN TICH|GIỎ|BANK|STK|KPTM|ELITE|CSDL|^TK|DS K|TEST|BIỂU MẪU|CÂU TRẢ LỜI|'
                       r'NGƯỜI NƯỚC NGOÀI|NNN|TMDV|\(CŨ\)|\bCŨ\b|CSBH|CHÍNH SÁCH|PTG|PHIẾU|NHẬN TIỀN|NỘP TIỀN|TRC|KHÔNG ÁP DỤNG|TCBG|BÀN GIAO|FULLTON', re.I)
 UA = {'User-Agent': 'Mozilla/5.0 ngohieu-sync'}
+VER = 3
 
 
 def norm_code(t):
@@ -161,7 +162,7 @@ def main():
                 info.setdefault(code, []).append((ten, dq, q))
     try: prev = json.load(open(OUT, encoding='utf-8'))
     except Exception: prev = {}
-    if 'Joy Homes' in str(prev.get('nguon', '')): prev = {}     # đổi nguồn: làm lại từ đầu
+    if prev.get('ver') != VER: prev = {}            # đổi nguồn / đổi cách đọc: làm lại từ đầu
 
     def merge(code, srcs):
         rows = info.get(code, [])
@@ -208,7 +209,7 @@ def main():
     for c in list(sold):
         if sold[c].get('why') == 'báo thủ công': avail.pop(c, None); check.pop(c, None); continue
         if c in avail or c in check: del sold[c]
-    out = {'updated': now.strftime('%H:%M %d/%m/%Y'), 'nguon': 'Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG',
+    out = {'ver': VER, 'updated': now.strftime('%H:%M %d/%m/%Y'), 'nguon': 'Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG',
            'doc_duoc': sorted(ok), 'available': dict(sorted(avail.items())), 'check': dict(sorted(check.items())), 'sold': dict(sorted(sold.items()))}
     changed = {k: prev.get(k) for k in ('available', 'check', 'sold')} != {k: out[k] for k in ('available', 'check', 'sold')}
     json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
