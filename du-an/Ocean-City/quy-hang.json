@@ -1,6 +1,6 @@
 {
-"ver": 4,
-"updated": "20:11 25/11/2026",
+"ver": 5,
+"updated": "20:14 25/11/2026",
 "nguon": "Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG",
 "doc_duoc": [
 "5S",
@@ -6983,7 +6983,9 @@
 "dt": "102.0",
 "dtxd": "377.7",
 "tcbg": "HT full 5 tầng",
-"gia": 5000000000
+"bg": {
+"tts": 23500000000
+}
 },
 "SH6-10": {
 "src": [
