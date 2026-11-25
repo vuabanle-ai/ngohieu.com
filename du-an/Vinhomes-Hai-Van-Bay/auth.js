@@ -1,4 +1,4 @@
-// Đăng ký / đăng nhập bằng số điện thoại (OTP SMS qua Firebase) + mật khẩu, ghi nhận lượt dùng sa bàn.
+// Đăng ký / đăng nhập bằng số điện thoại + mật khẩu (không gửi SMS), ghi nhận lượt dùng sa bàn.
 // Cấu hình Firebase nằm ở ../../firebase-config.js. Khi chưa có cấu hình, sa bàn mở tự do như cũ.
 import { FIREBASE, ADMIN_PHONE } from '../../firebase-config.js?v=2';
 {
@@ -22,81 +22,41 @@ const store = { get: k => { try { return localStorage.getItem(k) } catch (_) { r
 
 const toE164 = raw => { let d = String(raw || '').replace(/\D/g, ''); if (d.startsWith('84')) d = d.slice(2); if (d.startsWith('0')) d = d.slice(1); return /^\d{9}$/.test(d) ? '+84' + d : null };
 const mailOf = e164 => e164.slice(1) + '@u.ngohieu.com';
+const phoneOf = u => (u && u.email ? '+' + u.email.split('@')[0] : '');
 const say = (id, t, ok) => { const el = $(id); el.textContent = t || ''; el.classList.toggle('ok', !!ok) };
 const busy = (btn, on, label) => { btn.disabled = on; if (label) btn.dataset.l = btn.dataset.l || btn.textContent; btn.textContent = on ? 'Đang xử lý…' : (btn.dataset.l || btn.textContent) };
 const show = step => { gate.querySelectorAll('[data-step]').forEach(s => s.hidden = s.dataset.step !== step); const f = gate.querySelector(`[data-step="${step}"] input:not([type=checkbox])`); if (f) setTimeout(() => f.focus(), 60) };
 const ERR = c => ({
-  'auth/invalid-phone-number': 'Số điện thoại chưa đúng, anh/chị kiểm tra lại giúp.',
-  'auth/too-many-requests': 'Thao tác quá nhiều lần, vui lòng thử lại sau ít phút.',
-  'auth/invalid-verification-code': 'Mã chưa đúng, anh/chị xem lại tin nhắn nhé.',
-  'auth/code-expired': 'Mã đã hết hạn, bấm "Gửi lại mã".',
+  'auth/email-already-in-use': 'Số này đã đăng ký rồi, anh/chị đăng nhập bằng mật khẩu nhé.',
   'auth/invalid-credential': 'Số điện thoại hoặc mật khẩu chưa đúng.',
   'auth/wrong-password': 'Mật khẩu chưa đúng.',
   'auth/user-not-found': 'Số này chưa đăng ký, mời anh/chị đăng ký.',
-  'auth/quota-exceeded': 'Hệ thống tạm hết lượt gửi tin, vui lòng thử lại sau.',
+  'auth/too-many-requests': 'Thao tác quá nhiều lần, vui lòng thử lại sau ít phút.',
   'auth/weak-password': 'Mật khẩu cần ít nhất 6 ký tự.',
-  'auth/billing-not-enabled': 'Hệ thống gửi SMS đang tạm bảo trì. Anh/chị liên hệ Zalo 0914.669.669 để được hỗ trợ.',
-  'auth/operation-not-allowed': 'Hệ thống gửi SMS đang tạm bảo trì. Anh/chị liên hệ Zalo 0914.669.669 để được hỗ trợ.',
-  'auth/network-request-failed': 'Mạng đang chập chờn, anh/chị kiểm tra kết nối rồi thử lại.',
-  'auth/captcha-check-failed': 'Xác minh chống spam chưa đạt, anh/chị tải lại trang rồi thử lại.'
+  'auth/network-request-failed': 'Mạng đang chập chờn, anh/chị kiểm tra kết nối rồi thử lại.'
 }[c] || `Có lỗi xảy ra, vui lòng thử lại (mã: ${String(c || 'khong-ro').replace('auth/', '')}).`);
 
-let pending = null, confirmRes = null, verifier = null, timer = 0;
-const recaptcha = () => verifier || (verifier = new A.RecaptchaVerifier(auth, 'gSend', { size: 'invisible' }));
-
-async function sendOtp(e164) {
-  confirmRes = await A.signInWithPhoneNumber(auth, e164, recaptcha());
-  $('gPhoneShow').textContent = e164.replace('+84', '0').replace(/(\d{4})(\d{3})(\d{3})/, '$1 $2 $3');
-  show('otp'); let t = 60; const rs = $('gResend'); rs.disabled = true; clearInterval(timer);
-  timer = setInterval(() => { t--; rs.textContent = t > 0 ? `Gửi lại mã (${t}s)` : 'Gửi lại mã'; if (t <= 0) { rs.disabled = false; clearInterval(timer) } }, 1000);
-}
-
-// --- Bước 1: đăng ký (họ tên, đại lý, SĐT) hoặc quên mật khẩu
+// --- Đăng ký: số điện thoại + mật khẩu (bắt buộc), họ tên + đại lý (không bắt buộc)
 $('gReg').addEventListener('submit', async ev => {
   ev.preventDefault(); const b = $('gSend');
-  const name = $('gName').value.trim(), agency = $('gAgency').value.trim(), e164 = toE164($('gPhone').value);
+  const e164 = toE164($('gPhone').value), pw = $('gPw').value;
+  const name = $('gName').value.trim(), agency = $('gAgency').value.trim();
   if (!e164) return say('gMsg1', 'Số điện thoại gồm 10 số, ví dụ 0912 345 678.');
-  if (!$('gAgree').checked) return say('gMsg1', 'Anh/chị tích đồng ý điều khoản để tiếp tục.');
-  pending = { name, agency, e164, mode: 'reg' }; say('gMsg1', ''); busy(b, true, 1);
-  try { await sendOtp(e164) } catch (e) { say('gMsg1', ERR(e.code)); verifier && verifier.clear(); verifier = null } finally { busy(b, false) }
-});
-$('gForgotForm').addEventListener('submit', async ev => {
-  ev.preventDefault(); const e164 = toE164($('gFPhone').value); const b = $('gFSend');
-  if (!e164) return say('gMsgF', 'Số điện thoại gồm 10 số.');
-  pending = { e164, mode: 'forgot' }; busy(b, true, 1);
-  try { await sendOtp(e164) } catch (e) { say('gMsgF', ERR(e.code)); verifier && verifier.clear(); verifier = null } finally { busy(b, false) }
-});
-
-// --- Bước 2: nhập mã OTP (6 ô, tự nhảy ô, dán được cả mã)
-const boxes = [...gate.querySelectorAll('.otp input')];
-boxes.forEach((inp, i) => {
-  inp.addEventListener('input', () => { const v = inp.value.replace(/\D/g, ''); if (v.length > 1) { v.split('').slice(0, 6).forEach((c, k) => boxes[k] && (boxes[k].value = c)); boxes[Math.min(5, v.length - 1)].focus() } else { inp.value = v; if (v && boxes[i + 1]) boxes[i + 1].focus() } if (boxes.every(x => x.value)) $('gOtpForm').requestSubmit() });
-  inp.addEventListener('keydown', e => { if (e.key === 'Backspace' && !inp.value && boxes[i - 1]) boxes[i - 1].focus() });
-});
-$('gOtpForm').addEventListener('submit', async ev => {
-  ev.preventDefault(); const code = boxes.map(x => x.value).join(''); if (code.length < 6) return;
-  const b = $('gVerify'); busy(b, true, 1);
-  try { await confirmRes.confirm(code); say('gMsg2', ''); show('pass') }
-  catch (e) { say('gMsg2', ERR(e.code)); boxes.forEach(x => x.value = ''); boxes[0].focus() } finally { busy(b, false) }
-});
-$('gResend').onclick = async () => { try { await sendOtp(pending.e164); say('gMsg2', 'Đã gửi lại mã.', true) } catch (e) { say('gMsg2', ERR(e.code)) } };
-$('gBack').onclick = () => show(pending && pending.mode === 'forgot' ? 'forgot' : 'reg');
-
-// --- Bước 3: đặt mật khẩu (lần đầu) hoặc đặt lại (quên mật khẩu)
-$('gPassForm').addEventListener('submit', async ev => {
-  ev.preventDefault(); const pw = $('gPw').value; const b = $('gSave');
-  if (pw.length < 6) return say('gMsg3', 'Mật khẩu cần ít nhất 6 ký tự.');
-  busy(b, true, 1); const u = auth.currentUser;
+  if (pw.length < 6) return say('gMsg1', 'Mật khẩu cần ít nhất 6 ký tự.');
+  if (!$('gAgree').checked) return say('gMsg1', 'Anh/chị tích đồng ý chính sách bảo mật để tiếp tục.');
+  say('gMsg1', ''); busy(b, true, 1);
   try {
-    const hasPw = u.providerData.some(p => p.providerId === 'password');
-    if (hasPw) await A.updatePassword(u, pw); else await A.linkWithCredential(u, A.EmailAuthProvider.credential(mailOf(pending.e164), pw));
-    if (pending.mode === 'reg') await F.setDoc(F.doc(db, 'users', u.uid), { name: pending.name, agency: pending.agency, phone: pending.e164, createdAt: F.serverTimestamp() }, { merge: true });
-    store.set(KEY, '1'); await enter(u, true);
-  } catch (e) { say('gMsg3', ERR(e.code)) } finally { busy(b, false) }
+    const c = await A.createUserWithEmailAndPassword(auth, mailOf(e164), pw);
+    await F.setDoc(F.doc(db, 'users', c.user.uid), { name, agency, phone: e164, createdAt: F.serverTimestamp() }, { merge: true });
+    store.set(KEY, '1'); await enter(c.user, true);
+  } catch (e) {
+    say('gMsg1', ERR(e.code));
+    if (e.code === 'auth/email-already-in-use') { $('gLPhone').value = $('gPhone').value; setTimeout(() => show('login'), 1400) }
+  } finally { busy(b, false) }
 });
 gate.querySelectorAll('.eye').forEach(btn => btn.onclick = () => { const i = btn.previousElementSibling; i.type = i.type === 'password' ? 'text' : 'password'; btn.textContent = i.type === 'password' ? 'Hiện' : 'Ẩn' });
 
-// --- Đăng nhập lần sau trên máy khác: SĐT + mật khẩu
+// --- Đăng nhập: số điện thoại + mật khẩu
 $('gLoginForm').addEventListener('submit', async ev => {
   ev.preventDefault(); const e164 = toE164($('gLPhone').value), pw = $('gLPw').value, b = $('gLogin');
   if (!e164) return say('gMsg4', 'Số điện thoại gồm 10 số.');
@@ -111,13 +71,13 @@ let profile = {};
 async function enter(u, fresh) {
   try {
     const ref = F.doc(db, 'users', u.uid); const snap = await F.getDoc(ref); profile = snap.exists() ? snap.data() : {};
-    if (fresh || !sessionStorage.getItem('nh_ss')) { sessionStorage.setItem('nh_ss', '1'); await F.setDoc(ref, { lastLogin: F.serverTimestamp(), loginCount: F.increment(1), phone: u.phoneNumber || profile.phone || '' }, { merge: true }); log('mo_sa_ban') }
+    if (fresh || !sessionStorage.getItem('nh_ss')) { sessionStorage.setItem('nh_ss', '1'); await F.setDoc(ref, { lastLogin: F.serverTimestamp(), loginCount: F.increment(1), phone: profile.phone || phoneOf(u) }, { merge: true }); log('mo_sa_ban') }
   } catch (_) {}
   gate.classList.add('done'); setTimeout(() => gate.remove(), 450);
   const po = document.getElementById('panelOut'); if (po) po.hidden = false;
   const who = document.getElementById('who'); if (who) { who.hidden = false; who.querySelector('b').textContent = profile.name || 'Tài khoản' }
 }
-function log(type, extra = {}) { const u = auth.currentUser; if (!u) return; F.addDoc(F.collection(db, 'events'), { uid: u.uid, name: profile.name || '', agency: profile.agency || '', phone: profile.phone || u.phoneNumber || '', type, page: location.pathname, ts: F.serverTimestamp(), ...extra }).catch(() => {}) }
+function log(type, extra = {}) { const u = auth.currentUser; if (!u) return; F.addDoc(F.collection(db, 'events'), { uid: u.uid, name: profile.name || '', agency: profile.agency || '', phone: profile.phone || phoneOf(u), type, page: location.pathname, ts: F.serverTimestamp(), ...extra }).catch(() => {}) }
 let last = '';
 window.__track = (type, extra) => { const k = type + JSON.stringify(extra || {}); if (k === last) return; last = k; log(type, extra) };
 const out = document.getElementById('logout'); if (out) out.onclick = async () => { await A.signOut(auth); location.reload() };
@@ -125,7 +85,7 @@ const out = document.getElementById('logout'); if (out) out.onclick = async () =
 let first = true;
 A.onAuthStateChanged(auth, u => {
   if (!first) return; first = false;
-  if (u && u.phoneNumber && u.providerData.some(p => p.providerId === 'password')) enter(u, false);
+  if (u && u.providerData.some(p => p.providerId === 'password')) enter(u, false);
   else {
     // Dùng thử miễn phí 5 phút (tính từ lần đầu mở bất kỳ sa bàn nào trên máy này), hết giờ mới hiện khung đăng ký
     const TRIAL = 5 * 60 * 1000; let t0 = +store.get('nh_thu_tu') || 0;
