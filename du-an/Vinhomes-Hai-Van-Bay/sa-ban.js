@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import * as PTG from './ptg.js?v=1795549866';
+import * as PTG from './ptg.js?v=1795593815';
 {
 // ===== Sa bàn 3D Vinhomes Hải Vân Bay – khu Đảo Ngọc =====
 // lots-dao-ngoc.json: {meta:{w,h} (mét), lots:[[mã, loại Y|P|K, [[x,z]…] (mét, gốc góc trên-trái ảnh nền)]]}
@@ -36,11 +36,30 @@ renderer.outputColorSpace = THREE.SRGBColorSpace;
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xcfe0e6);
 scene.fog = new THREE.Fog(0xcfe0e6, 6000, 11000);
-const camera = new THREE.PerspectiveCamera(42, 1, 2, 20000);
+const camera = new THREE.PerspectiveCamera(42, 1, 2, 60000);
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true; controls.dampingFactor = .08;
-controls.maxPolarAngle = Math.PI * .46; controls.minDistance = 40; controls.maxDistance = 7000;
-controls.screenSpacePanning = false;
+controls.maxPolarAngle = Math.PI * .46; controls.minDistance = 40; controls.maxDistance = 24000;
+controls.screenSpacePanning = false; controls.zoomToCursor = true;
+// chế độ xem: 'flat' = mặt bằng nhìn thẳng từ trên xuống (mặc định), '3d' = góc nghiêng xoay được
+let FLAT = true; const FP = .0005, FOV_FLAT = 18, FOV_3D = 42;
+const KF = () => .82 * Math.tan(21 * Math.PI / 180) / Math.tan(FOV_FLAT * Math.PI / 360);
+function applyMode() {
+  camera.fov = FLAT ? FOV_FLAT : FOV_3D; camera.updateProjectionMatrix();
+  if (scene.fog) { scene.fog.near = FLAT ? 40000 : 6000; scene.fog.far = FLAT ? 60000 : 11000 }
+  if (FLAT) {
+    controls.enableRotate = false; controls.screenSpacePanning = true;
+    controls.minPolarAngle = controls.maxPolarAngle = FP; controls.minAzimuthAngle = controls.maxAzimuthAngle = 0;
+    controls.mouseButtons = { LEFT: THREE.MOUSE.PAN, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+    controls.touches = { ONE: THREE.TOUCH.PAN, TWO: THREE.TOUCH.DOLLY_PAN };
+  } else {
+    controls.enableRotate = true; controls.screenSpacePanning = false;
+    controls.minPolarAngle = 0; controls.maxPolarAngle = Math.PI * .46; controls.minAzimuthAngle = -Infinity; controls.maxAzimuthAngle = Infinity;
+    controls.mouseButtons = { LEFT: THREE.MOUSE.ROTATE, MIDDLE: THREE.MOUSE.DOLLY, RIGHT: THREE.MOUSE.PAN };
+    controls.touches = { ONE: THREE.TOUCH.ROTATE, TWO: THREE.TOUCH.DOLLY_PAN };
+  }
+}
+applyMode();
 scene.add(new THREE.HemisphereLight(0xffffff, 0x8a9a7a, 1.15));
 const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(-600, 900, 500); scene.add(sun);
 
@@ -170,7 +189,7 @@ for (const [t, x, z] of data.meta.zones || []) addLabel('zone', 'Khu ' + t, X(x)
 
 const v = new THREE.Vector3();
 function placeLabels() {
-  const w = canvas.clientWidth, h = canvas.clientHeight, d = camera.position.distanceTo(controls.target);
+  const w = canvas.clientWidth, h = canvas.clientHeight, d = camera.position.distanceTo(controls.target) / (FLAT ? KF() / .82 : 1);
   for (const o of labels) {
     v.copy(o.p).project(camera);
     const vis = v.z < 1 && d >= o.minD && d <= o.maxD && Math.abs(v.x) < 1.1 && Math.abs(v.y) < 1.1;
@@ -183,25 +202,28 @@ function placeLabels() {
 // ---------- camera moves ----------
 let anim = null;
 function flyTo(tx, tz, dist, pol = .9, az = .35) {
+  if (FLAT) { pol = FP; az = 0; dist *= KF() }
   const t0 = performance.now(), fromT = controls.target.clone(), fromP = camera.position.clone();
   const to = new THREE.Vector3(tx, 0, tz);
   const p = new THREE.Vector3(Math.sin(az) * Math.sin(pol), Math.cos(pol), Math.cos(az) * Math.sin(pol)).multiplyScalar(dist).add(to);
   anim = s => { const k = Math.min(1, (s - t0) / 1100), e = k < .5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
     controls.target.lerpVectors(fromT, to, e); camera.position.lerpVectors(fromP, p, e); if (k >= 1) anim = null };
 }
-function groupView(prefixes) {
-  const L = lots.filter(l => prefixes.some(p => l.pre.startsWith(p)));
-  if (!L.length) return;
-  let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9;
-  L.forEach(l => { x0 = Math.min(x0, l.cx); x1 = Math.max(x1, l.cx); z0 = Math.min(z0, l.cz); z1 = Math.max(z1, l.cz) });
-  flyTo((x0 + x1) / 2, (z0 + z1) / 2, Math.max(260, Math.hypot(x1 - x0, z1 - z0) * 1.15), .85);
+function bbox(L) { let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9; L.forEach(l => { x0 = Math.min(x0, l.cx); x1 = Math.max(x1, l.cx); z0 = Math.min(z0, l.cz); z1 = Math.max(z1, l.cz) }); return [x0, x1, z0, z1] }
+function boxView(L, k, minD) {
+  if (!L.length) return; const [x0, x1, z0, z1] = bbox(L), cx = (x0 + x1) / 2, cz = (z0 + z1) / 2;
+  if (FLAT) {
+    const t = Math.tan(camera.fov * Math.PI / 360), w = canvas.clientWidth, sideW = w > 900 ? 360 : 0, aw = Math.max(300, w - sideW) / w;
+    const d = Math.max((z1 - z0 + 80) * 1.12, (x1 - x0 + 80) * 1.12 / (camera.aspect * aw)) / (2 * t);
+    const off = sideW ? -(sideW / 2) / w * 2 * d * t * camera.aspect : 0;   // dịch sang phải để không bị bảng bên trái che
+    flyTo(cx + off, cz, Math.max(minD * .7 * KF(), d) / KF());
+  } else flyTo(cx, cz, Math.max(minD, Math.hypot(x1 - x0, z1 - z0) * k), .85);
 }
-const zoneView = z => { const L = lots.filter(l => l.zone === z); let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9; L.forEach(l => { x0 = Math.min(x0, l.cx); x1 = Math.max(x1, l.cx); z0 = Math.min(z0, l.cz); z1 = Math.max(z1, l.cz) }); flyTo((x0 + x1) / 2, (z0 + z1) / 2, Math.hypot(x1 - x0, z1 - z0) * 1.05, .85) };
-const exactView = p => () => { const L = lots.filter(l => l.pre === p); if (!L.length) return;
-  let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9; L.forEach(l => { x0 = Math.min(x0, l.cx); x1 = Math.max(x1, l.cx); z0 = Math.min(z0, l.cz); z1 = Math.max(z1, l.cz) });
-  flyTo((x0 + x1) / 2, (z0 + z1) / 2, Math.max(240, Math.hypot(x1 - x0, z1 - z0) * 1.2), .85) };
+const groupView = prefixes => boxView(lots.filter(l => prefixes.some(p => l.pre.startsWith(p))), 1.15, 260);
+const zoneView = z => boxView(lots.filter(l => l.zone === z), 1.05, 0);
+const exactView = p => () => boxView(lots.filter(l => l.pre === p), 1.2, 240);
 const VIEWS = {
-  'toan-canh': () => flyTo(-500, -150, 4100, .8, 0),
+  'toan-canh': () => FLAT ? boxView(lots, 1, 0) : flyTo(-500, -150, 4100, .8, 0),
   'z-DN': () => zoneView('DN'), 'z-VM': () => zoneView('VM'), 'z-BV': () => zoneView('BV'),
   ln: () => groupView(['LN']), lp: () => groupView(['LP']), an: () => groupView(['AN']),
   sv: () => groupView(['SV']), hc: () => groupView(['HC']), lv: () => groupView(['LV', 'ĐLĐN'])
@@ -260,8 +282,9 @@ $('cardX').onclick = () => select(null);
 // ---------- phiếu tính giá + ảnh chỉ căn ----------
 let curL = null, curQ = null, ptgKey = 'tttd';
 function extras(L, q) {
+  if (q) q = { ...q, _z: L.zone };
   curL = L; curQ = q;
-  const can = L.zone === 'DN' && q?.gia && !SOLD[L.code];
+  const can = !!PTG.ZC[L.zone] && q?.gia && !SOLD[L.code];
   $('ptg').hidden = !can;
   if (can) {
     const ks = PTG.plans(q); if (!ks.includes(ptgKey)) ptgKey = 'tttd';
@@ -366,8 +389,10 @@ $('lgModes').onclick = e => { const b = e.target.closest('button'); if (!b) retu
 
 // ---------- tools ----------
 let rot = false;
-function stopRot() { rot = false; $('bRot').classList.remove('on'); $('bRot').setAttribute('aria-pressed', 'false') }
-$('bRot').onclick = () => { rot = !rot; $('bRot').classList.toggle('on', rot); $('bRot').setAttribute('aria-pressed', rot) };
+function stopRot() { rot = false }
+$('bRot').textContent = 'Xem 3D'; $('bRot').title = 'Chuyển giữa mặt bằng nhìn thẳng và góc nghiêng 3D';
+$('bRot').onclick = () => { FLAT = !FLAT; applyMode(); $('bRot').textContent = FLAT ? 'Xem 3D' : 'Mặt bằng'; $('bRot').classList.toggle('on', !FLAT); $('bRot').setAttribute('aria-pressed', !FLAT);
+  const d = camera.position.distanceTo(controls.target); flyTo(controls.target.x, controls.target.z, FLAT ? d * 1.25 : d * .5, .85, .35) };
 function openSide() { $('side').classList.add('open') }
 $('bInfo').onclick = () => $('side').classList.toggle('open');
 
