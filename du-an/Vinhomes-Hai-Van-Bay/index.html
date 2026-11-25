@@ -244,10 +244,9 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
    <p class="lead">Dành cho anh chị môi giới. Đăng ký một lần, khoảng 30 giây, lần sau tự vào không cần đăng nhập lại.</p>
    <ul class="perks"><li>Hơn 2.300 căn Đảo Ngọc có mã và vị trí từng căn</li><li>Giá và quỹ căn cập nhật theo bảng hàng mới nhất</li><li>Tìm căn, xem quỹ đang bán ngay trên sa bàn</li></ul>
    <form id="gReg" novalidate>
-    <label for="gName">Họ và tên</label><input id="gName" type="text" autocomplete="name" placeholder="Nguyễn Văn A">
-    <label for="gAgency">Đại lý / công ty</label><input id="gAgency" list="agList" autocomplete="organization" placeholder="Chọn hoặc gõ tên đại lý">
+    <label for="gPhone">Số điện thoại <b style="color:var(--red)">*</b></label><input id="gPhone" required type="tel" inputmode="numeric" autocomplete="tel" placeholder="0912 345 678">    <label for="gName">Họ và tên <small style="font-weight:400;color:#888">(không bắt buộc)</small></label><input id="gName" type="text" autocomplete="name" placeholder="Nguyễn Văn A">
+    <label for="gAgency">Đại lý / công ty <small style="font-weight:400;color:#888">(không bắt buộc)</small></label><input id="gAgency" list="agList" autocomplete="organization" placeholder="Chọn hoặc gõ tên đại lý">
     <datalist id="agList"><option>Mai Việt Land</option><option>RBS</option><option>Mayhomes</option><option>Trường Phát</option><option>Roman</option><option>Newstarland</option><option>MDLand</option><option>Vietstarland</option><option>QTC</option><option>Hưng Phát</option><option>VHS</option><option>Môi giới tự do</option><option>Khách hàng</option></datalist>
-    <label for="gPhone">Số điện thoại</label><input id="gPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="0912 345 678">
     <label class="agree"><input type="checkbox" id="gAgree" checked><span>Tôi đồng ý cho dùng số điện thoại để xác thực tài khoản theo <a href="../../chinh-sach-bao-mat/" target="_blank" rel="noopener">chính sách bảo mật</a>.</span></label>
     <p class="gmsg" id="gMsg1"></p>
     <button class="gbtn" id="gSend">Nhập xác thực miễn phí qua SMS</button>
@@ -305,6 +304,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 </div>
 <div id="who" hidden><span>Xin chào, <b></b></span><button id="logout" type="button">Đăng xuất</button></div>
 <script type="module" src="sa-ban.js?v=1795593982"></script>
-<script type="module" src="auth.js?v=3"></script>
+<script type="module" src="auth.js?v=4"></script>
 </body>
 </html>

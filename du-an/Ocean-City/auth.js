@@ -51,8 +51,6 @@ async function sendOtp(e164) {
 $('gReg').addEventListener('submit', async ev => {
   ev.preventDefault(); const b = $('gSend');
   const name = $('gName').value.trim(), agency = $('gAgency').value.trim(), e164 = toE164($('gPhone').value);
-  if (name.length < 2) return say('gMsg1', 'Anh/chị nhập họ tên giúp em nhé.');
-  if (!agency) return say('gMsg1', 'Anh/chị chọn hoặc gõ tên đại lý.');
   if (!e164) return say('gMsg1', 'Số điện thoại gồm 10 số, ví dụ 0912 345 678.');
   if (!$('gAgree').checked) return say('gMsg1', 'Anh/chị tích đồng ý điều khoản để tiếp tục.');
   pending = { name, agency, e164, mode: 'reg' }; say('gMsg1', ''); busy(b, true, 1);
