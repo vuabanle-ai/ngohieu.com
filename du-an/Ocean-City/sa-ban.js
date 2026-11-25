@@ -19,7 +19,7 @@ const TYPE = {
   S: { name: 'Shophouse', short: 'SH', h: 17, roof: 0xf08a4b }
 };
 const WALL = new THREE.Color(0xfbf8f2), AV = new THREE.Color(0x25b768), SD = new THREE.Color(0x8a8c90), CK = new THREE.Color(0xf5a623), DIM = new THREE.Color(0xe4e2dc), SEL = new THREE.Color(0xe31b23);
-const SRC = { JH: 'Joy Homes', SSM: 'SSM' }; // tên khác hiển thị nguyên văn
+const SRC = {}; // tên khác hiển thị nguyên văn
 const VN = n => n.toLocaleString('vi-VN');
 const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' tỷ';
 

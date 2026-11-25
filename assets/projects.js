@@ -2,7 +2,7 @@
 // type: 'thap' (thấp tầng) | 'cao' (cao tầng) | 'ca-hai'; tags: 'hot' | 'moi' | 'sap-mo-ban'; saban: đường dẫn sa bàn 3D nếu có
 export const PROJECTS = [
  {id:'pho-hien',name:'Phố Hiến Heritage Collection',dev:'Vinhomes',area:'Phố Hiến, Hưng Yên',type:'thap',tags:['hot','moi'],img:'/du-an/Happy-Home-Pho-Hien/img/phoi-canh-tren-cao.jpg',saban:'/du-an/Happy-Home-Pho-Hien/',note:'303 căn liền kề shophouse · sở hữu lâu dài'},
- {id:'ocp23',name:'Vinhomes Ocean City (Ocean Park 2 & 3)',dev:'Vinhomes',area:'Văn Giang – Văn Lâm, Hưng Yên',type:'thap',tags:['hot','moi'],img:'/du-an/Ocean-City/anh-ocean-city.jpg',saban:'/du-an/Ocean-City/',note:'OCP2 The Empire & OCP3 The Crown trên một bản đồ: hơn 14.800 căn có mã, quỹ căn Joy Homes tự cập nhật.'},
+ {id:'ocp23',name:'Vinhomes Ocean City (Ocean Park 2 & 3)',dev:'Vinhomes',area:'Văn Giang – Văn Lâm, Hưng Yên',type:'thap',tags:['hot','moi'],img:'/du-an/Ocean-City/anh-ocean-city.jpg',saban:'/du-an/Ocean-City/',note:'OCP2 The Empire & OCP3 The Crown trên một bản đồ: hơn 14.800 căn có mã, quỹ căn các đại lý tự cập nhật.'},
  {id:'global-gate',name:'Vinhomes Global Gate',dev:'Vinhomes',area:'Đông Anh, Hà Nội',type:'thap',tags:['hot']},
  {id:'wonder-city',name:'Vinhomes Wonder City',dev:'Vinhomes',area:'Đan Phượng, Hà Nội',type:'thap',tags:[]},
  {id:'green-paradise',name:'Vinhomes Green Paradise',dev:'Vinhomes',area:'Cần Giờ, TP. Hồ Chí Minh',type:'thap',tags:['hot']},

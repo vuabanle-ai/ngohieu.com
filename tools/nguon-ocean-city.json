@@ -1,0 +1,32 @@
+{
+ "_ghi_chu": "Nguồn quỹ hàng sa bàn Ocean City (OCP2 & 3) = các link bảng hàng đại lý ở tab 'OCP2 & 3' của sheet CHECK ĐL HUONG (anh Hiếu chỉ định ngày 25/11/2026). Muốn thêm/bớt đại lý thì sửa danh sách này. tabs (tuỳ chọn): {tên tab: tên nguồn}, tên nguồn kết thúc ':dq' = quỹ độc quyền; không ghi tabs thì tự nhận tab đang hiện có mã căn (bỏ tab thông số/diện tích/giỏ bank/STK...).",
+ "check_sheet": "1PFXFqCBzNWzLQuAWjshLAW1eLTBYWXqT_lWSbkW6iL8",
+ "nguon": [
+  {"ten": "HD Homes",       "id": "15OSL1ZEC0nlt93ll0Mb2xrpgVn0Awpp1"},
+  {"ten": "Mayhomes",       "id": "1-KcwSLpuSQGhqOZ8BycoRLeE3DUrawan"},
+  {"ten": "MD Land",        "id": "1Ug7YKmct2VdKEmP5y4osGpZKJkcsfzZux_KyUrmHBCQ"},
+  {"ten": "Đất Việt",       "id": "18myJM1bcuRYM0f3s8siAysu5CGOCJREHqpGgGhTOdqQ"},
+  {"ten": "Queen Land",     "id": "1G_YuvJGvJ8DS8ROe3zEfe2a8bd6AbocwYwOwx3gOM-E"},
+  {"ten": "TPL",            "id": "1BWOYLaC9IL-lkOEiyrdmSWQ-Q48LnATh"},
+  {"ten": "Novasky",        "id": "11Q_auyPRRzQodhGvg4SRzG3dkt3dXTos"},
+  {"ten": "VSR",            "id": "13sTDgBX3igxBL69Mua1V4IdeT_zXKE1g"},
+  {"ten": "VSL",            "id": "11v84wb5ZbBvlfr6CHVZYWsriG7hohx7ud7NuKDNrJ1s"},
+  {"ten": "Bighomes",       "id": "1qtuk53-uI18GmyMDtQhj2mIEq-Bde1X7"},
+  {"ten": "Phúc Lộc",       "id": "1fjsSdxl4vjIYsZV-qHhegCjuYUVAzSdD"},
+  {"ten": "Tân Thời Đại",   "id": "1nzVz7pn_2B3VZbYEmMsG0kH5si3Ok_2CJwkSC8eCjTw"},
+  {"ten": "SSM",            "id": "15LLM3FyMvESjGMkqk7huCAp4E4w4tR3npqWLeuCB2Kk"},
+  {"ten": "5S",             "id": "16zz1yyED1Mz7R_fxlQOObSCSCSRtQ6cpZU1DJVc26b8"},
+  {"ten": "Newstarland",    "id": "1FDnt60-5OeQdy0tFfzrsLhYGAge2i-AjtX0vr1LZMa4"},
+  {"ten": "Home Plus",      "id": "1wZh2DCh0i79XFXcsPGFkpNzT5YO6FnzqdKsqUlDaR9I"},
+  {"ten": "MICC",           "id": "1stAchuTAuKDwJg3adUdAWXJQI1m9GFilcASiOnUlM6o"},
+  {"ten": "VHS",            "id": "1PrNk0qj3YXuyQ_YqMkKavihHKLAaJhycD2Hgz7dV9qg"},
+  {"ten": "Tân Hương Phát", "id": "1ncfMRR8aFJyD3ypW4MEvnACrwgbQg0A2"},
+  {"ten": "Thiên Phúc",     "id": "1tT9z2DAYJnIwNRTU9k218AjBOB9Cfl5X"},
+  {"ten": "Maxhomes",       "id": "1PNuXfzN-I_AQiVb9-wJjUxyNOH-yqObT"},
+  {"ten": "ATD",            "id": "1s05biTlphmHVKpqIWPOO6xOSjgWT_XjzXPcejOdI7mQ"},
+  {"ten": "Sao Vàng",       "id": "1qfLxnIUCVgQ7WRQYUzJKdSl2uSsMlnKgkLZXDHF69NM"},
+  {"ten": "QTC",            "id": "1BvJvwPEUjwlOkBV2BP3rhcDGEiht2KXA"},
+  {"ten": "NewGen",         "id": "1vFfM9p96nwSg0mdGcbda0hcUUpruEziv"},
+  {"ten": "Hoàng Sơn",      "id": "1tqlHTGt_CvX28SzV151Gy0oHScotJLhXbhCZEGCVlLU"}
+ ]
+}

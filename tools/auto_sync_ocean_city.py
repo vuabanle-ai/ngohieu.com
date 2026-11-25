@@ -1,170 +1,217 @@
 #!/usr/bin/env python3
-"""Cập nhật quỹ hàng sa bàn Ocean City (OCP2 + OCP3) từ bảng hàng Joy Homes (chạy trên GitHub Actions).
+"""Cập nhật quỹ hàng sa bàn Ocean City (OCP2 + OCP3) từ các link bảng hàng đại lý (chạy trên GitHub Actions).
 
-Nguồn: sheet "TH VIN2 & VIN3" của Joy Homes (link công khai, tải dạng xlsx).
-Đọc các tab tổng hợp (TH_OCP2, TH_OCP3) và quỹ độc quyền (ĐỘC QUYỀN OCP2/OCP3):
-  * Dòng có mã căn đầy đủ (VD: KĐ8-63, VTĐ-25, ĐLBM-174) = còn hàng. Mã che (PB10-3x, ĐLSH-14x) bỏ qua.
-  * Giá hoặc ngày ký ghi "Check admin" -> check hàng (chưa bán, hỏi lại admin).
-  * Ô mã căn tô đỏ / gạch ngang, hoặc dòng ghi "đã bán / đã cọc" -> đã bán.
-  * Căn lần trước còn hàng mà nay không còn trên bảng hàng -> đã bán ("không còn trên bảng hàng").
-Dùng:  python3 tools/auto_sync_ocean_city.py [file.xlsx]
+Nguồn: danh sách link ở tools/nguon-ocean-city.json = tab "OCP2 & 3" của sheet CHECK ĐL HUONG.
+Mỗi bảng hàng tải dạng xlsx (link công khai). Đọc các tab đang hiện có mã căn (bỏ tab thông số, diện tích,
+giỏ bank, STK, KPTM, danh sách chính sách...). Quy tắc giống sa bàn Phố Hiến:
+  * Ô mã căn tô đỏ / gạch ngang, hoặc dòng ghi "đã bán / đã cọc" -> đại lý đó báo đã bán.
+  * Mã căn có trên bảng hàng, không bị đánh dấu -> còn hàng (ghi tên các đại lý đang có căn).
+  * Căn trong quỹ độc quyền (tab ĐQ) chưa bôi mà đại lý khác bôi đỏ -> Check hàng (hỏi admin).
+  * Dòng ghi "Check admin" -> Check hàng.
+  * Căn lần trước còn hàng, nay không đại lý nào còn (và các nguồn cũ của nó đều đọc được) -> đã bán.
+  * Mã che (PB10-3x, ĐLSH-14x...) bỏ qua.
+Giá: cột "Tổng giá gồm VAT & KPBT / giá full" (gia), "TTTĐ / tiến độ" (bg.tttd), "TTS" (bg.tts), "vay" (bg.vay);
+nhiều đại lý thì lấy giá của quỹ độc quyền, không có thì giá thấp nhất, kèm danh sách giá từng đại lý.
+Dùng:  python3 tools/auto_sync_ocean_city.py [thư_mục_xlsx_thử]   (in THAY ĐỔI / KHÔNG ĐỔI)
 """
 import io, json, os, re, sys, datetime, urllib.request
+import openpyxl
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, 'du-an', 'Ocean-City', 'quy-hang.json')
-SHEET = '1k9kgWCY7D4o7suOBSP8uxi28q3vk5V6N8k9oLcXbBBk'
-CODE = re.compile(r'^[A-ZĐ]{1,5}\d{0,2}-\d{1,3}$')
+CFG = json.load(open(os.path.join(ROOT, 'tools', 'nguon-ocean-city.json'), encoding='utf-8'))
+PRE = r'(?:ĐLBM|ĐLHĐ|ĐLSH|ĐLNT|VTĐ|ĐĐD|HĐ|TĐ|AD|PB|VT|VX|ĐN|SB|CX|CL|KĐ|SH|HA|ĐD|NT|BX)'
+CODE = re.compile(r'^' + PRE + r'\d{0,2}-\d{1,3}$')
 SOLD_TXT = re.compile(r'ĐÃ\s*(BÁN|CỌC)|\bSOLD\b')
-TAB = re.compile(r'(✅\s*TH_OCP[23]$)|(ĐỘC QUYỀN OCP[23])', re.I)
+CHECK_TXT = re.compile(r'CHECK\s*ADMIN')
+SKIP_TAB = re.compile(r'THÔNG SỐ|THONG SO|DIỆN TÍCH|DIEN TICH|GIỎ|BANK|STK|KPTM|ELITE|CSDL|^TK|DS K|TEST|BIỂU MẪU|CÂU TRẢ LỜI|'
+                      r'NGƯỜI NƯỚC NGOÀI|NNN|TMDV|\(CŨ\)|\bCŨ\b|CSBH|CHÍNH SÁCH|PTG|PHIẾU|NHẬN TIỀN|NỘP TIỀN|TRC|KHÔNG ÁP DỤNG', re.I)
+UA = {'User-Agent': 'Mozilla/5.0 ngohieu-sync'}
 
 
 def norm_code(t):
-    t = re.sub(r'\s+', '', str(t or '')).upper().replace('DLBM', 'ĐLBM').replace('DLHD', 'ĐLHĐ')
-    return t
+    t = re.sub(r'\s+', '', str(t or '')).upper()
+    for a, b in (('^DLBM', 'ĐLBM'), ('^DLHD', 'ĐLHĐ'), ('^DLSH', 'ĐLSH'), ('^DLNT', 'ĐLNT'), ('^VTD', 'VTĐ'), ('^DDD', 'ĐĐD'),
+                 (r'^HD(?=\d)', 'HĐ'), (r'^TD(?=\d)', 'TĐ'), (r'^DN(?=\d)', 'ĐN'), (r'^KD(?=\d|-)', 'KĐ'), (r'^DD(?=\d)', 'ĐD')):
+        t = re.sub(a, b, t)
+    m = re.match(r'^(.*-)(\d)$', t)          # KĐ5-7 -> KĐ5-07
+    return m.group(1) + '0' + m.group(2) if m else t
 
 
 def money(v):
-    """'29,300,000,000' / '32.495.766.341' -> đồng; '10.317' / '34.273' (tỷ, kiểu nghìn triệu) -> đồng."""
-    if v is None: return None
-    if isinstance(v, (int, float)):
-        n = float(v)
+    """số đồng; nhận '29,300,000,000', '32.495.766.341', 32495766341, 34883.07 (triệu), 34.27 (tỷ)."""
+    if v is None or isinstance(v, (datetime.date, datetime.datetime)): return None
+    if isinstance(v, (int, float)): n = float(v)
     else:
-        s = str(v).strip()
-        if not re.search(r'\d', s): return None
-        s = re.sub(r'[^\d.,]', '', s)
+        s = re.sub(r'[^\d.,]', '', str(v))
+        if not s: return None
         if re.fullmatch(r'\d{1,3}([.,]\d{3}){2,}', s): n = float(re.sub(r'[.,]', '', s))
-        elif re.fullmatch(r'\d{1,3}[.,]\d{3}', s): n = float(re.sub(r'[.,]', '', s)) * 1e6   # triệu
+        elif re.fullmatch(r'\d{1,3}[.,]\d{3}', s): n = float(re.sub(r'[.,]', '', s))
         else:
             try: n = float(s.replace(',', '.'))
             except ValueError: return None
-    if n < 1e3: n *= 1e9          # tỷ
-    elif n < 1e6: n *= 1e6        # triệu
-    return int(round(n)) if n > 1e8 else None
+    if n <= 0: return None
+    if n < 1e3: n *= 1e9
+    elif n < 1e6: n *= 1e6
+    return int(round(n)) if 2e9 <= n <= 4e11 else None
 
 
-def rows_from_xlsx(data):
-    import openpyxl
-    wb = openpyxl.load_workbook(io.BytesIO(data), data_only=True)
-    out = {}
-    for ws in wb.worksheets:
-        if not TAB.search(ws.title.strip()) or ws.sheet_state != 'visible': continue
-        rows = []
-        for row in ws.iter_rows():
-            r = []
-            for c in row:
-                red = False
-                try:
-                    f = c.fill
-                    if f is not None and f.fill_type == 'solid' and f.fgColor.type == 'rgb' and f.fgColor.rgb and len(f.fgColor.rgb) == 8:
-                        R, G, B = (int(f.fgColor.rgb[i:i + 2], 16) / 255 for i in (2, 4, 6)); red = R > .55 and G < .45 and B < .45
-                except Exception: pass
-                r.append((c.value, red, bool(c.font and c.font.strike)))
-            rows.append(r)
-        out[ws.title.strip()] = rows
-    return out
+def fetch(fid):
+    for u in (f'https://docs.google.com/spreadsheets/d/{fid}/export?format=xlsx',
+              f'https://drive.google.com/uc?export=download&id={fid}'):
+        try:
+            data = urllib.request.urlopen(urllib.request.Request(u, headers=UA), timeout=90).read()
+            if data[:2] == b'PK': return data
+        except Exception as e:
+            print('  lỗi tải', u.split('/')[2], e, file=sys.stderr)
+    return None
 
 
-def rows_from_grid(path):
-    d = json.load(open(path, encoding='utf-8')); d = d.get('content', d)
-    out = {}
-    for sh in d['sheets']:
-        t = sh['properties']['title'].strip()
-        if not TAB.search(t): continue
-        rows = []
-        for r in sh['data'][0].get('rowData', []):
-            row = []
-            for v in r.get('values', []):
-                bg = v.get('effectiveFormat', {}).get('backgroundColor', {})
-                red = bg.get('red', 0) > .55 and bg.get('green', 0) < .45 and bg.get('blue', 0) < .45
-                row.append((v.get('formattedValue'), red, v.get('effectiveFormat', {}).get('textFormat', {}).get('strikethrough', False)))
-            rows.append(row)
-        out[t] = rows
-    return out
+def red_cell(c):
+    try:
+        f = c.fill
+        if f is not None and f.fill_type == 'solid' and f.fgColor.type == 'rgb' and f.fgColor.rgb and len(f.fgColor.rgb) == 8:
+            R, G, B = (int(f.fgColor.rgb[i:i + 2], 16) / 255 for i in (2, 4, 6))
+            return R > .55 and G < .45 and B < .45
+    except Exception: pass
+    return False
 
 
-H = {'phan_khu': r'^phân khu', 'ma': r'^mã căn', 'loai': r'^loại hình$|^loại hình\s*$', 'huong': r'^hướng', 'dt': r'^dt đất',
-     'dtxd': r'^dtxd$|^dt ?xd$|^dtxd\s*$', 'gia': r'^giá full|^tổng giá', 'tts': r'^giá tts', 'tttd': r'^giá tttđ', 'htls': r'^htls',
-     'tcbg': r'^tcbg', 'csbh': r'^csbh', 'quy': r'^quỹ', 'ky': r'^loại hình ký|^ngày ký', 'nh': r'^ngân hàng', 'don_gia': r'^đơn giá'}
+HDR = [('gia', r'(gi[áa]|gía).*(gồm|full|niêm yết|bao gồm|sau vat)|tổng giá|giá bán gồm'), ('tttd', r'tttđ|tiến độ'),
+       ('tts', r'\btts\b|thanh toán sớm'), ('vay', r'vay|htls|70%'), ('dt', r'^dt\s*đất|diện tích đất|^dt\s*\(?m'),
+       ('dtxd', r'dtxd|dt\s*xd|diện tích xây|tổng sàn'), ('loai', r'loại\s*(hình|căn|sp)'), ('tcbg', r'tcbg|bàn giao'),
+       ('huong', r'^hướng'), ('tt', r'tình trạng|trạng thái')]
 
 
-def parse(tabs):
-    avail, check, sold, listed = {}, {}, {}, set()
-    for title, rows in tabs.items():
-        dq = 'ĐỘC QUYỀN' in title.upper()
-        col = None
-        for row in rows:
-            vals = [str(v[0]).strip() if v[0] is not None else '' for v in row]
-            low = [re.sub(r'\s+', ' ', x).lower() for x in vals]
-            if any(re.match(H['ma'], x) for x in low):
-                col = {}
-                for k, pat in H.items():
-                    for i, x in enumerate(low):
-                        if re.match(pat, x) and k not in col: col[k] = i
-                continue
-            if not col or 'ma' not in col or col['ma'] >= len(row): continue
-            code = norm_code(vals[col['ma']])
+def read_tab(ws):
+    """-> list of (code, marked, check, info dict)"""
+    out, col = [], {}
+    for row in ws.iter_rows():
+        vals = ['' if c.value is None else str(c.value).strip() for c in row]
+        low = [re.sub(r'\s+', ' ', v).lower() for v in vals]
+        if any(re.fullmatch(r'mã( căn)?( được phân bổ)?|mã sp|mã sản phẩm|ma can', x) for x in low):
+            col = {'_': -1}
+            for k, pat in HDR:
+                for i, x in enumerate(low):
+                    if x and re.search(pat, x) and k not in col and i not in col.values(): col[k] = i
+            continue
+        if not col: continue                     # chưa gặp dòng tiêu đề "Mã căn" -> không phải bảng hàng
+        txt = ' '.join(vals).upper()
+        for c in row:
+            v = c.value
+            if not isinstance(v, str): continue
+            code = norm_code(v)
             if not CODE.match(code): continue
-            g = lambda k: vals[col[k]] if k in col and col[k] < len(vals) else ''
-            listed.add(code)
-            txt = ' '.join(vals).upper()
-            cell = row[col['ma']]
-            q = {'src': ['JH'], 'quy': ('Độc quyền JH · ' if dq else '') + (g('quy') or '').strip()}
-            for k in ('loai', 'huong', 'tcbg', 'csbh'):
-                if g(k): q[k] = g(k).replace('\n', ' ').strip()
-            if g('dt'): q['dt'] = g('dt')
-            if g('dtxd') and g('dtxd') != '-': q['dtxd'] = g('dtxd')
-            gia = money(g('gia')); bg = {}
-            for k in ('tts', 'htls', 'tttd', 'don_gia'):
-                m = money(g(k)) if k != 'don_gia' else None
-                if m: bg[k if k != 'htls' else 'vay'] = m
-            if gia: q['gia'] = gia
-            if bg: q['bg'] = bg
-            if not q.get('quy', '').strip(' ·'): q.pop('quy', None)
-            if cell[1] or cell[2] or SOLD_TXT.search(txt):
-                sold[code] = {**q, 'why': 'bảng hàng Joy Homes đánh dấu đã bán'}; continue
-            if re.search(r'CHECK\s*ADMIN', txt):
-                check[code] = {**q, 'why': 'bảng hàng Joy Homes ghi Check admin'}; continue
-            old = avail.get(code)
-            if old:   # trùng mã: giữ giá thấp nhất, lưu giá các dòng
-                offers = old.setdefault('offers', [{'src': 'JH', 'gia': old.get('gia'), 'tcbg': old.get('tcbg')}])
-                offers.append({'src': 'JH', 'gia': q.get('gia'), 'tcbg': q.get('tcbg')})
-                if q.get('gia') and (not old.get('gia') or q['gia'] < old['gia']):
-                    q['offers'] = offers; avail[code] = q
-                continue
-            avail[code] = q
-    for c in list(check):
-        if c in avail: check.pop(c)
-    return avail, check, sold, listed
+            q = {}
+            g = lambda k: row[col[k]].value if k in col and col[k] < len(row) else None
+            for k in ('gia', 'tttd', 'tts', 'vay'):
+                m = money(g(k))
+                if m: q[k] = m
+            for k in ('dt', 'dtxd', 'loai', 'tcbg', 'huong'):
+                x = g(k)
+                if x not in (None, '', '-') and not isinstance(x, (datetime.date, datetime.datetime)):
+                    q[k] = str(x).replace('\n', ' ').strip()[:40]
+            st = str(g('tt') or '').upper()
+            marked = red_cell(c) or bool(c.font and c.font.strike) or bool(SOLD_TXT.search(txt)) or bool(SOLD_TXT.search(st))
+            out.append((code, marked, bool(CHECK_TXT.search(txt)), q))
+            break                                # một mã căn mỗi dòng
+    return out
+
+
+def read_source(n, data):
+    wb = openpyxl.load_workbook(io.BytesIO(data), data_only=True)
+    res = []
+    for ws in wb.worksheets:
+        t = ws.title.strip(); tabs = n.get('tabs')
+        if tabs:
+            name = tabs.get(t)
+            if not name: continue
+        else:
+            if ws.sheet_state != 'visible' or SKIP_TAB.search(t): continue
+            name = n['ten'] + (':dq' if re.search(r'ĐQ|ĐỘC QUYỀN|DOC QUYEN|\bDQ\b', t, re.I) else '')
+        rows = read_tab(ws)
+        if not rows or len(rows) > 1500: continue            # bảng thông số toàn dự án -> bỏ
+        print(f'  {n["ten"]} | {t} -> {name}: {len(rows)} căn', file=sys.stderr)
+        res.append((name, rows))
+    return res
 
 
 def main():
-    if len(sys.argv) > 1 and sys.argv[1].endswith('.json'): tabs = rows_from_grid(sys.argv[1])
-    else:
-        if len(sys.argv) > 1: data = open(sys.argv[1], 'rb').read()
-        else:
-            url = f'https://docs.google.com/spreadsheets/d/{SHEET}/export?format=xlsx'
-            data = urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 ngohieu-sync'}), timeout=90).read()
-        if data[:2] != b'PK': print('Không tải được bảng hàng Joy Homes'); sys.exit(1)
-        tabs = rows_from_xlsx(data)
-    if not tabs: print('Không thấy tab TH_OCP / ĐỘC QUYỀN'); sys.exit(1)
-    avail, check, sold, listed = parse(tabs)
+    local = sys.argv[1] if len(sys.argv) > 1 else None
+    now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=7))); today = now.strftime('%d/%m/%Y')
+    ok, listed, marked, dq_ok, chk_txt, info = set(), {}, {}, set(), set(), {}
+    for n in CFG['nguon']:
+        ten = n['ten']
+        if local:
+            p = os.path.join(local, n['id'] + '.xlsx')
+            data = open(p, 'rb').read() if os.path.exists(p) else None
+        else: data = fetch(n['id'])
+        if not data: print('BỎ QUA', ten, '(không tải được)', file=sys.stderr); continue
+        try: tabs = read_source(n, data)
+        except Exception as e: print('BỎ QUA', ten, e, file=sys.stderr); continue
+        ok.add(ten)
+        for name, rows in tabs:
+            dq = name.endswith(':dq')
+            for code, m, ck, q in rows:
+                if m: marked.setdefault(code, set()).add(ten); continue
+                listed.setdefault(code, set()).add(ten)
+                if dq: dq_ok.add(code)
+                if ck: chk_txt.add(code)
+                info.setdefault(code, []).append((ten, dq, q))
     try: prev = json.load(open(OUT, encoding='utf-8'))
-    except Exception: prev = {'available': {}, 'sold': {}, 'check': {}}
-    now = datetime.datetime.now(datetime.timezone(datetime.timedelta(hours=7)))
-    # căn trước còn hàng, nay không còn trên bảng hàng -> đã bán
-    for c, q in prev.get('available', {}).items():
-        if c not in listed and c not in sold:
-            sold[c] = {**q, 'why': 'không còn trên bảng hàng Joy Homes từ ' + now.strftime('%d/%m/%Y')}
-    for c, q in prev.get('sold', {}).items():
-        if c not in listed and c not in sold: sold[c] = q
+    except Exception: prev = {}
+    if 'Joy Homes' in str(prev.get('nguon', '')): prev = {}     # đổi nguồn: làm lại từ đầu
+
+    def merge(code, srcs):
+        rows = info.get(code, [])
+        dqr = [r for r in rows if r[1]]
+        base = dqr or rows
+        priced = [r for r in base if r[2].get('gia') or r[2].get('tttd')]
+        best = min(priced, key=lambda r: r[2].get('gia') or r[2].get('tttd')) if priced else (base[0] if base else None)
+        q0 = best[2] if best else {}
+        q = {'src': sorted(srcs)}
+        for k in ('loai', 'dt', 'dtxd', 'tcbg', 'huong'):
+            v = q0.get(k) or next((r[2][k] for r in rows if r[2].get(k)), None)
+            if v: q[k] = v
+        if q0.get('gia'): q['gia'] = q0['gia']
+        bg = {k: q0[k] for k in ('tttd', 'tts', 'vay') if q0.get(k)}
+        if not q.get('gia') and bg.get('tttd'): q['gia'] = bg['tttd']
+        if bg: q['bg'] = bg
+        if dqr: q['quy'] = 'Độc quyền ' + ', '.join(sorted({r[0] for r in dqr}))
+        offs = {}
+        for t, d, r in rows:
+            g = r.get('gia') or r.get('tttd')
+            if g and (t not in offs or g < offs[t]['gia']): offs[t] = {'src': t, 'gia': g, **({'tcbg': r['tcbg']} if r.get('tcbg') else {})}
+        if len(offs) > 1: q['offers'] = sorted(offs.values(), key=lambda o: o['gia'])
+        return q
+
+    avail, check, sold = {}, {}, dict(prev.get('sold') or {})
+    for c, srcs in listed.items():
+        if c in marked and c not in dq_ok: continue
+        if c in chk_txt: check[c] = {**merge(c, srcs), 'why': 'bảng hàng ghi Check admin'}; continue
+        avail[c] = merge(c, srcs)
+    for c in dq_ok:
+        if c in marked:
+            q = avail.pop(c, None) or merge(c, listed.get(c, []))
+            check[c] = {**q, 'why': 'quỹ độc quyền chưa bôi nhưng ' + ', '.join(sorted(marked[c])) + ' bôi đỏ'}
+    for c, srcs in marked.items():
+        if c in avail or c in check: continue
+        if c not in sold or sold[c].get('why', '').startswith('không còn'):
+            sold[c] = {'since': today, 'why': 'đại lý bôi đỏ / ghi đã bán: ' + ', '.join(sorted(srcs))}
+    for c, q in (prev.get('available') or {}).items():
+        if c in avail or c in check or c in marked: continue
+        srcs = set(q.get('src', []))
+        if srcs and not srcs <= ok:                  # nguồn cũ lỗi -> chưa kết luận
+            avail[c] = q; continue
+        sold.setdefault(c, {**{k: q[k] for k in ('loai', 'dt', 'gia') if k in q}, 'since': today, 'why': 'không còn trên bảng hàng đại lý'})
     for c in list(sold):
-        if c in avail or c in check: sold.pop(c)
-    out = {'updated': now.strftime('%H:%M %d/%m/%Y'), 'nguon': 'Joy Homes – TH VIN2 & VIN3',
-           'available': dict(sorted(avail.items())), 'check': dict(sorted(check.items())), 'sold': dict(sorted(sold.items()))}
+        if sold[c].get('why') == 'báo thủ công': avail.pop(c, None); check.pop(c, None); continue
+        if c in avail or c in check: del sold[c]
+    out = {'updated': now.strftime('%H:%M %d/%m/%Y'), 'nguon': 'Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG',
+           'doc_duoc': sorted(ok), 'available': dict(sorted(avail.items())), 'check': dict(sorted(check.items())), 'sold': dict(sorted(sold.items()))}
     changed = {k: prev.get(k) for k in ('available', 'check', 'sold')} != {k: out[k] for k in ('available', 'check', 'sold')}
     json.dump(out, open(OUT, 'w', encoding='utf-8'), ensure_ascii=False, indent=0)
-    print(('THAY ĐỔI' if changed else 'KHÔNG ĐỔI'), f"còn {len(avail)} · check {len(check)} · đã bán {len(sold)}")
+    print(('THAY ĐỔI' if changed else 'KHÔNG ĐỔI'), f'còn {len(avail)} · check {len(check)} · đã bán {len(sold)} · đọc được {len(ok)}/{len(CFG["nguon"])} nguồn')
 
 
 if __name__ == '__main__':

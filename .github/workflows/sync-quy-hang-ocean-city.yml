@@ -1,7 +1,7 @@
 name: Cập nhật quỹ hàng Ocean City
 on:
   schedule:
-    - cron: '*/10 * * * *'
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 concurrency:
   group: sync-quy-hang-ocean-city
@@ -11,14 +11,14 @@ permissions:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: pip install openpyxl==3.1.5
-      - name: Đọc bảng hàng Joy Homes và cập nhật sa bàn
+      - name: Đọc bảng hàng các đại lý (CHECK ĐL HUONG) và cập nhật sa bàn
         run: python3 tools/auto_sync_ocean_city.py
       - name: Đẩy lên web nếu quỹ hàng thay đổi
         run: |
@@ -36,6 +36,6 @@ jobs:
           PY
           git diff --quiet -- $F && { echo "Chỉ đổi giờ, bỏ qua"; exit 0; }
           git add $F
-          git commit -m "Quỹ hàng Ocean City: tự cập nhật từ bảng hàng Joy Homes $(TZ=Asia/Ho_Chi_Minh date '+%H:%M %d/%m/%Y')"
+          git commit -m "Quỹ hàng Ocean City: tự cập nhật từ bảng hàng đại lý $(TZ=Asia/Ho_Chi_Minh date '+%H:%M %d/%m/%Y')"
           git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" || true
           git push
