@@ -167,9 +167,13 @@ ROADS.forEach(r=>road(r.p,r.w));
   dm.position.set(p.x,.7,p.z);dm.rotation.set(-Math.PI/2,0,ang);dm.scale.set(1,1,1);dm.updateMatrix();im.setMatrixAt(i,dm.matrix)});S.add(im);}
 // vạch tim đường & vạch qua đường nội khu Thịnh Vượng
 {const bars=[];const zebra=(x,z,dir,w)=>{for(let k=-w/2+1;k<w/2;k+=1.6)bars.push(dir?[x+k,z,0]:[x,z+k,Math.PI/2])};
- [42.5,90,137.5].forEach(x=>{[-4,67,82,118,135,173,185].forEach(z=>{if(z<diagZ(x)&&!(x===90&&z>70&&z<182))zebra(x,z,1,11)})});
+ // vạch sang đường đặt sát mép giao lộ, ngay đầu/cuối mỗi dãy căn (theo mặt bằng CĐT)
+ [42.5,137.5].forEach(x=>[-3,66,83,118.5,134.5,170.5,187.5].forEach(z=>zebra(x,z,1,11)));
+ [-3,66,187.5].forEach(z=>zebra(90,z,1,11));
+ [-3,118.5,134.5].forEach(z=>zebra(-8,z,1,11));
+ [[74.5,[50,130]],[179,[50,130]],[126.5,[1.5,34,146,205]]].forEach(([z,xs])=>xs.forEach(x=>zebra(x,z,0,10)));
  [42.5,90,137.5].forEach(x=>{for(let z=10;z<diagZ(x)-6;z+=7)if(Math.abs(z-126.5)>8&&!(z>68&&z<81)&&!(z>173&&z<185)&&!(x===90&&z>68&&z<185))bars.push([x,z,0,1])});
- [-8].forEach(x=>{[0,126.5].forEach(z=>zebra(x,z+8,1,12))});
+ 
  const im=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),lineM,bars.length);
  bars.forEach(([x,z,r,c],i)=>{dm.position.set(x,.72,z);dm.rotation.set(-Math.PI/2,0,r);c?dm.scale.set(.3,3.2,1):dm.scale.set(.7,3.2,1);dm.updateMatrix();im.setMatrixAt(i,dm.matrix)});S.add(im);}
 // dải phân cách xanh
