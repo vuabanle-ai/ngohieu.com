@@ -414,7 +414,9 @@ setTimeout(hideLoad, 6000);
 renderer.setAnimationLoop(t => {
   if (anim) anim(t);
   if (rot && !anim) { const a = .0012, o = camera.position.clone().sub(controls.target); o.applyAxisAngle(new THREE.Vector3(0, 1, 0), a); camera.position.copy(controls.target).add(o) }
-  controls.update(); renderer.render(scene, camera); placeLabels();
+  controls.update();
+  { const d = camera.position.distanceTo(controls.target) / (FLAT ? KF() / .82 : 1); edges.material.opacity = .35 * Math.max(0, Math.min(1, (3500 - d) / 2500)); edges.visible = edges.material.opacity > .01 }
+  renderer.render(scene, camera); placeLabels();
 });
 // mở theo #mã-căn
 const hc = decodeURIComponent(location.hash.slice(1)); if (hc && byCode.has(norm(hc))) setTimeout(() => select(byCode.get(norm(hc)), true), 1300);
