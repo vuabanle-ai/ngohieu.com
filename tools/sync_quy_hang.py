@@ -59,13 +59,17 @@ def main():
     for c in dq_ok:
         if c in marked:                                   # độc quyền chưa bôi, đại lý khác bôi đỏ -> Check admin
             check[c] = {'dq': sorted(s for s in listed.get(c, []) if s in dq_names), 'boi_do': sorted(marked[c])}
+    for c, v in (prev.get('check') or {}).items():      # nguồn độc quyền lần này lỗi -> giữ Check admin
+        if c in check or not v.get('dq') or set(v['dq']) <= ok: continue
+        check[c] = v; dq_ok.add(c); avail.setdefault(c, (prev.get('available') or {}).get(c) or v['dq'])
     for c in marked:
         if c in dq_ok: continue
         if c not in sold or sold[c].get('why') != 'bôi đỏ':
             sold[c] = {'since': today, 'why': 'bôi đỏ'}
     for c, srcs in prev.get('available', {}).items():
         if c in avail or c in marked: continue
-        if srcs and not set(srcs) <= ok: continue          # nguồn cũ lỗi -> chưa kết luận
+        if srcs and not set(srcs) <= ok:                   # nguồn cũ lỗi -> chưa kết luận, giữ còn hàng
+            avail[c] = sorted(set(srcs) - ok); continue
         sold.setdefault(c, {'since': today, 'why': 'không còn trên bảng hàng'})
     for c in list(sold):
         if sold[c].get('why') == 'báo thủ công': avail.pop(c, None); continue   # anh Hiếu báo đã bán -> giữ nguyên

@@ -1,0 +1,7 @@
+{
+ "_ghi_chu": "MICC: link bảng hàng không mở được (riêng tư) nên cập nhật tay theo ảnh anh Hiếu gửi. dq = quỹ độc quyền (ô xanh ngọc), qc = quỹ lock chung, da_ban = căn bôi đỏ.",
+ "cap_nhat": "25/11/2026 16:32",
+ "dq": ["HK-33", "HK-35", "HK-77", "TC1-14", "TC3-47", "TC1-47", "TC3-61"],
+ "qc": ["HK-55", "HK-73", "HK-75", "TC1-68", "TC1-72", "TC1-84", "TC2-44", "TC3-49", "TC3-67"],
+ "da_ban": []
+}

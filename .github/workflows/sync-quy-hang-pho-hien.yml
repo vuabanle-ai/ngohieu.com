@@ -1,0 +1,39 @@
+name: Cập nhật quỹ hàng Phố Hiến
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+concurrency:
+  group: sync-quy-hang-pho-hien
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install openpyxl==3.1.5
+      - name: Đọc bảng hàng đại lý và cập nhật sa bàn
+        run: python3 tools/auto_sync_pho_hien.py
+      - name: Đẩy lên web nếu quỹ hàng thay đổi
+        run: |
+          git config user.name "ngohieu-bot"
+          git config user.email "ngohieu-bot@users.noreply.github.com"
+          if git diff --quiet -- du-an/Happy-Home-Pho-Hien/quy-hang.json; then echo "Không đổi"; exit 0; fi
+          python3 - <<'PY'
+          import json,subprocess
+          old=json.loads(subprocess.check_output(['git','show','HEAD:du-an/Happy-Home-Pho-Hien/quy-hang.json']))
+          new=json.load(open('du-an/Happy-Home-Pho-Hien/quy-hang.json'))
+          if {k:old.get(k) for k in ('available','sold','check')}=={k:new.get(k) for k in ('available','sold','check')}:
+              subprocess.run(['git','checkout','--','du-an/Happy-Home-Pho-Hien/quy-hang.json'])
+          PY
+          git diff --quiet -- du-an/Happy-Home-Pho-Hien/quy-hang.json && { echo "Chỉ đổi giờ, bỏ qua"; exit 0; }
+          git add du-an/Happy-Home-Pho-Hien/quy-hang.json
+          git commit -m "Quỹ hàng Phố Hiến: tự cập nhật từ bảng hàng đại lý $(TZ=Asia/Ho_Chi_Minh date '+%H:%M %d/%m/%Y')"
+          git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" || true
+          git push

@@ -1,0 +1,22 @@
+{
+ "_ghi_chu": "Nguồn bảng hàng đại lý Phố Hiến (từ tab 'Phố Hiến' của sheet CHECK ĐL HUONG). tabs: {tên tab: tên nguồn}; tên nguồn kết thúc ':dq' = quỹ độc quyền. Không ghi tabs = tự nhận tab theo tên (ĐQ/ĐỘC QUYỀN -> TÊN:dq, CHUNG/QC -> TÊNQC, BẢNG HÀNG/QUỸ/THẤP TẦNG -> TÊN). thu_cong: nguồn không đọc được link, cập nhật tay theo ảnh trong tools/nguon-thu-cong/.",
+ "nguon": [
+  {"ten": "THP",  "id": "1YSrs03ahNWQfiOtoab-QP-0mjRtj_sIp46Cj_fI4YrM", "tabs": {"THẤP TẦNG": "THP"}},
+  {"ten": "FS",   "id": "1nfRk4Iv4ZcqDoaWZbC6PuWIMb61cqbde"},
+  {"ten": "NSL",  "id": "1Sb_N3gIW2DhPVnI16UIguAGLXdai6ZNw"},
+  {"ten": "EC",   "id": "1w7AWO3rgK1HmcUBCWxNo73mrQZL6RYnLVv46trRT9AE", "tabs": {"Bảng hàng": "EC"}},
+  {"ten": "VIC",  "id": "1kZYL82I1OyYExGe821iIBXMRi2y1UsjR"},
+  {"ten": "MV",   "id": "1WnTsF8Q82Zy-pttWgtx0QIo45mG3AgBy"},
+  {"ten": "VHS",  "id": "1hrNo-c51Bx-D23CQnN-qmABDpLaDHvkEPaaF9GoComg", "tabs": {"Bảng hàng": "VHS"}},
+  {"ten": "TPG",  "id": "1MidiXHZ_tU6Iz_eh2tTakPlB2IFC_opI"},
+  {"ten": "HDH",  "id": "1ffEWl6XEzMUcUhOrmOdkM9IkSE8i7rfe"},
+  {"ten": "DV",   "id": "18xfA3hRIsjvL6_H4SzW_1e8-e51Q53ywY_dElCbAwhY", "tabs": {"QUỸ ĐQ": "DV:dq", "Quỹ Chung": "DVQC"}},
+  {"ten": "BH",   "id": "1PjMWrQ5tibW6gPK3Db54eEReZozSPYcn"},
+  {"ten": "MD",   "id": "1Im1lDVUyMAGnDC8aEFeEqV-weYwUnA7X7pjI37hVPTI", "tabs": {"QUỸ ĐQ": "MD:dq", "Quỹ lock chung": "MDQC"}},
+  {"ten": "RM",   "id": "1QaPKBz2ea28WzPzKNQdGZUuARdunRKtKPKMT-vOeWMQ", "tabs": {"ĐQ": "RM:dq", "quỹ chung": "RMQC"}},
+  {"ten": "SSM",  "id": "1Xm_vW1TbZYGqN52JXQ-OzEQxtGMs7-sEIKDeOI0WCxE", "tabs": {"QUỸ ĐQ PHỐ HIẾN": "SSM:dq"}},
+  {"ten": "DML",  "id": "11WBvER7p11GFBI-BrRzglTkQX7gF1vHnQiqqNWz-9jw", "tabs": {"Quỹ Độc Quyền": "DML:dq", "Quỹ lock chung": "DMLQC"}},
+  {"ten": "MH",   "id": "14plBFQK_Z1k6Lt5zdsMnogD-7i3_gI6b_3yMSwoHaME", "tabs": {"Quỹ hàng": "MH"}}
+ ],
+ "thu_cong": {"MICC": "nguon-thu-cong/MICC.json"}
+}
