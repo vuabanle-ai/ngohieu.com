@@ -316,7 +316,7 @@ const byCode=new Map(lots.map((L,i)=>[L.code.replace('Đ','D'),i]));
 const badges=[];
 const chkStick=new THREE.MeshBasicMaterial({color:'#f2b705'});
 {const stickM=new THREE.MeshBasicMaterial({color:'#d7261e'});
- lots.forEach((L,i)=>{const pp=PRICE[L.code];if(!pp)return;
+ const addBadge=(L,i)=>{const pp=PRICE[L.code];if(!pp)return;if(!pp.tdc&&pp.tot&&pp.dt){try{pp.tdc=ptgPlan(pp,'tdc').TOT/1e6;pp.tts=pp.tts||ptgPlan(pp,'tts').TOT/1e6;pp.v18=pp.v18||ptgPlan(pp,'v18').TOT/1e6}catch(e){}}
   const cn=document.createElement('canvas');cn.width=512;cn.height=200;const g=cn.getContext('2d');
   const draw=(chk)=>{g.clearRect(0,0,512,200);const isT=!!pp.tdc;const t=((isT?pp.tdc*1e6:pp.tot)/1e9).toFixed(2).replace('.',',')+' tỷ';
   g.fillStyle=chk?'#fff6cc':'#ffffff';g.strokeStyle=chk?'#f2b705':isT?'#d7261e':'#8a8580';g.lineWidth=22;g.beginPath();g.roundRect(14,14,484,172,86);g.fill();g.stroke();
@@ -325,7 +325,8 @@ const chkStick=new THREE.MeshBasicMaterial({color:'#f2b705'});
   draw(false);const tex=new THREE.CanvasTexture(cn);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=8;
   const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,depthWrite:false}));sp.scale.set(15,5.9,1);sp.position.set(L.x,L.h+10.5,L.z);sp.renderOrder=5;sp.userData.lot=i;S.add(sp);
   const st=new THREE.Mesh(new THREE.CylinderGeometry(.18,.18,7.4,6),pp.tdc?stickM:new THREE.MeshBasicMaterial({color:'#8a8580'}));st.position.set(L.x,L.h+4,L.z);S.add(st);sp.userData.st=st;sp.userData.setChk=c=>{draw(c);tex.needsUpdate=true;st.material=c?chkStick:(pp.tdc?stickM:st.material)};
-  badges.push(sp);pick.push(sp)});}
+  badges.push(sp);pick.push(sp)};
+ lots.forEach((L,i)=>addBadge(L,i));window.__addBadge=addBadge;}
 
 // ================= TIỆN ÍCH =================
 const white=M('#f4f4f1'),glass=M('#a9bfcc',{roughness:.25,metalness:.25}),greenRoof=M('#6fa53f'),thatch=M('#a8824e'),wood=M('#7a5a3a');
@@ -694,7 +695,11 @@ window.__lots=NL;window.__go=(x,z,d,p,az)=>{setRot(false);flyTo(W(x,z),d,p,az)};
 
 // ---- quỹ hàng: căn đã bán (bôi đỏ trên bảng hàng, hoặc hôm trước có – hôm sau mất) → nóc nhà màu xám
 const roofBlack=new THREE.MeshBasicMaterial({color:'#6e7176'});const roofCheck=new THREE.MeshBasicMaterial({color:'#f5c518'});const roofOpen=new THREE.MeshBasicMaterial({color:'#5cbf5a'});const soldRoofs=[];
-function applyQuy(q){if(!q||!q.sold)return;soldRoofs.forEach(m=>S.remove(m));soldRoofs.length=0;
+function applyQuy(q){if(!q||!q.sold)return;
+ // giá lấy từ bảng hàng đại lý cho căn chưa có giá trong bảng giá gốc
+ Object.entries(q.price||{}).forEach(([c,v])=>{if(PRICE[c]&&PRICE[c].tot)return;const p={tc:'Thô',d:(q.updated||'').split(' ').pop(),...v};
+  try{p.tdc=ptgPlan(p,'tdc').TOT/1e6;p.tts=ptgPlan(p,'tts').TOT/1e6;p.v18=ptgPlan(p,'v18').TOT/1e6}catch(e){}
+  PRICE[c]=p;const i=lots.findIndex(L=>L.code===c);if(i>=0)window.__addBadge(lots[i],i)});soldRoofs.forEach(m=>S.remove(m));soldRoofs.length=0;
  const av=q.available||{};const avail=new Set(Array.isArray(av)?av:Object.keys(av));
  const chk=q.check||{};
  lots.forEach((L,i)=>{const sd=q.sold[L.code];L.sold=!!sd;L.soldSince=sd?sd.since:'';L.check=!L.sold&&!!chk[L.code];if(L.sold)L.open=false;else if(avail.has(L.code)||L.check)L.open=true;

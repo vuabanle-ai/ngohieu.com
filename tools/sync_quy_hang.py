@@ -71,7 +71,7 @@ def main():
         if sold[c].get('why') == 'báo thủ công': avail.pop(c, None); continue   # anh Hiếu báo đã bán -> giữ nguyên
         if c in avail: del sold[c]                           # xuất hiện lại, không bôi -> còn hàng
     res = {'updated': now.strftime('%H:%M %d/%m/%Y'), 'available': dict(sorted(avail.items())),
-           'sold': dict(sorted(sold.items())), 'check': dict(sorted(check.items()))}
+           'sold': dict(sorted(sold.items())), 'check': dict(sorted(check.items())), 'price': prev.get('price', {})}
     changed = json.dumps({k: res[k] for k in ('available', 'sold', 'check')}, sort_keys=True) != \
               json.dumps({k: prev.get(k) for k in ('available', 'sold', 'check')}, sort_keys=True)
     json.dump(res, open(out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
