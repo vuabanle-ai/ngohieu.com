@@ -124,7 +124,14 @@ let first = true;
 A.onAuthStateChanged(auth, u => {
   if (!first) return; first = false;
   if (u && u.phoneNumber && u.providerData.some(p => p.providerId === 'password')) enter(u, false);
-  else { gate.classList.add('ready'); show(store.get(KEY) ? 'login' : 'reg') }
+  else {
+    // Dùng thử miễn phí 5 phút (tính từ lần đầu mở bất kỳ sa bàn nào trên máy này), hết giờ mới hiện khung đăng ký
+    const TRIAL = 5 * 60 * 1000; let t0 = +store.get('nh_thu_tu') || 0;
+    if (!t0) { t0 = Date.now(); store.set('nh_thu_tu', String(t0)) }
+    const left = t0 + TRIAL - Date.now();
+    const open = () => { if (gate.classList.contains('done')) return; gate.classList.add('ready'); show(store.get(KEY) ? 'login' : 'reg') };
+    if (left > 0) setTimeout(open, left); else open();
+  }
 });
 }
 }
