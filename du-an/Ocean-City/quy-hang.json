@@ -1,6 +1,6 @@
 {
-"ver": 5,
-"updated": "20:14 25/11/2026",
+"ver": 6,
+"updated": "20:31 25/11/2026",
 "nguon": "Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG",
 "doc_duoc": [
 "5S",
@@ -48,7 +48,18 @@
 "bg": {
 "tts": 27757000000,
 "vay": 31074000000
+},
+"offers": [
+{
+"src": "Novasky",
+"gia": 30170000000,
+"tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 30776260110
 }
+]
 },
 "AD11-35": {
 "src": [
@@ -640,24 +651,23 @@
 "Đất Việt"
 ],
 "loai": "Shophouse",
-"dt": "170",
+"dt": "170.0",
 "dtxd": "451.7",
 "tcbg": "Thô không thang",
-"huong": "Đông Bắc",
-"gia": 26390546209,
+"huong": "ĐB",
+"gia": 28921559155,
 "bg": {
-"tttd": 26019258853,
-"tts": 24059711314,
+"tts": 25587568472,
 "vay": 26933714370
 },
 "offers": [
 {
-"src": "VHS",
-"gia": 26390546209,
+"src": "Đất Việt",
+"gia": 28921559155,
 "tcbg": "Thô không thang"
 },
 {
-"src": "Đất Việt",
+"src": "VHS",
 "gia": 28921559155,
 "tcbg": "Thô không thang"
 },
@@ -1194,24 +1204,23 @@
 "Đất Việt"
 ],
 "loai": "Biệt thự song lập - Shop",
-"dt": "150",
+"dt": "150.0",
 "dtxd": "355.9",
 "tcbg": "Bàn giao thô",
 "huong": "Tây Nam",
-"gia": 25082419485,
+"gia": 27498244586,
 "bg": {
-"tttd": 24835344868,
-"tts": 22982177392,
-"vay": 25700156356
+"tts": 24417459993,
+"vay": 25636732989
 },
 "offers": [
 {
-"src": "VHS",
-"gia": 25082419485,
+"src": "Đất Việt",
+"gia": 27498244586,
 "tcbg": "Bàn giao thô"
 },
 {
-"src": "Đất Việt",
+"src": "VHS",
 "gia": 27498244586,
 "tcbg": "Bàn giao thô"
 }
@@ -1649,7 +1658,6 @@
 "MICC",
 "TPL",
 "Tân Hương Phát",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Shophouse",
@@ -1660,11 +1668,6 @@
 "gia": 18284560106,
 "quy": "Độc quyền Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 15313000000,
-"tcbg": "Hoàn thiện"
-},
 {
 "src": "Tân Hương Phát",
 "gia": 18284560106,
@@ -1797,7 +1800,7 @@
 "dt": "84",
 "dtxd": "323.9",
 "tcbg": "Bàn giao hoàn thiện",
-"gia": 17215056382,
+"gia": 18925567236,
 "bg": {
 "tttd": 15747667836,
 "tts": 14565768140,
@@ -2224,17 +2227,17 @@
 "quy": "Độc quyền Tân Hương Phát",
 "offers": [
 {
-"src": "VHS",
-"gia": 26775665722,
-"tcbg": "Bàn giao thô"
-},
-{
 "src": "Tân Hương Phát",
 "gia": 28782834076,
 "tcbg": "Thô có thang"
 },
 {
 "src": "Đất Việt",
+"gia": 29360348434,
+"tcbg": "Bàn giao thô"
+},
+{
+"src": "VHS",
 "gia": 29360348434,
 "tcbg": "Bàn giao thô"
 }
@@ -2422,6 +2425,10 @@
 "src": "Đất Việt",
 "gia": 30429094466,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 30429094466
 },
 {
 "src": "Newstarland",
@@ -3060,28 +3067,13 @@
 "vay": 39321000000
 }
 },
-"NT1-08": {
-"src": [
-"VSR"
-],
-"loai": "BT Song lập",
-"dt": "160.0",
-"dtxd": "377.1",
-"tcbg": "Giãn xây",
-"huong": "Đông Bắc",
-"gia": 37946000000,
-"bg": {
-"tttd": 37946000000,
-"tts": 35365000000,
-"vay": 40700000000
-}
-},
 "NT1-104": {
 "src": [
 "Bighomes"
 ],
 "loai": "Biệt thự song lập",
 "dtxd": "322.6",
+"gia": 33415517732,
 "bg": {
 "tts": 32808000000,
 "vay": 33248000000
@@ -3194,6 +3186,7 @@
 "gia": 38947678268,
 "bg": {
 "tttd": 38752690169,
+"tts": 35842492797,
 "vay": 40110782276
 }
 },
@@ -3341,23 +3334,8 @@
 "gia": 41675193235,
 "bg": {
 "tttd": 41485369390,
+"tts": 38652248496,
 "vay": 42807492473
-}
-},
-"NT1-36": {
-"src": [
-"VSR"
-],
-"loai": "BT Đơn lập",
-"dt": "332.5",
-"dtxd": "463.5",
-"tcbg": "Giãn xây",
-"huong": "Đông Bắc",
-"gia": 84031000000,
-"bg": {
-"tttd": 84031000000,
-"tts": 78054000000,
-"vay": 90407000000
 }
 },
 "NT1-37": {
@@ -3427,6 +3405,10 @@
 "src": "Đất Việt",
 "gia": 32919062660,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 32919062660
 },
 {
 "src": "MICC",
@@ -3565,11 +3547,6 @@
 "quy": "Độc quyền 5S",
 "offers": [
 {
-"src": "VHS",
-"gia": 30080549956,
-"tcbg": "Bàn giao thô"
-},
-{
 "src": "Đất Việt",
 "gia": 33030890149,
 "tcbg": "Bàn giao thô"
@@ -3583,6 +3560,11 @@
 "src": "MICC",
 "gia": 33030890149,
 "tcbg": "Thô có thang"
+},
+{
+"src": "VHS",
+"gia": 33030890149,
+"tcbg": "Bàn giao thô"
 }
 ]
 },
@@ -3630,11 +3612,6 @@
 "quy": "Độc quyền Newstarland",
 "offers": [
 {
-"src": "VHS",
-"gia": 30080549956,
-"tcbg": "Bàn giao thô"
-},
-{
 "src": "Đất Việt",
 "gia": 33030890149,
 "tcbg": "Thô"
@@ -3643,6 +3620,11 @@
 "src": "Newstarland",
 "gia": 33030890149,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 33030890149,
+"tcbg": "Bàn giao thô"
 }
 ]
 },
@@ -4218,6 +4200,10 @@
 "src": "Đất Việt",
 "gia": 32147468683,
 "tcbg": "Thô không thang"
+},
+{
+"src": "Bighomes",
+"gia": 32147468683
 }
 ]
 },
@@ -4345,24 +4331,23 @@
 "Đất Việt"
 ],
 "loai": "Biệt thự Song lập",
-"dt": "140",
+"dt": "140.0",
 "dtxd": "338.4",
 "tcbg": "Bàn giao thô",
 "huong": "Tây Nam",
-"gia": 29300351147,
+"gia": 32171428367,
 "bg": {
-"tttd": 29055727735,
-"tts": 26887446656,
-"vay": 30067592238
+"tts": 28566785489,
+"vay": 29993384327
 },
 "offers": [
 {
-"src": "VHS",
-"gia": 29300351147,
+"src": "Đất Việt",
+"gia": 32171428367,
 "tcbg": "Bàn giao thô"
 },
 {
-"src": "Đất Việt",
+"src": "VHS",
 "gia": 32171428367,
 "tcbg": "Bàn giao thô"
 }
@@ -4609,7 +4594,8 @@
 "Bighomes"
 ],
 "loai": "Biệt thự song lập- thô giãn xây",
-"dtxd": "338.4"
+"dtxd": "338.4",
+"gia": 33675189366
 },
 "NT2-86": {
 "src": [
@@ -5667,24 +5653,23 @@
 "Đất Việt"
 ],
 "loai": "Biệt Thự Đơn Lập",
-"dt": "428",
+"dt": "428.0",
 "dtxd": "477.4",
 "tcbg": "Bàn giao thô - có thang",
 "huong": "Đông Nam",
-"gia": 82297802705,
+"gia": 90389681162,
 "bg": {
-"tttd": 81338980352,
-"tts": 75228214193,
+"tts": 79990406263,
 "vay": 84190671227
 },
 "offers": [
 {
-"src": "VHS",
-"gia": 82297802705,
+"src": "Đất Việt",
+"gia": 90389681162,
 "tcbg": "Bàn giao thô - có thang"
 },
 {
-"src": "Đất Việt",
+"src": "VHS",
 "gia": 90389681162,
 "tcbg": "Bàn giao thô - có thang"
 }
@@ -5742,14 +5727,13 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
 "dt": "145.6",
 "dtxd": "427.2",
 "tcbg": "Thô có thang",
-"huong": "Tây Nam - Đông Bắc",
+"huong": "Tây Nam",
 "gia": 23445683980,
 "bg": {
 "tttd": 21094469200,
@@ -5759,16 +5743,6 @@
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
 {
-"src": "VSR",
-"gia": 21355000000,
-"tcbg": "Thô có thang"
-},
-{
-"src": "VHS",
-"gia": 21379538800,
-"tcbg": "Bàn giao thô - có thang"
-},
-{
 "src": "MD Land",
 "gia": 23445683980,
 "tcbg": "Thô có thang"
@@ -5777,6 +5751,10 @@
 "src": "Đất Việt",
 "gia": 23445683980,
 "tcbg": "Thô có thang"
+},
+{
+"src": "Bighomes",
+"gia": 23445683980
 },
 {
 "src": "Phúc Lộc",
@@ -5811,6 +5789,11 @@
 "src": "MICC",
 "gia": 23445683980,
 "tcbg": "Thô có thang"
+},
+{
+"src": "VHS",
+"gia": 23445683980,
+"tcbg": "Bàn giao thô - có thang"
 },
 {
 "src": "Tân Hương Phát",
@@ -6878,11 +6861,26 @@
 "Bighomes",
 "TPL"
 ],
-"loai": "Shophouse",
+"loai": "Shophouse đối diện chung cư",
 "dt": "120.0",
 "dtxd": "448.5",
 "tcbg": "Thô không thang",
-"gia": 30142071951
+"gia": 27702893029,
+"bg": {
+"tts": 27214000000,
+"vay": 27564000000
+},
+"offers": [
+{
+"src": "Bighomes",
+"gia": 27702893029
+},
+{
+"src": "TPL",
+"gia": 30142071951,
+"tcbg": "Thô không thang"
+}
+]
 },
 "SH24-30": {
 "src": [
@@ -7292,7 +7290,6 @@
 "TĐ6-02": {
 "src": [
 "Tân Hương Phát",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Liền kề",
@@ -7304,19 +7301,7 @@
 "tts": 24109000000,
 "vay": 26069000000
 },
-"quy": "Độc quyền Tân Hương Phát",
-"offers": [
-{
-"src": "VSR",
-"gia": 25686000000,
-"tcbg": "Hoàn thiện"
-},
-{
-"src": "Đất Việt",
-"gia": 31341152858,
-"tcbg": "Hoàn thiện"
-}
-]
+"quy": "Độc quyền Tân Hương Phát"
 },
 "TĐ7-09": {
 "src": [
@@ -7827,7 +7812,6 @@
 "VTĐ-05": {
 "src": [
 "Tân Hương Phát",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Liền kề",
@@ -7841,11 +7825,6 @@
 {
 "src": "Tân Hương Phát",
 "gia": 14960921739,
-"tcbg": "Thô"
-},
-{
-"src": "VSR",
-"gia": 16604000000,
 "tcbg": "Thô"
 },
 {
@@ -7906,7 +7885,7 @@
 "dtxd": "279.6",
 "tcbg": "Bàn giao thô",
 "huong": "Đông Bắc",
-"gia": 16655939106,
+"gia": 18288878037,
 "bg": {
 "tttd": 16462016816,
 "tts": 15225282108,
@@ -7915,7 +7894,7 @@
 "offers": [
 {
 "src": "VHS",
-"gia": 16655939106,
+"gia": 18288878037,
 "tcbg": "Bàn giao thô"
 },
 {
@@ -8158,6 +8137,10 @@
 "tcbg": "Thô"
 },
 {
+"src": "Bighomes",
+"gia": 18228855707
+},
+{
 "src": "TPL",
 "gia": 20136816984,
 "tcbg": "Thô"
@@ -8177,7 +8160,6 @@
 "VTĐ-26": {
 "src": [
 "Tân Hương Phát",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Liền Kề",
@@ -8189,19 +8171,7 @@
 "tts": 16717000000,
 "vay": 18695000000
 },
-"quy": "Độc quyền Tân Hương Phát",
-"offers": [
-{
-"src": "VSR",
-"gia": 18065000000,
-"tcbg": "Thô"
-},
-{
-"src": "Đất Việt",
-"gia": 18156258256,
-"tcbg": "Thô"
-}
-]
+"quy": "Độc quyền Tân Hương Phát"
 },
 "VTĐ-27": {
 "src": [
@@ -8283,6 +8253,7 @@
 ],
 "loai": "Liền kề",
 "dtxd": "277.8",
+"gia": 18230877802,
 "bg": {
 "tts": 17938000000,
 "vay": 18140000000
@@ -8793,6 +8764,7 @@
 ],
 "loai": "Song lập VIP mặt hồ",
 "dtxd": "324.2",
+"gia": 34958724124,
 "bg": {
 "tts": 34495000000,
 "vay": 34962000000
@@ -9225,7 +9197,22 @@
 "dt": "128.0",
 "dtxd": "379.4",
 "tcbg": "Thô",
-"gia": 30694539324
+"gia": 30694299694,
+"bg": {
+"tts": 27375000000,
+"vay": 27751000000
+},
+"offers": [
+{
+"src": "Bighomes",
+"gia": 30694299694
+},
+{
+"src": "TPL",
+"gia": 30694539324,
+"tcbg": "Thô"
+}
+]
 },
 "VTĐ8-16": {
 "src": [
@@ -9284,45 +9271,22 @@
 }
 ]
 },
-"VTĐ8-53": {
-"src": [
-"VSR"
-],
-"loai": "Shophouse",
-"dt": "144.0",
-"dtxd": "443.3",
-"tcbg": "Thô",
-"huong": "Đông Nam",
-"gia": 31477000000,
-"bg": {
-"tttd": 31477000000,
-"tts": 29101000000,
-"vay": 34008000000
-}
-},
 "VX1-01": {
 "src": [
 "MICC",
-"VSR",
 "Đất Việt"
 ],
-"loai": "BT Song lập",
+"loai": "Song lập",
 "dt": "126.0",
 "dtxd": "249.4",
 "tcbg": "Thô",
-"huong": "Tây Bắc",
-"gia": 22524000000,
+"huong": "TB",
+"gia": 24854425865,
 "bg": {
-"tttd": 22524000000,
-"tts": 20829000000,
-"vay": 24333000000
+"tts": 21990000000,
+"vay": 22361000000
 },
 "offers": [
-{
-"src": "VSR",
-"gia": 22524000000,
-"tcbg": "Thô"
-},
 {
 "src": "Đất Việt",
 "gia": 24854425865,
@@ -9570,32 +9534,17 @@
 },
 "VX1-22": {
 "src": [
-"VSR",
 "Đất Việt"
 ],
 "loai": "BT Đơn lập",
 "dt": "240.0",
 "dtxd": "400.0",
 "tcbg": "Thô",
-"huong": "Đông Nam",
-"gia": 53086000000,
-"bg": {
-"tttd": 53086000000,
-"tts": 49094000000,
-"vay": 57344000000
-},
-"offers": [
-{
-"src": "VSR",
-"gia": 53086000000,
-"tcbg": "Thô"
-},
-{
-"src": "Đất Việt",
 "gia": 58571472945,
-"tcbg": "Thô"
+"bg": {
+"tts": 52249000000,
+"vay": 57344000000
 }
-]
 },
 "VX1-23": {
 "src": [
@@ -10153,20 +10102,19 @@
 "dtxd": "294.5",
 "tcbg": "Bàn giao thô",
 "huong": "Đông Nam",
-"gia": 21889420383,
+"gia": 23962996815,
 "bg": {
-"tttd": 21565069119,
-"tts": 19939738613,
+"tts": 21207076474,
 "vay": 22323556688
 },
 "offers": [
 {
-"src": "VHS",
-"gia": 21889420383,
+"src": "Đất Việt",
+"gia": 23962996815,
 "tcbg": "Bàn giao thô"
 },
 {
-"src": "Đất Việt",
+"src": "VHS",
 "gia": 23962996815,
 "tcbg": "Bàn giao thô"
 }
@@ -10957,6 +10905,7 @@
 "gia": 20640117947,
 "bg": {
 "tttd": 20536330787,
+"tts": 20261222125,
 "vay": 21259208356
 },
 "offers": [
@@ -10966,12 +10915,12 @@
 "tcbg": "Thô"
 },
 {
-"src": "VHS",
-"gia": 21469262407,
+"src": "Đất Việt",
+"gia": 23498874592,
 "tcbg": "Bàn giao thô"
 },
 {
-"src": "Đất Việt",
+"src": "VHS",
 "gia": 23498874592,
 "tcbg": "Bàn giao thô"
 }
@@ -10982,27 +10931,26 @@
 "VHS",
 "Đất Việt"
 ],
-"loai": "Biệt thự Song lập",
+"loai": "Song lập",
 "dt": "144.0",
 "dtxd": "294.5",
-"tcbg": "Bàn giao thô",
+"tcbg": "Thô",
 "huong": "Đông Nam",
-"gia": 21721357193,
+"gia": 23777347927,
 "bg": {
-"tttd": 21397902980,
-"tts": 19785051481,
-"vay": 22150567013
+"tts": 21049000000,
+"vay": 22141000000
 },
 "offers": [
-{
-"src": "VHS",
-"gia": 21721357193,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 23777347927,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 23777347927,
+"tcbg": "Bàn giao thô"
 }
 ]
 },
@@ -11018,6 +10966,7 @@
 "gia": 18043825892,
 "bg": {
 "tttd": 16786113426,
+"tts": 14758881328,
 "vay": 16786113426
 },
 "offers": [
@@ -11194,7 +11143,7 @@
 "offers": [
 {
 "src": "Bighomes",
-"gia": 18717618882
+"gia": 20885023401
 },
 {
 "src": "MD Land",
@@ -11440,6 +11389,7 @@
 ],
 "loai": "Biệt thự song lập",
 "dtxd": "294.5",
+"gia": 23962996815,
 "bg": {
 "tts": 19930000000,
 "vay": 21556000000
@@ -12729,32 +12679,17 @@
 },
 "VX8-02": {
 "src": [
-"VSR",
 "Đất Việt"
 ],
 "loai": "BT Đơn lập",
 "dt": "240.0",
 "dtxd": "400.0",
 "tcbg": "Thô",
-"huong": "Tây Nam",
-"gia": 53086000000,
-"bg": {
-"tttd": 53086000000,
-"tts": 49095000000,
-"vay": 57344000000
-},
-"offers": [
-{
-"src": "VSR",
-"gia": 53086000000,
-"tcbg": "Thô"
-},
-{
-"src": "Đất Việt",
 "gia": 58571732738,
-"tcbg": "Thô"
+"bg": {
+"tts": 52249000000,
+"vay": 57344000000
 }
-]
 },
 "VX8-03": {
 "src": [
@@ -14276,6 +14211,7 @@
 "gia": 23487246950,
 "bg": {
 "tttd": 22198257714,
+"tts": 20529193228,
 "vay": 22977154474
 }
 },
@@ -14392,14 +14328,12 @@
 "ĐLBM-263": {
 "src": [
 "Newstarland",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Shophouse",
 "dt": "110.0",
 "dtxd": "402.9",
 "tcbg": "Thô",
-"huong": "Tây Nam - Đông Bắc",
 "gia": 22930302198,
 "bg": {
 "tts": 22455000000
@@ -14414,11 +14348,6 @@
 {
 "src": "Newstarland",
 "gia": 22930302198,
-"tcbg": "Thô"
-},
-{
-"src": "VSR",
-"gia": 28540000000,
 "tcbg": "Thô"
 }
 ]
@@ -15318,26 +15247,19 @@
 "ĐLSH-147": {
 "src": [
 "MICC",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Shophouse",
 "dt": "100.0",
 "dtxd": "428.6",
-"tcbg": "Thô có thang",
-"huong": "TN - ĐB",
-"gia": 20516000000,
+"tcbg": "Thô",
+"huong": "ĐB-TN",
+"gia": 22611233335,
 "bg": {
-"tttd": 20516000000,
-"tts": 20516000000,
-"vay": 22150000000
+"tts": 20063000000,
+"vay": 20370000000
 },
 "offers": [
-{
-"src": "VSR",
-"gia": 20516000000,
-"tcbg": "Thô có thang"
-},
 {
 "src": "Đất Việt",
 "gia": 22611233335,
@@ -15550,11 +15472,6 @@
 "quy": "Độc quyền Newstarland",
 "offers": [
 {
-"src": "VHS",
-"gia": 31027541163,
-"tcbg": "Bàn giao thô - có thang"
-},
-{
 "src": "Đất Việt",
 "gia": 34046936225,
 "tcbg": "Bàn giao thô - có thang"
@@ -15563,6 +15480,11 @@
 "src": "Newstarland",
 "gia": 34046936225,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 34046936225,
+"tcbg": "Bàn giao thô - có thang"
 }
 ]
 },
@@ -15974,22 +15896,12 @@
 "VHS",
 "Đất Việt"
 ],
-"loai": "Biệt thự đơn lập",
+"loai": "BTĐL",
 "dt": "182.56",
 "dtxd": "325.4",
-"tcbg": "Bàn giao thô",
-"gia": 28297984436,
-"bg": {
-"tttd": 30851560914,
-"tts": 28528650116,
-"vay": 31935585953
-},
+"tcbg": "Thô",
+"gia": 30995331767,
 "offers": [
-{
-"src": "VHS",
-"gia": 28297984436,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 30995331767,
@@ -15999,6 +15911,11 @@
 "src": "Bighomes",
 "gia": 30995331767,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 30995331767,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -16146,7 +16063,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -16162,16 +16078,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát, Tân Thời Đại",
 "offers": [
-{
-"src": "VSR",
-"gia": 22772000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 22911767272,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 25096000000,
@@ -16191,6 +16097,10 @@
 "src": "Queen Land",
 "gia": 25096433644,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 25096433644
 },
 {
 "src": "Phúc Lộc",
@@ -16227,6 +16137,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 25096433644,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 25096433644,
 "tcbg": "Thô"
@@ -16250,7 +16165,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -16267,16 +16181,6 @@
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát, Tân Thời Đại",
 "offers": [
 {
-"src": "VSR",
-"gia": 21907000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 22049731120,
-"tcbg": "Bàn giao thô"
-},
-{
 "src": "Mayhomes",
 "gia": 24143897077,
 "tcbg": "Thô"
@@ -16290,6 +16194,10 @@
 "src": "Queen Land",
 "gia": 24143897077,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 24143897077
 },
 {
 "src": "Phúc Lộc",
@@ -16324,6 +16232,11 @@
 "src": "MICC",
 "gia": 24143897077,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 24143897077,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "Tân Hương Phát",
@@ -16354,7 +16267,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -16371,16 +16283,6 @@
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát, Tân Thời Đại",
 "offers": [
 {
-"src": "VSR",
-"gia": 21907000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 22049731120,
-"tcbg": "Bàn giao thô"
-},
-{
 "src": "Mayhomes",
 "gia": 24143897077,
 "tcbg": "Thô"
@@ -16394,6 +16296,10 @@
 "src": "Queen Land",
 "gia": 24143897077,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 24143897077
 },
 {
 "src": "Phúc Lộc",
@@ -16428,6 +16334,11 @@
 "src": "MICC",
 "gia": 24143897077,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 24143897077,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "Tân Hương Phát",
@@ -16458,7 +16369,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -16475,16 +16385,6 @@
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát, Tân Thời Đại",
 "offers": [
 {
-"src": "VSR",
-"gia": 21907000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 22049731120,
-"tcbg": "Bàn giao thô"
-},
-{
 "src": "Mayhomes",
 "gia": 24143897077,
 "tcbg": "Thô"
@@ -16498,6 +16398,10 @@
 "src": "Queen Land",
 "gia": 24143897077,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 24143897077
 },
 {
 "src": "Phúc Lộc",
@@ -16532,6 +16436,11 @@
 "src": "MICC",
 "gia": 24143897077,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 24143897077,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "Tân Hương Phát",
@@ -16562,7 +16471,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -16579,16 +16487,6 @@
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát, Tân Thời Đại",
 "offers": [
 {
-"src": "VSR",
-"gia": 21907000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 22049731120,
-"tcbg": "Bàn giao thô"
-},
-{
 "src": "Mayhomes",
 "gia": 24143897077,
 "tcbg": "Thô"
@@ -16602,6 +16500,10 @@
 "src": "Queen Land",
 "gia": 24143897077,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 24143897077
 },
 {
 "src": "Phúc Lộc",
@@ -16638,6 +16540,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 24143897077,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 24143897077,
 "tcbg": "Thô"
@@ -16666,7 +16573,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -16682,16 +16588,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát, Tân Thời Đại",
 "offers": [
-{
-"src": "VSR",
-"gia": 22772000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 22911767272,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 25096000000,
@@ -16711,6 +16607,10 @@
 "src": "Queen Land",
 "gia": 25096433644,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 25096433644
 },
 {
 "src": "Phúc Lộc",
@@ -16747,6 +16647,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 25096433644,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 25096433644,
 "tcbg": "Thô"
@@ -16770,7 +16675,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Shophouse",
@@ -16781,16 +16685,6 @@
 "gia": 21193564953,
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 17721000000,
-"tcbg": "Hoàn thiện"
-},
-{
-"src": "VHS",
-"gia": 19680682362,
-"tcbg": "Bàn giao hoàn thiện"
-},
 {
 "src": "Tân Hương Phát",
 "gia": 21193564953,
@@ -16815,6 +16709,10 @@
 "src": "Queen Land",
 "gia": 21618050259,
 "tcbg": "Hoàn thiện"
+},
+{
+"src": "Bighomes",
+"gia": 21618050259
 },
 {
 "src": "Phúc Lộc",
@@ -16849,6 +16747,11 @@
 "src": "MICC",
 "gia": 21618050259,
 "tcbg": "Hoàn thiện"
+},
+{
+"src": "VHS",
+"gia": 21618050259,
+"tcbg": "Bàn giao hoàn thiện"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -16868,6 +16771,10 @@
 "gia": 18375677661,
 "quy": "Độc quyền Tân Hương Phát",
 "offers": [
+{
+"src": "Bighomes",
+"gia": 18374677661
+},
 {
 "src": "Tân Hương Phát",
 "gia": 18375677661,
@@ -16910,6 +16817,10 @@
 "src": "MD Land",
 "gia": 18374178697,
 "tcbg": "Hoàn thiện"
+},
+{
+"src": "Bighomes",
+"gia": 18374178697
 },
 {
 "src": "Đất Việt",
@@ -16997,17 +16908,17 @@
 "Novasky",
 "Đất Việt"
 ],
-"loai": "Biệt thự song lập - Shop",
+"loai": "Biệt thự song lập giá rẻ",
 "dt": "150.0",
 "dtxd": "355.9",
-"tcbg": "Thô ko thang",
+"tcbg": "Thô không thang",
 "huong": "TN",
-"gia": 24558000000,
-"bg": {
-"tts": 21458000000,
-"vay": 24023000000
-},
+"gia": 24074248661,
 "offers": [
+{
+"src": "Bighomes",
+"gia": 24074248661
+},
 {
 "src": "Novasky",
 "gia": 24558000000,
@@ -17158,7 +17069,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -17174,16 +17084,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 27610000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 27742870285,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 30429000000,
@@ -17208,6 +17108,10 @@
 "src": "Queen Land",
 "gia": 30429094466,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 30429094466
 },
 {
 "src": "Phúc Lộc",
@@ -17242,6 +17146,11 @@
 "src": "MICC",
 "gia": 30429094466,
 "tcbg": "Thô có thang"
+},
+{
+"src": "VHS",
+"gia": 30429094466,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "Tân Hương Phát",
@@ -17281,7 +17190,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -17297,16 +17205,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 30473000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 30593573083,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 33583000000,
@@ -17331,6 +17229,10 @@
 "src": "Queen Land",
 "gia": 33583187380,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 33583187380
 },
 {
 "src": "Phúc Lộc",
@@ -17367,6 +17269,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 33583187380,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 33583187380,
 "tcbg": "Thô"
@@ -17391,7 +17298,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -17407,16 +17313,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 29149000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 29275328423,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 32125000000,
@@ -17441,6 +17337,10 @@
 "src": "Queen Land",
 "gia": 32125018957,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 32125018957
 },
 {
 "src": "Phúc Lộc",
@@ -17477,6 +17377,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 32125018957,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 32125018957,
 "tcbg": "Thô"
@@ -17501,7 +17406,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -17517,16 +17421,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VHS",
-"gia": 30257602669,
-"tcbg": "Bàn giao thô - có thang"
-},
-{
-"src": "VSR",
-"gia": 33042000000,
-"tcbg": "Thô có thang"
-},
 {
 "src": "Mayhomes",
 "gia": 33207834715,
@@ -17546,6 +17440,10 @@
 "src": "Queen Land",
 "gia": 33207834715,
 "tcbg": "Thô có thang"
+},
+{
+"src": "Bighomes",
+"gia": 33207834715
 },
 {
 "src": "Phúc Lộc",
@@ -17582,6 +17480,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 33207834715,
+"tcbg": "Bàn giao thô - có thang"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 33207834715,
 "tcbg": "Thô có thang"
@@ -17611,7 +17514,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "BTSL Shop",
@@ -17627,16 +17529,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 27610000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 27742870285,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 30429000000,
@@ -17661,6 +17553,10 @@
 "src": "Queen Land",
 "gia": 30429094466,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 30429094466
 },
 {
 "src": "Phúc Lộc",
@@ -17695,6 +17591,11 @@
 "src": "MICC",
 "gia": 30429094466,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 30429094466,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "Tân Hương Phát",
@@ -17721,7 +17622,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Biệt thự song lập - Shop",
@@ -17739,16 +17639,6 @@
 "src": "Newstarland",
 "gia": 24541070822,
 "tcbg": "Thô"
-},
-{
-"src": "VSR",
-"gia": 27610000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 27742870285,
-"tcbg": "Bàn giao thô"
 },
 {
 "src": "Novasky",
@@ -17774,6 +17664,10 @@
 "src": "Queen Land",
 "gia": 30429094466,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 30429094466
 },
 {
 "src": "Phúc Lộc",
@@ -17805,6 +17699,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 30429094466,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 30429094466,
 "tcbg": "Thô"
@@ -17819,21 +17718,11 @@
 "Đất Việt"
 ],
 "loai": "Shophouse",
-"dt": "84",
-"dtxd": "316.6",
-"tcbg": "Bàn giao hoàn thiện",
-"gia": 16960680220,
-"bg": {
-"tttd": 15514848687,
-"tts": 14350413186,
-"vay": 16372649505
-},
+"dt": "84.0",
+"dtxd": "316.60",
+"tcbg": "Hoàn thiện",
+"gia": 18645790247,
 "offers": [
-{
-"src": "VHS",
-"gia": 16960680220,
-"tcbg": "Bàn giao hoàn thiện"
-},
 {
 "src": "Đất Việt",
 "gia": 18645790247,
@@ -17843,6 +17732,11 @@
 "src": "Bighomes",
 "gia": 18645790247,
 "tcbg": "Hoàn thiện"
+},
+{
+"src": "VHS",
+"gia": 18645790247,
+"tcbg": "Bàn giao hoàn thiện"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -17916,8 +17810,20 @@
 "gia": 33072965228,
 "bg": {
 "tttd": 32923258170,
+"tts": 30688880324,
 "vay": 33965967831
 },
+"offers": [
+{
+"src": "Queen Land",
+"gia": 33072965228,
+"tcbg": "Thô xây trong 1 năm"
+},
+{
+"src": "Bighomes",
+"gia": 33100000000
+}
+],
 "why": "bảng hàng ghi Check admin"
 },
 "NT1-55": {
@@ -17926,6 +17832,7 @@
 ],
 "loai": "Biệt thự song lập",
 "dtxd": "322.6",
+"gia": 33500000000,
 "why": "bảng hàng ghi Check admin"
 },
 "NT1-58": {
@@ -17965,22 +17872,12 @@
 "VHS",
 "Đất Việt"
 ],
-"loai": "Biệt thự Song lập",
-"dt": "140",
+"loai": "BTSL",
+"dt": "140.0",
 "dtxd": "338.4",
-"tcbg": "Bàn giao thô",
-"gia": 30080549956,
-"bg": {
-"tttd": 32866563467,
-"tts": 30412570064,
-"vay": 34011760389
-},
+"tcbg": "Thô",
+"gia": 33030985136,
 "offers": [
-{
-"src": "VHS",
-"gia": 30080549956,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 33030985136,
@@ -17990,6 +17887,11 @@
 "src": "Bighomes",
 "gia": 33030985136,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 33030985136,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -18110,12 +18012,18 @@
 "dtxd": "377.1",
 "tcbg": "Thô xây trong 1 năm",
 "huong": "Tây - Bắc",
-"gia": 37117098261,
-"bg": {
-"tttd": 36950000000,
-"tts": 34455000000,
-"vay": 38114000000
+"gia": 37100000000,
+"offers": [
+{
+"src": "Bighomes",
+"gia": 37100000000
 },
+{
+"src": "Mayhomes",
+"gia": 37117098261,
+"tcbg": "Thô xây trong 1 năm"
+}
+],
 "why": "bảng hàng ghi Check admin"
 },
 "PB-122": {
@@ -18125,21 +18033,11 @@
 "Đất Việt"
 ],
 "loai": "Shophouse",
-"dt": "155",
+"dt": "155.0",
 "dtxd": "466.1",
-"tcbg": "Bàn giao thô",
-"gia": 35907616116,
-"bg": {
-"tttd": 39267920438,
-"tts": 36320354000,
-"vay": 40643451442
-},
+"tcbg": "Thô",
+"gia": 39455335916,
 "offers": [
-{
-"src": "VHS",
-"gia": 35907616116,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 39455335916,
@@ -18149,6 +18047,11 @@
 "src": "Bighomes",
 "gia": 39455335916,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 39455335916,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -18187,21 +18090,11 @@
 "Đất Việt"
 ],
 "loai": "Shophouse",
-"dt": "155",
+"dt": "155.0",
 "dtxd": "466.1",
-"tcbg": "Bàn giao thô",
-"gia": 35907616116,
-"bg": {
-"tttd": 35516472244,
-"tts": 32850264421,
-"vay": 36760702562
-},
+"tcbg": "Thô",
+"gia": 39455335916,
 "offers": [
-{
-"src": "VHS",
-"gia": 35907616116,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 39455335916,
@@ -18211,6 +18104,11 @@
 "src": "Bighomes",
 "gia": 39455335916,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 39455335916,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -18274,7 +18172,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -18290,16 +18187,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 22975000000,
-"tcbg": "Thô có thang"
-},
-{
-"src": "VHS",
-"gia": 23027694650,
-"tcbg": "Bàn giao thô - có thang"
-},
 {
 "src": "Novasky",
 "gia": 25226000000,
@@ -18319,6 +18206,10 @@
 "src": "Queen Land",
 "gia": 25226333461,
 "tcbg": "Thô có thang"
+},
+{
+"src": "Bighomes",
+"gia": 25226333461
 },
 {
 "src": "Phúc Lộc",
@@ -18355,6 +18246,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 25226333461,
+"tcbg": "Bàn giao thô - có thang"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 25226333461,
 "tcbg": "Thô có thang"
@@ -18378,7 +18274,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Shophouse",
@@ -18389,16 +18284,6 @@
 "gia": 24514625671,
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 22774000000,
-"tcbg": "Thô có thang"
-},
-{
-"src": "VHS",
-"gia": 22837241902,
-"tcbg": "Bàn giao thô - có thang"
-},
 {
 "src": "Tân Hương Phát",
 "gia": 24514625671,
@@ -18423,6 +18308,10 @@
 "src": "Queen Land",
 "gia": 25007193634,
 "tcbg": "Thô có thang"
+},
+{
+"src": "Bighomes",
+"gia": 25007193634
 },
 {
 "src": "Phúc Lộc",
@@ -18457,6 +18346,11 @@
 "src": "MICC",
 "gia": 25007193634,
 "tcbg": "Thô có thang"
+},
+{
+"src": "VHS",
+"gia": 25007193634,
+"tcbg": "Bàn giao thô - có thang"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -18778,6 +18672,17 @@
 "vay": 50320921451
 },
 "quy": "Độc quyền 5S",
+"offers": [
+{
+"src": "Bighomes",
+"gia": 50133268627
+},
+{
+"src": "5S",
+"gia": 50133268627,
+"tcbg": "Thô"
+}
+],
 "why": "bảng hàng ghi Check admin"
 },
 "VX1-09": {
@@ -18786,23 +18691,13 @@
 "VHS",
 "Đất Việt"
 ],
-"loai": "Biệt thự Song lập",
+"loai": "BTSL",
 "dt": "126.0",
 "dtxd": "249.4",
-"tcbg": "Bàn giao thô",
+"tcbg": "Thô",
 "huong": "Tây Bắc",
-"gia": 20832499501,
-"bg": {
-"tttd": 20541027776,
-"tts": 18994175627,
-"vay": 21262892112
-},
+"gia": 22823890762,
 "offers": [
-{
-"src": "VHS",
-"gia": 20832499501,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 22823890762,
@@ -18812,6 +18707,11 @@
 "src": "Bighomes",
 "gia": 22823890762,
 "tcbg": "BTSL"
+},
+{
+"src": "VHS",
+"gia": 22823890762,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -18877,7 +18777,6 @@
 "src": [
 "Tân Thời Đại",
 "VHS",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Biệt thự song lập",
@@ -18887,11 +18786,6 @@
 "huong": "Tây Bắc",
 "quy": "Độc quyền Tân Thời Đại",
 "offers": [
-{
-"src": "VSR",
-"gia": 20018000000,
-"tcbg": "Thô"
-},
 {
 "src": "VHS",
 "gia": 20662090604,
@@ -18911,6 +18805,7 @@
 ],
 "loai": "Biệt thự đơn lập",
 "dtxd": "399.5",
+"gia": 50452685125,
 "why": "bảng hàng ghi Check admin"
 },
 "VX1-20": {
@@ -18919,6 +18814,7 @@
 ],
 "loai": "Biệt thự đơn lập",
 "dtxd": "399.5",
+"gia": 50452685125,
 "why": "bảng hàng ghi Check admin"
 },
 "VX1-37": {
@@ -19002,23 +18898,13 @@
 "VHS",
 "Đất Việt"
 ],
-"loai": "Biệt thự Song lập",
+"loai": "BTSL",
 "dt": "126.0",
 "dtxd": "249.4",
-"tcbg": "Bàn giao thô",
+"tcbg": "Thô",
 "huong": "Tây Bắc",
-"gia": 20317805982,
-"bg": {
-"tttd": 20027717557,
-"tts": 18519082367,
-"vay": 20731747312
-},
+"gia": 22253977123,
 "offers": [
-{
-"src": "VHS",
-"gia": 20317805982,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 22253977123,
@@ -19028,6 +18914,11 @@
 "src": "Bighomes",
 "gia": 22253977123,
 "tcbg": "BTSL"
+},
+{
+"src": "VHS",
+"gia": 22253977123,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -19038,23 +18929,13 @@
 "VHS",
 "Đất Việt"
 ],
-"loai": "Biệt thự Song lập",
+"loai": "BTSL",
 "dt": "126.0",
 "dtxd": "249.4",
-"tcbg": "Bàn giao thô",
+"tcbg": "Thô",
 "huong": "Tây Bắc",
-"gia": 20317805982,
-"bg": {
-"tttd": 20027717557,
-"tts": 18519082367,
-"vay": 20731747312
-},
+"gia": 22253977123,
 "offers": [
-{
-"src": "VHS",
-"gia": 20317805982,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 22253977123,
@@ -19064,6 +18945,11 @@
 "src": "Bighomes",
 "gia": 22253977123,
 "tcbg": "BTSL"
+},
+{
+"src": "VHS",
+"gia": 22253977123,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -19247,7 +19133,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "LK",
@@ -19263,16 +19148,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 16290000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 16405547481,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "MD Land",
 "gia": 16814204956,
@@ -19292,6 +19167,10 @@
 "src": "Đất Việt",
 "gia": 17976819453,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 17976819453
 },
 {
 "src": "Phúc Lộc",
@@ -19326,6 +19205,11 @@
 "src": "MICC",
 "gia": 17976819453,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 17976819453,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "Tân Hương Phát",
@@ -19641,23 +19525,13 @@
 "VHS",
 "Đất Việt"
 ],
-"loai": "Biệt thự Song lập",
+"loai": "BTSL",
 "dt": "144.0",
 "dtxd": "294.5",
-"tcbg": "Bàn giao thô",
+"tcbg": "Thô",
 "huong": "Đông Nam",
-"gia": 21721357193,
-"bg": {
-"tttd": 21397902980,
-"tts": 19785051481,
-"vay": 22150567013
-},
+"gia": 23777347927,
 "offers": [
-{
-"src": "VHS",
-"gia": 21721357193,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 23777347927,
@@ -19667,6 +19541,11 @@
 "src": "Bighomes",
 "gia": 23777347927,
 "tcbg": "BTSL"
+},
+{
+"src": "VHS",
+"gia": 23777347927,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -19677,23 +19556,13 @@
 "VHS",
 "Đất Việt"
 ],
-"loai": "Biệt thự Song lập",
+"loai": "BTSL",
 "dt": "144.0",
 "dtxd": "294.5",
-"tcbg": "Bàn giao thô",
+"tcbg": "Thô",
 "huong": "Đông Nam",
-"gia": 21973451979,
-"bg": {
-"tttd": 21648652191,
-"tts": 20017082181,
-"vay": 22410051529
-},
+"gia": 24055821262,
 "offers": [
-{
-"src": "VHS",
-"gia": 21973451979,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 24055821262,
@@ -19703,6 +19572,11 @@
 "src": "Bighomes",
 "gia": 24055821262,
 "tcbg": "BTSL"
+},
+{
+"src": "VHS",
+"gia": 24055821262,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -19729,7 +19603,7 @@
 "offers": [
 {
 "src": "Bighomes",
-"gia": 18717618882
+"gia": 20473235785
 },
 {
 "src": "Novasky",
@@ -20001,23 +19875,13 @@
 "VHS",
 "Đất Việt"
 ],
-"loai": "Biệt thự Song lập",
+"loai": "BTSL",
 "dt": "126.0",
 "dtxd": "249.4",
-"tcbg": "Bàn giao thô",
+"tcbg": "Thô",
 "huong": "Tây Bắc",
-"gia": 17744338042,
-"bg": {
-"tttd": 17467985701,
-"tts": 16150435331,
-"vay": 18082842540
-},
+"gia": 19411228130,
 "offers": [
-{
-"src": "VHS",
-"gia": 17744338042,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Đất Việt",
 "gia": 19411228130,
@@ -20027,6 +19891,11 @@
 "src": "Bighomes",
 "gia": 19411228130,
 "tcbg": "BTSL"
+},
+{
+"src": "VHS",
+"gia": 19411228130,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -20037,6 +19906,7 @@
 ],
 "loai": "Biệt thự đơn lập",
 "dtxd": "433.3",
+"gia": 45770733395,
 "why": "bảng hàng ghi Check admin"
 },
 "VX4-95": {
@@ -20370,11 +20240,6 @@
 "quy": "Độc quyền 5S",
 "offers": [
 {
-"src": "VHS",
-"gia": 20996236884,
-"tcbg": "Bàn giao thô"
-},
-{
 "src": "Đất Việt",
 "gia": 23039525306,
 "tcbg": "Thô"
@@ -20383,6 +20248,11 @@
 "src": "Queen Land",
 "gia": 23039525306,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 23039525306,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "5S",
@@ -20503,11 +20373,6 @@
 "quy": "Độc quyền 5S, Newstarland",
 "offers": [
 {
-"src": "VHS",
-"gia": 21402893078,
-"tcbg": "Thô không thang"
-},
-{
 "src": "Đất Việt",
 "gia": 23487246950,
 "tcbg": "Thô không thang"
@@ -20516,6 +20381,11 @@
 "src": "Newstarland",
 "gia": 23487246950,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 23487246950,
+"tcbg": "Thô không thang"
 }
 ],
 "why": "quỹ độc quyền chưa bôi nhưng 5S bôi đỏ"
@@ -20585,6 +20455,7 @@
 ],
 "loai": "Shophouse",
 "dtxd": "434.1",
+"gia": 23027552816,
 "bg": {
 "tts": 18900000000,
 "vay": 22290000000
@@ -20624,6 +20495,7 @@
 ],
 "loai": "Shophouse",
 "dtxd": "392.9",
+"gia": 27540498822,
 "bg": {
 "tts": 22966000000,
 "vay": 27074000000
@@ -20649,6 +20521,7 @@
 ],
 "loai": "Shophouse",
 "dtxd": "311.7",
+"gia": 16672393062,
 "bg": {
 "tts": 13690000000,
 "vay": 16147000000
@@ -20662,9 +20535,23 @@
 ],
 "loai": "Shophouse",
 "dt": "84.0",
-"dtxd": "353.0",
+"dtxd": "353.4",
 "huong": "Tây Nam",
 "gia": 17103955618,
+"bg": {
+"tts": 13948000000,
+"vay": 16455000000
+},
+"offers": [
+{
+"src": "Bighomes",
+"gia": 17103955618
+},
+{
+"src": "Home Plus",
+"gia": 17103955618
+}
+],
 "why": "bảng hàng ghi Check admin"
 },
 "ĐLBM-73": {
@@ -20756,6 +20643,7 @@
 ],
 "loai": "Shophouse",
 "dtxd": "434.1",
+"gia": 22211104272,
 "bg": {
 "tts": 18185000000,
 "vay": 21450000000
@@ -20768,6 +20656,7 @@
 ],
 "loai": "Shophouse",
 "dtxd": "401.6",
+"gia": 21874754559,
 "bg": {
 "tts": 17984000000,
 "vay": 21210000000
@@ -20790,7 +20679,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Shophouse",
@@ -20801,16 +20689,6 @@
 "gia": 28385629494,
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 26272000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 26362743823,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Tân Hương Phát",
 "gia": 28385629494,
@@ -20835,6 +20713,10 @@
 "src": "Queen Land",
 "gia": 28954237694,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 28954237694
 },
 {
 "src": "Phúc Lộc",
@@ -20869,6 +20751,11 @@
 "src": "MICC",
 "gia": 28954237694,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 28954237694,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -20890,7 +20777,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Shophouse",
@@ -20901,16 +20787,6 @@
 "gia": 28385629494,
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 26272000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 26362743823,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Tân Hương Phát",
 "gia": 28385629494,
@@ -20942,6 +20818,10 @@
 "tcbg": "Thô"
 },
 {
+"src": "Bighomes",
+"gia": 28954237694
+},
+{
 "src": "Phúc Lộc",
 "gia": 28954237694,
 "tcbg": "Thô"
@@ -20974,6 +20854,11 @@
 "src": "MICC",
 "gia": 28954237694,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 28954237694,
+"tcbg": "Bàn giao thô"
 }
 ],
 "why": "bảng hàng ghi Check admin"
@@ -20995,7 +20880,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -21011,16 +20895,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 26272000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 26362743823,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 28954000000,
@@ -21047,6 +20921,10 @@
 "tcbg": "Thô"
 },
 {
+"src": "Bighomes",
+"gia": 28954237694
+},
+{
 "src": "Phúc Lộc",
 "gia": 28954237694,
 "tcbg": "Thô"
@@ -21079,6 +20957,11 @@
 "src": "MICC",
 "gia": 28954237694,
 "tcbg": "Thô"
+},
+{
+"src": "VHS",
+"gia": 28954237694,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "Tân Hương Phát",
@@ -21105,7 +20988,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -21121,16 +21003,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát, Tân Thời Đại",
 "offers": [
-{
-"src": "VSR",
-"gia": 26272000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 26362743823,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 28954000000,
@@ -21155,6 +21027,10 @@
 "src": "Queen Land",
 "gia": 28954237694,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 28954237694
 },
 {
 "src": "Phúc Lộc",
@@ -21191,6 +21067,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 28954237694,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 28954237694,
 "tcbg": "Thô"
@@ -21214,7 +21095,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -21230,16 +21110,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 20434000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 20514611347,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 22520000000,
@@ -21259,6 +21129,10 @@
 "src": "Queen Land",
 "gia": 22520334188,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 22520334188
 },
 {
 "src": "Phúc Lộc",
@@ -21295,6 +21169,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 22520334188,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 22520334188,
 "tcbg": "Thô"
@@ -21318,7 +21197,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -21334,16 +21212,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 20516000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 20598266839,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 22611000000,
@@ -21363,6 +21231,10 @@
 "src": "Queen Land",
 "gia": 22611233335,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 22611233335
 },
 {
 "src": "Phúc Lộc",
@@ -21399,6 +21271,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 22611233335,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 22611233335,
 "tcbg": "Thô"
@@ -21422,7 +21299,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -21438,16 +21314,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 20436000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 20516470359,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 22522000000,
@@ -21467,6 +21333,10 @@
 "src": "Queen Land",
 "gia": 22522390470,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 22522390470
 },
 {
 "src": "Phúc Lộc",
@@ -21503,6 +21373,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 22522390470,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 22522390470,
 "tcbg": "Thô"
@@ -21526,7 +21401,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -21542,16 +21416,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 20516000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 20598266839,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 22611000000,
@@ -21571,6 +21435,10 @@
 "src": "Queen Land",
 "gia": 22611233335,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 22611233335
 },
 {
 "src": "Phúc Lộc",
@@ -21607,6 +21475,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 22611233335,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 22611233335,
 "tcbg": "Thô"
@@ -21631,7 +21504,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -21647,16 +21519,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 20431000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 20511822831,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 22517000000,
@@ -21681,6 +21543,10 @@
 "src": "Queen Land",
 "gia": 22517259234,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 22517259234
 },
 {
 "src": "Phúc Lộc",
@@ -21717,6 +21583,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 22517259234,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 22517259234,
 "tcbg": "Thô"
@@ -21740,7 +21611,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -21756,16 +21626,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 23603000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 23701387225,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 26013000000,
@@ -21785,6 +21645,10 @@
 "src": "Queen Land",
 "gia": 26013208481,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 26013208481
 },
 {
 "src": "Phúc Lộc",
@@ -21814,6 +21678,11 @@
 {
 "src": "Home Plus",
 "gia": 26013208481
+},
+{
+"src": "VHS",
+"gia": 26013208481,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "Tân Hương Phát",
@@ -21844,7 +21713,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "Shophouse",
@@ -21858,16 +21726,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 23603000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 23701387225,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Newstarland",
 "gia": 25502002089,
@@ -21892,6 +21750,10 @@
 "src": "Queen Land",
 "gia": 26013208481,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 26013208481
 },
 {
 "src": "Phúc Lộc",
@@ -21923,6 +21785,11 @@
 "tcbg": "Thô"
 },
 {
+"src": "VHS",
+"gia": 26013208481,
+"tcbg": "Bàn giao thô"
+},
+{
 "src": "Tân Hương Phát",
 "gia": 26013208481,
 "tcbg": "Thô"
@@ -21945,7 +21812,6 @@
 "Tân Thời Đại",
 "VHS",
 "VSL",
-"VSR",
 "Đất Việt"
 ],
 "loai": "SH",
@@ -21961,16 +21827,6 @@
 },
 "quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
 "offers": [
-{
-"src": "VSR",
-"gia": 23603000000,
-"tcbg": "Thô"
-},
-{
-"src": "VHS",
-"gia": 23701387225,
-"tcbg": "Bàn giao thô"
-},
 {
 "src": "Novasky",
 "gia": 26013000000,
@@ -21990,6 +21846,10 @@
 "src": "Queen Land",
 "gia": 26013208481,
 "tcbg": "Thô"
+},
+{
+"src": "Bighomes",
+"gia": 26013208481
 },
 {
 "src": "Phúc Lộc",
@@ -22019,6 +21879,11 @@
 {
 "src": "Home Plus",
 "gia": 26013208481
+},
+{
+"src": "VHS",
+"gia": 26013208481,
+"tcbg": "Bàn giao thô"
 },
 {
 "src": "Tân Hương Phát",
