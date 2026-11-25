@@ -202,8 +202,8 @@ const badges = [];
 }
 function placeBadges() {
   const d = camera.position.distanceTo(controls.target) / (FLAT ? KF() / .82 : 1);
-  const w = Math.max(14, Math.min(90, d * .022)), h = w * 200 / 512, lift = FLAT ? 1 : Math.max(8, w * .35);
-  const show = d < 9000 && mode === 'mo-ban';
+  const w = Math.max(14, Math.min(170, d * .045)), h = w * 200 / 512, lift = FLAT ? 1 : Math.max(8, w * .35);
+  const show = d < 6500 && mode === 'mo-ban';
   for (const b of badges) {
     const vis = show && !SOLD[b.L.code]; b.sp.visible = vis; b.st.visible = vis && !FLAT;
     if (!vis) continue;
