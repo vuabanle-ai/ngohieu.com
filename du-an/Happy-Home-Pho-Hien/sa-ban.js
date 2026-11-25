@@ -127,8 +127,8 @@ const ROADS=[
  {p:poly([[-150,450],[40,345],[250,225],[560,90],[900,-40]]),w:30,name:'QL38B',at:P(150,286),l:4},
  {p:DL,w:28,name:'Đại lộ Thương Cảng 34m',at:W(197,85),l:4},
  {p:poly([[112,842],[362,842]]),w:22,name:'Đường Hạnh Phúc 22m',at:P(205,842),l:4},
- {p:[W(-35,-12),W(210,-12)],w:12,name:'Đường Thương Cảng',at:W(66,-12),tv:1},
- {p:RING,w:13,name:'Đường Hoàng Kim 17m',at:[W(-8,85),W(-8,295)],tv:1},
+ {p:[W(-35,-12),W(210,-12)],w:13,l:2,name:'Đường Thương Cảng',at:W(66,-12),tv:1},
+ {p:RING,w:13,l:2,name:'Đường Hoàng Kim 17m',at:[W(-8,85),W(-8,295)],tv:1},
  {p:[W(42.5,-8),W(42.5,diagZ(42)+4)],w:13,name:'Thương Cảng 1 · 15m',at:[W(42.5,53),W(42.5,312)],tv:1},
  {p:[W(90,-8),W(90,116)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,53),tv:1},{p:[W(90,228),W(90,diagZ(90)+4)],w:13,name:'Thương Cảng 2 · 15m',at:W(90,308),tv:1},
  {p:[W(137.5,-8),W(137.5,diagZ(137)+4)],w:13,name:'Thương Cảng 3 · 15m',at:[W(137.5,53),W(137.5,305)],tv:1},
@@ -137,6 +137,29 @@ const ROADS=[
  {p:[208,400].map(x=>W(x,diagZ(x)-52)),w:12,name:'Đường Thịnh Vượng 15m',at:W(300,diagZ(300)-52),tv:1},
  {p:poly([[860,600],[800,950],[700,1350],[650,1700],[640,2100]]),w:20,name:'',l:2}];
 ROADS.forEach(r=>road(r.p,r.w));
+// bo cong mềm các góc giao đường (như mặt bằng CĐT)
+{const R0=6,shapes=[];
+ const segs=r=>{const o=[];for(let i=0;i<r.p.length-1;i++){const a=r.p[i],b=r.p[i+1],L=Math.hypot(b.x-a.x,b.z-a.z);if(L<.5)continue;o.push({a,L,dx:(b.x-a.x)/L,dz:(b.z-a.z)/L,h:r.w/2})}return o};
+ const S2=ROADS.map(segs),cr=(ax,az,bx,bz)=>ax*bz-az*bx;
+ const inSeg=(g,x,z,tol)=>{const t=(x-g.a.x)*g.dx+(z-g.a.z)*g.dz,n=Math.abs(cr(g.dx,g.dz,x-g.a.x,z-g.a.z));return t>=-tol&&t<=g.L+tol&&n<=g.h+.5};
+ for(let i=0;i<S2.length;i++)for(let j=i+1;j<S2.length;j++)for(const g1 of S2[i])for(const g2 of S2[j]){
+  const den=cr(g1.dx,g1.dz,g2.dx,g2.dz);if(Math.abs(den)<.25)continue;               // gần song song: bỏ
+  const t=cr(g2.a.x-g1.a.x,g2.a.z-g1.a.z,g2.dx,g2.dz)/den,u=cr(g2.a.x-g1.a.x,g2.a.z-g1.a.z,g1.dx,g1.dz)/den;
+  if(t<-g2.h-1||t>g1.L+g2.h+1||u<-g1.h-1||u>g2.L+g1.h+1)continue;
+  const ix=g1.a.x+g1.dx*t,iz=g1.a.z+g1.dz*t,n1x=-g1.dz,n1z=g1.dx,n2x=-g2.dz,n2z=g2.dx;
+  for(const s1 of[-1,1])for(const s2 of[-1,1]){
+   // góc C = giao 2 mép đường
+   const p1x=ix+n1x*s1*g1.h,p1z=iz+n1z*s1*g1.h,p2x=ix+n2x*s2*g2.h,p2z=iz+n2z*s2*g2.h;
+   const k=cr(p2x-p1x,p2z-p1z,g2.dx,g2.dz)/den,cx=p1x+g1.dx*k,cz=p1z+g1.dz*k;
+   let e1x=g1.dx,e1z=g1.dz;if(e1x*n2x*s2+e1z*n2z*s2<0){e1x=-e1x;e1z=-e1z}
+   let e2x=g2.dx,e2z=g2.dz;if(e2x*n1x*s1+e2z*n1z*s1<0){e2x=-e2x;e2z=-e2z}
+   const R=R0,ax=cx+e1x*R,az=cz+e1z*R,bx=cx+e2x*R,bz=cz+e2z*R;
+   if(!inSeg(g1,ax+e1x*2,az+e1z*2,0)||!inSeg(g2,bx+e2x*2,bz+e2z*2,0))continue;   // nhánh đường không có ở phía này (ngã ba)
+   if(S2.some((ss,q)=>q!==i&&q!==j&&ss.some(g=>inSeg(g,cx+(e1x+e2x)*1.2,cz+(e1z+e2z)*1.2,-.1))))continue;
+   const pts=[[cx,cz],[ax,az]];for(let q=1;q<10;q++){const tt=q/10,uu=1-tt;pts.push([uu*uu*ax+2*uu*tt*cx+tt*tt*bx,uu*uu*az+2*uu*tt*cz+tt*tt*bz])}pts.push([bx,bz]);
+   shapes.push(new THREE.Shape(pts.map(([x,z])=>new THREE.Vector2(x,-z))))}}
+ if(shapes.length){const gg=new THREE.ShapeGeometry(shapes);gg.rotateX(-Math.PI/2);gg.translate(0,.6,0);const m=new THREE.Mesh(gg,roadM);m.receiveShadow=true;S.add(m)}
+}
 {const pts=[];ROADS.forEach(r=>{if(!r.l)return;for(let k=1;k<r.l;k++){const off=-r.w/2+r.w*k/r.l;if(r.l>=4&&k===r.l/2)continue;along(r.p,10,off).forEach((p,i)=>{if(!(i%2))pts.push([p,r.p])})}});
  const im=new THREE.InstancedMesh(new THREE.PlaneGeometry(.45,4.5),lineM,pts.length);
  pts.forEach(([p,pl],i)=>{let best=0,d=1e9,ang=0;for(let j=0;j<pl.length-1;j++){const a=pl[j],b=pl[j+1];const dd=Math.hypot((a.x+b.x)/2-p.x,(a.z+b.z)/2-p.z);if(dd<d){d=dd;ang=Math.atan2(b.x-a.x,b.z-a.z)}}
@@ -149,7 +172,7 @@ ROADS.forEach(r=>road(r.p,r.w));
  const im=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),lineM,bars.length);
  bars.forEach(([x,z,r,c],i)=>{dm.position.set(x,.72,z);dm.rotation.set(-Math.PI/2,0,r);c?dm.scale.set(.3,3.2,1):dm.scale.set(.7,3.2,1);dm.updateMatrix();im.setMatrixAt(i,dm.matrix)});S.add(im);}
 // dải phân cách xanh
-ribbon(DCT,7,.8,'#5f9a3a');ribbon(DL.slice(0,3),3,.8,'#5f9a3a');ribbon(TP_ROAD,2,.8,'#5f9a3a');ribbon(DIV_W,5.5,.85,'#5f9a3a');
+ribbon(DCT,7,.8,'#5f9a3a');ribbon(DL.slice(0,3),3,.8,'#5f9a3a');ribbon(TP_ROAD,2,.8,'#5f9a3a');ribbon(DIV_W,5.5,.85,'#5f9a3a');{const c=new THREE.Mesh(new THREE.CircleGeometry(2.75,24),M('#5f9a3a',{side:THREE.DoubleSide}));c.rotation.x=-Math.PI/2;c.position.set(DIV_W[0].x,.85,DIV_W[0].z);S.add(c)}
 // vỉa hè
 [[DCT,74],[TP_ROAD,26]].forEach(([p,w])=>{ribbon(p,w,.45,'#cfc8b9')});
 
