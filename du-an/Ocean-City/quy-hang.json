@@ -1,5 +1,5 @@
 {
-"updated": "19:56 25/11/2026",
+"updated": "19:59 25/11/2026",
 "nguon": "Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG",
 "doc_duoc": [
 "5S",
@@ -7050,19 +7050,6 @@
 "tts": 23500000000
 }
 },
-"SH5-05": {
-"src": [
-"VHS"
-],
-"loai": "Nhà Phố",
-"dt": "115.5",
-"dtxd": "449.8",
-"tcbg": "Bàn giao thô - có thang",
-"gia": 25497000000,
-"bg": {
-"vay": 26489927136
-}
-},
 "SH6-10": {
 "src": [
 "MICC"
@@ -8517,54 +8504,6 @@
 },
 "quy": "Độc quyền Newstarland"
 },
-"VTĐ1-102": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-104": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-108": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-110": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-112": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-114": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-116": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-118": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
 "VTĐ1-13": {
 "src": [
 "Novasky"
@@ -8594,30 +8533,6 @@
 "vay": 8749000000
 }
 },
-"VTĐ1-16": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-162": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-166": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-170": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
 "VTĐ1-176": {
 "src": [
 "MICC",
@@ -8646,12 +8561,6 @@
 }
 ]
 },
-"VTĐ1-30": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
 "VTĐ1-31": {
 "src": [
 "Novasky"
@@ -8666,78 +8575,6 @@
 "vay": 9104000000
 }
 },
-"VTĐ1-32": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-38": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-40": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-42": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-44": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-46": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-48": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-50": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-52": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-54": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-56": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-58": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
 "VTĐ1-59": {
 "src": [
 "Novasky"
@@ -8751,66 +8588,6 @@
 "tts": 10286000000,
 "vay": 11098000000
 }
-},
-"VTĐ1-60": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-62": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-64": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-66": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-68": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-70": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-74": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ1-98": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG đúng"
-},
-"VTĐ2-126": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ2-128": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
 },
 "VTĐ2-129": {
 "src": [
@@ -8840,24 +8617,6 @@
 "vay": 10046000000
 }
 },
-"VTĐ2-132": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ2-134": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ2-136": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
 "VTĐ2-15": {
 "src": [
 "Novasky"
@@ -8885,24 +8644,6 @@
 "tts": 9103000000,
 "vay": 9820000000
 }
-},
-"VTĐ2-157": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ2-158": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ2-160": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
 },
 "VTĐ2-161": {
 "src": [
@@ -8933,12 +8674,6 @@
 "vay": 8735000000
 }
 },
-"VTĐ2-165": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
 "VTĐ2-167": {
 "src": [
 "Novasky"
@@ -8954,12 +8689,6 @@
 "vay": 8686000000
 }
 },
-"VTĐ2-171": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
 "VTĐ2-175": {
 "src": [
 "Novasky"
@@ -8974,66 +8703,6 @@
 "vay": 9961000000
 }
 },
-"VTĐ2-177": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ2-178": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ2-179": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ2-180": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ2-181": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ2-182": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ2-183": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ2-184": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ2-186": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ2-188": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
 "VTĐ2-191": {
 "src": [
 "Novasky"
@@ -9047,12 +8716,6 @@
 "tts": 10407000000,
 "vay": 11191000000
 }
-},
-"VTĐ2-192": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
 },
 "VTĐ2-39": {
 "src": [
@@ -9107,96 +8770,6 @@
 "vay": 9401000000
 }
 },
-"VTĐ3-110": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-112": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-114": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-116": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-118": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-120": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-122": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-124": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-126": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-128": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-130": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-132": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-134": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-136": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-138": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
 "VTĐ3-140": {
 "src": [
 "Novasky"
@@ -9210,12 +8783,6 @@
 "tts": 9299000000,
 "vay": 10032000000
 }
-},
-"VTĐ3-142": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
 },
 "VTĐ3-144": {
 "src": [
@@ -9231,18 +8798,6 @@
 "vay": 10046000000
 }
 },
-"VTĐ3-146": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-148": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
 "VTĐ3-150": {
 "src": [
 "Novasky"
@@ -9256,90 +8811,6 @@
 "tts": 9318000000,
 "vay": 10052000000
 }
-},
-"VTĐ3-152": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-154": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-156": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-158": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-160": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-166": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-170": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-172": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-174": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-176": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-178": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-180": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-182": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
-},
-"VTĐ3-184": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 1"
 },
 "VTĐ3-186": {
 "src": [
@@ -9368,18 +8839,6 @@
 "tts": 10479000000,
 "vay": 11268000000
 }
-},
-"VTĐ3-190": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
-},
-"VTĐ3-192": {
-"src": [
-"Novasky"
-],
-"tcbg": "TCBG sửa 2"
 },
 "VTĐ5-01": {
 "src": [
@@ -23815,6 +23274,13 @@
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH5-05": {
+"loai": "Nhà Phố",
+"dt": "115.5",
+"gia": 25497000000,
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
 "SH6-01": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
@@ -23883,17 +23349,325 @@
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"VTĐ1-102": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-104": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-108": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-110": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-112": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-114": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-116": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-118": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-16": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-162": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-166": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-170": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-30": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-32": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-38": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-40": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-42": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-44": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-46": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-48": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-50": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-52": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-54": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-56": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-58": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-60": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-62": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-64": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-66": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-68": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-70": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-74": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ1-98": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-126": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-128": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-132": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-134": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-136": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
 "VTĐ2-137": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn"
+},
+"VTĐ2-157": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-158": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-160": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-165": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-171": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-177": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-178": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-179": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-180": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-181": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-182": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-183": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-184": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-186": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ2-188": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
 },
 "VTĐ2-190": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: TPL"
 },
+"VTĐ2-192": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
 "VTĐ3-108": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn"
+},
+"VTĐ3-110": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-112": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-114": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-116": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-118": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-120": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-122": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-124": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-126": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-128": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-130": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-132": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-134": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-136": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-138": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-142": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-146": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-148": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-152": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-154": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-156": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-158": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-160": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
 },
 "VTĐ3-162": {
 "since": "25/11/2026",
@@ -23902,6 +23676,50 @@
 "VTĐ3-164": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: TPL"
+},
+"VTĐ3-166": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-170": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-172": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-174": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-176": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-178": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-180": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-182": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-184": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-190": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
+"VTĐ3-192": {
+"since": "25/11/2026",
+"why": "không còn trên bảng hàng đại lý"
 },
 "VX1-57": {
 "since": "25/11/2026",
