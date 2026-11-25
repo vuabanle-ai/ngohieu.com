@@ -179,6 +179,39 @@ function drawRoofs() {
   // căn còn hàng: mã căn + ô đỏ giá TTTĐ
   atlas(priced, 256, 84, L => [[L.code, '#1c1d21', .28, .44], [ty(tttd(AVL[L.code])), '#fff', .74, .4]]);
 }
+// ---------- biển giá nổi trên căn (như sa bàn Phố Hiến): nền trắng, viền đỏ, số giá to ----------
+const badges = [];
+{ const stickR = new THREE.MeshBasicMaterial({ color: 0xd7261e }), stickY = new THREE.MeshBasicMaterial({ color: 0xf2b705 });
+  const stickG = new THREE.CylinderGeometry(.35, .35, 1, 6);
+  for (const L of lots) {
+    const q = AVL[L.code] || CHK[L.code], gia = q && (AVL[L.code] ? tttd(q) : (q.bg?.tttd || q.gia));
+    if (!gia || SOLD[L.code]) continue;
+    const chk = !AVL[L.code], cn = document.createElement('canvas'); cn.width = 512; cn.height = 200; const g = cn.getContext('2d');
+    const t = (gia / 1e9).toFixed(2).replace('.', ',') + ' tỷ';
+    g.fillStyle = chk ? '#fff6cc' : '#fff'; g.strokeStyle = chk ? '#f2b705' : '#d7261e'; g.lineWidth = 22;
+    g.beginPath(); g.roundRect(14, 14, 484, 172, 86); g.fill(); g.stroke();
+    let px = 118; g.font = `800 ${px}px "Be Vietnam Pro",Arial,sans-serif`;
+    while (g.measureText(t).width > 420 && px > 60) { px -= 4; g.font = `800 ${px}px "Be Vietnam Pro",Arial,sans-serif` }
+    g.fillStyle = chk ? '#8a6a00' : '#c8102e'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(t, 256, 104);
+    const tex = new THREE.CanvasTexture(cn); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthWrite: false, depthTest: false }));
+    sp.center.set(.5, 0); sp.renderOrder = 6; sp.userData.lot = L.i; scene.add(sp);
+    const st = new THREE.Mesh(stickG, chk ? stickY : stickR); st.renderOrder = 5; scene.add(st);
+    badges.push({ sp, st, L });
+  }
+}
+function placeBadges() {
+  const d = camera.position.distanceTo(controls.target) / (FLAT ? KF() / .82 : 1);
+  const w = Math.max(14, Math.min(90, d * .022)), h = w * 200 / 512, lift = FLAT ? 1 : Math.max(8, w * .35);
+  const show = d < 9000 && mode === 'mo-ban';
+  for (const b of badges) {
+    const vis = show && !SOLD[b.L.code]; b.sp.visible = vis; b.st.visible = vis && !FLAT;
+    if (!vis) continue;
+    b.sp.scale.set(w, h, 1); b.sp.position.set(b.L.cx, b.L.h + lift, b.L.cz);
+    b.st.scale.set(Math.max(.4, w / 40), lift, Math.max(.4, w / 40)); b.st.position.set(b.L.cx, b.L.h + lift / 2, b.L.cz);
+  }
+}
+
 // ---------- labels ----------
 const lbBox = $('labels'); const labels = [];
 function addLabel(cls, text, x, y, z, minD = 0, maxD = 1e9) {
@@ -344,7 +377,9 @@ function chiCan(L, size = 900) {
 const ray = new THREE.Raycaster(), mp = new THREE.Vector2(); let down = null;
 function pick(e) {
   const r = canvas.getBoundingClientRect(); mp.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
-  ray.setFromCamera(mp, camera); const hit = ray.intersectObject(mesh)[0];
+  ray.setFromCamera(mp, camera);
+  const bh = ray.intersectObjects(badges.filter(b => b.sp.visible).map(b => b.sp))[0]; if (bh) return lots[bh.object.userData.lot];
+  const hit = ray.intersectObject(mesh)[0];
   return hit ? lots[lotOf[hit.face.a]] : null;
 }
 canvas.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; stopRot() });
@@ -416,7 +451,7 @@ renderer.setAnimationLoop(t => {
   if (rot && !anim) { const a = .0012, o = camera.position.clone().sub(controls.target); o.applyAxisAngle(new THREE.Vector3(0, 1, 0), a); camera.position.copy(controls.target).add(o) }
   controls.update();
   { const d = camera.position.distanceTo(controls.target) / (FLAT ? KF() / .82 : 1); edges.material.opacity = .35 * Math.max(0, Math.min(1, (3500 - d) / 2500)); edges.visible = edges.material.opacity > .01 }
-  renderer.render(scene, camera); placeLabels();
+  placeBadges(); renderer.render(scene, camera); placeLabels();
 });
 // mở theo #mã-căn
 const hc = decodeURIComponent(location.hash.slice(1)); if (hc && byCode.has(norm(hc))) setTimeout(() => select(byCode.get(norm(hc)), true), 1300);
