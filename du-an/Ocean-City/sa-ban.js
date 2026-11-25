@@ -10,6 +10,13 @@ const KHU = 'ocean-city';
 const ZNAME = { 'HĐ': 'Hải Đăng', 'TĐ': 'Thời Đại', AD: 'Ánh Dương', PB: 'Phố Biển', 'VTĐ': 'Vịnh Thiên Đường', VT: 'Vịnh Tây', VX: 'Vịnh Xanh', 'ĐN': 'Đảo Ngọc', BM: 'Đại lộ Bốn Mùa', SB: 'Sao Biển', CX: 'Cọ Xanh', CL: 'Chà Là', 'KĐ': 'Kinh Đô', NT: 'Đại lộ Ngọc Trai' };
 const OCP3 = new Set(['HĐ', 'TĐ', 'AD', 'PB', 'VTĐ', 'VT', 'VX', 'ĐN', 'BM']);
 const duAn = z => OCP3.has(z) ? 'Ocean Park 3 – The Crown' : 'Ocean Park 2 – The Empire';
+// kiến trúc từng phân khu (theo CĐT & tài liệu bán hàng; Đại lộ Ngọc Trai, Đại lộ Bốn Mùa đi qua nhiều phân khu nên chưa ghi)
+const ARCHZ = {
+  'TĐ': 'Đông Dương', VT: 'Đông Dương', CL: 'Đông Dương',
+  AD: 'Hiện đại', PB: 'Hiện đại', 'VTĐ': 'Hiện đại',
+  VX: 'Hy Lạp', 'ĐN': 'Hy Lạp – Địa Trung Hải', 'HĐ': 'Hà Lan',
+  CX: 'Florida (Mỹ)', SB: 'Pháp', 'KĐ': 'Pháp cổ điển (Paris)'
+};
 const small = matchMedia('(max-width:900px)').matches;
 const TYPE = {
   Y: { name: 'Nhà liền kề', short: 'LK', h: 15, roof: 0xf2d35b },
@@ -303,6 +310,7 @@ function select(L, fly) {
   $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
   const tn = TYPE[L.t].name, lo = q?.loai && q.loai.toLowerCase() !== tn.toLowerCase() ? q.loai + ' · ' + tn : tn;
   const rows = [['Dự án', duAn(L.zone)], ['Phân khu', ZNAME[L.zone] || L.zone], ['Dãy', L.pre], ['Loại hình', lo]];
+  rows.push(['Kiến trúc', ARCHZ[L.zone] ? 'Phong cách ' + ARCHZ[L.zone] : '<span style="color:var(--mut)">Đang cập nhật</span>']);
   if (q?.quy) rows.push(['Quỹ', q.quy]);
   if (q?.dt) rows.push(['DT đất', q.dt + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
   if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
