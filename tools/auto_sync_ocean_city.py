@@ -27,7 +27,7 @@ CHECK_TXT = re.compile(r'CHECK\s*ADMIN')
 SKIP_TAB = re.compile(r'THÔNG SỐ|THONG SO|DIỆN TÍCH|DIEN TICH|GIỎ|BANK|STK|KPTM|ELITE|CSDL|^TK|DS K|TEST|BIỂU MẪU|CÂU TRẢ LỜI|'
                       r'NGƯỜI NƯỚC NGOÀI|NNN|TMDV|\(CŨ\)|\bCŨ\b|CSBH|CHÍNH SÁCH|PTG|PHIẾU|NHẬN TIỀN|NỘP TIỀN|TRC|KHÔNG ÁP DỤNG|TCBG|BÀN GIAO|FULLTON', re.I)
 UA = {'User-Agent': 'Mozilla/5.0 ngohieu-sync'}
-VER = 5
+VER = 6
 
 
 def norm_code(t):
@@ -78,10 +78,14 @@ def red_cell(c):
     return False
 
 
-HDR = [('gia', r'(gi[áa]|gía).*(gồm|full|niêm yết|bao gồm|sau vat)|tổng giá|giá bán gồm'), ('tttd', r'tttđ|tiến độ'),
-       ('tts', r'\btts\b|thanh toán sớm'), ('vay', r'vay|htls|70%'), ('dt', r'^dt\s*đất|diện tích đất|^dt\s*\(?m'),
+HDR = [('gia', r'^(?!.*(chưa|trước|đơn giá)).*((gi[áa]|gía).*(gồm|full|niêm yết|bao|sau vat)|tổng giá|giá bán gồm)'),
+       ('tttd', r'^(?!.*(cọc|tình trạng|khách|kh nh|đơn giá)).*(tttđ|tiến độ)'),
+       ('tts', r'^(?!.*đơn giá).*(\btts\b|thanh toán sớm)'), ('vay', r'^(?!.*(ngân hàng|đơn giá)).*(vay|htls|70%)'),
+       ('dt', r'^dt\s*đất|diện tích đất|^dt\s*\(?m'),
        ('dtxd', r'dtxd|dt\s*xd|diện tích xây|tổng sàn'), ('loai', r'loại\s*(hình|căn|sp)'), ('tcbg', r'tcbg|bàn giao'),
        ('huong', r'^hướng'), ('tt', r'tình trạng|trạng thái')]
+# tiêu đề của bảng thông số diện tích (không phải quỹ hàng)
+SPEC_HDR = re.compile(r'tầng\s*1|tổng sàn|thống kê|mẫu nhà|mẫu căn|% ?xây dựng')
 
 
 def sanity(q):
@@ -103,6 +107,7 @@ def read_tab(ws):
         vals = ['' if c.value is None else str(c.value).strip() for c in row]
         low = [re.sub(r'\s+', ' ', v).lower() for v in vals]
         if any(re.fullmatch(r'mã( căn)?( được phân bổ)?|mã sp|mã sản phẩm|ma can', x) for x in low):
+            if any(SPEC_HDR.search(x) for x in low): col = {}; continue     # bảng thông số -> bỏ các dòng dưới
             col = {'_': -1}
             for k, pat in HDR:
                 for i, x in enumerate(low):
