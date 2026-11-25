@@ -39,9 +39,13 @@ PICTURE: the live 3D sa bàn render with a floating unit card. COLOUR/TYPE: brig
 .steps h3{font-size:17px;margin:0 0 4px}.steps p{margin:0;color:var(--mut);font-size:15px}
 .band{background:var(--red);color:#fff;border-radius:24px;padding:clamp(28px,4vw,48px);display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .band h2{font-size:clamp(26px,3vw,36px)}.band p{margin:8px 0 0;opacity:.9;max-width:56ch}.band .btn{background:#fff;color:var(--red)}
+.top-feat{padding-top:26px}.top-feat .head{margin-bottom:16px}
+#feat{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:900px){#feat{grid-template-columns:repeat(2,minmax(0,1fr))}#feat>:nth-child(n+5){display:none}}
+@media(max-width:520px){#feat{gap:10px}#feat .pcard .bd{padding:10px 12px}#feat .pcard h3{font-size:15px}}
 @media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.feat{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:1fr}}
 @media(max-width:520px){.feat{grid-template-columns:1fr}.shot .unit{display:none}}
-.sec{padding:clamp(22px,2.6vw,36px) 0}#feat{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:900px){#feat{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){#feat{grid-template-columns:1fr}}
+.sec{padding:clamp(22px,2.6vw,36px) 0}#feat{grid-template-columns:repeat(4,minmax(0,1fr))}@media(max-width:900px){#feat{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 <script src="/assets/chong-copy.js?v=1"></script>
 </head>
@@ -58,6 +62,11 @@ PICTURE: the live 3D sa bàn render with a floating unit card. COLOUR/TYPE: brig
  <div class="chips" aria-label="Lọc loại hình"><a href="/du-an/" class="on">Tất cả</a><a href="/du-an/?f=thap">Thấp tầng</a><a href="/du-an/?f=cao">Cao tầng</a><a href="/du-an/?f=sb">Có sa bàn 3D</a><a href="/du-an/?f=hot">HOT</a></div>
  <div class="res" id="hres" hidden></div>
 </form></div></section>
+
+<section class="sec top-feat"><div class="wrap">
+ <div class="head"><div><p class="eyebrow">Dự án</p><h2>Dự án nổi bật</h2></div><a class="btn line" href="/du-an/">Xem tất cả dự án ›</a></div>
+ <div class="grid" id="feat"></div>
+</div></section>
 
 <section class="hero"><div class="wrap">
  <div>
@@ -83,11 +92,6 @@ PICTURE: the live 3D sa bàn render with a floating unit card. COLOUR/TYPE: brig
   <div><span class="n">03</span><h3>Gọn trên mọi màn hình</h3><p>Điện thoại, iPad, máy tính. Chạm vào căn là có đủ thông số để gửi khách.</p></div>
   <div><span class="n">04</span><h3>Miễn phí, đăng ký 30 giây</h3><p>Chỉ cần số điện thoại. Máy tự nhớ, lần sau vào thẳng không cần đăng nhập lại.</p></div>
  </div>
-</div></section>
-
-<section class="sec"><div class="wrap">
- <div class="head"><div><p class="eyebrow">Dự án</p><h2>Dự án nổi bật</h2></div><a class="btn line" href="/du-an/">Xem tất cả dự án ›</a></div>
- <div class="grid" id="feat"></div>
 </div></section>
 
 <section class="sec soft" id="huong-dan"><div class="wrap">
@@ -116,7 +120,7 @@ import { PROJECTS, TYPE, TAG } from '/assets/projects.js';
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const ini=n=>n.split(/\s+/).filter(w=>/^[A-ZÀ-Ỹ]/.test(w)).slice(0,3).map(w=>w[0]).join('');
 const card=p=>`<a class="pcard" href="${p.saban||'/du-an/#'+p.id}"><div class="ph">${p.img?`<img src="${p.img}" alt="${esc(p.name)}" loading="lazy">`:`<b>${esc(ini(p.name))}</b>`}<span class="tags">${p.tags.map(t=>`<span class="tag ${t}">${TAG[t]}</span>`).join('')}${p.saban?'<span class="tag sb">Sa bàn 3D</span>':''}</span></div><div class="bd"><span class="meta">${TYPE[p.type]}${p.dev?' · '+esc(p.dev):''}</span><h3>${esc(p.name)}</h3><span class="meta">${esc(p.area)}</span><span class="go">${p.saban?'Mở sa bàn 3D ›':'Xem thông tin ›'}</span></div></a>`;
-document.getElementById('feat').innerHTML=PROJECTS.filter(p=>p.tags.includes('hot')||p.saban).sort((x,y)=>!!y.saban-!!x.saban).slice(0,4).map(card).join('');
+{const F=PROJECTS.filter(p=>p.tags.includes('hot')||p.saban).sort((x,y)=>!!y.saban-!!x.saban);PROJECTS.forEach(p=>{if(F.length<8&&!F.includes(p))F.push(p)});document.getElementById('feat').innerHTML=F.slice(0,8).map(card).join('')}
 document.getElementById('nP').textContent=PROJECTS.length+'+';
 {const $=id=>document.getElementById(id);const fold=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/gi,'d').toLowerCase();
  [...new Set(PROJECTS.map(p=>p.dev).filter(Boolean))].sort().forEach(d=>$('hdev').insertAdjacentHTML('beforeend',`<option>${esc(d)}</option>`));
