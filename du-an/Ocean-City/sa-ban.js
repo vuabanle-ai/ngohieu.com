@@ -301,7 +301,9 @@ function select(L, fly) {
   $('card').classList.toggle('open', !!AVL[L.code]); $('card').classList.toggle('sold', !!sd);
   $('cTitle').textContent = L.code;
   $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
-  const rows = [['Dự án', duAn(L.zone)], ['Phân khu', ZNAME[L.zone] || L.zone], ['Dãy', L.pre], ['Loại hình', q?.loai ? q.loai + ' · ' + TYPE[L.t].name : TYPE[L.t].name]];
+  const tn = TYPE[L.t].name, lo = q?.loai && q.loai.toLowerCase() !== tn.toLowerCase() ? q.loai + ' · ' + tn : tn;
+  const rows = [['Dự án', duAn(L.zone)], ['Phân khu', ZNAME[L.zone] || L.zone], ['Dãy', L.pre], ['Loại hình', lo]];
+  if (q?.quy) rows.push(['Quỹ', q.quy]);
   if (q?.dt) rows.push(['DT đất', q.dt + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
   if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
   if (q?.so_tang) rows.push(['Số tầng', q.so_tang]);
