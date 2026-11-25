@@ -23,7 +23,7 @@ const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) 
 
 try { await Promise.race([document.fonts.load('800 25px "Be Vietnam Pro"'), new Promise(r => setTimeout(r, 2500))]) } catch (_) {}
 const [data, quy] = await Promise.all([
-  fetch(`lots-${KHU}.json?v=1`).then(r => r.json()),
+  fetch(`lots-${KHU}.json?v=2`).then(r => r.json()),
   fetch('quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
 ]);
 const W = data.meta.w, H = data.meta.h;
@@ -210,6 +210,101 @@ function placeBadges() {
   }
 }
 
+
+// ---------- đường: thảm nhựa, vỉa hè, dải phân cách, vạch kẻ làn, xe chạy ----------
+const ROADS = (data.meta.roads || []).map(r => {
+  const pts = r.p.map(([x, z]) => new THREE.Vector2(X(x), Z(z))), w = r.w;
+  const div = w >= 32, med = div ? (w >= 40 ? 4 : 3) : 0;
+  const sw = w <= 10 ? 1.8 : w * (div ? .16 : .22);
+  const cw = div ? (w - 2 * sw - med) / 2 : w - 2 * sw;
+  const n = div ? Math.max(2, Math.floor(cw / 3.1)) : (cw >= 12 ? 4 : 2);
+  const segs = []; let L = 0;
+  for (let i = 0; i < pts.length - 1; i++) { const a = pts[i], b = pts[i + 1], l = a.distanceTo(b); if (l < .1) continue;
+    segs.push({ a, l, s0: L, ux: (b.x - a.x) / l, uz: (b.y - a.y) / l }); L += l }
+  return { ...r, pts, w, div, med, sw, cw, n, segs, L };
+});
+const dm = new THREE.Object3D();
+function strip(pts, w, y) {   // dải phẳng rộng w dọc polyline, nối góc bằng pháp tuyến trung bình
+  const pos = [], idx = [];
+  pts.forEach((p, i) => { const a = pts[Math.max(0, i - 1)], b = pts[Math.min(pts.length - 1, i + 1)];
+    let dx = b.x - a.x, dz = b.y - a.y; const l = Math.hypot(dx, dz) || 1; dx /= l; dz /= l;
+    pos.push(p.x - dz * w / 2, y, p.y + dx * w / 2, p.x + dz * w / 2, y, p.y - dx * w / 2);
+    if (i) { const k = i * 2; idx.push(k - 2, k, k - 1, k - 1, k, k + 1) } });
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setIndex(idx); g.computeVertexNormals(); return g;
+}
+// điểm trên đường tại quãng s, lệch ngang off (dương = bên phải chiều đi)
+function at(r, s) { let g = r.segs[0]; for (const q of r.segs) { if (s >= q.s0) g = q } const t = Math.min(g.l, Math.max(0, s - g.s0)); return { x: g.a.x + g.ux * t, z: g.a.y + g.uz * t, ux: g.ux, uz: g.uz } }
+// điểm (x,z) có nằm trong lòng một đường khác không (để cắt vạch kẻ, dải phân cách tại nút giao)
+function inOther(r0, x, z, pad) {
+  for (const r of ROADS) { if (r === r0) continue;
+    for (const g of r.segs) { const dx = x - g.a.x, dz = z - g.a.y, t = dx * g.ux + dz * g.uz; if (t < -pad || t > g.l + pad) continue;
+      if (Math.abs(-dx * g.uz + dz * g.ux) < r.w / 2 - r.sw + pad) return true } }
+  return false;
+}
+const roadGrp = new THREE.Group(); scene.add(roadGrp);
+{ const walkM = new THREE.MeshLambertMaterial({ color: 0xd8d3c8 }), asphM = new THREE.MeshLambertMaterial({ color: 0x2b2e33 });
+  ROADS.forEach(r => { const m = new THREE.Mesh(strip(r.pts, r.w, .12), walkM); m.renderOrder = 1; roadGrp.add(m) });
+  ROADS.forEach(r => { const offs = r.div ? [-(r.med + r.cw) / 2, (r.med + r.cw) / 2] : [0];
+    offs.forEach(o => { const sh = r.pts.map((p, i) => { const a = r.pts[Math.max(0, i - 1)], b = r.pts[Math.min(r.pts.length - 1, i + 1)]; let dx = b.x - a.x, dz = b.y - a.y; const l = Math.hypot(dx, dz) || 1;
+      return new THREE.Vector2(p.x - dz / l * o, p.y + dx / l * o) });
+      const m = new THREE.Mesh(strip(sh, r.cw, .2), asphM); m.renderOrder = 1; roadGrp.add(m) }) });
+  // vạch sơn: [quãng s, lệch ngang, màu, kiểu]
+  const W1 = [], Y1 = [];
+  ROADS.forEach(r => { const lw = r.cw / r.n, step = 1.5;
+    const lines = [];   // [offset, 'dash'|'solid', 'w'|'y']
+    if (r.div) { for (const sd of [-1, 1]) { const base = sd * r.med / 2;
+        for (let k = 1; k < r.n; k++) lines.push([base + sd * k * lw, 'dash', 'w']);
+        lines.push([base + sd * .4, 'solid', 'w'], [base + sd * (r.cw - .4), 'solid', 'w']) } }
+    else { if (r.n >= 4) { lines.push([-.18, 'solid', 'y'], [.18, 'solid', 'y']); for (const sd of [-1, 1]) lines.push([sd * lw, 'dash', 'w']) }
+      else lines.push([0, 'dash', 'w']);
+      lines.push([-(r.cw / 2 - .35), 'solid', 'w'], [r.cw / 2 - .35, 'solid', 'w']) }
+    for (let s = 0, i = 0; s < r.L; s += step, i++) { const p = at(r, s), nx = -p.uz, nz = p.ux;
+      for (const [o, kind, c] of lines) { if (kind === 'dash' && (i % 4) > 1) continue;
+        const x = p.x + nx * o, z = p.z + nz * o; if (inOther(r, x, z, .5)) continue; (c === 'y' ? Y1 : W1).push([x, z, p]) } } });
+  const inst = (list, geo, mat, y) => { if (!list.length) return; const im = new THREE.InstancedMesh(geo, mat, list.length);
+    list.forEach(([x, z, p], i) => { dm.position.set(x, y, z); dm.rotation.set(0, Math.atan2(p.ux, p.uz), 0); dm.scale.set(1, 1, 1); dm.updateMatrix(); im.setMatrixAt(i, dm.matrix) });
+    im.renderOrder = 2; roadGrp.add(im) };
+  inst(W1, new THREE.BoxGeometry(.16, .04, 1.55), new THREE.MeshBasicMaterial({ color: 0xf4f2ea }), .24);
+  inst(Y1, new THREE.BoxGeometry(.14, .04, 1.55), new THREE.MeshBasicMaterial({ color: 0xf2c230 }), .24);
+  // dải phân cách: bó vỉa + thảm cỏ + cây
+  const medG = [], treeL = [];
+  ROADS.filter(r => r.div).forEach(r => { for (let s = 1.5; s < r.L; s += 3) { const p = at(r, s); if (inOther(r, p.x, p.z, 1.5)) continue; medG.push([p.x, p.z, p, r.med]); if (Math.round(s / 3) % 4 === 0) treeL.push([p.x, p.z]) } });
+  if (medG.length) { const im = new THREE.InstancedMesh(new THREE.BoxGeometry(1, .35, 3.05), new THREE.MeshLambertMaterial({ color: 0x6f9e4f }), medG.length);
+    medG.forEach(([x, z, p, w], i) => { dm.position.set(x, .3, z); dm.rotation.set(0, Math.atan2(p.ux, p.uz), 0); dm.scale.set(w, 1, 1); dm.updateMatrix(); im.setMatrixAt(i, dm.matrix) }); roadGrp.add(im) }
+  // cây hai bên vỉa hè + dải phân cách
+  ROADS.forEach(r => { if (r.w < 13) return; for (let s = 6; s < r.L; s += 9) { const p = at(r, s); for (const sd of [-1, 1]) { const o = sd * (r.w / 2 - r.sw * .45), x = p.x - p.uz * o, z = p.z + p.ux * o; if (!inOther(r, x, z, 1)) treeL.push([x, z]) } } });
+  if (treeL.length) { const crown = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1.6, 0), new THREE.MeshLambertMaterial({ color: 0x4f8a3a, flatShading: true }), treeL.length);
+    const trunk = new THREE.InstancedMesh(new THREE.CylinderGeometry(.18, .22, 2.2, 5), new THREE.MeshLambertMaterial({ color: 0x7a5a3c }), treeL.length);
+    treeL.forEach(([x, z], i) => { const k = .85 + ((i * 37) % 10) / 25; dm.rotation.set(0, i, 0); dm.position.set(x, 1.1, z); dm.scale.set(1, 1, 1); dm.updateMatrix(); trunk.setMatrixAt(i, dm.matrix);
+      dm.position.set(x, 3.1 * k, z); dm.scale.set(k, k * 1.1, k); dm.updateMatrix(); crown.setMatrixAt(i, dm.matrix) }); roadGrp.add(trunk, crown) }
+}
+// xe ô tô chạy theo làn (đi bên phải), quay đầu ở cuối đường
+const movers = []; let carBody = null, carGlass = null;
+{ let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  ROADS.forEach(r => { const lw = r.cw / r.n, per = r.div ? r.n : r.n / 2;
+    for (const dir of [1, -1]) for (let k = 0; k < per; k++) {
+      const off = (r.div ? r.med / 2 : 0) + (k + .5) * lw;
+      const cnt = Math.max(1, Math.round(r.L / (r.w >= 22 ? 32 : 55) * (.6 + rnd() * .6)));
+      for (let c = 0; c < cnt; c++) movers.push({ r, dir, off, s: rnd() * r.L, v: (r.w >= 22 ? 9 : 5.5) + rnd() * 4 - k * 1.2 }) } });
+  const body = new THREE.BoxGeometry(1.9, .9, 4.5); body.translate(0, .75, 0);
+  const glass = new THREE.BoxGeometry(1.72, .62, 2.4); glass.translate(0, 1.48, -.2);
+  carBody = new THREE.InstancedMesh(body, new THREE.MeshLambertMaterial({ color: 0xffffff }), movers.length);
+  carGlass = new THREE.InstancedMesh(glass, new THREE.MeshLambertMaterial({ color: 0x27313b }), movers.length);
+  const COL = [0xf4f4f2, 0xc8102e, 0x1f4fa0, 0x8e9499, 0x1d1f22, 0xf4f4f2, 0x2a7fbf, 0xe8e6df, 0xd9a400, 0x5b6770];
+  movers.forEach((m, i) => carBody.setColorAt(i, new THREE.Color(COL[i % COL.length])));
+  scene.add(carBody, carGlass);
+}
+function updateCars(dt) {
+  if (!carBody || !carBody.visible) return;
+  movers.forEach((m, i) => { const r = m.r; m.s += m.dir * m.v * dt;
+    if (m.s > r.L) { m.s = r.L; m.dir = -1 } else if (m.s < 0) { m.s = 0; m.dir = 1 }   // tới cuối đường thì quay đầu sang làn bên kia
+    const p = at(r, m.s), o = m.off * m.dir, x = p.x - p.uz * o, z = p.z + p.ux * o;
+    dm.position.set(x, .22, z); dm.rotation.set(0, Math.atan2(p.ux * m.dir, p.uz * m.dir), 0); dm.scale.set(1, 1, 1); dm.updateMatrix();
+    carBody.setMatrixAt(i, dm.matrix); carGlass.setMatrixAt(i, dm.matrix) });
+  carBody.instanceMatrix.needsUpdate = true; carGlass.instanceMatrix.needsUpdate = true;
+}
+updateCars(0);
+
 // ---------- labels ----------
 const lbBox = $('labels'); const labels = [];
 function addLabel(cls, text, x, y, z, minD = 0, maxD = 1e9) {
@@ -225,8 +320,8 @@ const AMEN0 = [['VinWonders Hải Vân', 760, 330], ['Botanica Park', 430, 1138]
 const k2m = W / 2048;
 for (const [n, t, x, z] of data.meta.pins || []) { const el = addLabel('pin', n, X(x), 26, Z(z), 0, 9000); el.dataset.t = t; el.title = t;
   el.onclick = () => { document.querySelectorAll('.lb.pin.act').forEach(e => e.classList.remove('act')); el.classList.add('act') } }
-for (const [t, x, z] of data.meta.roads || []) addLabel('road', t, X(x), 6, Z(z), 0, 2600);
 for (const [t, x, z] of data.meta.zones || []) addLabel('zone', t, X(x), 40, Z(z), 500, 7500);
+for (const r of ROADS) addLabel('road', r.name, X(r.at[0]), 4, Z(r.at[1]), 0, 1800);
 for (const [t, x, z] of data.meta.rzones || []) addLabel('zone tv', t + ' · sắp mở bán', X(x), 40, Z(z), 300, 30000);
 
 const v = new THREE.Vector3();
@@ -451,6 +546,8 @@ renderer.setAnimationLoop(t => {
   if (rot && !anim) { const a = .0012, o = camera.position.clone().sub(controls.target); o.applyAxisAngle(new THREE.Vector3(0, 1, 0), a); camera.position.copy(controls.target).add(o) }
   controls.update();
   { const d = camera.position.distanceTo(controls.target) / (FLAT ? KF() / .82 : 1); edges.material.opacity = .35 * Math.max(0, Math.min(1, (3500 - d) / 2500)); edges.visible = edges.material.opacity > .01 }
+  { const d = camera.position.distanceTo(controls.target) / (FLAT ? KF() / .82 : 1), on = d < 3200; carBody.visible = carGlass.visible = on;
+    const dt = Math.min(.1, (t - (window.__lt || t)) / 1000); window.__lt = t; if (on) updateCars(dt) }
   placeBadges(); renderer.render(scene, camera); placeLabels();
 });
 // mở theo #mã-căn
