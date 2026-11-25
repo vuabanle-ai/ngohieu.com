@@ -80,18 +80,18 @@ for (const [gi, g] of data.meta.grounds.entries()) {
 // ---------- lots: nhà theo kiến trúc tân cổ điển (theo phối cảnh CĐT) ----------
 // mặt đứng vẽ bằng canvas: mỗi cột atlas = 1 bước cột (bay); thân nhà + mái mansard xám đá có cửa sổ áp mái
 const ARCH = {   // số tầng thân (chưa tính tầng áp mái), chiều cao thân (m), cột atlas mặt tiền, bước cột (m)
-  Y: { fl: 4, hb: 13.6, col: 0, bay: 2.5 },
-  S: { fl: 4, hb: 14.6, col: 1, bay: 2.5 },
-  P: { fl: 3, hb: 10.8, col: 2, bay: 3.2 },
-  K: { fl: 3, hb: 10.8, col: 2, bay: 3.2 }
+  Y: { fl: 4, hb: 14.3, col: 0, bay: 5.5, man: 3.2 },   // mặt đứng CĐT: tầng 1 4,1m + 3 tầng × 3,4m; tầng 5 áp mái 3,2m → 17,5m
+  S: { fl: 4, hb: 14.3, col: 1, bay: 6, man: 3.2 },
+  P: { fl: 3, hb: 11.55, col: 2, bay: 7.5, man: 3.7 },   // SL1: 0,45 + 4,1 + 3,5 + 3,5; áp mái 3,5 → 15,25m
+  K: { fl: 3, hb: 11.55, col: 2, bay: 7.5, man: 3.7 }
 };
 const ZARCH = { TD: 'Hiện đại', HT: 'Tân cổ điển' };   // theo tài liệu CĐT: PK1 Thời Đại kiến trúc hiện đại, PK2 Hưng Thịnh kiến trúc tân cổ điển
 const MODERN = z => z === 'TD';
 const HTB = new Set(['HT', 'HT10', 'HT11', 'HT12', 'HT15', 'HT16', 'HT17']);   // khu 3B (Hưng Thịnh - B): LKE, SHA, SL1, ĐL
 // chọn cột mặt đứng / tường hồi / mái theo mẫu nhà từng dãy
 function arch(zone, t, code) { const pre = code.split('-')[0], n = parseInt(code.split('-')[1]) || 0;
-  if (zone === 'TD') return { f: t === 'S' ? 9 : 8, s: 11, r: t === 'S' ? 12 : 10, m: t === 'S' ? 'SHB/SHD' : 'LKA/LKB' };
-  if (HTB.has(pre)) return (t === 'P' || t === 'K') ? { f: 2, s: 3, r: 14, m: t === 'K' ? 'ĐL' : 'SL1' } : { f: 13, s: 3, r: 14, m: t === 'S' ? 'SHA' : 'LKE' };
+  if (zone === 'TD') return { f: t === 'S' ? 9 : 8, s: 11, r: t === 'S' ? 12 : 10, m: t === 'S' ? 'SHB/SHD' : 'LKB' };
+  if (HTB.has(pre)) return (t === 'P' || t === 'K') ? { f: 2, s: 3, r: 5, m: t === 'K' ? 'ĐL' : 'SL1' } : { f: 13, s: 3, r: 7, m: t === 'S' ? 'SHA' : 'LKE' };
   return t === 'S' ? { f: 1, s: 3, r: n % 4 < 2 ? 4 : 14, m: 'SHC' } : { f: 0, s: 3, r: n % 4 < 2 ? 4 : 14, m: 'LKA' } }
 const MAN = 3.2, MIN = 1.1;   // mái mansard: cao 3,2 m, lùi vào 1,1 m
 const NCOL = 15, CW_ = 256, CH_ = 1024;   // atlas: 0 LK, 1 SH, 2 BT, 3 tường hồi, 4 mái mansard, 5–7 trắng (mặt mái), 8 LK hiện đại, 9 SH hiện đại, 10 mái dốc kim loại hiện đại, 11 tường hồi hiện đại
@@ -189,7 +189,11 @@ const facade = (() => {
   // mái mansard có cửa sổ áp mái vòm (LKA xen kẽ, LKE, SL1)
   { const c = 14, x0 = c * CW_; clr(c, '#4b5159'); g.fillStyle = 'rgba(0,0,0,.18)'; for (let k = 0; k < CH_; k += 26) g.fillRect(x0, k, CW_, 3);
     archWin(x0 + 78, 260, 100, 600, '#f6f2ea', '#4f6272') }
-  const t = new THREE.CanvasTexture(cn); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.generateMipmaps = true; return t;
+  const t = new THREE.CanvasTexture(cn); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.generateMipmaps = true;
+  // ảnh mặt đứng thật của CĐT (cắt từ bản vẽ/phối cảnh mẫu nhà) — thứ tự trong mat-tien.webp: LKA, SHC, SL1, mái LKA, mái LKA vòm, LKE, mái LKE, mái SL1, SHB, LKB, SHD
+  const im = new Image(); im.onload = () => { [[0, 0], [1, 1], [2, 2], [3, 4], [4, 14], [5, 13], [6, 7], [7, 5], [8, 9], [9, 8]].forEach(([i, c]) => g.drawImage(im, i * 256, 0, 256, 1024, c * CW_, 0, CW_, CH_)); t.needsUpdate = true };
+  im.src = 'mat-tien.webp?v=1';
+  return t;
 })();
 const X = x => x - W / 2, Z = z => z - H / 2;
 const lots = []; let vtx = 0;
@@ -217,7 +221,7 @@ for (const [code, t, poly, zone, dt] of data.lots) {
   let base = poly.map(([x, z]) => [cx + (X(x) - cx) * .94, cz + (Z(z) - cz) * .94]);
   if (THREE.ShapeUtils.area(base.map(p => new THREE.Vector2(p[0], p[1]))) < 0) base = base.reverse();
   const AR = arch(zone, t, code), A = ARCH[t] || ARCH.Y, ax = lotAxis(base), hb = A.hb, isFront = (p, q) => { const dx = q[0] - p[0], dz = q[1] - p[1], l = Math.hypot(dx, dz) || 1; return Math.abs((dx * ax.ux + dz * ax.uz) / l) < .5 },
-    top = inset(base, base.map((p, i) => isFront(p, base[(i + 1) % base.length]) ? MIN : 0)), h = hb + MAN;
+    top = inset(base, base.map((p, i) => isFront(p, base[(i + 1) % base.length]) ? MIN : 0)), h = hb + (A.man || MAN);
   const n = base.length;
   // tường thân: chia theo bước cột; cạnh ngang lô (mặt tiền/mặt hậu) dùng mặt đứng, cạnh dọc dùng tường hồi
   for (let i = 0; i < n; i++) { const p = base[i], q = base[(i + 1) % n]; const dx = q[0] - p[0], dz = q[1] - p[1], len = Math.hypot(dx, dz); if (len < .2) continue;
@@ -229,7 +233,7 @@ for (const [code, t, poly, zone, dt] of data.lots) {
   for (let i = 0; i < n; i++) { const p = base[i], q = base[(i + 1) % n], r = top[(i + 1) % n], s2 = top[i];
     const dx = q[0] - p[0], dz = q[1] - p[1], len = Math.hypot(dx, dz); if (len < .2) continue;
     let nx = dz / len, nz = -dx / len; if (((p[0] + q[0]) / 2 - cx) * nx + ((p[1] + q[1]) / 2 - cz) * nz < 0) { nx = -nx; nz = -nz }
-    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, ny = front ? MIN / MAN : 0, nl = Math.hypot(nx, ny, nz), nb = front ? Math.max(1, Math.round(len / A.bay)) : 1;
+    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, ny = front ? MIN / (A.man || MAN) : 0, nl = Math.hypot(nx, ny, nz), nb = front ? Math.max(1, Math.round(len / A.bay)) : 1;
     for (let k = 0; k < nb; k++) { const a0 = k / nb, a1 = (k + 1) / nb, L = (P, Q, a) => [P[0] + (Q[0] - P[0]) * a, P[1] + (Q[1] - P[1]) * a];
       const b0 = L(p, q, a0), b1 = L(p, q, a1), t1 = L(s2, r, a1), t0 = L(s2, r, a0), c = front ? AR.r : AR.s;
       quad([b0[0], hb, b0[1]], [b1[0], hb, b1[1]], [t1[0], h, t1[1]], [t0[0], h, t0[1]], [nx / nl, ny / nl, nz / nl], [[U(c, 0), 0], [U(c, 1), 0], [U(c, 1), 1], [U(c, 0), 1]]) } }
@@ -560,11 +564,36 @@ function select(L, fly) {
     if (q.offers?.length > 1) html += `<dt class="h">Giá theo đại lý</dt><dd class="h"></dd>` + q.offers.map(o => `<dt>${SRC[o.src] || o.src}</dt><dd>${ty(o.gia)}${o.tcbg ? ' · ' + o.tcbg : ''}</dd>`).join('');
   }
   $('cRows').innerHTML = html;
+  mauNha(L);
   extras(L, q);
   $('card').classList.add('show');
   if (fly) flyTo(L.cx, L.cz, 260, .9, controls.getAzimuthalAngle());
 }
 $('cardX').onclick = () => select(null);
+
+// ---------- ảnh kiến trúc mặt tiền theo mẫu nhà CĐT ----------
+const MAU = {   // m → [ảnh phối cảnh, ảnh mặt đứng, ghi chú]
+  'LKB': ['LKB', null, 'Phân khu Thời Đại · mẫu LKB · mặt tiền 6m'],
+  'SHB/SHD': ['SHB', 'SHB-2', 'Phân khu Thời Đại · mẫu SHB (căn góc 2 mặt tiền: SHD) · mặt tiền 6m'],
+  'LKA': ['LKA', 'LKA-md', 'Hưng Thịnh A · mẫu LKA · mặt tiền 5m · cao 17,5m'],
+  'SHC': ['SHC', 'SHC-md', 'Hưng Thịnh A · mẫu SHC · mặt tiền 6m · cao 17,5m'],
+  'LKE': ['LKE', 'LKE-md', 'Hưng Thịnh B · mẫu LKE · mặt tiền 5m · cao 17,5m'],
+  'SHA': ['LKE', 'LKE-md', 'Hưng Thịnh B · mẫu SHA, cùng ngôn ngữ kiến trúc dãy LKE'],
+  'SL1': ['SL1', 'SL1-md', 'Hưng Thịnh B · biệt thự song lập mẫu SL1-SL1M · cao 15,25m'],
+  'ĐL': ['SL1', 'SL1-md', 'Biệt thự đơn lập · minh họa theo ngôn ngữ kiến trúc mẫu SL1']
+};
+function mauNha(L) {
+  const m = arch(L.zone, L.t, L.code).m, M = MAU[m], el = $('mn');
+  if (!M) { el.hidden = true; return }
+  el.hidden = false;
+  const shd = m === 'SHB/SHD' && L.pre === 'TD';   // dãy góc phía nam Thời Đại: mẫu SHD 2 mặt tiền
+  const p = shd ? 'SHD' : M[0];
+  $('mnT').textContent = 'Kiến trúc mặt tiền · mẫu ' + (shd ? 'SHD' : m);
+  $('mnImg').src = 'mau-nha/' + p + '.jpg'; $('mnImg').alt = 'Phối cảnh mẫu nhà ' + p;
+  $('mnA').href = 'mau-nha/' + p + '.jpg';
+  $('mnMd').hidden = !M[1]; if (M[1]) { $('mnMd').src = 'mau-nha/' + M[1] + '.jpg'; $('mnB').href = 'mau-nha/' + M[1] + '.jpg' } $('mnB').hidden = !M[1];
+  $('mnNote').textContent = (shd ? 'Phân khu Thời Đại · mẫu SHD · căn góc 2 mặt tiền 6m' : M[2]) + ' · ảnh minh họa của CĐT';
+}
 
 // ---------- phiếu tính giá + ảnh chỉ căn ----------
 let curL = null, curQ = null, ptgKey = 'tttd';
