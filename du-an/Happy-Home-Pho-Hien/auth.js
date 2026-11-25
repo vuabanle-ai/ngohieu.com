@@ -34,8 +34,12 @@ const ERR = c => ({
   'auth/wrong-password': 'Mật khẩu chưa đúng.',
   'auth/user-not-found': 'Số này chưa đăng ký, mời anh/chị đăng ký.',
   'auth/quota-exceeded': 'Hệ thống tạm hết lượt gửi tin, vui lòng thử lại sau.',
-  'auth/weak-password': 'Mật khẩu cần ít nhất 6 ký tự.'
-}[c] || 'Có lỗi xảy ra, vui lòng thử lại.');
+  'auth/weak-password': 'Mật khẩu cần ít nhất 6 ký tự.',
+  'auth/billing-not-enabled': 'Hệ thống gửi SMS đang tạm bảo trì. Anh/chị liên hệ Zalo 0914.669.669 để được hỗ trợ.',
+  'auth/operation-not-allowed': 'Hệ thống gửi SMS đang tạm bảo trì. Anh/chị liên hệ Zalo 0914.669.669 để được hỗ trợ.',
+  'auth/network-request-failed': 'Mạng đang chập chờn, anh/chị kiểm tra kết nối rồi thử lại.',
+  'auth/captcha-check-failed': 'Xác minh chống spam chưa đạt, anh/chị tải lại trang rồi thử lại.'
+}[c] || `Có lỗi xảy ra, vui lòng thử lại (mã: ${String(c || 'khong-ro').replace('auth/', '')}).`);
 
 let pending = null, confirmRes = null, verifier = null, timer = 0;
 const recaptcha = () => verifier || (verifier = new A.RecaptchaVerifier(auth, 'gSend', { size: 'invisible' }));
