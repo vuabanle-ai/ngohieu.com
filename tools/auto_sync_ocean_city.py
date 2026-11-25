@@ -25,7 +25,7 @@ CODE = re.compile(r'^' + PRE + r'\d{0,2}-\d{1,3}$')
 SOLD_TXT = re.compile(r'ĐÃ\s*(BÁN|CỌC)|\bSOLD\b')
 CHECK_TXT = re.compile(r'CHECK\s*ADMIN')
 SKIP_TAB = re.compile(r'THÔNG SỐ|THONG SO|DIỆN TÍCH|DIEN TICH|GIỎ|BANK|STK|KPTM|ELITE|CSDL|^TK|DS K|TEST|BIỂU MẪU|CÂU TRẢ LỜI|'
-                      r'NGƯỜI NƯỚC NGOÀI|NNN|TMDV|\(CŨ\)|\bCŨ\b|CSBH|CHÍNH SÁCH|PTG|PHIẾU|NHẬN TIỀN|NỘP TIỀN|TRC|KHÔNG ÁP DỤNG', re.I)
+                      r'NGƯỜI NƯỚC NGOÀI|NNN|TMDV|\(CŨ\)|\bCŨ\b|CSBH|CHÍNH SÁCH|PTG|PHIẾU|NHẬN TIỀN|NỘP TIỀN|TRC|KHÔNG ÁP DỤNG|TCBG|BÀN GIAO|FULLTON', re.I)
 UA = {'User-Agent': 'Mozilla/5.0 ngohieu-sync'}
 
 
@@ -130,6 +130,7 @@ def read_source(n, data):
             if ws.sheet_state != 'visible' or SKIP_TAB.search(t): continue
             name = n['ten'] + (':dq' if re.search(r'ĐQ|ĐỘC QUYỀN|DOC QUYEN|\bDQ\b', t, re.I) else '')
         rows = read_tab(ws)
+        if re.search(r'ĐÃ BÁN|DA BAN|SOLD', t, re.I): rows = [(c, True, k, q) for c, m, k, q in rows]   # tab "căn đã bán"
         if not rows or len(rows) > 1500: continue            # bảng thông số toàn dự án -> bỏ
         print(f'  {n["ten"]} | {t} -> {name}: {len(rows)} căn', file=sys.stderr)
         res.append((name, rows))
