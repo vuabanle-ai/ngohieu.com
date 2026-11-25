@@ -207,7 +207,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
   <li><b>40m</b>Đại lộ Di Sản · Tinh Hoa 32m · Thịnh Vượng 35m · Lam Viên 32m</li>
  </ul>
  <p class="note"><b>Đang cập nhật:</b> các phân khu Văn Hiến, Vinh Hoa, Phú Quý, Lâm Viên, Cát Tường chưa mở bán, đang hiển thị theo tổng mặt bằng. Mã từng căn sẽ bổ sung khi chủ đầu tư ra hàng.</p>
- <p class="note" id="panelOut" hidden><button class="gsmall" type="button" onclick="document.getElementById('logout').click()">Đăng xuất</button></p>
  <p class="note">Mã căn, diện tích và vị trí từng lô đọc từ mặt bằng phân khu Thời Đại &amp; Hưng Thịnh của chủ đầu tư (bản 02/11/2026), đặt trên tổng mặt bằng dự án. Thông số bản vẽ là tương đối, thông số chính thức theo hợp đồng mua bán. Dự án chưa ra hàng; quỹ căn sẽ cập nhật khi chủ đầu tư mở bán.</p>
 </aside>
 
@@ -228,49 +227,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 
 <div class="legend" id="legend"><div class="lgt">Tô màu sa bàn</div><div class="modes" id="lgModes"><button data-m="mo-ban" class="on">Còn / đã bán</button><button data-m="loai">Loại căn</button></div><ul id="lgItems"></ul><div class="tip">Kéo để di chuyển · cuộn/chụm để phóng · nút “Xem 3D” để xem nghiêng · mã căn ghi trên mái · bấm căn để xem bảng giá</div></div>
 
-<div id="gate" role="dialog" aria-modal="true" aria-label="Đăng ký sử dụng sa bàn">
- <div class="gbox">
-  <section data-step="reg" hidden>
-   <h2>Mở sa bàn 3D miễn phí</h2>
-   <p class="lead">Dành cho anh chị môi giới. Đăng ký một lần chỉ với số điện thoại, lần sau tự vào không cần đăng nhập lại.</p>
-   <ul class="perks"><li>1.210 căn Thời Đại &amp; Hưng Thịnh có mã, diện tích và vị trí từng căn</li><li>Giá và quỹ căn cập nhật theo bảng hàng mới nhất</li><li>Tìm căn, xem quỹ đang bán ngay trên sa bàn</li></ul>
-   <form id="gReg" novalidate>
-    <label for="gPhone">Số điện thoại <b style="color:var(--red)">*</b></label><input id="gPhone" required type="tel" inputmode="numeric" autocomplete="tel" placeholder="0912 345 678">
-    <label for="gPw">Mật khẩu <b style="color:var(--red)">*</b> <small style="font-weight:400;color:#888">(ít nhất 6 ký tự)</small></label><div class="pw"><input id="gPw" required type="password" autocomplete="new-password"><button class="eye" type="button">Hiện</button></div>
-    <label for="gName">Họ và tên <small style="font-weight:400;color:#888">(không bắt buộc)</small></label><input id="gName" type="text" autocomplete="name" placeholder="Nguyễn Văn A">
-    <label for="gAgency">Đại lý / công ty <small style="font-weight:400;color:#888">(không bắt buộc)</small></label><input id="gAgency" type="text" autocomplete="organization" placeholder="Tên đại lý / công ty">
-    <label class="agree"><input type="checkbox" id="gAgree" checked><span>Tôi đồng ý với <a href="../../chinh-sach-bao-mat/" target="_blank" rel="noopener">chính sách bảo mật</a>.</span></label>
-    <p class="gmsg" id="gMsg1"></p>
-    <button class="gbtn" id="gSend">Đăng ký & mở sa bàn</button>
-   </form>
-   <p class="safe">🔒 Số điện thoại chỉ dùng để đăng nhập, không gửi quảng cáo.</p>
-   <p class="gfoot">Đã có tài khoản? <a href="#" data-go="login">Đăng nhập</a></p>
-  </section>
-
-
-
-  <section data-step="login" hidden>
-   <h2>Chào mừng trở lại</h2>
-   <p class="lead">Đăng nhập để mở sa bàn 3D.</p>
-   <form id="gLoginForm">
-    <label for="gLPhone">Số điện thoại</label><input id="gLPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="0912 345 678">
-    <label for="gLPw">Mật khẩu</label><div class="pw"><input id="gLPw" type="password" autocomplete="current-password"><button class="eye" type="button">Hiện</button></div>
-    <p class="gmsg" id="gMsg4"></p>
-    <button class="gbtn" id="gLogin">Đăng nhập</button>
-   </form>
-   <p class="gfoot"><a href="#" data-go="forgot">Quên mật khẩu?</a> · <a href="#" data-go="reg">Đăng ký mới</a></p>
-  </section>
-
-  <section data-step="forgot" hidden>
-   <h2>Quên mật khẩu?</h2>
-   <p class="lead">Anh chị nhắn Zalo cho Ngô Hiếu kèm số điện thoại đã đăng ký, em đặt lại mật khẩu giúp trong ít phút.</p>
-   <a class="gbtn" href="https://zalo.me/0914669669" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Nhắn Zalo 0914.669.669</a>
-   <p class="gfoot"><a href="#" data-go="login">Quay lại đăng nhập</a> · <a href="#" data-go="reg">Đăng ký mới</a></p>
-  </section>
- </div>
-</div>
-<div id="who" hidden><span>Xin chào, <b></b></span><button id="logout" type="button">Đăng xuất</button></div>
 <script type="module" src="sa-ban.js?v=3"></script>
-<script type="module" src="auth.js?v=6"></script>
+<script type="module" src="/assets/dem-truy-cap.js?v=1"></script>
 </body>
 </html>

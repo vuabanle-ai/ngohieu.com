@@ -1,76 +1,72 @@
 <!DOCTYPE html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<title>Báo cáo người dùng – ngohieu.com</title>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Báo cáo truy cập – ngohieu.com</title>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-/* VOICE: work report. IDEA: daily sales register. PICTURE: KPI row + agency bars + user table. COLOUR/TYPE: maroon/orange, Be Vietnam Pro. LAYOUT: header, KPIs, bars beside recent activity, full table. */
-:root{--mr:#e31b23;--or:#5d636b;--line:#e3e5e8;--mut:#6b7077}*{box-sizing:border-box;min-width:0}
-body{margin:0;font:15px/1.5 "Be Vietnam Pro",system-ui,sans-serif;color:#26282b;background:#f4f5f7}
-header{background:#2f3337;color:#fff;padding:16px max(4vw,16px);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}header b{font-size:20px}
-main{max-width:1240px;margin:auto;padding:20px max(4vw,16px) 48px}
-.card{background:#fff;border-radius:16px;box-shadow:0 6px 20px rgba(30,30,35,.07);padding:16px 18px}
-.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:14px}.kpi strong{display:block;font-size:34px;line-height:1.1;color:var(--mr)}.kpi small{color:var(--mut)}
-.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin-bottom:14px}
-h2{font-size:16px;margin:0 0 10px}
-.bar{display:grid;grid-template-columns:120px 1fr 40px;gap:8px;align-items:center;margin:5px 0;font-size:14px}.bar i{display:block;height:14px;border-radius:7px;background:var(--mr)}.bar b{text-align:right}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap}th{color:var(--mut);font-weight:600;position:sticky;top:0;background:#fff}
-.scroll{overflow:auto;max-height:520px}
-input,button{font:inherit}input{border:2px solid var(--line);border-radius:10px;min-height:44px;padding:0 12px;width:100%}
-button{border:0;border-radius:10px;min-height:44px;padding:0 16px;background:var(--mr);color:#fff;font-weight:700;cursor:pointer}button.ghost{background:#fff;color:var(--mr)}
-#login{max-width:380px;margin:60px auto}#login label{display:block;font-weight:700;margin:10px 0 4px;font-size:13px}.msg{color:#c8102e;min-height:20px;font-size:13px}
-.tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}.tools input{max-width:260px}
-@media(max-width:760px){.two{grid-template-columns:1fr}}
+:root{--red:#e31b23;--ink:#26282b;--mut:#6b7077;--line:#e3e5e8;--soft:#f4f5f7}*{box-sizing:border-box;min-width:0}
+body{margin:0;font:15px/1.5 "Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);background:var(--soft)}
+header{background:#2f3337;color:#fff;padding:16px max(4vw,16px);display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}header b{font-size:20px}header small{opacity:.75}
+main{max-width:1200px;margin:auto;padding:20px max(4vw,16px) 48px}
+.card{background:#fff;border-radius:16px;box-shadow:0 6px 20px rgba(30,30,35,.07);padding:16px 18px;margin-bottom:14px}
+h2{font-size:16px;margin:0 0 12px}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:14px}.kpi .card{margin:0}
+.kpi small{color:var(--mut);display:block}.kpi strong{display:block;font-size:34px;line-height:1.15;color:var(--red)}.kpi em{font-style:normal;font-size:13px;color:var(--mut)}.kpi em.up{color:#1a8a4a}.kpi em.down{color:#c8102e}
+.chart{display:flex;align-items:flex-end;gap:4px;height:200px;padding-top:10px;border-bottom:1px solid var(--line)}
+.chart div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%;position:relative}
+.chart i{display:block;width:100%;max-width:26px;background:var(--red);border-radius:5px 5px 0 0;min-height:2px}.chart i.v{background:#f2a3a6}
+.chart b{font-size:10.5px;color:var(--mut);font-weight:600}
+.axis{display:flex;gap:4px;margin-top:4px}.axis span{flex:1;text-align:center;font-size:10.5px;color:var(--mut)}
+.legend{display:flex;gap:14px;font-size:13px;color:var(--mut);margin-top:8px}.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;background:var(--red);margin-right:5px;vertical-align:-1px}.legend i.v{background:#f2a3a6}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}.two .card{margin-bottom:14px}
+.bar{display:grid;grid-template-columns:minmax(110px,190px) 1fr 46px;gap:8px;align-items:center;margin:6px 0;font-size:14px}.bar span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bar i{display:block;height:12px;border-radius:6px;background:var(--red)}.bar b{text-align:right}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:right;padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap}th:first-child,td:first-child{text-align:left}th{color:var(--mut);font-weight:600}
+.scroll{overflow:auto;max-height:460px}.note{color:var(--mut);font-size:13px}
+@media(max-width:760px){.two{grid-template-columns:1fr}.chart b{display:none}}
 </style></head><body>
-<header><b>Báo cáo người dùng sa bàn</b><span id="hdr"></span></header>
+<header><b>Báo cáo truy cập ngohieu.com</b><small id="upd">Đang tải…</small></header>
 <main>
-<form id="login" class="card" hidden><h2>Đăng nhập quản trị</h2><label>Số điện thoại</label><input id="ph" type="tel" inputmode="numeric"><label>Mật khẩu</label><input id="pw" type="password"><p class="msg" id="msg"></p><button>Đăng nhập</button></form>
-<div id="app" hidden>
- <div class="kpi"><div class="card"><small>Người đã đăng ký</small><strong id="kU">0</strong></div><div class="card"><small>Đăng ký 7 ngày qua</small><strong id="k7">0</strong></div><div class="card"><small>Hoạt động 24 giờ qua</small><strong id="k24">0</strong></div><div class="card"><small>Lượt xem căn</small><strong id="kV">0</strong></div></div>
- <div class="two"><div class="card"><h2>Người dùng theo đại lý</h2><div id="ag"></div></div><div class="card"><h2>Căn được xem nhiều nhất</h2><div id="top"></div></div></div>
- <div class="card"><div class="tools"><h2 style="margin:0;flex:1">Danh sách người dùng</h2><input id="q" placeholder="Tìm tên, SĐT, đại lý"><button id="csv" class="ghost" type="button">Tải CSV</button></div>
- <div class="scroll"><table><thead><tr><th>Họ tên</th><th>Đại lý</th><th>Số điện thoại</th><th>Ngày đăng ký</th><th>Lần cuối vào</th><th style="text-align:right">Số lần vào</th><th style="text-align:right">Căn đã xem</th></tr></thead><tbody id="rows"></tbody></table></div></div>
-</div>
+ <div class="kpi">
+  <div class="card"><small>Người truy cập hôm nay</small><strong id="kV">–</strong><em id="kVd"></em></div>
+  <div class="card"><small>Lượt xem trang hôm nay</small><strong id="kP">–</strong><em id="kPd"></em></div>
+  <div class="card"><small>Người mới hôm nay</small><strong id="kN">–</strong><em>lần đầu vào web</em></div>
+  <div class="card"><small>Người quay lại hôm nay</small><strong id="kR">–</strong><em>đã từng vào trước đó</em></div>
+  <div class="card"><small>Căn được xem hôm nay</small><strong id="kU">–</strong><em>bấm vào căn trên sa bàn</em></div>
+ </div>
+ <div class="card"><h2>30 ngày gần nhất</h2><div class="chart" id="chart"></div><div class="axis" id="axis"></div>
+  <div class="legend"><span><i></i>Người truy cập</span><span><i class="v"></i>Lượt xem trang</span></div></div>
+ <div class="two">
+  <div class="card"><h2>Trang được xem nhiều (7 ngày)</h2><div id="pages"></div></div>
+  <div class="card"><h2>Nguồn truy cập (7 ngày)</h2><div id="src"></div></div>
+ </div>
+ <div class="card"><h2>Chi tiết từng ngày</h2><div class="scroll"><table><thead><tr><th>Ngày</th><th>Người truy cập</th><th>Người mới</th><th>Quay lại</th><th>Lượt xem trang</th><th>Căn được xem</th></tr></thead><tbody id="rows"></tbody></table></div>
+ <p class="note">Số liệu đếm ẩn danh theo từng máy/trình duyệt, tính theo giờ Việt Nam. Bắt đầu đếm từ 25/11/2026.</p></div>
 </main>
 <script type="module">
 import { FIREBASE } from '../firebase-config.js?v=2';
-{
-const $=id=>document.getElementById(id);
-if(!FIREBASE.apiKey){$('hdr').textContent='Chưa cấu hình Firebase';}
-else{
 const V='10.12.2';
-const [{initializeApp},A,F]=await Promise.all([import(`https://www.gstatic.com/firebasejs/${V}/firebase-app.js`),import(`https://www.gstatic.com/firebasejs/${V}/firebase-auth.js`),import(`https://www.gstatic.com/firebasejs/${V}/firebase-firestore.js`)]);
-const app=initializeApp(FIREBASE),auth=A.getAuth(app),db=F.getFirestore(app);
-const e164=r=>{let d=String(r).replace(/\D/g,'');if(d.startsWith('84'))d=d.slice(2);if(d.startsWith('0'))d=d.slice(1);return '+84'+d};
+const [{initializeApp},F]=await Promise.all([import(`https://www.gstatic.com/firebasejs/${V}/firebase-app.js`),import(`https://www.gstatic.com/firebasejs/${V}/firebase-firestore-lite.js`)]);
+const db=F.getFirestore(initializeApp(FIREBASE));
+const $=id=>document.getElementById(id), fmt=n=>(n||0).toLocaleString('vi-VN');
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const dt=t=>t&&t.toDate?t.toDate().toLocaleString('vi-VN',{dateStyle:'short',timeStyle:'short'}):'';
-const ph=p=>String(p||'').replace('+84','0');
-$('login').onsubmit=async e=>{e.preventDefault();try{await A.signInWithEmailAndPassword(auth,e164($('ph').value).slice(1)+'@u.ngohieu.com',$('pw').value)}catch(err){$('msg').textContent='Sai số điện thoại hoặc mật khẩu.'}};
-let U=[],E=[];
-A.onAuthStateChanged(auth,async u=>{
- if(!u){$('login').hidden=false;$('app').hidden=true;return}
- try{
-  const [us,ev]=await Promise.all([F.getDocs(F.collection(db,'users')),F.getDocs(F.query(F.collection(db,'events'),F.orderBy('ts','desc'),F.limit(5000)))]);
-  U=us.docs.map(d=>({id:d.id,...d.data()}));E=ev.docs.map(d=>d.data());
- }catch(err){$('login').hidden=false;$('msg').textContent='Tài khoản này không có quyền xem báo cáo.';await A.signOut(auth);return}
- $('login').hidden=true;$('app').hidden=false;$('hdr').innerHTML=`<button class="ghost" id="out">Đăng xuất</button>`;$('out').onclick=()=>A.signOut(auth).then(()=>location.reload());
- render();
-});
-function render(){
- const now=Date.now(),ms=t=>t&&t.toDate?t.toDate().getTime():0;
- const views={};E.filter(e=>e.type==='xem_can').forEach(e=>{views[e.uid]=(views[e.uid]||0)+1});
- $('kU').textContent=U.length;$('k7').textContent=U.filter(u=>now-ms(u.createdAt)<7*864e5).length;
- $('k24').textContent=new Set(E.filter(e=>now-ms(e.ts)<864e5).map(e=>e.uid)).size;$('kV').textContent=E.filter(e=>e.type==='xem_can').length;
- const ag={};U.forEach(u=>{const k=u.agency||'Chưa rõ';ag[k]=(ag[k]||0)+1});const am=Math.max(1,...Object.values(ag));
- $('ag').innerHTML=Object.entries(ag).sort((a,b)=>b[1]-a[1]).slice(0,12).map(([k,v])=>`<div class="bar"><span>${esc(k)}</span><i style="width:${v/am*100}%"></i><b>${v}</b></div>`).join('')||'<p>Chưa có dữ liệu.</p>';
- const tc={};E.filter(e=>e.type==='xem_can'&&e.code).forEach(e=>{tc[e.code]=(tc[e.code]||0)+1});const tm=Math.max(1,...Object.values(tc));
- $('top').innerHTML=Object.entries(tc).sort((a,b)=>b[1]-a[1]).slice(0,12).map(([k,v])=>`<div class="bar"><span>${esc(k)}</span><i style="width:${v/tm*100}%"></i><b>${v}</b></div>`).join('')||'<p>Chưa có dữ liệu.</p>';
- const q=$('q').value.toLowerCase();
- const list=U.filter(u=>!q||[u.name,u.agency,ph(u.phone)].join(' ').toLowerCase().includes(q)).sort((a,b)=>ms(b.lastLogin)-ms(a.lastLogin));
- $('rows').innerHTML=list.map(u=>`<tr><td>${esc(u.name)}</td><td>${esc(u.agency)}</td><td>${esc(ph(u.phone))}</td><td>${dt(u.createdAt)}</td><td>${dt(u.lastLogin)}</td><td style="text-align:right">${u.loginCount||0}</td><td style="text-align:right">${views[u.id]||0}</td></tr>`).join('');
- $('csv').onclick=()=>{const rows=[['Họ tên','Đại lý','Số điện thoại','Ngày đăng ký','Lần cuối vào','Số lần vào','Căn đã xem']].concat(list.map(u=>[u.name,u.agency,ph(u.phone),dt(u.createdAt),dt(u.lastLogin),u.loginCount||0,views[u.id]||0]));
-  const csv='﻿'+rows.map(r=>r.map(c=>`"${String(c??'').replace(/"/g,'""')}"`).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='nguoi-dung-sa-ban.csv';a.click()};
-}
-$('q').oninput=render;
-}
-}
-</script></body></html>
+const vnDay=(off=0)=>new Date(Date.now()+7*3600e3-off*864e5).toISOString().slice(0,10);
+const PAGE={'trang-chu':'Trang chủ','du-an':'Danh sách dự án','du-an_Ocean-City':'Sa bàn Ocean City','du-an_Happy-Home-Pho-Hien':'Sa bàn Happy Home Phố Hiến','du-an_Vinhomes-Hai-Van-Bay':'Sa bàn Hải Vân Bay','du-an_Vinhomes-King-Park':'Sa bàn King Park','chinh-sach-bao-mat':'Chính sách bảo mật'};
+const SRC={truc_tiep:'Vào thẳng / gõ địa chỉ',facebook:'Facebook',tiktok:'TikTok',zalo:'Zalo',google:'Google',youtube:'YouTube',khac:'Trang khác'};
+let D={};
+try{(await F.getDocs(F.collection(db,'stats'))).forEach(d=>D[d.id]=d.data())}catch(e){$('upd').textContent='Không tải được số liệu: '+e.code;throw e}
+const g=(d,k)=>(D[d]||{})[k]||0;
+const t=vnDay(0),y=vnDay(1);
+const diff=(id,k)=>{const a=g(t,k),b=g(y,k);const el=$(id);el.textContent=b||a?`Hôm qua ${fmt(b)}`:'';if(a>b)el.className='up';else if(a<b)el.className='down'};
+$('kV').textContent=fmt(g(t,'visitors'));$('kP').textContent=fmt(g(t,'views'));$('kN').textContent=fmt(g(t,'newV'));$('kR').textContent=fmt(g(t,'returning'));$('kU').textContent=fmt(g(t,'units'));
+diff('kVd','visitors');diff('kPd','views');
+const days=[...Array(30)].map((_,i)=>vnDay(29-i));
+const max=Math.max(1,...days.map(d=>g(d,'views')));
+$('chart').innerHTML=days.map(d=>`<div title="${d.split('-').reverse().join('/')}: ${fmt(g(d,'visitors'))} người, ${fmt(g(d,'views'))} lượt xem"><b>${g(d,'visitors')||''}</b><div style="display:flex;gap:2px;align-items:flex-end;width:100%;justify-content:center;height:100%"><i style="height:${g(d,'visitors')/max*100}%"></i><i class="v" style="height:${g(d,'views')/max*100}%"></i></div></div>`).join('');
+$('axis').innerHTML=days.map((d,i)=>`<span>${i%5===4||i===29?d.slice(8)+'/'+d.slice(5,7):''}</span>`).join('');
+const sum=(k)=>{const o={};for(let i=0;i<7;i++){const m=(D[vnDay(i)]||{})[k]||{};for(const[a,n]of Object.entries(m))o[a]=(o[a]||0)+n}return Object.entries(o).sort((a,b)=>b[1]-a[1])};
+const bars=(el,list,names)=>{const m=Math.max(1,...list.map(x=>x[1]));$(el).innerHTML=list.length?list.slice(0,10).map(([k,n])=>`<div class="bar"><span title="${esc(k)}">${esc(names[k]||k.replace(/_/g,'/'))}</span><i style="width:${n/m*100}%"></i><b>${fmt(n)}</b></div>`).join(''):'<p class="note">Chưa có số liệu.</p>'};
+bars('pages',sum('pages'),PAGE);bars('src',sum('src'),SRC);
+const all=Object.keys(D).sort().reverse();
+$('rows').innerHTML=all.map(d=>`<tr><td>${d.split('-').reverse().join('/')}</td><td>${fmt(g(d,'visitors'))}</td><td>${fmt(g(d,'newV'))}</td><td>${fmt(g(d,'returning'))}</td><td>${fmt(g(d,'views'))}</td><td>${fmt(g(d,'units'))}</td></tr>`).join('')||'<tr><td colspan="6">Chưa có số liệu.</td></tr>';
+$('upd').textContent='Cập nhật lúc '+new Date().toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'})+' · tải lại trang để xem số mới';
+</script>
+</body></html>

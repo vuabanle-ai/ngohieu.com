@@ -1,20 +1,11 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Quản trị: chỉ tài khoản có UID trong danh sách này (tài khoản 0914 669 669 của anh Hiếu) mới xem được báo cáo.
-    function isAdmin() {
-      return request.auth != null && request.auth.uid in ['CHUA_CO_ADMIN'];
-    }
-    function signedIn() {
-      return request.auth != null && request.auth.token.email is string && request.auth.token.email.matches('^[0-9]+@u[.]ngohieu[.]com$');
-    }
-    match /users/{uid} {
-      allow read: if isAdmin() || (signedIn() && request.auth.uid == uid);
-      allow create, update: if signedIn() && request.auth.uid == uid;
-    }
-    match /events/{id} {
-      allow create: if signedIn() && request.resource.data.uid == request.auth.uid;
-      allow read: if isAdmin();
+    // Bộ đếm truy cập ẩn danh: mỗi ngày một bản ghi stats/YYYY-MM-DD, chỉ chứa các con số tổng hợp.
+    match /stats/{day} {
+      allow read: if true;
+      allow create, update: if day.matches('^20[0-9]{2}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.keys().hasOnly(['views', 'visitors', 'newV', 'returning', 'units', 'pages', 'src']);
     }
   }
 }

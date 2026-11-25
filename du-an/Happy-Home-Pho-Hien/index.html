@@ -217,7 +217,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
   <li><b>12 phút</b>Cầu Hưng Hà</li>
   <li><b>16 phút</b>KCN số 5, KCN Sạch Hưng Yên, cụm CN Quảng Lãng – Đặng Lễ</li>
  </ul>
- <p class="note" id="panelOut" hidden><button class="gsmall" type="button" onclick="document.getElementById('logout').click()">Đăng xuất</button></p>
  <p class="note">Số liệu theo tài liệu dự án. Hình khối, chiều cao và vị trí căn trên sa bàn mang tính minh họa; thông tin chính thức theo chủ đầu tư.</p>
 </aside>
 
@@ -239,48 +238,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 <div class="legend" id="legend"><div class="lgt">Tô màu sơ đồ Thịnh Vượng</div><div class="modes" id="lgModes"><button data-m="mac-dinh" class="on">Mặc định</button><button data-m="loai">Loại căn</button><button data-m="mo-ban">Đang mở bán</button></div><ul id="lgItems"></ul><div class="tip">Kéo để xoay · cuộn/chụm để phóng · mã căn ghi trên mái</div></div>
 
 
-<div id="gate" role="dialog" aria-modal="true" aria-label="Đăng ký sử dụng sa bàn">
- <div class="gbox">
-  <section data-step="reg" hidden>
-   <h2>Mở sa bàn 3D miễn phí</h2>
-   <p class="lead">Dành cho anh chị môi giới. Đăng ký một lần chỉ với số điện thoại, lần sau tự vào không cần đăng nhập lại.</p>
-   <ul class="perks"><li>303 căn có mã, hướng, diện tích, vị trí từng căn</li><li>Giá và quỹ căn cập nhật theo bảng hàng mới nhất</li><li>Xem mặt tiền, tiện ích, kết nối vùng ngay trên sa bàn</li></ul>
-   <form id="gReg" novalidate>
-    <label for="gPhone">Số điện thoại <b style="color:var(--red)">*</b></label><input id="gPhone" required type="tel" inputmode="numeric" autocomplete="tel" placeholder="0912 345 678">
-    <label for="gPw">Mật khẩu <b style="color:var(--red)">*</b> <small style="font-weight:400;color:#888">(ít nhất 6 ký tự)</small></label><div class="pw"><input id="gPw" required type="password" autocomplete="new-password"><button class="eye" type="button">Hiện</button></div>
-    <label for="gName">Họ và tên <small style="font-weight:400;color:#888">(không bắt buộc)</small></label><input id="gName" type="text" autocomplete="name" placeholder="Nguyễn Văn A">
-    <label for="gAgency">Đại lý / công ty <small style="font-weight:400;color:#888">(không bắt buộc)</small></label><input id="gAgency" type="text" autocomplete="organization" placeholder="Tên đại lý / công ty">
-    <label class="agree"><input type="checkbox" id="gAgree" checked><span>Tôi đồng ý với <a href="../../chinh-sach-bao-mat/" target="_blank" rel="noopener">chính sách bảo mật</a>.</span></label>
-    <p class="gmsg" id="gMsg1"></p>
-    <button class="gbtn" id="gSend">Đăng ký & mở sa bàn</button>
-   </form>
-   <p class="safe">🔒 Số điện thoại chỉ dùng để đăng nhập, không gửi quảng cáo.</p>
-   <p class="gfoot">Đã có tài khoản? <a href="#" data-go="login">Đăng nhập</a></p>
-  </section>
-
-
-
-  <section data-step="login" hidden>
-   <h2>Chào mừng trở lại</h2>
-   <p class="lead">Đăng nhập để mở sa bàn 3D.</p>
-   <form id="gLoginForm">
-    <label for="gLPhone">Số điện thoại</label><input id="gLPhone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="0912 345 678">
-    <label for="gLPw">Mật khẩu</label><div class="pw"><input id="gLPw" type="password" autocomplete="current-password"><button class="eye" type="button">Hiện</button></div>
-    <p class="gmsg" id="gMsg4"></p>
-    <button class="gbtn" id="gLogin">Đăng nhập</button>
-   </form>
-   <p class="gfoot"><a href="#" data-go="forgot">Quên mật khẩu?</a> · <a href="#" data-go="reg">Đăng ký mới</a></p>
-  </section>
-
-  <section data-step="forgot" hidden>
-   <h2>Quên mật khẩu?</h2>
-   <p class="lead">Anh chị nhắn Zalo cho Ngô Hiếu kèm số điện thoại đã đăng ký, em đặt lại mật khẩu giúp trong ít phút.</p>
-   <a class="gbtn" href="https://zalo.me/0914669669" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Nhắn Zalo 0914.669.669</a>
-   <p class="gfoot"><a href="#" data-go="login">Quay lại đăng nhập</a> · <a href="#" data-go="reg">Đăng ký mới</a></p>
-  </section>
- </div>
-</div>
-<div id="who" hidden><span>Xin chào, <b></b></span><button id="logout" type="button">Đăng xuất</button></div>
 <div id="csbhView" hidden><img id="csbhImg" alt="Tóm tắt chính sách bán hàng Phố Hiến"><div class="csbhb"><button id="csbhDl" type="button">⬇ Tải về</button><button id="csbhX" type="button" class="g">Đóng</button></div></div>
 <div id="ptgView" hidden><img id="ptgBig" alt="Phiếu tính giá"><button id="ptgDl2" type="button">⬇ Tải về</button></div>
 <div class="gal" id="gal" role="dialog" aria-label="Hình ảnh dự án">
@@ -291,6 +248,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 
 <script type="module" src="sa-ban.js"></script>
 <script type="module" src="csbh.js"></script>
-<script type="module" src="auth.js?v=6"></script>
+<script type="module" src="/assets/dem-truy-cap.js?v=1"></script>
 </body>
 </html>
