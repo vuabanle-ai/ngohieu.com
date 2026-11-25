@@ -685,13 +685,13 @@ const ld=document.getElementById('load');ld.style.opacity=0;setTimeout(()=>ld.re
 window.__lots=NL;window.__go=(x,z,d,p,az)=>{setRot(false);flyTo(W(x,z),d,p,az)};window.__sel=c=>selectLot(byCode.get(c),true);
 
 // ---- quỹ hàng: căn đã bán (bôi đỏ trên bảng hàng, hoặc hôm trước có – hôm sau mất) → nóc nhà màu xám
-const roofBlack=new THREE.MeshBasicMaterial({color:'#6e7176'});const soldRoofs=[];
+const roofBlack=new THREE.MeshBasicMaterial({color:'#6e7176'});const roofOpen=new THREE.MeshBasicMaterial({color:'#b9e4b8'});const soldRoofs=[];
 function applyQuy(q){if(!q||!q.sold)return;soldRoofs.forEach(m=>S.remove(m));soldRoofs.length=0;
  const av=q.available||{};const avail=new Set(Array.isArray(av)?av:Object.keys(av));
  lots.forEach((L,i)=>{const sd=q.sold[L.code];L.sold=!!sd;L.soldSince=sd?sd.since:'';if(L.sold)L.open=false;else if(avail.has(L.code))L.open=true;
-  if(!L.sold)return;const w=(L.ew?L.l:L.w)*.97,l=(L.ew?L.w:L.l)*.97;
+  if(!L.sold&&!L.open)return;const w=(L.ew?L.l:L.w)*.97,l=(L.ew?L.w:L.l)*.97;
   const m=new THREE.Mesh(new THREE.PlaneGeometry(w,l),roofBlack);m.rotation.set(-Math.PI/2,0,L.ew?L.rot+Math.PI/2:0);m.rotation.order='YXZ';m.rotation.set(-Math.PI/2,L.ew?L.rot+Math.PI/2:0,0);
-  m.position.set(L.x,L.h+.34,L.z);m.renderOrder=1;m.userData.lot=i;S.add(m);soldRoofs.push(m)});
+  m.material=L.sold?roofBlack:roofOpen;m.position.set(L.x,L.h+.34,L.z);m.renderOrder=1;m.userData.lot=i;S.add(m);soldRoofs.push(m)});
  badges.forEach(sp=>{const L=lots[sp.userData.lot];const hide=L&&L.sold;sp.visible=!hide;if(sp.userData.st)sp.userData.st.visible=!hide});
  lots.forEach((L,i)=>paint(i,lotCol(i)));window.__quy=q}
 fetch('quy-hang.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applyQuy).catch(()=>{});
