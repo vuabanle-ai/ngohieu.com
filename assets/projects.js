@@ -6,6 +6,7 @@ export const PROJECTS = [
  {id:'global-gate',name:'Vinhomes Global Gate',dev:'Vinhomes',area:'Đông Anh, Hà Nội',type:'thap',tags:['hot']},
  {id:'wonder-city',name:'Vinhomes Wonder City',dev:'Vinhomes',area:'Đan Phượng, Hà Nội',type:'thap',tags:[]},
  {id:'green-paradise',name:'Vinhomes Green Paradise',dev:'Vinhomes',area:'Cần Giờ, TP. Hồ Chí Minh',type:'thap',tags:['hot']},
+ {id:'king-park',name:'Vinhomes King Park',dev:'Vinhomes · MIK Group',area:'Kinh Bắc, Bắc Ninh',type:'thap',tags:['hot','moi'],img:'/du-an/Vinhomes-King-Park/anh-king-park.jpg',saban:'/du-an/Vinhomes-King-Park/',note:'268,8ha, sân golf 90ha · 1.210 căn Thời Đại & Hưng Thịnh có mã từng căn trên sa bàn'},
  {id:'hai-van-bay',name:'Vinhomes Hải Vân Bay',dev:'Vinhomes',area:'Đà Nẵng',type:'thap',tags:['moi'],img:'/du-an/Vinhomes-Hai-Van-Bay/anh-dao-ngoc.jpg',saban:'/du-an/Vinhomes-Hai-Van-Bay/',note:'Đảo Ngọc (2.303 căn), Vịnh Mây (457 căn) và Bạch Vân (2.518 căn) có mã từng căn trên sa bàn'},
  {id:'ha-long-xanh',name:'Vinhomes Global Gate Hạ Long',dev:'Vinhomes',area:'Hạ Long, Quảng Ninh',type:'thap',tags:[]},
  {id:'lumiere-spring-bay',name:'Lumière Spring Bay',dev:'Masterise Homes',area:'Vinhomes Ocean Park 2, Hưng Yên',type:'cao',tags:[]},
