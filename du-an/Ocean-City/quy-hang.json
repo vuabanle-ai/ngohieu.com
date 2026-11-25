@@ -1,5 +1,6 @@
 {
-"updated": "19:59 25/11/2026",
+"ver": 3,
+"updated": "20:02 25/11/2026",
 "nguon": "Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG",
 "doc_duoc": [
 "5S",
@@ -22228,7 +22229,7 @@
 },
 "AD16-05": {
 "since": "25/11/2026",
-"why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn"
+"why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn, TPL"
 },
 "AD16-22": {
 "since": "25/11/2026",
@@ -23274,13 +23275,6 @@
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
-"SH5-05": {
-"loai": "Nhà Phố",
-"dt": "115.5",
-"gia": 25497000000,
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
 "SH6-01": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
@@ -23349,325 +23343,17 @@
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
-"VTĐ1-102": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-104": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-108": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-110": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-112": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-114": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-116": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-118": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-16": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-162": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-166": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-170": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-30": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-32": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-38": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-40": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-42": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-44": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-46": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-48": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-50": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-52": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-54": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-56": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-58": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-60": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-62": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-64": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-66": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-68": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-70": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-74": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ1-98": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-126": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-128": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-132": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-134": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-136": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
 "VTĐ2-137": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn"
-},
-"VTĐ2-157": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-158": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-160": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-165": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-171": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-177": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-178": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-179": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-180": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-181": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-182": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-183": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-184": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-186": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ2-188": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
 },
 "VTĐ2-190": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: TPL"
 },
-"VTĐ2-192": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
 "VTĐ3-108": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn"
-},
-"VTĐ3-110": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-112": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-114": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-116": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-118": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-120": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-122": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-124": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-126": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-128": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-130": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-132": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-134": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-136": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-138": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-142": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-146": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-148": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-152": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-154": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-156": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-158": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-160": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
 },
 "VTĐ3-162": {
 "since": "25/11/2026",
@@ -23676,50 +23362,6 @@
 "VTĐ3-164": {
 "since": "25/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: TPL"
-},
-"VTĐ3-166": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-170": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-172": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-174": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-176": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-178": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-180": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-182": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-184": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-190": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
-},
-"VTĐ3-192": {
-"since": "25/11/2026",
-"why": "không còn trên bảng hàng đại lý"
 },
 "VX1-57": {
 "since": "25/11/2026",
