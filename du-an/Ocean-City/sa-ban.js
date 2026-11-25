@@ -25,7 +25,7 @@ const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) 
 
 try { await Promise.race([document.fonts.load('800 25px "Be Vietnam Pro"'), new Promise(r => setTimeout(r, 2500))]) } catch (_) {}
 const [data, quy] = await Promise.all([
-  fetch(`lots-${KHU}.json?v=3`).then(r => r.json()),
+  fetch(`lots-${KHU}.json?v=4`).then(r => r.json()),
   fetch('quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
 ]);
 const W = data.meta.w, H = data.meta.h;
@@ -71,7 +71,7 @@ const texs = []; let nTex = 0;
 const land = new THREE.Mesh(new THREE.PlaneGeometry(W * 3, H * 3), new THREE.MeshBasicMaterial({ color: 0xe6ece0 }));
 land.rotation.x = -Math.PI / 2; land.position.y = -0.6; scene.add(land);
 for (const [gi, g] of data.meta.grounds.entries()) {
-  const t = new THREE.TextureLoader().load(`${g.img}${small ? '-nho' : ''}.webp?v=2`, () => { if (++nTex === data.meta.grounds.length) hideLoad() });
+  const t = new THREE.TextureLoader().load(`${g.img}${small ? '-nho' : ''}.webp?v=4`, () => { if (++nTex === data.meta.grounds.length) hideLoad() });
   t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy(); texs.push(t);
   const c = g.corners, geo = new THREE.BufferGeometry();
   geo.setAttribute('position', new THREE.Float32BufferAttribute(c.flatMap(([x, z]) => [x - W / 2, 0, z - H / 2]), 3));
@@ -194,6 +194,7 @@ const AMEN0 = [['VinWonders Hải Vân', 760, 330], ['Botanica Park', 430, 1138]
 const k2m = W / 2048;
 for (const [t, x, z] of data.meta.amen || []) addLabel('zone tv', t, X(x), 30, Z(z), 0, 3400);
 for (const [t, x, z] of data.meta.zones || []) addLabel('zone', t, X(x), 40, Z(z), 500, 7500);
+for (const [t, x, z] of data.meta.rzones || []) addLabel('zone tv', t + ' · ảnh mặt bằng', X(x), 40, Z(z), 500, 7500);
 for (const [t, set] of [['VINHOMES OCEAN PARK 2 · THE EMPIRE', l => !OCP3.has(l.zone)], ['VINHOMES OCEAN PARK 3 · THE CROWN', l => OCP3.has(l.zone)]]) {
   const g = lots.filter(set); let x = 0, z = 1e9; g.forEach(l => { x += l.cx; z = Math.min(z, l.cz) }); addLabel('zone tv', t, x / g.length, 60, z - 120, 5000, 30000) }
 
@@ -239,10 +240,11 @@ const VIEWS = {
 for (const z of [...ZORD2, ...ZORD3]) VIEWS['z-' + z] = () => zoneView(z);
 { const ps = [...new Set(lots.map(l => l.pre))].sort((a, b) => a.localeCompare(b, 'vi', { numeric: true }));
   ps.forEach(p => VIEWS['d-' + p] = exactView(p));
-  const have = new Set(lots.map(l => l.zone)), soon = ['Kinh Đô', 'San Hô', 'Ngọc Trai', 'Hải Âu', 'Đảo Dừa'];
+  const have = new Set(lots.map(l => l.zone)), RZ = data.meta.rzones || [];
+  RZ.forEach(([n, x, z, w, h], i) => { VIEWS['r-' + i] = () => { if (FLAT) { const t = Math.tan(camera.fov * Math.PI / 360); flyTo(X(x), Z(z), Math.max(h * 1.15, w * 1.15 / camera.aspect) / (2 * t) / KF()) } else flyTo(X(x), Z(z), Math.hypot(w, h) * 1.1, .85) } });
   $('chips').innerHTML = `<button data-v="toan-canh" class="on">Toàn Ocean City</button><button data-v="ocp2">OCP2 The Empire</button><button data-v="ocp3">OCP3 The Crown</button>`
     + [...ZORD2.filter(z => z !== 'KĐ'), ...ZORD3].filter(z => have.has(z)).map(z => `<button data-v="z-${z}">${ZNAME[z]}</button>`).join('')
-    + soon.map(n => `<button class="soon" data-v="soon" title="Đang dựng">${n}<small>sắp có</small></button>`).join('')
+    + RZ.map(([n], i) => `<button data-v="r-${i}" title="Ảnh mặt bằng, chưa bấm chọn từng căn">${n}<small>ảnh</small></button>`).join('')
     + `<select id="daySel" aria-label="Chọn dãy"><option value="">Chọn dãy…</option>${ps.map(p => `<option>${p}</option>`).join('')}</select>`;
   $('daySel').onchange = e => { if (e.target.value) VIEWS['d-' + e.target.value]() };
 }
