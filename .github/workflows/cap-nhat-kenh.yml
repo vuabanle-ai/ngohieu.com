@@ -1,0 +1,30 @@
+name: Cập nhật video kênh truyền thông
+on:
+  schedule:
+    - cron: '17 */2 * * *'
+  workflow_dispatch:
+concurrency:
+  group: cap-nhat-kenh
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Lấy video mới TikTok @cohieuvoinha và YouTube Zenland TV
+        run: python3 tools/cap_nhat_kenh.py
+      - name: Đẩy lên web nếu có video mới
+        run: |
+          F=assets/kenh.json
+          if git diff --quiet -- $F; then echo "Không đổi"; exit 0; fi
+          git config user.name "ngohieu-bot"
+          git config user.email "ngohieu-bot@users.noreply.github.com"
+          git add $F
+          git commit -m "Cập nhật video kênh truyền thông"
+          for i in 1 2 3; do git pull --rebase -q origin main && git push -q origin HEAD:main && break; sleep 5; done
