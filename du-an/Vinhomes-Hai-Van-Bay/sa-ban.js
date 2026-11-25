@@ -22,8 +22,8 @@ const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) 
 
 try { await Promise.race([document.fonts.load('800 25px "Be Vietnam Pro"'), new Promise(r => setTimeout(r, 2500))]) } catch (_) {}
 const [data, quy] = await Promise.all([
-  fetch(`lots-${KHU}.json?v=2`).then(r => r.json()),
-  Promise.all(['quy-hang.json', 'quy-hang-vinh-may.json'].map(f => fetch(f + '?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({})))).then(([a, b]) => ({ updated: a.updated, available: { ...a.available, ...b.available }, check: { ...a.check, ...b.check }, sold: { ...a.sold, ...b.sold } }))
+  fetch(`lots-${KHU}.json?v=3`).then(r => r.json()),
+  Promise.all(['quy-hang.json', 'quy-hang-vinh-may.json', 'quy-hang-bach-van.json'].map(f => fetch(f + '?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({})))).then(([a, b, c]) => ({ updated: a.updated, available: { ...a.available, ...b.available, ...c.available }, check: { ...a.check, ...b.check, ...c.check }, sold: { ...a.sold, ...b.sold, ...c.sold } }))
 ]);
 const W = data.meta.w, H = data.meta.h;
 const AVL = quy.available || {}, SOLD = quy.sold || {}, CHK = quy.check || {};
@@ -202,17 +202,17 @@ const exactView = p => () => { const L = lots.filter(l => l.pre === p); if (!L.l
   flyTo((x0 + x1) / 2, (z0 + z1) / 2, Math.max(240, Math.hypot(x1 - x0, z1 - z0) * 1.2), .85) };
 const VIEWS = {
   'toan-canh': () => flyTo(-500, -150, 4100, .8, 0),
-  'z-DN': () => zoneView('DN'), 'z-VM': () => zoneView('VM'),
+  'z-DN': () => zoneView('DN'), 'z-VM': () => zoneView('VM'), 'z-BV': () => zoneView('BV'),
   ln: () => groupView(['LN']), lp: () => groupView(['LP']), an: () => groupView(['AN']),
   sv: () => groupView(['SV']), hc: () => groupView(['HC']), lv: () => groupView(['LV', 'ĐLĐN'])
 };
 { const ps = [...new Set(lots.map(l => l.pre))].sort((a, b) => a.localeCompare(b, 'vi', { numeric: true }));
   ps.forEach(p => VIEWS['d-' + p] = exactView(p));
-  $('chips').innerHTML = `<button data-v="toan-canh" class="on">Toàn dự án</button><button data-v="z-DN">Đảo Ngọc</button><button data-v="z-VM">Vịnh Mây</button><button class="soon" data-v="soon">Bạch Vân<small>sắp có</small></button><i class="zs"></i><select id="daySel" aria-label="Chọn dãy"><option value="">Chọn dãy…</option>${ps.map(p => `<option value="${p}">Dãy ${p}</option>`).join('')}</select>`;
+  $('chips').innerHTML = `<button data-v="toan-canh" class="on">Toàn dự án</button><button data-v="z-DN">Đảo Ngọc</button><button data-v="z-VM">Vịnh Mây</button><button data-v="z-BV">Bạch Vân</button><i class="zs"></i><select id="daySel" aria-label="Chọn dãy"><option value="">Chọn dãy…</option>${ps.map(p => `<option value="${p}">Dãy ${p}</option>`).join('')}</select>`;
   $('daySel').onchange = e => { if (e.target.value) VIEWS['d-' + e.target.value]() };
-  document.querySelector('.brand span').textContent = 'Đảo Ngọc · Vịnh Mây · Sa bàn 3D'; document.title = 'Sa bàn 3D Vinhomes Hải Vân Bay';
-  const kv = $('side').querySelectorAll('.kv strong'); kv[0].textContent = 'Đảo Ngọc · Vịnh Mây'; kv[1].textContent = 'Ý · Mỹ'; kv[0].textContent = '2 khu (+Bạch Vân)';
-  $('q').placeholder = 'Tìm mã căn, VD: LV4-16, VM2-21' }
+  document.querySelector('.brand span').textContent = 'Đảo Ngọc · Vịnh Mây · Bạch Vân · 3D'; document.title = 'Sa bàn 3D Vinhomes Hải Vân Bay';
+  const kv = $('side').querySelectorAll('.kv strong'); kv[0].textContent = 'Đảo Ngọc · Vịnh Mây'; kv[1].textContent = 'Ý · Mỹ'; kv[0].textContent = '3 khu';
+  $('q').placeholder = 'Tìm mã căn, VD: LV4-16, BV9-21' }
 $('chips').addEventListener('click', e => {
   const b = e.target.closest('button'); if (!b) return;
   if (b.dataset.v === 'soon') { $('qm').textContent = 'Phân khu ' + b.textContent.replace('sắp có', '').trim() + ' đang được dựng, anh chị quay lại sau nhé.'; openSide(); return }
