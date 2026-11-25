@@ -3,6 +3,10 @@ on:
   schedule:
     - cron: '*/15 * * * *'
   workflow_dispatch:
+    inputs:
+      debug:
+        description: 'In chi tiết cách đọc từng tab'
+        default: ''
 concurrency:
   group: sync-quy-hang-ocean-city
   cancel-in-progress: false
@@ -20,6 +24,8 @@ jobs:
       - run: pip install openpyxl==3.1.5
       - name: Đọc bảng hàng các đại lý (CHECK ĐL HUONG) và cập nhật sa bàn
         run: python3 tools/auto_sync_ocean_city.py
+        env:
+          DEBUG_SYNC: ${{ inputs.debug }}
       - name: Đẩy lên web nếu quỹ hàng thay đổi
         run: |
           F=du-an/Ocean-City/quy-hang.json

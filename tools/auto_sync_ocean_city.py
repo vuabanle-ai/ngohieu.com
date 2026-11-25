@@ -107,6 +107,8 @@ def read_tab(ws):
             for k, pat in HDR:
                 for i, x in enumerate(low):
                     if x and re.search(pat, x) and k not in col and i not in col.values(): col[k] = i
+            if os.environ.get('DEBUG_SYNC'):
+                print('    cột:', {k: vals[i][:28].replace('\n', ' ') for k, i in col.items() if i >= 0}, file=sys.stderr)
             continue
         if not col: continue                     # chưa gặp dòng tiêu đề "Mã căn" -> không phải bảng hàng
         txt = ' '.join(vals).upper()
@@ -127,6 +129,7 @@ def read_tab(ws):
             sanity(q)
             st = str(g('tt') or '').upper()
             marked = red_cell(c) or bool(c.font and c.font.strike) or bool(SOLD_TXT.search(txt)) or bool(SOLD_TXT.search(st))
+            if os.environ.get('DEBUG_SYNC') and len(out) < 2: print('    mẫu:', code, 'đã bán' if marked else '', q, file=sys.stderr)
             out.append((code, marked, bool(CHECK_TXT.search(txt)), q))
             break                                # một mã căn mỗi dòng
     return out
