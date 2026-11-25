@@ -27,7 +27,7 @@ CHECK_TXT = re.compile(r'CHECK\s*ADMIN')
 SKIP_TAB = re.compile(r'THÔNG SỐ|THONG SO|DIỆN TÍCH|DIEN TICH|GIỎ|BANK|STK|KPTM|ELITE|CSDL|^TK|DS K|TEST|BIỂU MẪU|CÂU TRẢ LỜI|'
                       r'NGƯỜI NƯỚC NGOÀI|NNN|TMDV|\(CŨ\)|\bCŨ\b|CSBH|CHÍNH SÁCH|PTG|PHIẾU|NHẬN TIỀN|NỘP TIỀN|TRC|KHÔNG ÁP DỤNG|TCBG|BÀN GIAO|FULLTON', re.I)
 UA = {'User-Agent': 'Mozilla/5.0 ngohieu-sync'}
-VER = 4
+VER = 5
 
 
 def norm_code(t):
@@ -85,10 +85,10 @@ HDR = [('gia', r'(gi[áa]|gía).*(gồm|full|niêm yết|bao gồm|sau vat)|tổ
 
 
 def sanity(q):
-    """Bỏ giá vô lý: đơn giá/m² đất ngoài 40–600 triệu, hoặc TTTĐ/TTS/vay lệch quá xa giá gồm VAT."""
+    """Bỏ giá vô lý: đơn giá/m² đất ngoài 80–600 triệu, hoặc TTTĐ/TTS/vay lệch quá xa giá gồm VAT."""
     try: dt = float(str(q.get('dt', '')).replace(',', '.'))
     except ValueError: dt = 0
-    ok = lambda v: v and (not dt or 4e7 <= v / dt <= 6e8)
+    ok = lambda v: v and (not dt or 8e7 <= v / dt <= 6e8)
     for k in ('gia', 'tttd', 'tts', 'vay'):
         if k in q and not ok(q[k]): q.pop(k)
     ref = q.get('gia') or q.get('tttd')
