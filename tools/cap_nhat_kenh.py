@@ -37,7 +37,7 @@ def tiktok():
     if not ids:
         try:
             h = get(f'https://www.tiktok.com/@{TT_USER}')
-            found = re.findall(rf'/@{TT_USER}/video/(\d+)', h) + re.findall(r'"id":"(7\d{17,18})"', h)
+            found = re.findall(rf'/@{TT_USER}/video/(\d+)', h)
             ids = [{'id': i, 't': ''} for i in dict.fromkeys(found)]
         except Exception as e:
             print('tiktok lỗi:', e)
@@ -56,6 +56,11 @@ def main():
                 titles = {x['id']: x.get('t', '') for x in old.get(key, [])}
                 for x in got:
                     x['t'] = x.get('t') or titles.get(x['id'], '')
+                if key == 'tiktok':
+                    # TikTok đôi khi chỉ trả vài video: gộp với danh sách cũ, sắp theo thời gian, không làm mất video
+                    seen = {x['id'] for x in got}
+                    got = sorted(got + [x for x in old.get(key, []) if x['id'] not in seen],
+                                 key=lambda x: int(x['id']), reverse=True)[:16]
                 new[key] = got
                 print(key, len(got), 'mục')
             else:
