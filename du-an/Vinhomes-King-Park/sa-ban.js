@@ -96,7 +96,7 @@ function arch(zone, t, code) { const pre = code.split('-')[0], n = parseInt(code
 const MAN = 3.2, MIN = 1.1;   // mái mansard: cao 3,2 m, lùi vào 1,1 m
 const NCOL = 15, CW_ = 256, CH_ = 1024;   // atlas: 0 LK, 1 SH, 2 BT, 3 tường hồi, 4 mái mansard, 5–7 trắng (mặt mái), 8 LK hiện đại, 9 SH hiện đại, 10 mái dốc kim loại hiện đại, 11 tường hồi hiện đại
 const facade = (() => {
-  const cn = document.createElement('canvas'); cn.width = CW_ * NCOL; cn.height = CH_; const g = cn.getContext('2d');
+  const cn = document.createElement('canvas'); cn.width = CW_ * NCOL; cn.height = CH_ * 3; const g = cn.getContext('2d');
   const CREAM = '#f4eee3', LINE = '#ddd2bf', GLASS = '#4f6272', FRAME = '#fbf9f4', IRON = '#26292d';
   const win = (x, y, w, h, arch) => { g.fillStyle = FRAME; g.beginPath(); if (arch) { g.moveTo(x - 6, y + h + 6); g.lineTo(x - 6, y + w / 2); g.arc(x + w / 2, y + w / 2, w / 2 + 6, Math.PI, 0); g.lineTo(x + w + 6, y + h + 6) } else g.rect(x - 6, y - 6, w + 12, h + 12); g.fill();
     g.fillStyle = GLASS; g.beginPath(); if (arch) { g.moveTo(x, y + h); g.lineTo(x, y + w / 2); g.arc(x + w / 2, y + w / 2, w / 2, Math.PI, 0); g.lineTo(x + w, y + h) } else g.rect(x, y, w, h); g.fill();
@@ -190,20 +190,26 @@ const facade = (() => {
   { const c = 14, x0 = c * CW_; clr(c, '#4b5159'); g.fillStyle = 'rgba(0,0,0,.18)'; for (let k = 0; k < CH_; k += 26) g.fillRect(x0, k, CW_, 3);
     archWin(x0 + 78, 260, 100, 600, '#f6f2ea', '#4f6272') }
   const t = new THREE.CanvasTexture(cn); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.generateMipmaps = true;
-  // ảnh mặt đứng thật của CĐT (cắt từ bản vẽ/phối cảnh mẫu nhà) — thứ tự trong mat-tien.webp: LKA, SHC, SL1, mái LKA, mái LKA vòm, LKE, mái LKE, mái SL1, SHB, LKB, SHD
-  const im = new Image(); im.onload = () => { [[0, 0], [1, 1], [2, 2], [3, 4], [4, 14], [5, 13], [6, 7], [7, 5], [8, 9], [9, 8]].forEach(([i, c]) => g.drawImage(im, i * 256, 0, 256, 1024, c * CW_, 0, CW_, CH_)); t.needsUpdate = true };
-  im.src = 'mat-tien.webp?v=1';
+  // ảnh mặt đứng thật của CĐT, cắt TỪNG CĂN theo đúng thứ tự trên bản vẽ (2 hàng dưới của atlas, ô rộng 128px)
+  const im = new Image(); im.onload = () => { g.drawImage(im, 0, CH_); t.needsUpdate = true }; im.src = 'mat-tien.webp?v=2';
   return t;
 })();
 const X = x => x - W / 2, Z = z => z - H / 2;
 const lots = []; let vtx = 0;
 const byCode = new Map();
 const P_ = [], N_ = [], U_ = [], C_ = [];
+const SLOT = {"LKA": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], "SHC": [10, 11, 12, 13, 14, 15], "LKE": [16, 17, 18, 19, 20, 21, 22, 23, 24], "SL1": [25, 26], "SHB": [27, 28, 29, 30, 31, 32], "LKB": [33, 34, 35, 36], "SHD": [37, 38, 39]};   // mẫu → các ô ảnh mặt tiền từng căn, theo thứ tự trái → phải trên mặt đứng CĐT
+const IU = (sl, a, v) => { const r = Math.floor(sl / 30), c = sl % 30; return [(c * 128 + 2 + a * 124) / (CW_ * NCOL), (2 - r) / 3 - 1 / 3 + (.004 + v * .992) / 3, 1] };
+// thứ tự căn trong một dãy: cùng tiền tố + cùng chẵn/lẻ là một hàng nhà liền nhau
+const ROWN = new Map(); for (const [c] of data.lots) { const [p, n] = c.split('-'), k = p + '|' + (parseInt(n) % 2); ROWN.set(k, Math.max(ROWN.get(k) || 0, Math.floor((parseInt(n) - 1) / 2))) }
+function unitSlot(m, code) { const seq = SLOT[m]; if (!seq) return -1; const [p, ns] = code.split('-'), n = parseInt(ns) || 0, k = Math.floor((n - 1) / 2), last = ROWN.get(p + '|' + (n % 2)) || 0, N = seq.length;
+  if (N <= 2) return seq[k % N];
+  if (k === 0) return seq[0]; if (k === last) return seq[N - 1]; return seq[1 + (k - 1) % (N - 2)] }
 const U = (c, a) => (c * CW_ + 3 + a * (CW_ - 6)) / (CW_ * NCOL);   // u trong một cột atlas (chừa mép chống loang)
 const faceDot = (a, b, c, n) => { const ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2], vx = c[0] - a[0], vy = c[1] - a[1], vz = c[2] - a[2];
   return (uy * vz - uz * vy) * n[0] + (uz * vx - ux * vz) * n[1] + (ux * vy - uy * vx) * n[2] };
 function tri(A, B, C, n) { if (faceDot(A[0], B[0], C[0], n) < 0) [B, C] = [C, B];   // mặt trước luôn quay theo pháp tuyến
-  for (const [p, q] of [A, B, C]) { P_.push(...p); N_.push(...n); U_.push(...q); C_.push(1, 1, 1) } }
+  for (const [p, q] of [A, B, C]) { P_.push(...p); N_.push(...n); U_.push(q[0], q.length > 2 ? q[1] : 2 / 3 + q[1] / 3); C_.push(1, 1, 1) } }
 function quad(a, b, c, d, n, uv) { tri([a, uv[0]], [b, uv[1]], [c, uv[2]], n); tri([a, uv[0]], [c, uv[2]], [d, uv[3]], n) }
 function inset(poly, D) {   // lùi từng cạnh đa giác lồi vào trong D[i] mét
   const n = poly.length; let cx = 0, cz = 0; poly.forEach(p => { cx += p[0]; cz += p[1] }); cx /= n; cz /= n;
@@ -220,23 +226,23 @@ for (const [code, t, poly, zone, dt] of data.lots) {
   // co nhẹ để tách từng căn
   let base = poly.map(([x, z]) => [cx + (X(x) - cx) * .94, cz + (Z(z) - cz) * .94]);
   if (THREE.ShapeUtils.area(base.map(p => new THREE.Vector2(p[0], p[1]))) < 0) base = base.reverse();
-  const AR = arch(zone, t, code), A = ARCH[t] || ARCH.Y, ax = lotAxis(base), hb = A.hb, isFront = (p, q) => { const dx = q[0] - p[0], dz = q[1] - p[1], l = Math.hypot(dx, dz) || 1; return Math.abs((dx * ax.ux + dz * ax.uz) / l) < .5 },
-    top = inset(base, base.map((p, i) => isFront(p, base[(i + 1) % base.length]) ? MIN : 0)), h = hb + (A.man || MAN);
+  const AR = arch(zone, t, code), A = ARCH[t] || ARCH.Y, mk = AR.m === 'SHB/SHD' ? (code.split('-')[0] === 'TD' ? 'SHD' : 'SHB') : AR.m === 'SHA' ? 'LKE' : AR.m === 'ĐL' ? 'SL1' : AR.m, sl = unitSlot(mk, code), ax = lotAxis(base), hb = A.hb, isFront = (p, q) => { const dx = q[0] - p[0], dz = q[1] - p[1], l = Math.hypot(dx, dz) || 1; return Math.abs((dx * ax.ux + dz * ax.uz) / l) < .5 },
+    top = inset(base, base.map((p, i) => isFront(p, base[(i + 1) % base.length]) ? MIN : 0)), h = hb + (A.man || MAN), vb = hb / h;
   const n = base.length;
   // tường thân: chia theo bước cột; cạnh ngang lô (mặt tiền/mặt hậu) dùng mặt đứng, cạnh dọc dùng tường hồi
   for (let i = 0; i < n; i++) { const p = base[i], q = base[(i + 1) % n]; const dx = q[0] - p[0], dz = q[1] - p[1], len = Math.hypot(dx, dz); if (len < .2) continue;
     let nx = dz / len, nz = -dx / len; if (((p[0] + q[0]) / 2 - cx) * nx + ((p[1] + q[1]) / 2 - cz) * nz < 0) { nx = -nx; nz = -nz }
-    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, col = front ? AR.f : AR.s, nb = Math.max(1, Math.round(len / (front ? A.bay : 4)));
+    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, col = front ? AR.f : AR.s, img = front && sl >= 0, nb = img ? 1 : Math.max(1, Math.round(len / (front ? A.bay : 4)));
     for (let k = 0; k < nb; k++) { const a0 = k / nb, a1 = (k + 1) / nb, x0 = p[0] + dx * a0, z0 = p[1] + dz * a0, x1 = p[0] + dx * a1, z1 = p[1] + dz * a1;
-      quad([x0, 0, z0], [x1, 0, z1], [x1, hb, z1], [x0, hb, z0], [nx, 0, nz], [[U(col, 0), 0], [U(col, 1), 0], [U(col, 1), 1], [U(col, 0), 1]]) } }
+      quad([x0, 0, z0], [x1, 0, z1], [x1, hb, z1], [x0, hb, z0], [nx, 0, nz], img ? [IU(sl, 0, 0), IU(sl, 1, 0), IU(sl, 1, vb), IU(sl, 0, vb)] : [[U(col, 0), 0], [U(col, 1), 0], [U(col, 1), 1], [U(col, 0), 1]]) } }
   // mái mansard: mặt nghiêng từ mép thân lên đỉnh lùi vào
   for (let i = 0; i < n; i++) { const p = base[i], q = base[(i + 1) % n], r = top[(i + 1) % n], s2 = top[i];
     const dx = q[0] - p[0], dz = q[1] - p[1], len = Math.hypot(dx, dz); if (len < .2) continue;
     let nx = dz / len, nz = -dx / len; if (((p[0] + q[0]) / 2 - cx) * nx + ((p[1] + q[1]) / 2 - cz) * nz < 0) { nx = -nx; nz = -nz }
-    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, ny = front ? MIN / (A.man || MAN) : 0, nl = Math.hypot(nx, ny, nz), nb = front ? Math.max(1, Math.round(len / A.bay)) : 1;
+    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, ny = front ? MIN / (A.man || MAN) : 0, nl = Math.hypot(nx, ny, nz), img = front && sl >= 0, nb = img ? 1 : front ? Math.max(1, Math.round(len / A.bay)) : 1;
     for (let k = 0; k < nb; k++) { const a0 = k / nb, a1 = (k + 1) / nb, L = (P, Q, a) => [P[0] + (Q[0] - P[0]) * a, P[1] + (Q[1] - P[1]) * a];
       const b0 = L(p, q, a0), b1 = L(p, q, a1), t1 = L(s2, r, a1), t0 = L(s2, r, a0), c = front ? AR.r : AR.s;
-      quad([b0[0], hb, b0[1]], [b1[0], hb, b1[1]], [t1[0], h, t1[1]], [t0[0], h, t0[1]], [nx / nl, ny / nl, nz / nl], [[U(c, 0), 0], [U(c, 1), 0], [U(c, 1), 1], [U(c, 0), 1]]) } }
+      quad([b0[0], hb, b0[1]], [b1[0], hb, b1[1]], [t1[0], h, t1[1]], [t0[0], h, t0[1]], [nx / nl, ny / nl, nz / nl], img ? [IU(sl, 0, vb), IU(sl, 1, vb), IU(sl, 1, 1), IU(sl, 0, 1)] : [[U(c, 0), 0], [U(c, 1), 0], [U(c, 1), 1], [U(c, 0), 1]]) } }
   // mặt mái trên cùng (tô màu loại căn / tình trạng)
   { const v2 = top.map(p => new THREE.Vector2(p[0], p[1])), tr = THREE.ShapeUtils.triangulateShape(v2, []);
     const uw = [U(6, .5), .5]; for (const [a, b, c] of tr) tri([[top[a][0], h, top[a][1]], uw], [[top[b][0], h, top[b][1]], uw], [[top[c][0], h, top[c][1]], uw], [0, 1, 0]) }
