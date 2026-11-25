@@ -1,0 +1,6934 @@
+{
+"updated": "17:30 25/11/2026",
+"nguon": "Joy Homes – TH VIN2 & VIN3",
+"available": {
+"AD12-36": {
+"src": [
+"JH"
+],
+"loai": "ĐL Góc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "182,6",
+"dtxd": "325,4",
+"gia": 32108966732,
+"bg": {
+"tts": 26067000000,
+"vay": 30461000000
+}
+},
+"AD6-02": {
+"src": [
+"JH"
+],
+"loai": "SH Góc",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "144,97",
+"dtxd": "479,4",
+"gia": 48489000000,
+"bg": {
+"tts": 30951000000,
+"vay": 35349000000
+}
+},
+"AD6-12": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HOÀNG HIỆP_MSB HCM",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "140",
+"dtxd": "378.4",
+"gia": 23588205032,
+"bg": {
+"tts": 19135000000,
+"vay": 22364000000
+}
+},
+"AD6-14": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HOÀNG HIỆP_MSB HCM",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "140",
+"dtxd": "378.4",
+"gia": 23332379644,
+"bg": {
+"tts": 18926000000,
+"vay": 22117000000
+}
+},
+"AD6-28": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Hoàng Hiệp-MSB",
+"loai": "Shophouse",
+"huong": "TN",
+"tcbg": "Thô",
+"csbh": "02/01/2026",
+"dt": "140",
+"dtxd": "378,4",
+"gia": 23588205032,
+"bg": {
+"tts": 19144000000,
+"vay": 22369000000
+}
+},
+"AD6-30": {
+"src": [
+"JH"
+],
+"quy": "Hoàng Hiệp MSB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "140",
+"dtxd": "378,4",
+"gia": 23588205032,
+"bg": {
+"tts": 19135000000,
+"vay": 22364000000
+}
+},
+"AD6-38": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Ngôi sao Phương Nam-BIDV",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "03/07/2025",
+"dt": "100",
+"dtxd": "383,9",
+"gia": 20473918337,
+"bg": {
+"vay": 19820000000
+}
+},
+"AD6-40": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Ngôi sao Phương Nam-BIDV",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "03/07/2025",
+"dt": "100",
+"dtxd": "378,2",
+"gia": 20413455234,
+"bg": {
+"vay": 19761000000
+}
+},
+"AD6-42": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Ngôi sao Phương Nam-BIDV",
+"tcbg": "Thô",
+"csbh": "03/07/2025",
+"dt": "100",
+"dtxd": "378,2",
+"gia": 20413455234,
+"bg": {
+"vay": 19761000000
+}
+},
+"AD6-44": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HOÀNG HIỆP_MSB HCM",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "140",
+"dtxd": "378.4",
+"gia": 23332379644,
+"bg": {
+"tts": 18926000000,
+"vay": 22121000000
+}
+},
+"AD6-48": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Ngôi sao Phương Nam-BIDV",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "03/07/2025",
+"dt": "100",
+"dtxd": "378,2",
+"gia": 20575952890,
+"bg": {
+"vay": 19918000000
+}
+},
+"AD6-50": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Ngôi sao Phương Nam-BIDV",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "03/07/2025",
+"dt": "100",
+"dtxd": "378,2",
+"gia": 20738449715,
+"bg": {
+"vay": 20076000000
+}
+},
+"AD6-52": {
+"src": [
+"JH"
+],
+"quy": "HOÀNG HIỆP",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "03/07/2025",
+"dt": "100",
+"dtxd": "385,3",
+"gia": 20976246530,
+"bg": {
+"vay": 20306000000
+}
+},
+"AD6-54": {
+"src": [
+"JH"
+],
+"quy": "HOÀNG HIỆP",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "03/07/2025",
+"dt": "100",
+"dtxd": "378,2",
+"gia": 21063443540,
+"bg": {
+"vay": 20390000000
+}
+},
+"AD6-68": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Hoàng Hiệp",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "140",
+"dtxd": "83.5",
+"gia": 23502930031,
+"bg": {
+"tts": 19110000000,
+"vay": 22331000000
+}
+},
+"AD7-36": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HOÀNG HIỆP_MSB HCM",
+"loai": "Đơn lập",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "183",
+"dtxd": "325,4",
+"gia": 31644506014,
+"bg": {
+"tts": 25733000000,
+"vay": 30068000000
+}
+},
+"AD9-01": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Newland_TCB",
+"loai": "Đơn lập góc",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "257",
+"dtxd": "476,2",
+"gia": 66750958284,
+"bg": {
+"tts": 54270000000,
+"vay": 63386000000
+}
+},
+"AD9-36": {
+"src": [
+"JH"
+],
+"quy": "VBCN-HOÀNG HIỆP-MSB",
+"loai": "BT Đơn lập",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "182,6",
+"dtxd": "325,4",
+"gia": 31879084607,
+"bg": {
+"tts": 25879000000,
+"vay": 30238000000
+}
+},
+"BX-194": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HƯNG THỊNH_VPB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "24/1",
+"dt": "170",
+"dtxd": "479,7",
+"gia": 34588420694,
+"bg": {
+"tts": 28135000000,
+"vay": 32867000000
+}
+},
+"BX-206": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HƯNG THỊNH_VPB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "24/1",
+"dt": "170",
+"dtxd": "451,7",
+"gia": 33847935062,
+"bg": {
+"tts": 27532000000,
+"vay": 32163000000
+}
+},
+"CL15-08": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "158",
+"dtxd": "412",
+"gia": 26715399296,
+"bg": {
+"tts": 21678000000,
+"vay": 25331000000
+}
+},
+"CL15-16": {
+"src": [
+"JH"
+],
+"quy": "VBCN-UTĐT-TCB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "112.5",
+"dtxd": "415,9",
+"gia": 18317023355,
+"bg": {
+"tts": 16269000000,
+"vay": 17595000000
+}
+},
+"CL15-19": {
+"src": [
+"JH"
+],
+"quy": "VBCN-CUỘC SỐNG MỚI-TCB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "158",
+"dtxd": "412",
+"gia": 26365786949,
+"bg": {
+"tts": 21392000000,
+"vay": 24999000000
+}
+},
+"CL15-24": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NGỌC QUÝ_VPB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "29/12/2025",
+"dt": "112,5",
+"dtxd": "428",
+"gia": 23393386594,
+"bg": {
+"tts": 17454000000,
+"vay": 19856000000
+}
+},
+"CL15-25": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NGỌC QUÝ_VPB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "112,5",
+"dtxd": "416",
+"gia": 20705822389,
+"bg": {
+"tts": 16798000000,
+"vay": 19627000000
+}
+},
+"KĐ-101": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "Shophouse",
+"csbh": "27/01/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 35413000000,
+"bg": {
+"tts": 22774000000
+}
+},
+"KĐ-105": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · "
+},
+"KĐ-117": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 35245000000,
+"bg": {
+"tts": 22657000000,
+"vay": 25878000000
+}
+},
+"KĐ-119": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 35796000000,
+"bg": {
+"tts": 23039000000,
+"vay": 26314000000
+}
+},
+"KĐ-35": {
+"src": [
+"JH"
+],
+"quy": "ĐTX",
+"loai": "SH SL",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2025",
+"dt": "150",
+"dtxd": "355,9",
+"bg": {
+"tts": 23400000000,
+"vay": 27336000000
+}
+},
+"KĐ-53": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐÔ THỊ XANH_TCB",
+"loai": "Biệt thự song lập - Shop",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 27314217415,
+"bg": {
+"tts": 22174000000,
+"vay": 25903000000
+}
+},
+"KĐ-65": {
+"src": [
+"JH"
+],
+"quy": "MTR - TCB",
+"loai": "Song lập",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "150",
+"dtxd": "356",
+"gia": 35413000000,
+"bg": {
+"tts": 22773000000,
+"vay": 26011000000
+}
+},
+"KĐ-71": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "Shophouse",
+"csbh": "27/01/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 36585000000,
+"bg": {
+"tts": 23588000000
+}
+},
+"KĐ-95": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL Góc",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 38925000000,
+"bg": {
+"tts": 25211000000,
+"vay": 28795000000
+}
+},
+"KĐ-97": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 35413000000,
+"bg": {
+"tts": 22773000000,
+"vay": 26011000000
+}
+},
+"KĐ2-10": {
+"src": [
+"JH"
+],
+"quy": "VBCN- ĐOX",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "238,5",
+"dtxd": "491,7",
+"gia": 56591628729,
+"bg": {
+"tts": 45996000000,
+"vay": 53730000000
+}
+},
+"KĐ2-12": {
+"src": [
+"JH"
+],
+"quy": "Ngọc Quý",
+"loai": "SL Góc",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "209,5",
+"dtxd": "455,9",
+"gia": 47394683778,
+"bg": {
+"tts": 38511000000,
+"vay": 44989000000
+}
+},
+"KĐ5-131": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "317",
+"gia": 18825409287,
+"bg": {
+"tts": 14101000000,
+"vay": 15246000000
+}
+},
+"KĐ5-138": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô loại 2",
+"csbh": "24/01/2026",
+"dt": "108",
+"dtxd": "317.5",
+"gia": 19634135198,
+"bg": {
+"tts": 15971000000,
+"vay": 17271000000
+}
+},
+"KĐ5-139": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NGỌC QUÝ_VPB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "317",
+"gia": 18930161054,
+"bg": {
+"tts": 14141000000,
+"vay": 15292000000
+}
+},
+"KĐ5-147": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "323,9",
+"gia": 20969345028,
+"bg": {
+"tts": 15577000000,
+"vay": 16841000000
+}
+},
+"KĐ5-152": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô loại 2",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "108",
+"dtxd": "317.5",
+"gia": 20651962764,
+"bg": {
+"tts": 16756000000,
+"vay": 19576000000
+}
+},
+"KĐ5-154": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô loại 2",
+"csbh": "01/02/2026",
+"dt": "108",
+"dtxd": "317.5",
+"gia": 20651962764,
+"bg": {
+"tts": 16756000000
+}
+},
+"KĐ5-158": {
+"src": [
+"JH"
+],
+"quy": "An Hưng",
+"loai": "SH",
+"tcbg": "HT tầng 2-3-4",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 22388441246,
+"bg": {
+"tts": 15263000000,
+"vay": 17824000000
+}
+},
+"KĐ5-31": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐÔ THỊ XANH_BIDV",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "324",
+"gia": 19325152967,
+"bg": {
+"tts": 14444000000,
+"vay": 15619000000
+}
+},
+"KĐ5-33": {
+"src": [
+"JH"
+],
+"quy": "ĐTX",
+"loai": "SH",
+"tcbg": "HT tầng 2-3-4",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 21640465706,
+"bg": {
+"tts": 14739000000,
+"vay": 17220000000
+}
+},
+"KĐ5-37": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 19366528633,
+"bg": {
+"tts": 14475000000,
+"vay": 15653000000
+}
+},
+"KĐ5-43": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐÔ THỊ XANH_BIDV",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 21255567675,
+"bg": {
+"tts": 14475000000,
+"vay": 16912000000
+}
+},
+"KĐ5-44": {
+"src": [
+"JH"
+],
+"quy": "ĐÔ THỊ XANH_BIDV",
+"loai": "Shophouse/  Đã có KH thuê - HĐ thuê đến 21/01/2028",
+"tcbg": "HT tầng 2-3-4",
+"csbh": "24/01/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 20247786518,
+"bg": {
+"tts": 14499000000,
+"vay": 16937000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": null,
+"tcbg": "Hoàn thiện"
+},
+{
+"src": "JH",
+"gia": 20247786518,
+"tcbg": "HT tầng 2-3-4"
+}
+]
+},
+"KĐ5-45": {
+"src": [
+"JH"
+],
+"quy": "ĐTX",
+"loai": "SH",
+"tcbg": "HT tầng 2-3-4",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 21847058898,
+"bg": {
+"tts": 14880000000,
+"vay": 17385000000
+}
+},
+"KĐ5-47": {
+"src": [
+"JH"
+],
+"quy": "Điền Thịnh",
+"loai": "SH",
+"tcbg": "HT tầng 2-3-4",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 21706219706,
+"bg": {
+"tts": 14784000000,
+"vay": 17272000000
+}
+},
+"KĐ5-50": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐÔ THỊ XANH_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 19243044301,
+"bg": {
+"tts": 14382000000,
+"vay": 15552000000
+}
+},
+"KĐ5-52": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐÔ THỊ XANH_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 21528481200,
+"bg": {
+"tts": 15985000000,
+"vay": 18675000000
+}
+},
+"KĐ5-60": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện Đang có KH thuê",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 21443366583,
+"bg": {
+"tts": 15972000000,
+"vay": 17268000000
+}
+},
+"KĐ5-62": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 21145494254,
+"bg": {
+"tts": 14411000000,
+"vay": 16831000000
+}
+},
+"KĐ5-63": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "24/1",
+"dt": "108",
+"dtxd": "317,5",
+"gia": 20527369684,
+"bg": {
+"tts": 16699000000,
+"vay": 19506000000
+}
+},
+"KĐ5-67": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 21437526193,
+"bg": {
+"tts": 15926000000,
+"vay": 17218000000
+}
+},
+"KĐ5-70": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "323.9",
+"gia": 19492085895,
+"bg": {
+"tts": 14606000000,
+"vay": 15791000000
+}
+},
+"KĐ5-72": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 21291510573,
+"bg": {
+"tts": 14511000000,
+"vay": 16948000000
+}
+},
+"KĐ6-07": {
+"src": [
+"JH"
+],
+"quy": "ĐÔ THỊ XANH_BIDV",
+"loai": "Biệt thự song lập - Shop",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 28349006875,
+"bg": {
+"tts": 23014000000,
+"vay": 26886000000
+}
+},
+"KĐ6-09": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐÔ THỊ XANH_TCB",
+"loai": "Song lập",
+"tcbg": "Thô không thang",
+"csbh": "19/03/2026",
+"dt": "150",
+"dtxd": "356",
+"gia": 28751707820,
+"bg": {
+"tts": 23387000000,
+"vay": 27321000000
+}
+},
+"KĐ6-101": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Biệt thự song lập - Shop",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2026",
+"dt": "150",
+"dtxd": "355.9",
+"gia": 26009262976,
+"bg": {
+"tts": 21149000000,
+"vay": 24713000000
+}
+},
+"KĐ6-103": {
+"src": [
+"JH"
+],
+"quy": "CSM",
+"loai": "SL",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 26009262976,
+"bg": {
+"tts": 21104000000,
+"vay": 24664000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 29300000000,
+"tcbg": "Thô không thang"
+},
+{
+"src": "JH",
+"gia": 26009262976,
+"tcbg": "Thô không thang"
+}
+]
+},
+"KĐ6-111": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355.9",
+"gia": 26916508316,
+"bg": {
+"tts": 21843000000
+}
+},
+"KĐ6-113": {
+"src": [
+"JH"
+],
+"quy": "CUỘC SỐNG MỚI_TCB",
+"loai": "BTSL - Shop",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 27416875988,
+"bg": {
+"tts": 22251000000,
+"vay": 26002000000
+}
+},
+"KĐ6-15": {
+"src": [
+"JH"
+],
+"quy": "HƯNG THỊNH_VPB",
+"loai": "Song Lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 25853786547,
+"bg": {
+"tts": 23014000000,
+"vay": 24887000000
+}
+},
+"KĐ6-29": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"loai": "Biệt thự song lập - Shop",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 25002843185,
+"bg": {
+"tts": 22248000000
+}
+},
+"KĐ6-63": {
+"src": [
+"JH"
+],
+"quy": "VBCN- Cuộc sống mới",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 27050702146,
+"bg": {
+"tts": 21953000000,
+"vay": 25655000000
+}
+},
+"KĐ6-76": {
+"src": [
+"JH"
+],
+"quy": "VBCN- Cuộc sống mới",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "351,1",
+"gia": 36676431904,
+"bg": {
+"tts": 29792000000,
+"vay": 34804000000
+}
+},
+"KĐ6-78": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Biệt thự song lập - Shop",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "351",
+"gia": 38107019078,
+"bg": {
+"tts": 30959000000,
+"vay": 36160000000
+}
+},
+"KĐ6-80": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Biệt thự song lập - Shop",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "351",
+"gia": 40254286000,
+"bg": {
+"tts": 32708000000,
+"vay": 38201000000
+}
+},
+"KĐ6-84": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐÔ THỊ XANH_TCB",
+"loai": "BTSL",
+"tcbg": "Thô có thang",
+"csbh": "24/01",
+"dt": "153",
+"dtxd": "351,1",
+"gia": 35590301520,
+"bg": {
+"tts": 28957000000,
+"vay": 33821000000
+}
+},
+"KĐ6-86": {
+"src": [
+"JH"
+],
+"quy": "Địa Ốc Xanh",
+"loai": "Song Lập",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "351,1",
+"gia": 29635669960,
+"bg": {
+"tts": 26387000000,
+"vay": 28535000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 32495766341,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 29635669960,
+"tcbg": "Thô có thang"
+}
+]
+},
+"KĐ7-102": {
+"src": [
+"JH"
+],
+"quy": "VBCN- ĐTX",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 25865948118,
+"bg": {
+"tts": 20991000000,
+"vay": 24530000000
+}
+},
+"KĐ7-104": {
+"src": [
+"JH"
+],
+"quy": "VBCN- Hưng Nghĩa",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 25865948118,
+"bg": {
+"tts": 20991000000,
+"vay": 24530000000
+}
+},
+"KĐ7-106": {
+"src": [
+"JH"
+],
+"quy": "Hưng Nghĩa",
+"loai": "SL",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 25865948118,
+"bg": {
+"tts": 20991000000,
+"vay": 24529000000
+}
+},
+"KĐ7-108": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NGỌC QUÝ_VPB",
+"loai": "Biệt thự song lập - Shop",
+"tcbg": "Thô không thang",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "150",
+"dtxd": "355.9",
+"gia": 26358135452,
+"bg": {
+"tts": 21394000000,
+"vay": 24998000000
+}
+},
+"KĐ7-44": {
+"src": [
+"JH"
+],
+"quy": "NGỌC QUÝ_VPB",
+"loai": "Biệt thự song lập - Shop",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 25711262151,
+"bg": {
+"tts": 20864000000,
+"vay": 24378000000
+}
+},
+"KĐ7-59": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · "
+},
+"KĐ7-65": {
+"src": [
+"JH"
+],
+"quy": "MTR - TCB",
+"loai": "Song lập",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "153",
+"dtxd": "351",
+"gia": 42984000000,
+"bg": {
+"tts": 27126000000,
+"vay": 30982000000
+}
+},
+"KĐ7-66": {
+"src": [
+"JH"
+],
+"quy": "VBCN- Hưng Nghĩa TCB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 35100000000
+},
+"KĐ7-69": {
+"src": [
+"JH"
+],
+"quy": "MAS",
+"loai": "Biệt thự song lập",
+"tcbg": "Xây Thô",
+"csbh": "15/09/2025",
+"dt": "153",
+"gia": 42008000000,
+"bg": {
+"tts": 30830000000
+}
+},
+"KĐ7-70": {
+"src": [
+"JH"
+],
+"quy": "Hưng Nghĩa-TCB",
+"loai": "BTSL - Shop",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355,9",
+"gia": 35000000000,
+"bg": {
+"tts": 28434000000,
+"vay": 33212000000
+}
+},
+"KĐ7-91": {
+"src": [
+"JH"
+],
+"quy": "MTR - TCB",
+"loai": "Song lập",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "153",
+"dtxd": "351",
+"gia": 43764000000,
+"bg": {
+"tts": 27668000000,
+"vay": 31600000000
+}
+},
+"KĐ7-98": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HƯNG NGHĨA_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "355.9",
+"gia": 26648962753,
+"bg": {
+"tts": 21628000000
+}
+},
+"KĐ8-101": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"tcbg": "Hoàn thiện 3T",
+"dt": "84",
+"dtxd": "316,79",
+"gia": 22701046854
+},
+"KĐ8-103": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện Đang có KH thuê",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 22799624649,
+"bg": {
+"tts": 16954000000,
+"vay": 18339000000
+}
+},
+"KĐ8-105": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HƯNG NGHĨA_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện Đang có KH thuê",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "323.9",
+"gia": 23682047387,
+"bg": {
+"tts": 17633000000,
+"vay": 19066000000
+}
+},
+"KĐ8-107": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HƯNG NGHĨA_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện Đang có KH thuê",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 24625073424,
+"bg": {
+"tts": 18336000000,
+"vay": 19826000000
+}
+},
+"KĐ8-140": {
+"src": [
+"JH"
+],
+"quy": "Điển Thịnh TCB",
+"loai": "Shophouse",
+"tcbg": "HT tầng 2-3-4",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 20818040824,
+"bg": {
+"tts": 14176000000,
+"vay": 16604000000
+}
+},
+"KĐ8-145": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 20963882535,
+"bg": {
+"tts": 14275000000,
+"vay": 16679000000
+}
+},
+"KĐ8-146": {
+"src": [
+"JH"
+],
+"quy": "An Hưng TCB",
+"loai": "Shophouse",
+"tcbg": "HT tầng 2-3-4",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 20853462773,
+"bg": {
+"tts": 14211000000,
+"vay": 16639000000
+}
+},
+"KĐ8-148": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "323,9",
+"gia": 20992252761,
+"bg": {
+"tts": 15594000000,
+"vay": 16859000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": null,
+"tcbg": "Hoàn thiện 3T"
+},
+{
+"src": "JH",
+"gia": 20992252761,
+"tcbg": "Hoàn thiện"
+}
+]
+},
+"KĐ8-150": {
+"src": [
+"JH"
+],
+"quy": "An Hưng",
+"loai": "SH",
+"tcbg": "HT tầng 2-3-4",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 20853462773,
+"bg": {
+"tts": 14211000000,
+"vay": 16598000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 20853462773,
+"tcbg": "HT tầng 2-3-4"
+},
+{
+"src": "JH",
+"gia": 20853462773,
+"tcbg": "Hoàn thiện"
+}
+]
+},
+"KĐ8-156": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 20853462773,
+"bg": {
+"tts": 14983000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 20853462773,
+"tcbg": "Hoàn thiện"
+},
+{
+"src": "JH",
+"gia": 20853462773,
+"tcbg": "Hoàn thiện"
+}
+]
+},
+"KĐ8-159": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NGỌC QUÝ_VPB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 16194474123,
+"bg": {
+"tts": 14439000000
+}
+},
+"KĐ8-160": {
+"src": [
+"JH"
+],
+"quy": "An Hưng TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 21758760523,
+"bg": {
+"tts": 14845000000,
+"vay": 17335000000
+}
+},
+"KĐ8-49": {
+"src": [
+"JH"
+],
+"quy": "Cuộc Sống Mới TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "24/01/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 19604279611,
+"bg": {
+"tts": 13379000000,
+"vay": 15632000000
+}
+},
+"KĐ8-51": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "29/12/2025",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 20908508670,
+"bg": {
+"tts": 16597000000,
+"vay": 16830000000
+}
+},
+"KĐ8-61": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "317",
+"gia": 18438012484,
+"bg": {
+"tts": 13773000000,
+"vay": 14894000000
+}
+},
+"KĐ8-63": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "02/01/2026",
+"dt": "108",
+"dtxd": "317,5",
+"gia": 19247484860,
+"offers": [
+{
+"src": "JH",
+"gia": 22400000000,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 19247484860,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 19247484860,
+"tcbg": "Thô có thang"
+}
+]
+},
+"KĐ8-67": {
+"src": [
+"JH"
+],
+"quy": "ĐÔ THỊ XANH_BIDV",
+"loai": "Shophouse/  Đã có KH thuê - HĐ thuê đến T8/2028",
+"tcbg": "HT tầng 2-3-4",
+"csbh": "24/01/2026",
+"dt": "84",
+"dtxd": "316,6",
+"gia": 20255775575,
+"bg": {
+"tts": 14506000000,
+"vay": 16945000000
+}
+},
+"KĐ8-95": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "108",
+"dtxd": "317.5",
+"gia": 20771582389,
+"bg": {
+"tts": 16833000000
+}
+},
+"KĐ8-96": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "108",
+"dtxd": "317.5",
+"gia": 20614595448,
+"bg": {
+"tts": 16705000000,
+"vay": 19535000000
+}
+},
+"KĐ8-97": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "108",
+"dtxd": "317.5",
+"gia": 20771582389,
+"bg": {
+"tts": 16833000000,
+"vay": 19684000000
+}
+},
+"KĐ8-98": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "108",
+"dtxd": "317.5",
+"gia": 20614595448,
+"bg": {
+"tts": 16705000000,
+"vay": 19535000000
+}
+},
+"KĐ8-99": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Hoàn thiện Đang có KH thuê",
+"csbh": "01/02/2026",
+"dt": "84",
+"dtxd": "316.6",
+"gia": 21477282270,
+"bg": {
+"tts": 15969000000,
+"vay": 17273000000
+}
+},
+"NT-10": {
+"src": [
+"JH"
+],
+"quy": "NEWLAND",
+"loai": "Đơn lập búp",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2025",
+"dt": "283,1",
+"dtxd": "444,1",
+"bg": {
+"tts": 74075000000,
+"vay": 86490000000
+}
+},
+"NT1-103": {
+"src": [
+"JH"
+],
+"quy": "VBCN_PHÚ THỌ LAND_VPB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2024",
+"dt": "144.5",
+"dtxd": "319.3",
+"gia": 37142019475,
+"bg": {
+"tts": 30179000000
+}
+},
+"NT1-108": {
+"src": [
+"JH"
+],
+"quy": "VBCN-NEWLAND VCB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "140,1",
+"dtxd": "338,4",
+"gia": 37592957107,
+"bg": {
+"tts": 30548000000,
+"vay": 35678000000
+}
+},
+"NT1-110": {
+"src": [
+"JH"
+],
+"quy": "CUỘC SỐNG MỚI_TCB",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2026",
+"dt": "140",
+"dtxd": "338,4",
+"gia": 37548140938,
+"offers": [
+{
+"src": "JH",
+"gia": 37548140938,
+"tcbg": "Thô không thang"
+},
+{
+"src": "JH",
+"gia": 37548140938,
+"tcbg": "Thô không thang"
+}
+]
+},
+"NT1-116": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "140,6",
+"dtxd": "338.4",
+"gia": 37693455505,
+"bg": {
+"tts": 30671000000,
+"vay": 33163000000
+}
+},
+"NT1-127": {
+"src": [
+"JH"
+],
+"quy": "Cuộc Sống Mới TCB",
+"loai": "SL",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "160",
+"dtxd": "377,1",
+"gia": 42297985399,
+"offers": [
+{
+"src": "JH",
+"gia": 48000000000,
+"tcbg": "Thô không thang"
+},
+{
+"src": "JH",
+"gia": 42297985399,
+"tcbg": "Thô không thang"
+}
+]
+},
+"NT1-130": {
+"src": [
+"JH"
+],
+"quy": "VBCN_PHÚ THỌ LAND_VPB",
+"loai": "BTSL",
+"tcbg": "Thô không thang",
+"csbh": "02/01/2026",
+"dt": "160",
+"dtxd": "377,1",
+"gia": 42321272452,
+"bg": {
+"tts": 35181000000,
+"vay": 41090000000
+}
+},
+"NT1-131": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "BTSL",
+"tcbg": "Thô không thang",
+"csbh": "02/01/2026",
+"dt": "168,6",
+"dtxd": "377,1",
+"gia": 43293586119,
+"bg": {
+"tts": 35181000000,
+"vay": 41090000000
+}
+},
+"NT1-139": {
+"src": [
+"JH"
+],
+"quy": "CSM",
+"loai": "SL",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2025",
+"dt": "168,6",
+"dtxd": "377,1",
+"bg": {
+"tts": 35489000000,
+"vay": 41449000000
+}
+},
+"NT1-144": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "BTSL",
+"tcbg": "Thô không thang",
+"csbh": "02/01/2026",
+"dt": "168,6",
+"dtxd": "377,1",
+"gia": 43076050783,
+"bg": {
+"tts": 35003000000,
+"vay": 40883000000
+}
+},
+"NT1-145": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "BTSL",
+"tcbg": "Thô không thang",
+"csbh": "02/01/2026",
+"dt": "168,6",
+"dtxd": "377,1",
+"gia": 43076050783,
+"bg": {
+"tts": 35003000000,
+"vay": 40883000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 43076050783,
+"tcbg": "Thô không thang"
+},
+{
+"src": "JH",
+"gia": 43076050783,
+"tcbg": "Thô không thang"
+}
+]
+},
+"NT1-150": {
+"src": [
+"JH"
+],
+"quy": "VBCN- Phú Thọ Land VPB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "160",
+"dtxd": "377,1",
+"gia": 41826895152,
+"bg": {
+"tts": 33992000000,
+"vay": 39701000000
+}
+},
+"NT1-153": {
+"src": [
+"JH"
+],
+"quy": "An Hưng TCB",
+"loai": "SL",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "160",
+"dtxd": "377,1",
+"gia": 41860870805
+},
+"NT1-159": {
+"src": [
+"JH"
+],
+"quy": "ĐTX",
+"loai": "SL",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "160",
+"dtxd": "377,1",
+"gia": 43993973599,
+"bg": {
+"tts": 35758000000,
+"vay": 41761000000
+}
+},
+"NT1-18": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Tự xây",
+"csbh": "21/11/2025",
+"dt": "168,6",
+"dtxd": "377,1",
+"gia": 50377000000,
+"bg": {
+"tts": 37054000000,
+"vay": 41457000000
+}
+},
+"NT1-19": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Tự xây",
+"csbh": "21/11/2025",
+"dt": "168,6",
+"dtxd": "377,1",
+"gia": 51219000000,
+"bg": {
+"tts": 37726000000,
+"vay": 42215000000
+}
+},
+"NT1-48": {
+"src": [
+"JH"
+],
+"quy": "MAS",
+"loai": "Biệt thự song lập",
+"tcbg": "Xây Thô",
+"csbh": "15/09/2025",
+"dt": "140",
+"gia": 45590000000,
+"bg": {
+"tts": 33728000000
+}
+},
+"NT1-50": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Thô",
+"csbh": "15/09/2025",
+"dt": "140,4",
+"dtxd": "319,3",
+"gia": 46544000000,
+"bg": {
+"tts": 29597000000,
+"vay": 33804000000
+}
+},
+"NT1-51": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Thô",
+"csbh": "15/09/2025",
+"dt": "141",
+"dtxd": "322,6",
+"gia": 46736000000,
+"bg": {
+"tts": 29730000000,
+"vay": 33956000000
+}
+},
+"NT1-82": {
+"src": [
+"JH"
+],
+"quy": "VBCN_PHÚ THỌ LAND_VPB",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2026",
+"dt": "140",
+"dtxd": "338,4",
+"gia": 37306348932,
+"bg": {
+"tts": 30358000000,
+"vay": 35453576502
+}
+},
+"NT1-87": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2024",
+"dt": "140",
+"dtxd": "338.4",
+"gia": 36977807260,
+"bg": {
+"tts": 30086000000
+}
+},
+"NT1-88": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NEWLAND_VCB",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2026",
+"dt": "140",
+"dtxd": "338,4",
+"gia": 37263037412,
+"bg": {
+"tts": 30323000000,
+"vay": 35412613170
+}
+},
+"NT2-03": {
+"src": [
+"JH"
+],
+"quy": "VBCN- Phú Thọ Land VPB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "160",
+"dtxd": "377,1",
+"gia": 47387167151,
+"bg": {
+"tts": 35518000000,
+"vay": 44986000000
+}
+},
+"NT2-06": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "160",
+"dtxd": "377",
+"gia": 40582834799,
+"bg": {
+"tts": 32974000000,
+"vay": 38513000000
+}
+},
+"NT2-09": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "160",
+"dtxd": "377,1",
+"gia": 37082287792,
+"bg": {
+"tts": 33131000000
+}
+},
+"NT2-11": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "164,9",
+"dtxd": "377,1",
+"gia": 37498899247,
+"bg": {
+"tts": 33453000000
+}
+},
+"NT2-14": {
+"src": [
+"JH"
+],
+"quy": "VBCN- UTĐT",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "168,8",
+"dtxd": "377,1",
+"gia": 47013876535,
+"bg": {
+"tts": 38209000000,
+"vay": 44629000000
+}
+},
+"NT2-15": {
+"src": [
+"JH"
+],
+"quy": "VBCN- Ngọc Qúy VPB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "168,8",
+"dtxd": "377,1",
+"gia": 47688174084,
+"bg": {
+"tts": 38767000000,
+"vay": 45273000000
+}
+},
+"NT2-20": {
+"src": [
+"JH"
+],
+"quy": "VBCN_PHÚ THỌ LAND_VPB",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2026",
+"dt": "168,8",
+"dtxd": "377,1",
+"gia": 41693361881,
+"bg": {
+"tts": 33926000000,
+"vay": 39622068325
+}
+},
+"NT2-21": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2026",
+"dt": "168,8",
+"dtxd": "377,1",
+"gia": 41724150555,
+"bg": {
+"tts": 33956000000,
+"vay": 39652856999
+}
+},
+"NT2-28": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Biệt thự đơn lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "248,8",
+"dtxd": "391,9",
+"gia": 58560928021,
+"bg": {
+"tts": 52273000000
+}
+},
+"NT2-29": {
+"src": [
+"JH"
+],
+"loai": "ĐL",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "336,7",
+"dtxd": "464,5",
+"gia": 97657432732,
+"bg": {
+"tts": 79436000000,
+"vay": 92762000000
+}
+},
+"NT2-33": {
+"src": [
+"JH"
+],
+"quy": "VBCN_PHÚ THỌ LAND_VPB",
+"loai": "BTĐL",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "253,7",
+"dtxd": "375",
+"gia": 75700000000,
+"bg": {
+"tts": 61570000000,
+"vay": 71895000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 75700000000,
+"tcbg": "Thô không thang"
+},
+{
+"src": "JH",
+"gia": 75738725516,
+"tcbg": "Thô không thang"
+}
+]
+},
+"NT2-40": {
+"src": [
+"JH"
+],
+"quy": "Newland VCB",
+"loai": "SL",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2026",
+"dt": "140,9",
+"dtxd": "319,3",
+"gia": 35151604261,
+"bg": {
+"tts": 28603000000,
+"vay": 33405000000
+}
+},
+"NT2-41": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "BTSL",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "141,7",
+"dtxd": "322,6",
+"gia": 35344000000,
+"bg": {
+"tts": 28711000000,
+"vay": 31045000000
+}
+},
+"NT2-42": {
+"src": [
+"JH"
+],
+"quy": "VBCN_PHÚ THỌ LAND_VPB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "143",
+"dtxd": "319",
+"gia": 35699780440,
+"bg": {
+"tts": 29004000000,
+"vay": 33873000000
+}
+},
+"NT2-43": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐOX _TCB (THỨ CẤP)",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "144,4",
+"dtxd": "322,6",
+"gia": 36728845522,
+"bg": {
+"tts": 29840000000,
+"vay": 34851000000
+}
+},
+"NT2-49": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NGỌC QUÝ_VPB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2024",
+"dt": "140",
+"dtxd": "338.4",
+"gia": 35042091148,
+"bg": {
+"tts": 28474000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 35042091148,
+"tcbg": "Thô không thang"
+},
+{
+"src": "JH",
+"gia": 40000000000,
+"tcbg": "Thô không thang"
+}
+]
+},
+"NT2-58": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NEWLAND_VCB",
+"loai": "BTSL",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2026",
+"dt": "140",
+"dtxd": "338.4",
+"gia": 36668615863,
+"bg": {
+"tts": 29839000000,
+"vay": 34847000000
+}
+},
+"NT2-60": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Biệt thự đơn lập",
+"tcbg": "Thô không thang",
+"csbh": "19/3",
+"dt": "279,8",
+"dtxd": "422,6",
+"gia": 92474450462,
+"bg": {
+"tts": 75255000000,
+"vay": 87882000000
+}
+},
+"NT2-86": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Tự xây",
+"csbh": "21/11/2025",
+"dt": "141,4",
+"dtxd": "338,4",
+"gia": 44710000000,
+"bg": {
+"tts": 32536000000,
+"vay": 36354000000
+}
+},
+"NT2-87": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Tự xây",
+"csbh": "21/11/2025",
+"dt": "155,1",
+"dtxd": "338,4",
+"gia": 47975000000,
+"bg": {
+"tts": 35139000000,
+"vay": 39294000000
+}
+},
+"NT3-42": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Biệt thự song lập",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "140",
+"dtxd": "338,4",
+"gia": 40297437131,
+"bg": {
+"tts": 30199000000
+}
+},
+"NT3-71": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Biệt thự song lập",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "168,8",
+"dtxd": "377,1",
+"gia": 43169062065,
+"bg": {
+"tts": 32418000000
+}
+},
+"NT3-72": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Biệt thự song lập",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "168,8",
+"dtxd": "377,1",
+"gia": 43169062065,
+"bg": {
+"tts": 32347000000
+}
+},
+"NT3-78": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "BTSL",
+"tcbg": "Thô không thang",
+"csbh": "24/01/2026",
+"dt": "160",
+"dtxd": "377.1",
+"gia": 40752833513,
+"bg": {
+"tts": 33157000000,
+"vay": 38727000000
+}
+},
+"PB-12": {
+"src": [
+"JH"
+],
+"quy": "Newland-VPB",
+"loai": "Shophouse",
+"huong": "ĐB-TN",
+"tcbg": "Thô",
+"csbh": "02/01/2026",
+"dt": "140",
+"dtxd": "378,4",
+"gia": 29432548585,
+"bg": {
+"tts": 23905000000,
+"vay": 27925000000
+}
+},
+"PB-122": {
+"src": [
+"JH"
+],
+"quy": "Newland",
+"loai": "SH góc 3 MT",
+"huong": "TN-ĐN-ĐB",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "155",
+"dtxd": "353",
+"bg": {
+"tts": 34703000000,
+"vay": 40524000000
+}
+},
+"PB-124": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "100",
+"dtxd": "83.5",
+"gia": 25844156801,
+"bg": {
+"tts": 21029000000,
+"vay": 24560000000
+}
+},
+"PB-128": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "100",
+"dtxd": "83.5",
+"gia": 25844156801,
+"bg": {
+"tts": 21029000000,
+"vay": 24560000000
+}
+},
+"PB-130": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI_MSB",
+"loai": "Shophouse",
+"huong": "ĐB-TN",
+"tcbg": "Thô",
+"csbh": "02/01/2026",
+"dt": "100",
+"dtxd": "378,2",
+"gia": 25844156801,
+"bg": {
+"tts": 20991000000,
+"vay": 24514000000
+}
+},
+"PB-136": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI_MSB (SĐT)",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "378.2",
+"gia": 25844156801,
+"bg": {
+"tts": 20984000000,
+"vay": 24511000000
+}
+},
+"PB-138": {
+"src": [
+"JH"
+],
+"quy": "VBCN",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "378,2",
+"gia": 25844000000,
+"bg": {
+"tts": 20985000000,
+"vay": 24508000000
+}
+},
+"PB-14": {
+"src": [
+"JH"
+],
+"quy": "Newland-VPB",
+"loai": "Shophouse",
+"huong": "ĐB-TN",
+"tcbg": "Thô",
+"csbh": "02/01/2026",
+"dt": "140",
+"dtxd": "378,4",
+"gia": 29176687208,
+"bg": {
+"tts": 23697000000,
+"vay": 27681000000
+}
+},
+"PB-144": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "100",
+"dtxd": "83.5",
+"gia": 25844156801,
+"bg": {
+"tts": 21029000000,
+"vay": 24560000000
+}
+},
+"PB-146": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "100",
+"dtxd": "83.5",
+"gia": 25844156801,
+"bg": {
+"tts": 21029000000,
+"vay": 24560000000
+}
+},
+"PB-36": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Hoàng Hiệp_MSB",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "385,3",
+"gia": 24044340627,
+"bg": {
+"tts": 19517000000,
+"vay": 22800000000
+}
+},
+"PB-40": {
+"src": [
+"JH"
+],
+"loai": "SH Góc",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "155",
+"dtxd": "466,1",
+"gia": 45182249635,
+"bg": {
+"tts": 36727000000,
+"vay": 42891000000
+}
+},
+"PB-42": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Newland_TCB",
+"loai": "Shophouse",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "155",
+"dtxd": "466,1",
+"gia": 45182437068,
+"bg": {
+"tts": 36727000000,
+"vay": 42891000000
+}
+},
+"PB-44": {
+"src": [
+"JH"
+],
+"loai": "SH",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "378,2",
+"gia": 27260949466,
+"bg": {
+"tts": 22138000000,
+"vay": 25858000000
+}
+},
+"PB-46": {
+"src": [
+"JH"
+],
+"loai": "SH",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "385",
+"gia": 27604310593,
+"bg": {
+"tts": 22396000000,
+"vay": 26178000000
+}
+},
+"PB-58": {
+"src": [
+"JH"
+],
+"quy": "VBCN_SSM_TCB",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "378,2",
+"gia": 25844000000,
+"bg": {
+"tts": 20985000000,
+"vay": 24508000000
+}
+},
+"PB-80": {
+"src": [
+"JH"
+],
+"loai": "SH Góc",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "155",
+"dtxd": "466,1",
+"gia": 42630745423,
+"bg": {
+"tts": 34648000000,
+"vay": 40465000000
+}
+},
+"PB10-09": {
+"src": [
+"JH"
+],
+"quy": "UTĐT-TCB",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Hoàn thiện",
+"csbh": "01/02/2026",
+"dt": "104",
+"dtxd": "294",
+"gia": 21207203048
+},
+"PB11-01": {
+"src": [
+"JH"
+],
+"quy": "UTĐT",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Hoàn thiện",
+"csbh": "24/01/2026",
+"dt": "113.9",
+"dtxd": "400.2",
+"gia": 26505426841,
+"bg": {
+"tts": 17701000000,
+"vay": 20678000000
+}
+},
+"PB11-02": {
+"src": [
+"JH"
+],
+"loai": "LK Góc",
+"huong": "Tây Nam",
+"tcbg": "Hoàn thiện 5T",
+"csbh": "01/02/2026",
+"dt": "135,8",
+"dtxd": "489,5",
+"gia": 32851304210,
+"bg": {
+"tts": 22389000000,
+"vay": 26158000000
+}
+},
+"PB11-14": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Cá nhân-TCB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Hoàn thiện T1+2  (09/01/2028)",
+"csbh": "01/02/2026",
+"dt": "119",
+"dtxd": "336,2",
+"gia": 21229695778,
+"bg": {
+"tts": 14445000000,
+"vay": 16883000000
+}
+},
+"PB11-26": {
+"src": [
+"JH"
+],
+"quy": "VBCN-UTĐT-TCB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Hoàn thiện T1+2  (07/02/2029)",
+"csbh": "01/02/2026",
+"dt": "119",
+"dtxd": "336,2",
+"gia": 23128515401,
+"bg": {
+"tts": 15743000000,
+"vay": 18399000000
+}
+},
+"PB12-02": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "Villa",
+"huong": "Đông Nam",
+"tcbg": "Hoàn thiện",
+"csbh": "29/12/2025",
+"dt": "136",
+"dtxd": "490",
+"gia": 37917496719,
+"bg": {
+"tts": 23743000000,
+"vay": 27013000000
+}
+},
+"PB12-12": {
+"src": [
+"JH"
+],
+"loai": "LK xẻ khe",
+"huong": "Đông Nam",
+"tcbg": "Hoàn thiện T1,2",
+"csbh": "01/02/2026",
+"dt": "119",
+"dtxd": "336,2",
+"gia": 21460178472,
+"bg": {
+"tts": 14603000000,
+"vay": 17067000000
+}
+},
+"PB19-19": {
+"src": [
+"JH"
+],
+"quy": "Cá nhân",
+"loai": "Shophouse",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "88",
+"dtxd": "349,5",
+"gia": 20099586326,
+"bg": {
+"tts": 16347000000,
+"vay": 19099000000
+}
+},
+"PB19-25": {
+"src": [
+"JH"
+],
+"quy": "VMI",
+"loai": "SH",
+"huong": "ĐN-TB",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "90",
+"dtxd": "353",
+"bg": {
+"tts": 18611000000,
+"vay": 21739000000
+}
+},
+"PB19-60": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "Shophouse",
+"huong": "Đông Nam",
+"dt": "174,5"
+},
+"SB-103": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "146",
+"dtxd": "427.2",
+"gia": 27579928999,
+"bg": {
+"tts": 22365000000,
+"vay": 24196000000
+}
+},
+"SB-105": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "145,61",
+"dtxd": "427,2",
+"gia": 27692529239,
+"bg": {
+"tts": 22502000000,
+"vay": 26314690920
+}
+},
+"SB-131": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "02/01/2026",
+"dt": "145,6",
+"dtxd": "427,2",
+"gia": 27633757184,
+"bg": {
+"tts": 22477000000,
+"vay": 26258000000
+}
+},
+"SB-133": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "145.6",
+"dtxd": "427.2",
+"gia": 27633757184,
+"bg": {
+"tts": 22409000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 27633757184,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": null,
+"tcbg": "Thô có thang"
+}
+]
+},
+"SB-145": {
+"src": [
+"JH"
+],
+"loai": "SH xẻ khe",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "163,8",
+"dtxd": "427,2",
+"gia": 29748798070,
+"bg": {
+"tts": 24126000000,
+"vay": 28212000000
+}
+},
+"SB-173": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HOÀNG HIỆP_BVB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "146",
+"dtxd": "427.2",
+"gia": 31100000000
+},
+"SB-175": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HOÀNG HIỆP_BVB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "145.6",
+"dtxd": "427.2",
+"gia": 27501086105,
+"bg": {
+"tts": 22327000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 31100000000,
+"tcbg": "Thô không thang"
+},
+{
+"src": "JH",
+"gia": 27501086105,
+"tcbg": "Thô không thang"
+}
+]
+},
+"SB-188": {
+"src": [
+"JH"
+],
+"quy": "HUY HOÀNG_BVB",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "170",
+"dtxd": "417,89",
+"gia": 34946425597,
+"bg": {
+"tts": 28433000000,
+"vay": 33209624460
+}
+},
+"SB-190": {
+"src": [
+"JH"
+],
+"quy": "HUY HOÀNG_BVB",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "170",
+"dtxd": "417,89",
+"gia": 34946425597,
+"bg": {
+"tts": 28433000000,
+"vay": 33209624460
+}
+},
+"SB-192": {
+"src": [
+"JH"
+],
+"quy": "HUY HOÀNG_BVB",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "170",
+"dtxd": "417,89",
+"gia": 34946425597,
+"bg": {
+"tts": 28433000000,
+"vay": 33209624460
+}
+},
+"SB-194": {
+"src": [
+"JH"
+],
+"quy": "HUY HOÀNG_BVB",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "170",
+"dtxd": "417,89",
+"gia": 34946425597,
+"bg": {
+"tts": 28433000000,
+"vay": 33209624460
+}
+},
+"SB-206": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HUY HOÀNG_BVB",
+"loai": "Biệt thự song lập - Shop",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "170",
+"dtxd": "417,9",
+"gia": 31832865728,
+"bg": {
+"tts": 28389000000
+}
+},
+"SB-209": {
+"src": [
+"JH"
+],
+"quy": "MTR - TCB",
+"loai": "Shophouse",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "109,2",
+"dtxd": "410",
+"gia": 29158000000,
+"bg": {
+"tts": 18879000000,
+"vay": 21564000000
+}
+},
+"SB-210": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HUY HOÀNG_BVB",
+"loai": "BTSL - Shop",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "170",
+"dtxd": "417,9",
+"gia": 39700000000,
+"bg": {
+"tts": 32258000000,
+"vay": 34879000000
+}
+},
+"SB-218": {
+"src": [
+"JH"
+],
+"quy": "HOÀNG HIỆP_BVB",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "170",
+"dtxd": "417,89",
+"gia": 36830895648,
+"bg": {
+"tts": 29969000000,
+"vay": 35001096004
+}
+},
+"SB-223": {
+"src": [
+"JH"
+],
+"quy": "ĐOX",
+"loai": "SH xẻ khe",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "159,3",
+"dtxd": "427,2",
+"gia": 29849063230
+},
+"SB-225": {
+"src": [
+"JH"
+],
+"loai": "SH xẻ khe",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "159,3",
+"dtxd": "427,2",
+"gia": 29570130810,
+"bg": {
+"tts": 23981000000,
+"vay": 28043000000
+}
+},
+"SB-243": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "145,6",
+"dtxd": "427,2",
+"gia": 27600753958,
+"bg": {
+"tts": 22382000000,
+"vay": 24214000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 31200000000,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 27600753958,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 27600753958,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 31199244572,
+"tcbg": "Thô có thang"
+}
+]
+},
+"SB-25": {
+"src": [
+"JH"
+],
+"quy": "VBCN-NEWLAND VCB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "159,3",
+"dtxd": "427,2",
+"gia": 33900000000
+},
+"SB-271": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NGỌC QUÝ_VPB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "127,4",
+"dtxd": "361,6",
+"gia": 23915032145,
+"bg": {
+"tts": 19454000000,
+"vay": 22725000000
+}
+},
+"SB-273": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "154,7",
+"dtxd": "425,3",
+"gia": 29704333160,
+"bg": {
+"tts": 24092000000,
+"vay": 26064000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 29704333160,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 33644828647,
+"tcbg": "Thô có thang"
+}
+]
+},
+"SB-291": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "154,7",
+"dtxd": "425,3",
+"gia": 29704333160,
+"bg": {
+"tts": 24092000000,
+"vay": 26064000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 29704333160,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 33644828647,
+"tcbg": "Thô có thang"
+}
+]
+},
+"SB-293": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NGỌC QUÝ_VPB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "1.2.2026 <tiến độ MỚI>",
+"dt": "127.4",
+"dtxd": "361.6",
+"gia": 23915032145,
+"bg": {
+"tts": 19410000000,
+"vay": 22677000000
+}
+},
+"SB-38": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "128",
+"dtxd": "390,6",
+"gia": 22362102439,
+"bg": {
+"tts": 18123000000,
+"vay": 21191000000
+}
+},
+"SB-41": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NGỌC QUÝ_VPB",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "145,6",
+"dtxd": "427,2",
+"gia": 27752718195,
+"bg": {
+"tts": 22577000000,
+"vay": 26372621676
+}
+},
+"SH1-10": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"loai": "BTĐL",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "432",
+"dtxd": "491,6",
+"gia": 108500000000,
+"bg": {
+"tts": 88234000000,
+"vay": 95405000000
+}
+},
+"SH11-02": {
+"src": [
+"JH"
+],
+"loai": "LK Góc",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "132",
+"dtxd": "486,4",
+"gia": 24959500537,
+"bg": {
+"tts": 20258000000,
+"vay": 23669000000
+}
+},
+"SH14-01": {
+"src": [
+"JH"
+],
+"quy": "VBCN_PHÚ THỌ LAND_VPB",
+"loai": "Liền kề",
+"tcbg": "Thô loại 1",
+"csbh": "01/02/2026",
+"dt": "132",
+"dtxd": "486.5",
+"gia": 26694655508,
+"bg": {
+"tts": 21672000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 26694655508,
+"tcbg": "Thô loại 1"
+},
+{
+"src": "JH",
+"gia": 32503241096,
+"tcbg": "Thô có thang"
+}
+]
+},
+"SH17-01": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "300",
+"dtxd": "431",
+"gia": 57970835877,
+"bg": {
+"tts": 47062000000
+}
+},
+"SH17-29": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "150",
+"dtxd": "313,1",
+"gia": 41968000000,
+"bg": {
+"tts": 26414000000,
+"vay": 30172000000
+}
+},
+"SH20-01": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Liền kề",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "132",
+"dtxd": "486,5",
+"gia": 26650409861,
+"bg": {
+"tts": 21684000000,
+"vay": 25326000000
+}
+},
+"SH22-02": {
+"src": [
+"JH"
+],
+"quy": "AN HƯNG",
+"loai": "SH Góc",
+"tcbg": "Thô",
+"csbh": "24/01/2025",
+"dt": "104",
+"dtxd": "389,4",
+"bg": {
+"tts": 15113000000,
+"vay": 17653000000
+}
+},
+"SH22-13": {
+"src": [
+"JH"
+],
+"quy": "VHM",
+"loai": "Liền kề",
+"tcbg": "Thô loại 1",
+"csbh": "01/02/2026",
+"dt": "72",
+"dtxd": "192,3",
+"gia": 12735315814,
+"bg": {
+"tts": 10317000000,
+"vay": 12066000000
+}
+},
+"SH22-19": {
+"src": [
+"JH"
+]
+},
+"SH22-61": {
+"src": [
+"JH"
+],
+"quy": "CĐT",
+"loai": "Thô loại 1",
+"tcbg": "Thô loại 1",
+"csbh": "01/02/2026",
+"dt": "72",
+"dtxd": "192,7",
+"gia": 11665945099,
+"bg": {
+"tts": 10358000000
+}
+},
+"SH24-20": {
+"src": [
+"JH"
+],
+"quy": "TRƯỜNG LỘC",
+"loai": "SH 2MT",
+"tcbg": "Thô",
+"csbh": "24/01/2025",
+"dt": "120",
+"dtxd": "448,43",
+"bg": {
+"tts": 24704000000,
+"vay": 28849000000
+}
+},
+"SH24-26": {
+"src": [
+"JH"
+],
+"quy": "TRƯỜNG LỘC",
+"loai": "SH 2MT",
+"tcbg": "Thô",
+"csbh": "24/01/2025",
+"dt": "160",
+"dtxd": "417,6",
+"bg": {
+"tts": 33383000000,
+"vay": 38984000000
+}
+},
+"SH24-30": {
+"src": [
+"JH"
+],
+"quy": "TRƯỜNG LỘC",
+"loai": "SH 2MT",
+"tcbg": "Thô",
+"csbh": "24/01/2025",
+"dt": "120",
+"dtxd": "448,43",
+"bg": {
+"tts": 24510000000,
+"vay": 28622000000
+}
+},
+"SH24-33": {
+"src": [
+"JH"
+],
+"quy": "VBCN_TRƯỜNG LỘC_VPB",
+"loai": "Shophouse",
+"tcbg": "Thô loại 1",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "448,4",
+"gia": 30046584328,
+"bg": {
+"tts": 24406000000
+}
+},
+"SH24-34": {
+"src": [
+"JH"
+],
+"quy": "VBCN_TRƯỜNG LỘC_VPB",
+"loai": "Shophouse",
+"tcbg": "Thô loại 1",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "448,4",
+"gia": 30022713277,
+"bg": {
+"tts": 24387000000
+}
+},
+"SH24-37": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô loại 1",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "448,4",
+"gia": 29925058562,
+"bg": {
+"tts": 24303000000
+}
+},
+"SH24-38": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô loại 1",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "448,4",
+"gia": 29901206671,
+"bg": {
+"tts": 24283000000
+}
+},
+"SH24-39": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô loại 1",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "448,4",
+"gia": 29877355568,
+"bg": {
+"tts": 24264000000
+}
+},
+"SH24-40": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "19/03/2026",
+"dt": "120",
+"dtxd": "449",
+"gia": 34779959673,
+"bg": {
+"tts": 28299000000,
+"vay": 33051000000
+}
+},
+"SH24-41": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "19/03/2026",
+"dt": "120",
+"dtxd": "449",
+"gia": 34751355405,
+"bg": {
+"tts": 28276000000,
+"vay": 33024000000
+}
+},
+"SH24-42": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "19/03/2026",
+"dt": "120",
+"dtxd": "449",
+"gia": 34722751648,
+"bg": {
+"tts": 28253000000,
+"vay": 32997000000
+}
+},
+"SH24-43": {
+"src": [
+"JH"
+],
+"quy": "VBCN_CUỘC SỐNG MỚI_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô không thang",
+"csbh": "19/03/2026",
+"dt": "120",
+"dtxd": "449",
+"gia": 34694149638,
+"bg": {
+"tts": 28229000000,
+"vay": 32970000000
+}
+},
+"SH4-31": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"tcbg": "Thô có thang",
+"dt": "144",
+"dtxd": "382,3",
+"gia": 30113877443,
+"bg": {
+"tts": 24499000000,
+"vay": 28616578204
+}
+},
+"SH4-33": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "144",
+"dtxd": "382,5",
+"gia": 33400000000,
+"bg": {
+"tts": 27104000000,
+"vay": 29318000000
+}
+},
+"SH6-01": {
+"src": [
+"JH"
+],
+"quy": "Huy Hàng",
+"loai": "LK Góc",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "132",
+"dtxd": "486,5",
+"gia": 26515400345,
+"bg": {
+"tts": 21530000000,
+"vay": 25149000000
+}
+},
+"SH7-08": {
+"src": [
+"JH"
+],
+"loai": "LK xẻ khe",
+"tcbg": "Thô có thang",
+"csbh": "29/12/2025",
+"dt": "128",
+"dtxd": "374,6",
+"gia": 22471803828,
+"bg": {
+"tts": 18257000000,
+"vay": 21347000000
+}
+},
+"SH7-10": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "144",
+"dtxd": "436,3",
+"gia": 24993148573,
+"bg": {
+"tts": 20330000000,
+"vay": 23749811398
+}
+},
+"SH7-23": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse xẻ khe",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "135",
+"dtxd": "405,1",
+"gia": 24952622489,
+"bg": {
+"tts": 20300000000,
+"vay": 23711000000
+}
+},
+"SH7-24": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"tcbg": "Thô có thang",
+"dt": "144",
+"dtxd": "382,3",
+"gia": 25464300909,
+"bg": {
+"tts": 20711000000,
+"vay": 24196855221
+},
+"offers": [
+{
+"src": "JH",
+"gia": 25464300909,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 25464300909,
+"tcbg": "Thô có thang"
+}
+]
+},
+"SH7-25": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "135",
+"dtxd": "405,1",
+"gia": 22739919211,
+"bg": {
+"tts": 20255000000,
+"vay": 21902000000
+}
+},
+"SH7-26": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "02/01/2026",
+"dt": "144",
+"dtxd": "436,8",
+"gia": 25464300909,
+"bg": {
+"tts": 20711000000,
+"vay": 24196000000
+}
+},
+"SH7-39": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "135",
+"dtxd": "405.1",
+"gia": 24952622489,
+"bg": {
+"tts": 20255000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 24952622489,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 24952622489,
+"tcbg": "Thô có thang"
+}
+]
+},
+"SH7-40": {
+"src": [
+"JH"
+],
+"quy": "VBCN_ĐIỀN THỊNH_TCB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "02/01/2026",
+"dt": "144",
+"dtxd": "436,8",
+"gia": 25464300909,
+"bg": {
+"tts": 20711000000,
+"vay": 24196000000
+}
+},
+"SH7-51": {
+"src": [
+"JH"
+],
+"quy": "MTR - TCB",
+"loai": "Shophouse",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "90",
+"dtxd": "362",
+"gia": 24478000000,
+"bg": {
+"tts": 15902000000,
+"vay": 18164000000
+}
+},
+"SH8-61": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "BTSL",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "160",
+"dtxd": "345.4",
+"gia": 34575000000,
+"bg": {
+"tts": 22192000000,
+"vay": 25347000000
+}
+},
+"SH8-65": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "BTSL",
+"csbh": "27/01/2026",
+"dt": "160",
+"dtxd": "345,4",
+"gia": 34575000000,
+"bg": {
+"tts": 22192000000
+}
+},
+"SH8-71": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "160",
+"dtxd": "345,4",
+"gia": 34575000000,
+"bg": {
+"tts": 22192000000,
+"vay": 25347000000
+}
+},
+"SH9-02": {
+"src": [
+"JH"
+],
+"quy": "CSM",
+"loai": "LK Góc",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "132",
+"dtxd": "486,5",
+"gia": 25016652325,
+"bg": {
+"tts": 20353000000,
+"vay": 23773000000
+}
+},
+"SH9-23": {
+"src": [
+"JH"
+],
+"quy": "VBCN-AN HƯNG-TCB",
+"loai": "Liền kề",
+"tcbg": "Thô có thang",
+"csbh": "24/01/2026",
+"dt": "144",
+"dtxd": "398",
+"gia": 21678122471,
+"bg": {
+"tts": 17628000000,
+"vay": 20598000000
+}
+},
+"TĐ10-01": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Thái Dương Land-VPB",
+"loai": "BT Song Lập",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "279,5",
+"dtxd": "449,1",
+"gia": 61283064920,
+"bg": {
+"tts": 49805000000,
+"vay": 58182000000
+}
+},
+"VT6-01": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Newland-TCB",
+"loai": "Biệt thự song lập góc",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "278,8",
+"dtxd": "449,2",
+"gia": 56171724311,
+"bg": {
+"tts": 45646000000,
+"vay": 53328000000
+}
+},
+"VTĐ-06": {
+"src": [
+"JH"
+],
+"loai": "LK",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "277,8",
+"gia": 20139469741,
+"bg": {
+"tts": 16327000000,
+"vay": 19086000000
+}
+},
+"VTĐ-07": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "276",
+"gia": 25892048460,
+"bg": {
+"tts": 21024000000,
+"vay": 24557000000
+}
+},
+"VTĐ-08": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "276",
+"gia": 26019529439,
+"bg": {
+"tts": 21128000000,
+"vay": 24678000000
+}
+},
+"VTĐ-09": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "279,7",
+"gia": 20158477186,
+"bg": {
+"tts": 16358000000,
+"vay": 19118000000
+}
+},
+"VTĐ-10": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "280",
+"gia": 20110203298,
+"bg": {
+"tts": 16318000000,
+"vay": 19072000000
+}
+},
+"VTĐ-12": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "278",
+"gia": 20091195715,
+"bg": {
+"tts": 16303000000,
+"vay": 19054000000
+}
+},
+"VTĐ-13": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "276",
+"gia": 25764567445,
+"bg": {
+"tts": 20921000000,
+"vay": 24436000000
+}
+},
+"VTĐ-14": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "112.5",
+"dtxd": "321.4",
+"gia": 29089714349,
+"bg": {
+"tts": 23626000000,
+"vay": 27592000000
+}
+},
+"VTĐ-15": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "278",
+"gia": 20136816984,
+"bg": {
+"tts": 16340000000,
+"vay": 19097000000
+}
+},
+"VTĐ-16": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "278",
+"gia": 20136816984,
+"bg": {
+"tts": 16340000000,
+"vay": 19097000000
+}
+},
+"VTĐ-17": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "280",
+"gia": 20155867376,
+"bg": {
+"tts": 16355000000,
+"vay": 19115000000
+}
+},
+"VTĐ-18": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "280,2",
+"gia": 20160859457,
+"bg": {
+"tts": 16359000000,
+"vay": 19120000000
+}
+},
+"VTĐ-20": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "278",
+"gia": 20136816984,
+"bg": {
+"tts": 16340000000,
+"vay": 19097000000
+}
+},
+"VTĐ-21": {
+"src": [
+"JH"
+],
+"loai": "LK",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "75",
+"dtxd": "278",
+"gia": 20136816984,
+"bg": {
+"tts": 16325000000,
+"vay": 19083000000
+}
+},
+"VTĐ-22": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "276",
+"gia": 25955789262,
+"bg": {
+"tts": 21076000000,
+"vay": 24618000000
+}
+},
+"VTĐ-24": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · M  T  R",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "75",
+"dtxd": "280",
+"bg": {
+"tts": 15533000000
+}
+},
+"VTĐ-25": {
+"src": [
+"JH"
+],
+"loai": "LK",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "75",
+"dtxd": "286,79",
+"gia": 23938000000,
+"bg": {
+"tts": 15533000000,
+"vay": 17740000000
+}
+},
+"VTĐ-59": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Thái Dương Land-VPB",
+"loai": "Liền kề",
+"huong": "Đông Nam",
+"csbh": "01/02/2026",
+"dt": "100",
+"dtxd": "276",
+"gia": 25947000000,
+"bg": {
+"tts": 21068000000,
+"vay": 24606000000
+}
+},
+"VTĐ1-176": {
+"src": [
+"JH"
+],
+"quy": "MTR - TCB",
+"loai": "Liền kề góc",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "15/09/2025",
+"dt": "114",
+"dtxd": "403,6",
+"gia": 31688000000,
+"bg": {
+"tts": 23451000000,
+"vay": 25930000000
+}
+},
+"VTĐ5-07": {
+"src": [
+"JH"
+],
+"quy": "Đô Thị Xanh VTB",
+"loai": "SL",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "324,2",
+"gia": 39379703554
+},
+"VTĐ5-17": {
+"src": [
+"JH"
+],
+"loai": "SL",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "326,6",
+"gia": 39470225823,
+"bg": {
+"tts": 32007000000,
+"vay": 37443000000
+}
+},
+"VTĐ5-20": {
+"src": [
+"JH"
+],
+"loai": "SL",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "326,6",
+"gia": 39476446036,
+"bg": {
+"tts": 32047000000,
+"vay": 37458000000
+}
+},
+"VTĐ5-29": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Đô Thị Xanh_VTB",
+"loai": "BT song lập - Shop",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "324.2",
+"gia": 31249758322,
+"bg": {
+"tts": 25521000000,
+"vay": 29813000000
+}
+},
+"VTĐ5-30": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Đô Thị Xanh_VTB",
+"loai": "BT song lập - Shop",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "324.2",
+"gia": 31249758322,
+"bg": {
+"tts": 25521000000,
+"vay": 29813000000
+}
+},
+"VTĐ5-32": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Đô Thị Xanh-VTB",
+"loai": "Biệt thự shop",
+"huong": "Đông Nam",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "324,2",
+"gia": 31213000000,
+"bg": {
+"tts": 25312000000,
+"vay": 29599000000
+}
+},
+"VTĐ5-33": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Đô Thị Xanh_VTB",
+"loai": "BT song lập - Shop",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "153",
+"dtxd": "324.2",
+"gia": 31483092778,
+"bg": {
+"tts": 25711000000,
+"vay": 30034000000
+}
+},
+"VTĐ5-34": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "BT song lập - Shop",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "161.5",
+"dtxd": "324.2",
+"gia": 33338915302,
+"bg": {
+"tts": 27242000000,
+"vay": 31820000000
+}
+},
+"VTĐ8-04": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Hưng Nghĩa-TCB",
+"loai": "Shophouse",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "96",
+"dtxd": "383,4",
+"gia": 24929412333,
+"bg": {
+"tts": 20327000000,
+"vay": 23744000000
+}
+},
+"VTĐ8-08": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Hưng Nghĩa-TCB",
+"loai": "Shophouse- xẻ khe",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "128",
+"dtxd": "379,4",
+"gia": 30803032933,
+"bg": {
+"tts": 25134000000,
+"vay": 29365000000
+}
+},
+"VTĐ8-15": {
+"src": [
+"JH"
+],
+"quy": "Hưng Nghĩa",
+"loai": "Shophouse",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "128",
+"dtxd": "379,4",
+"gia": 30694539324,
+"bg": {
+"tts": 24923000000,
+"vay": 29167000000
+}
+},
+"VTĐ8-30": {
+"src": [
+"JH"
+],
+"quy": "Vin",
+"loai": "SH xẻ khe",
+"huong": "ĐN",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "128",
+"dtxd": "379,4",
+"bg": {
+"tts": 25075000000,
+"vay": 29285000000
+}
+},
+"VTĐ8-31": {
+"src": [
+"JH"
+],
+"loai": "SH xẻ khe",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "128",
+"dtxd": "379,4",
+"gia": 30658288256,
+"bg": {
+"tts": 24846000000,
+"vay": 29071000000
+}
+},
+"VTĐ8-53": {
+"src": [
+"JH"
+],
+"loai": "SH xẻ khe",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "144",
+"dtxd": "443,3",
+"gia": 34521601616,
+"bg": {
+"tts": 28173000000,
+"vay": 32916000000
+}
+},
+"VX1-08": {
+"src": [
+"JH"
+],
+"loai": "Đơn Lập",
+"huong": "Đông Nam",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "240",
+"dtxd": "399,5"
+},
+"VX1-75": {
+"src": [
+"JH"
+],
+"quy": "VX-LS",
+"loai": "Song lập",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 28915426955,
+"bg": {
+"tts": 22425000000,
+"vay": 26092000000
+}
+},
+"VX1-77": {
+"src": [
+"JH"
+],
+"quy": "VX-LS",
+"loai": "Song lập",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 28915426955,
+"bg": {
+"tts": 22425000000,
+"vay": 26092000000
+}
+},
+"VX1-79": {
+"src": [
+"JH"
+],
+"quy": "VX-LS",
+"loai": "BTSL",
+"huong": "TB",
+"tcbg": "Thô",
+"csbh": "25/12",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 28915426955,
+"bg": {
+"tts": 26092000000,
+"vay": 22425000000
+}
+},
+"VX1-81": {
+"src": [
+"JH"
+],
+"quy": "VX-LS - VPB",
+"loai": "Biệt thự song lập",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 29355945476,
+"bg": {
+"tts": 22768000000,
+"vay": 26489000000
+}
+},
+"VX1-83": {
+"src": [
+"JH"
+],
+"quy": "VX-LS",
+"loai": "BTSL",
+"huong": "TB",
+"tcbg": "Thô",
+"csbh": "25/12",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 29576204826,
+"bg": {
+"tts": 26688000000,
+"vay": 22939000000
+}
+},
+"VX2-107": {
+"src": [
+"JH"
+],
+"loai": "Liền kề",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "90",
+"dtxd": "358,9"
+},
+"VX2-11": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "345,3",
+"gia": 20162864799,
+"bg": {
+"tts": 15636000000,
+"vay": 18193000000
+}
+},
+"VX2-15": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "TB",
+"tcbg": "Thô",
+"csbh": "25/12",
+"dt": "90",
+"dtxd": "358,9",
+"gia": 20218800585,
+"bg": {
+"tts": 18244000000,
+"vay": 15680000000
+}
+},
+"VX2-45": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "345,3",
+"gia": 20162864799,
+"bg": {
+"tts": 15636000000,
+"vay": 18193000000
+}
+},
+"VX2-51": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "339,1",
+"gia": 26668975032,
+"bg": {
+"tts": 20679000000,
+"vay": 24063000000
+}
+},
+"VX3-113": {
+"src": [
+"JH"
+],
+"quy": "VX-LS",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "344,3",
+"gia": 19476656283,
+"bg": {
+"tts": 15103000000,
+"vay": 17574000000
+}
+},
+"VX3-19": {
+"src": [
+"JH"
+],
+"quy": "VX-TP",
+"loai": "BTSL",
+"huong": "TB",
+"tcbg": "Thô",
+"csbh": "25/12",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 25393515967,
+"bg": {
+"tts": 22911000000,
+"vay": 19689000000
+}
+},
+"VX3-21": {
+"src": [
+"JH"
+],
+"quy": "VX-TP - VPB",
+"loai": "Biệt thự song lập",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 25393515967,
+"bg": {
+"tts": 21387000000,
+"vay": 24886000000
+}
+},
+"VX3-41": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "TB",
+"tcbg": "Thô",
+"csbh": "25/12",
+"dt": "90,00",
+"dtxd": "358,9",
+"gia": 20367900590,
+"bg": {
+"tts": 18378000000,
+"vay": 15796000000
+}
+},
+"VX3-45": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "TB",
+"tcbg": "Thô",
+"csbh": "25/12",
+"dt": "90,00",
+"dtxd": "358,9",
+"gia": 20069656739,
+"bg": {
+"tts": 18109000000,
+"vay": 15564000000
+}
+},
+"VX3-47": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "358,9",
+"gia": 20069656739,
+"bg": {
+"tts": 15564000000,
+"vay": 18109000000
+}
+},
+"VX3-55": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "358,9",
+"gia": 19845697286,
+"bg": {
+"tts": 15390000000,
+"vay": 17907000000
+}
+},
+"VX3-56": {
+"src": [
+"JH"
+],
+"quy": "VX-HT - VPB",
+"loai": "Biệt thự đơn lập",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "180",
+"dtxd": "290,1",
+"gia": 37411670443,
+"bg": {
+"tts": 29011000000,
+"vay": 33757000000
+}
+},
+"VX3-57": {
+"src": [
+"JH"
+],
+"quy": "THẠCH BÀN-LAKESIDE-VPB",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "358,9",
+"gia": 19845697286,
+"bg": {
+"tts": 16693000000,
+"vay": 19127000000
+}
+},
+"VX3-59": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "344,3",
+"gia": 19625556571,
+"bg": {
+"tts": 15219000000,
+"vay": 17708000000
+}
+},
+"VX3-63": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "358,9",
+"gia": 19845697286,
+"bg": {
+"tts": 15390000000,
+"vay": 17907000000
+}
+},
+"VX3-83": {
+"src": [
+"JH"
+],
+"quy": "VX-LA",
+"loai": "Liền kề",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "339,1",
+"gia": 26460146369,
+"bg": {
+"tts": 20517000000,
+"vay": 23874000000
+}
+},
+"VX3-93": {
+"src": [
+"JH"
+],
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "90",
+"dtxd": "358,9"
+},
+"VX3-95": {
+"src": [
+"JH"
+],
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "90",
+"dtxd": "358,9"
+},
+"VX4-101": {
+"src": [
+"JH"
+],
+"quy": "VX-VP",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "358,9",
+"gia": 19994841133,
+"bg": {
+"tts": 15506000000,
+"vay": 18042000000
+}
+},
+"VX4-139": {
+"src": [
+"JH"
+],
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "90",
+"dtxd": "358,9"
+},
+"VX4-193": {
+"src": [
+"JH"
+],
+"quy": "VX-LS",
+"loai": "Liền kề",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "344,3",
+"gia": 20444535211,
+"bg": {
+"tts": 15855000000,
+"vay": 18448000000
+}
+},
+"VX4-21": {
+"src": [
+"JH"
+],
+"quy": "VX-ĐM",
+"loai": "Song lập",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 24733498659,
+"bg": {
+"tts": 19176000000,
+"vay": 22315000000
+}
+},
+"VX4-23": {
+"src": [
+"JH"
+],
+"quy": "VX-ĐM",
+"loai": "Song lập",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 24733498659,
+"bg": {
+"tts": 19176000000,
+"vay": 22315000000
+}
+},
+"VX4-45": {
+"src": [
+"JH"
+],
+"quy": "VX-ĐM",
+"loai": "Song lập",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 24953618029,
+"bg": {
+"tts": 19347000000,
+"vay": 22514000000
+}
+},
+"VX4-47": {
+"src": [
+"JH"
+],
+"quy": "VX-ĐM",
+"loai": "Song lập",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "126",
+"dtxd": "249,4",
+"gia": 24953618029,
+"bg": {
+"tts": 19347000000,
+"vay": 22514000000
+}
+},
+"VX4-91": {
+"src": [
+"JH"
+],
+"quy": "VX-VP",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "358,9",
+"gia": 20218800585,
+"bg": {
+"tts": 15680000000,
+"vay": 18244000000
+}
+},
+"VX4-97": {
+"src": [
+"JH"
+],
+"quy": "VX-VP",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "344,3",
+"gia": 19774700418,
+"bg": {
+"tts": 15335000000,
+"vay": 17843000000
+}
+},
+"VX4-99": {
+"src": [
+"JH"
+],
+"quy": "VX-VP",
+"loai": "Liền kề",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "25/12/2025",
+"dt": "90",
+"dtxd": "358,9",
+"gia": 19994841133,
+"bg": {
+"tts": 15506000000,
+"vay": 18042000000
+}
+},
+"ĐD-01": {
+"src": [
+"JH"
+],
+"quy": "VBCN_AN HƯNG_TCB",
+"loai": "Liền kề",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "132",
+"dtxd": "442.1",
+"gia": 25685037154,
+"bg": {
+"tts": 20851000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 25685037154,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 29133908492,
+"tcbg": "Thô có thang"
+}
+]
+},
+"ĐD8-01": {
+"src": [
+"JH"
+],
+"quy": "HUY HOÀNG",
+"loai": "SL Góc",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "180",
+"dtxd": "404,6",
+"gia": 36785061346,
+"bg": {
+"tts": 29884000000,
+"vay": 34908000000
+}
+},
+"ĐD8-05": {
+"src": [
+"JH"
+],
+"quy": "VBCN_HUY HOÀNG_BVB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "180",
+"dtxd": "404,6",
+"gia": 36239712417,
+"bg": {
+"tts": 29439000000,
+"vay": 34386000000
+}
+},
+"ĐD8-07": {
+"src": [
+"JH"
+],
+"quy": "HUY HOÀNG-BVB",
+"loai": "Biệt thự song lập",
+"tcbg": "Thô không thang",
+"csbh": "01/02/2026",
+"dt": "180",
+"dtxd": "404.6",
+"gia": 36060204589,
+"bg": {
+"tts": 29293000000,
+"vay": 34219000000
+}
+},
+"ĐLBM-101": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Phát Đạt-VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 27228518249,
+"bg": {
+"tts": 22109000000,
+"vay": 25826000000
+}
+},
+"ĐLBM-103": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI_MSB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "403",
+"gia": 35350331872,
+"bg": {
+"tts": 28715000000,
+"vay": 33544000000
+}
+},
+"ĐLBM-109": {
+"src": [
+"JH"
+],
+"loai": "SH",
+"huong": "Tây bắc",
+"tcbg": "KPTM",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 29407835395,
+"bg": {
+"tts": 20027000000,
+"vay": 23414000000
+}
+},
+"ĐLBM-11": {
+"src": [
+"JH"
+],
+"quy": "VBCN-VMI-MSB",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "403",
+"gia": 37430010334,
+"bg": {
+"tts": 30408000000,
+"vay": 35521000000
+}
+},
+"ĐLBM-112": {
+"src": [
+"JH"
+],
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô + HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454.5",
+"gia": 33342365780,
+"bg": {
+"tts": 27215000000,
+"vay": 31806000000
+}
+},
+"ĐLBM-114": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô+HTHT 2T",
+"csbh": "24/01/2026",
+"dt": "120",
+"dtxd": "463,9",
+"gia": 33439532086,
+"bg": {
+"tts": 27322000000,
+"vay": 31906000000
+}
+},
+"ĐLBM-121": {
+"src": [
+"JH"
+],
+"loai": "SH",
+"huong": "Tây bắc",
+"tcbg": "KPTM",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 29063819375,
+"bg": {
+"tts": 19810000000,
+"vay": 23142000000
+}
+},
+"ĐLBM-124": {
+"src": [
+"JH"
+],
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô + HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454.5",
+"gia": 32924853897,
+"bg": {
+"tts": 26898000000,
+"vay": 31414000000
+}
+},
+"ĐLBM-126": {
+"src": [
+"JH"
+],
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô + HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454.5",
+"gia": 32940699507,
+"bg": {
+"tts": 26887000000,
+"vay": 31423000000
+}
+},
+"ĐLBM-128": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô + HTHT 2T",
+"csbh": "29/12/2025",
+"dt": "120",
+"dtxd": "462,6",
+"gia": 38139706869,
+"bg": {
+"tts": 28540000000,
+"vay": 32516000000
+}
+},
+"ĐLBM-130": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô + HTHT 2T",
+"csbh": "29/12/2025",
+"dt": "120",
+"dtxd": "462,6",
+"gia": 38139706869,
+"bg": {
+"tts": 28540000000,
+"vay": 32516000000
+}
+},
+"ĐLBM-135": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Phát Đạt_VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "402,8",
+"gia": 25254917060,
+"bg": {
+"tts": 20547000000,
+"vay": 23999000000
+}
+},
+"ĐLBM-142": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "120",
+"dtxd": "93.4",
+"gia": 30339482556,
+"bg": {
+"tts": 24662000000,
+"vay": 28825000000
+}
+},
+"ĐLBM-146": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "462.6",
+"gia": 30419186586,
+"bg": {
+"tts": 24708000000,
+"vay": 28859000000
+}
+},
+"ĐLBM-149": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Phú Thọ Land_VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "402,8",
+"gia": 24792658485,
+"bg": {
+"tts": 20125000000,
+"vay": 23511000000
+}
+},
+"ĐLBM-151": {
+"src": [
+"JH"
+],
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401.3",
+"gia": 24776058150,
+"bg": {
+"tts": 20157000000,
+"vay": 23544000000
+}
+},
+"ĐLBM-153": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Phú Thọ Land_VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 24776058150,
+"bg": {
+"tts": 20119000000,
+"vay": 23499000000
+}
+},
+"ĐLBM-158": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "120",
+"dtxd": "93.4",
+"gia": 30339482556,
+"bg": {
+"tts": 24662000000,
+"vay": 28825000000
+}
+},
+"ĐLBM-159": {
+"src": [
+"JH"
+],
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 24776058150,
+"bg": {
+"tts": 20157000000,
+"vay": 23544000000
+}
+},
+"ĐLBM-161": {
+"src": [
+"JH"
+],
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 24776058150,
+"bg": {
+"tts": 20157000000,
+"vay": 23544000000
+}
+},
+"ĐLBM-164": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô+HTHT 2T",
+"csbh": "29/12/2025",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 37454864459,
+"bg": {
+"tts": 28067000000,
+"vay": 31926000000
+}
+},
+"ĐLBM-166": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô+HTHT 2T",
+"csbh": "24/01/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 32443048566,
+"bg": {
+"tts": 26504000000,
+"vay": 30954000000
+}
+},
+"ĐLBM-173": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Phú Thọ Land_VPB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 24833975132,
+"bg": {
+"tts": 20204000000,
+"vay": 23599000000
+}
+},
+"ĐLBM-174": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · M  T  R",
+"loai": "Shophouse",
+"huong": "Tây Nam",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "120",
+"dtxd": "458,4",
+"bg": {
+"tts": 24350000000
+}
+},
+"ĐLBM-175": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Phú Thọ Land-VPB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 24833975132,
+"bg": {
+"tts": 20204000000,
+"vay": 23599000000
+}
+},
+"ĐLBM-177": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Phú Thọ Land_VPB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "402,8",
+"gia": 24849501131,
+"bg": {
+"tts": 20228000000,
+"vay": 26325000000
+}
+},
+"ĐLBM-180": {
+"src": [
+"JH"
+],
+"loai": "SH",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"dt": "120",
+"dtxd": "460,66",
+"gia": 37680000000,
+"bg": {
+"tts": 24350000000,
+"vay": 27810000000
+}
+},
+"ĐLBM-181": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Phú Thọ Land-VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 24833975132,
+"bg": {
+"tts": 20159000000,
+"vay": 23550000000
+}
+},
+"ĐLBM-186": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Newland_TCB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô+HTHT 2T",
+"csbh": "29/11/2025",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 36709436537,
+"bg": {
+"tts": 27507000000,
+"vay": 31289000000
+}
+},
+"ĐLBM-187": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Phú Thọ Land_VPB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "402,8",
+"gia": 25254917060,
+"bg": {
+"tts": 20547000000,
+"vay": 24000000000
+}
+},
+"ĐLBM-188": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Newland_TCB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô+HTHT 2T",
+"csbh": "24/01/2026",
+"dt": "120",
+"dtxd": "462,6",
+"gia": 31857581845,
+"bg": {
+"tts": 26025000000,
+"vay": 30395000000
+}
+},
+"ĐLBM-199": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Trường Lộc_VPB",
+"loai": "Shophouse- gần ngã 4",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 25240963240,
+"bg": {
+"tts": 20491000000,
+"vay": 23938000000
+}
+},
+"ĐLBM-201": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Trường Lộc_VPB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 25240963240,
+"bg": {
+"tts": 20536000000,
+"vay": 23986000000
+}
+},
+"ĐLBM-206": {
+"src": [
+"JH"
+],
+"quy": "VBCN-HOÀNG HIỆP-MSB HCM",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô + HTHT 2T",
+"csbh": "24/01/2026",
+"dt": "120",
+"dtxd": "462,6",
+"gia": 31089888050,
+"bg": {
+"tts": 25397000000,
+"vay": 27461000000
+}
+},
+"ĐLBM-209": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Trường Lộc_VPB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 25006066728,
+"bg": {
+"tts": 20344000000,
+"vay": 23763000000
+}
+},
+"ĐLBM-211": {
+"src": [
+"JH"
+],
+"quy": "Trường Lộc VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 25006066728,
+"bg": {
+"tts": 20345000000,
+"vay": 23763000000
+}
+},
+"ĐLBM-215": {
+"src": [
+"JH"
+],
+"quy": "Trường Lộc VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 25006066728,
+"bg": {
+"tts": 20345000000,
+"vay": 23763000000
+}
+},
+"ĐLBM-222": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Newland_TCB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô+HTHT 2T",
+"csbh": "29/12/2025",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 35831999806,
+"bg": {
+"tts": 26849000000,
+"vay": 30541000000
+}
+},
+"ĐLBM-227": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Trường Lộc_VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "402.8",
+"gia": 25021434777,
+"bg": {
+"tts": 20312000000,
+"vay": 23729000000
+}
+},
+"ĐLBM-228": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Newland_TCB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô+HTHT 2T",
+"csbh": "24/01/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 31009941665,
+"bg": {
+"tts": 25332000000,
+"vay": 29586000000
+}
+},
+"ĐLBM-229": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Trường Lộc_VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401.3",
+"gia": 25006066728,
+"bg": {
+"tts": 20344000000,
+"vay": 23762000000
+}
+},
+"ĐLBM-241": {
+"src": [
+"JH"
+],
+"loai": "SH",
+"huong": "Tây bắc",
+"tcbg": "KPTM",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 28559205715,
+"bg": {
+"tts": 19446000000,
+"vay": 22737000000
+}
+},
+"ĐLBM-25": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NEWLAND_VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "HTHT 2T ( Đã có khách thuê)",
+"csbh": "24/01/2026",
+"dt": "150",
+"dtxd": "403",
+"gia": 39971524578,
+"bg": {
+"tts": 26765000000,
+"vay": 31259000000
+}
+},
+"ĐLBM-255": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Phát Đạt-VPB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "150",
+"dtxd": "402,9",
+"gia": 40668788164,
+"bg": {
+"tts": 30352000000,
+"vay": 34526000000
+}
+},
+"ĐLBM-267": {
+"src": [
+"JH"
+],
+"quy": "VBCN-Phát Đạt-VPB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 27472474092,
+"bg": {
+"tts": 22354000000,
+"vay": 26108000000
+}
+},
+"ĐLBM-269": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Newland_TCB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô+HTHT 2T",
+"csbh": "29/12/2025",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 36179284212,
+"bg": {
+"tts": 27114000000,
+"vay": 30840000000
+}
+},
+"ĐLBM-275": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Trường Lộc_VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 25006066728,
+"bg": {
+"tts": 20300000000,
+"vay": 23715000000
+}
+},
+"ĐLBM-277": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Trường Lộc_VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 25006066728,
+"bg": {
+"tts": 20300000000,
+"vay": 23715000000
+}
+},
+"ĐLBM-285": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Phát Đạt_VPB",
+"loai": "Shophouse",
+"huong": "Đông Bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 24653723123,
+"bg": {
+"tts": 20012000000,
+"vay": 23379000000
+}
+},
+"ĐLBM-291": {
+"src": [
+"JH"
+],
+"quy": "VBCN_Thái Dương Land_VPB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "253.6",
+"dtxd": "722.7",
+"gia": 59560993998,
+"bg": {
+"tts": 48461000000,
+"vay": 56601000000
+}
+},
+"ĐLBM-40": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"dt": "120",
+"gia": 38015000000,
+"bg": {
+"tts": 28553000000,
+"vay": 31627000000
+}
+},
+"ĐLBM-56": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33505443928,
+"bg": {
+"tts": 22825000000,
+"vay": 26692000000
+}
+},
+"ĐLBM-63": {
+"src": [
+"JH"
+],
+"quy": "VBCN",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"csbh": "01/02/2026",
+"dt": "150",
+"dtxd": "403",
+"gia": 35182000000,
+"bg": {
+"tts": 28578000000,
+"vay": 33381000000
+}
+},
+"ĐLBM-68": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33647562456,
+"bg": {
+"tts": 22946000000,
+"vay": 26798000000
+}
+},
+"ĐLBM-70": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33489474823,
+"bg": {
+"tts": 22838000000,
+"vay": 26672000000
+}
+},
+"ĐLBM-72": {
+"src": [
+"JH"
+],
+"quy": "VBCN_NEWLAND_VPB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33485516148,
+"bg": {
+"tts": 22841000000,
+"vay": 26676000000
+}
+},
+"ĐLBM-73": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI_MSB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 27226910000,
+"bg": {
+"tts": 22152000000,
+"vay": 25874000000
+}
+},
+"ĐLBM-74": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33406659332,
+"bg": {
+"tts": 22781000000,
+"vay": 26606000000
+}
+},
+"ĐLBM-75": {
+"src": [
+"JH"
+],
+"quy": "VBCN_PHÚC SƠN_TCB",
+"loai": "shophouse XK",
+"huong": "Tây bắc",
+"tcbg": "Thô+HTHT 2T",
+"csbh": "29/12/2025",
+"dt": "150",
+"dtxd": "403",
+"gia": 43357070424,
+"bg": {
+"tts": 32484000000,
+"vay": 36953000000
+}
+},
+"ĐLBM-76": {
+"src": [
+"JH"
+],
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô + HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33406659332,
+"bg": {
+"tts": 27297000000,
+"vay": 31874000000
+}
+},
+"ĐLBM-79": {
+"src": [
+"JH"
+],
+"quy": "VBCN_PHÚC SƠN_TCB",
+"loai": "shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "110",
+"dtxd": "401,3",
+"gia": 27226910000,
+"bg": {
+"tts": 22152000000,
+"vay": 25874000000
+}
+},
+"ĐLBM-82": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33406659332,
+"bg": {
+"tts": 22781000000,
+"vay": 26606000000
+}
+},
+"ĐLBM-83": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI_MSB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "403",
+"gia": 27243896907,
+"bg": {
+"tts": 22121000000,
+"vay": 25837000000
+}
+},
+"ĐLBM-84": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"bg": {
+"tts": 22781000000,
+"vay": 26606000000
+}
+},
+"ĐLBM-85": {
+"src": [
+"JH"
+],
+"quy": "VBCN_VMI_MSB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "110",
+"dtxd": "401",
+"gia": 27226910000,
+"bg": {
+"tts": 22107000000,
+"vay": 25821000000
+}
+},
+"ĐLBM-86": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33730379400,
+"bg": {
+"tts": 23003000000,
+"vay": 26865000000
+}
+},
+"ĐLBM-88": {
+"src": [
+"JH"
+],
+"quy": "VBCN_UTĐT_TCB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33730379400,
+"bg": {
+"tts": 23003000000,
+"vay": 26865000000
+}
+},
+"ĐLBM-90": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô-HTHT 2T",
+"csbh": "01/02/2026",
+"dt": "120",
+"dtxd": "454,5",
+"gia": 33422699387,
+"bg": {
+"tts": 22769000000,
+"vay": 26626000000
+}
+},
+"ĐLBM-92": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "120",
+"dtxd": "93.4",
+"gia": 31254889898,
+"bg": {
+"tts": 25407000000,
+"vay": 29695000000
+}
+},
+"ĐLBM-98": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "29/12/2025",
+"dt": "120",
+"dtxd": "93.4",
+"gia": 31407458115,
+"bg": {
+"tts": 25531000000,
+"vay": 29840000000
+}
+},
+"ĐLHĐ-209": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "167.4",
+"dtxd": "534.4",
+"gia": 28940688706,
+"bg": {
+"tts": 23465000000,
+"vay": 27443000000
+}
+},
+"ĐLHĐ-215": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "167,4",
+"dtxd": "534",
+"gia": 28940688706,
+"bg": {
+"tts": 23465000000,
+"vay": 27440000000
+}
+},
+"ĐLHĐ-249": {
+"src": [
+"JH"
+],
+"loai": "SH Góc",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "01/02/2026",
+"dt": "158,53",
+"dtxd": "458,3",
+"gia": 26945334184,
+"bg": {
+"tts": 21866000000,
+"vay": 25554000000
+}
+},
+"ĐLHĐ-250": {
+"src": [
+"JH"
+],
+"loai": "Shophouse",
+"huong": "Tây bắc",
+"tcbg": "Thô",
+"csbh": "24/01/2026",
+"dt": "134,29",
+"dtxd": "298"
+},
+"ĐLNT-45": {
+"src": [
+"JH"
+],
+"quy": "Đô Thị Xanh TCB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "180",
+"dtxd": "412,3",
+"gia": 33418284191,
+"bg": {
+"tts": 27134000000,
+"vay": 31706000000
+}
+},
+"ĐLNT-46": {
+"src": [
+"JH"
+],
+"quy": "Đô Thị Xanh TCB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "180",
+"dtxd": "412,3",
+"gia": 33418284191,
+"bg": {
+"tts": 27134000000,
+"vay": 31706000000
+}
+},
+"ĐLSH-143": {
+"src": [
+"JH"
+],
+"quy": "MAS",
+"loai": "Shophouse",
+"tcbg": "Xây Thô",
+"csbh": "15/09/2025",
+"dt": "100",
+"gia": 31105000000,
+"bg": {
+"tts": 23060000000
+}
+},
+"ĐLSH-155": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SH",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "100",
+"dtxd": "428,6",
+"gia": 31102000000,
+"bg": {
+"tts": 19782000000,
+"vay": 22594000000
+}
+},
+"ĐLSH-175": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "Shophouse",
+"csbh": "27/01/2026",
+"dt": "100",
+"dtxd": "428,6",
+"gia": 31102000000,
+"bg": {
+"tts": 19782000000
+}
+},
+"ĐLSH-177": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "Shophouse",
+"csbh": "27/01/2026",
+"dt": "100",
+"dtxd": "428,6",
+"gia": 31102000000,
+"bg": {
+"tts": 19782000000
+}
+},
+"ĐLSH-187": {
+"src": [
+"JH"
+],
+"quy": "MTR - TCB",
+"loai": "Shophouse",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "100",
+"dtxd": "398",
+"gia": 32713000000,
+"bg": {
+"tts": 20900000000,
+"vay": 23871000000
+}
+},
+"ĐLSH-189": {
+"src": [
+"JH"
+],
+"quy": "MTR - TCB",
+"loai": "Shophouse",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "100",
+"dtxd": "398",
+"gia": 33273000000,
+"bg": {
+"tts": 21591000000,
+"vay": 24578000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": 33273000000,
+"tcbg": "Thô"
+},
+{
+"src": "JH",
+"gia": 33273000000,
+"tcbg": "Xây Thô"
+}
+]
+},
+"ĐLSH-41": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SH",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "120",
+"dtxd": "448,4",
+"gia": 35984000000,
+"bg": {
+"tts": 23171000000,
+"vay": 26464000000
+}
+},
+"ĐLSH-51": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SH",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "120",
+"dtxd": "448,4",
+"gia": 35867000000,
+"bg": {
+"tts": 23171000000,
+"vay": 26464000000
+}
+},
+"ĐĐD-120": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "SL Góc",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "172",
+"dtxd": "396,1",
+"gia": 47320000000,
+"bg": {
+"tts": 30245000000,
+"vay": 34543000000
+}
+},
+"ĐĐD-165": {
+"src": [
+"JH"
+],
+"quy": "Ngọc Quý",
+"loai": "LK xẻ khe",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "112",
+"dtxd": "352,3",
+"gia": 19732567847,
+"bg": {
+"tts": 16021000000,
+"vay": 18718000000
+}
+},
+"ĐĐD-243": {
+"src": [
+"JH"
+],
+"quy": "Ngọc Quý",
+"loai": "LK xẻ khe",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "119,8",
+"dtxd": "352,3",
+"gia": 20710718212,
+"bg": {
+"tts": 16800000000,
+"vay": 19631000000
+}
+},
+"ĐĐD-44": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "LK",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "80",
+"dtxd": "324",
+"gia": 23072000000,
+"bg": {
+"tts": 14930000000,
+"vay": 17053000000
+}
+},
+"ĐĐD-45": {
+"src": [
+"JH"
+],
+"quy": "HĐMB",
+"loai": "Shophouse",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "112",
+"dtxd": "352,3",
+"gia": 20040676269,
+"bg": {
+"tts": 16237000000,
+"vay": 18989000000
+}
+},
+"ĐĐD-62": {
+"src": [
+"JH"
+],
+"quy": "MTR - TCB",
+"loai": "Shophouse",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "80",
+"dtxd": "324",
+"gia": 23072000000,
+"bg": {
+"tts": 14930000000,
+"vay": 17052000000
+}
+},
+"ĐĐD-88": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · "
+},
+"ĐĐD-90": {
+"src": [
+"JH"
+],
+"quy": "MTR",
+"loai": "LK xẻ khe",
+"tcbg": "Thô",
+"csbh": "27/01/2026",
+"dt": "112",
+"dtxd": "331,5",
+"gia": 32256000000,
+"bg": {
+"tts": 20655000000,
+"vay": 23591000000
+}
+},
+"ĐĐD-97": {
+"src": [
+"JH"
+],
+"quy": "CSM",
+"loai": "LK xẻ khe",
+"tcbg": "Thô có thang",
+"csbh": "01/02/2026",
+"dt": "128",
+"dtxd": "421,3",
+"gia": 25991899602,
+"bg": {
+"tts": 21094000000,
+"vay": 24649000000
+},
+"offers": [
+{
+"src": "JH",
+"gia": null,
+"tcbg": "Thô có thang"
+},
+{
+"src": "JH",
+"gia": 25991899602,
+"tcbg": "Thô có thang"
+}
+]
+}
+},
+"check": {
+"NT1-26": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "BTSL",
+"tcbg": "Tự xây",
+"csbh": "21/11/2025",
+"dt": "168",
+"dtxd": "377,1",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"NT1-54": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "BTSL",
+"tcbg": "Tự xây",
+"csbh": "21/11/2025",
+"dt": "144,5",
+"dtxd": "319,3",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"NT1-55": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "BTSL",
+"tcbg": "Tự xây",
+"csbh": "21/11/2025",
+"dt": "146,3",
+"dtxd": "322,6",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"NT1-62": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · ",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"NT1-63": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · ",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"NT2-110": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · ",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"NT2-111": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · ",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"NT2-67": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · ",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"NT2-95": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "BTSL",
+"csbh": "21/11/2025",
+"dt": "163,7",
+"dtxd": "163.7",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"NT2-97": {
+"src": [
+"JH"
+],
+"quy": "VBCN-MTR",
+"loai": "BTSL",
+"csbh": "21/11/2025",
+"dt": "168,8",
+"dtxd": "168.8",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"SH19-15": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · ",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"VT-59": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · M  T  R",
+"loai": "Liền kề",
+"huong": "Tây Bắc",
+"tcbg": "Thô",
+"dt": "75",
+"dtxd": "293,5",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"ĐĐD-114": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · ",
+"why": "bảng hàng Joy Homes ghi Check admin"
+},
+"ĐĐD-122": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · ",
+"why": "bảng hàng Joy Homes ghi Check admin"
+}
+},
+"sold": {
+"SH8-83": {
+"src": [
+"JH"
+],
+"quy": "Độc quyền JH · ",
+"why": "bảng hàng Joy Homes đánh dấu đã bán"
+}
+}
+}
