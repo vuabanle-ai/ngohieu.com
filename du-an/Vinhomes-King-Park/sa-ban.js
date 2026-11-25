@@ -16,7 +16,7 @@ const TYPE = {
   P: { name: 'Biệt thự song lập', short: 'SL', h: 12.5, roof: 0xa59fd0 },
   K: { name: 'Biệt thự đơn lập', short: 'ĐL', h: 11.5, roof: 0xf07f9f }
 };
-const WALL = new THREE.Color(0xfbf8f2), AV = new THREE.Color(0x25b768), SD = new THREE.Color(0x8a8c90), CK = new THREE.Color(0xf5a623), DIM = new THREE.Color(0xe4e2dc), SEL = new THREE.Color(0xe31b23);
+const WALL = new THREE.Color(0xfbf8f2), WHITE = new THREE.Color(0xffffff), AV = new THREE.Color(0x25b768), SD = new THREE.Color(0x8a8c90), CK = new THREE.Color(0xf5a623), DIM = new THREE.Color(0xe4e2dc), SEL = new THREE.Color(0xe31b23);
 const SRC = {}; // tên khác hiển thị nguyên văn
 const VN = n => n.toLocaleString('vi-VN');
 const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' tỷ';
@@ -77,31 +77,102 @@ for (const [gi, g] of data.meta.grounds.entries()) {
   const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, alphaTest: .02 }));
   m.position.y = gi * .02; m.renderOrder = -10 + gi; scene.add(m);
 }
-// ---------- lots ----------
+// ---------- lots: nhà theo kiến trúc tân cổ điển (theo phối cảnh CĐT) ----------
+// mặt đứng vẽ bằng canvas: mỗi cột atlas = 1 bước cột (bay); thân nhà + mái mansard xám đá có cửa sổ áp mái
+const ARCH = {   // số tầng thân (chưa tính tầng áp mái), chiều cao thân (m), cột atlas mặt tiền, bước cột (m)
+  Y: { fl: 4, hb: 13.6, col: 0, bay: 2.5 },
+  S: { fl: 4, hb: 14.6, col: 1, bay: 2.5 },
+  P: { fl: 3, hb: 10.8, col: 2, bay: 3.2 },
+  K: { fl: 3, hb: 10.8, col: 2, bay: 3.2 }
+};
+const MAN = 3.2, MIN = 1.1;   // mái mansard: cao 3,2 m, lùi vào 1,1 m
+const NCOL = 8, CW_ = 256, CH_ = 1024;   // atlas: 0 LK, 1 SH, 2 BT, 3 tường hồi, 4 mái mansard, 5–7 trắng (mặt mái, giữ màu khi thu nhỏ)
+const facade = (() => {
+  const cn = document.createElement('canvas'); cn.width = CW_ * NCOL; cn.height = CH_; const g = cn.getContext('2d');
+  const CREAM = '#f4eee3', LINE = '#ddd2bf', GLASS = '#4f6272', FRAME = '#fbf9f4', IRON = '#26292d';
+  const win = (x, y, w, h, arch) => { g.fillStyle = FRAME; g.beginPath(); if (arch) { g.moveTo(x - 6, y + h + 6); g.lineTo(x - 6, y + w / 2); g.arc(x + w / 2, y + w / 2, w / 2 + 6, Math.PI, 0); g.lineTo(x + w + 6, y + h + 6) } else g.rect(x - 6, y - 6, w + 12, h + 12); g.fill();
+    g.fillStyle = GLASS; g.beginPath(); if (arch) { g.moveTo(x, y + h); g.lineTo(x, y + w / 2); g.arc(x + w / 2, y + w / 2, w / 2, Math.PI, 0); g.lineTo(x + w, y + h) } else g.rect(x, y, w, h); g.fill();
+    g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(x + 4, y + 4, w * .35, h - 8); g.fillStyle = FRAME; g.fillRect(x + w / 2 - 2, y, 4, h); g.fillRect(x, y + h * .55, w, 4) };
+  const cornice = (y, t = 14) => { g.fillStyle = '#fffdf8'; g.fillRect(0, y, CW_, t); g.fillStyle = LINE; g.fillRect(0, y + t, CW_, 4) };
+  const rail = (x, y, w) => { g.fillStyle = '#e9e2d4'; g.fillRect(x - 10, y + 30, w + 20, 10); g.fillStyle = IRON; for (let k = x; k <= x + w; k += 9) g.fillRect(k, y, 3, 30); g.fillRect(x - 4, y, w + 8, 4) };
+  const body = (c, floors, ground) => { const x0 = c * CW_; g.save(); g.translate(x0, 0);
+    g.fillStyle = CREAM; g.fillRect(0, 0, CW_, CH_);
+    // gờ trụ hai bên
+    g.fillStyle = '#ece4d4'; g.fillRect(0, 0, 10, CH_); g.fillRect(CW_ - 10, 0, 10, CH_);
+    const gh = CH_ * ground, fh = (CH_ - gh - 40) / (floors - 1);
+    cornice(0, 26);                       // diềm mái trên cùng
+    for (let k = 0; k < floors - 1; k++) { const y = 40 + k * fh; win(70, y + fh * .16, 116, fh * .66, k === 0); if (k < floors - 2) rail(70, y + fh * .56, 116); cornice(y + fh - 10, 10) }
+    // tầng 1
+    const y1 = CH_ - gh;
+    if (c === 1) { g.fillStyle = '#e8dfcd'; g.fillRect(0, y1, CW_, gh); win(26, y1 + gh * .12, 204, gh * .86, true); g.fillStyle = '#3b3f44'; g.fillRect(14, y1 + 6, CW_ - 28, 16) }   // shophouse: cửa kính vòm lớn + mái hiên
+    else { g.fillStyle = '#ebe3d2'; g.fillRect(0, y1, CW_, gh); for (let k = y1 + 18; k < CH_; k += 22) { g.fillStyle = '#e1d7c4'; g.fillRect(0, k, CW_, 3) } win(62, y1 + gh * .18, 132, gh * .8, true) }
+    g.restore() };
+  body(0, 4, .27); body(1, 4, .31); body(2, 3, .34);
+  // tường hồi: trơn, có gờ tầng và ô cửa nhỏ
+  { const x0 = 3 * CW_; g.fillStyle = CREAM; g.fillRect(x0, 0, CW_, CH_); for (let k = 1; k < 4; k++) { g.fillStyle = LINE; g.fillRect(x0, k * CH_ / 4, CW_, 6) } g.fillStyle = '#fffdf8'; g.fillRect(x0, 0, CW_, 26) }
+  // mái mansard: ngói đá xám + cửa sổ áp mái
+  { const x0 = 4 * CW_; g.fillStyle = '#4d535b'; g.fillRect(x0, 0, CW_, CH_); g.fillStyle = 'rgba(0,0,0,.18)'; for (let k = 0; k < CH_; k += 26) g.fillRect(x0, k, CW_, 3);
+    g.fillStyle = '#f6f2ea'; g.fillRect(x0 + 78, 300, 100, 560); g.beginPath(); g.moveTo(x0 + 66, 310); g.lineTo(x0 + 128, 230); g.lineTo(x0 + 190, 310); g.fill(); g.fillStyle = GLASS; g.fillRect(x0 + 92, 330, 72, 500); g.fillStyle = '#f6f2ea'; g.fillRect(x0 + 126, 330, 4, 500) }
+  { const x0 = 5 * CW_; g.fillStyle = '#ffffff'; g.fillRect(x0, 0, CW_ * 3, CH_) }
+  const t = new THREE.CanvasTexture(cn); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.generateMipmaps = true; return t;
+})();
 const X = x => x - W / 2, Z = z => z - H / 2;
-const lots = []; const geos = []; let vtx = 0;
+const lots = []; let vtx = 0;
 const byCode = new Map();
-for (const [code, t, poly, zone, dt] of data.lots) {
-  const pts = poly.map(([x, z]) => new THREE.Vector2(X(x), -Z(z)));
-  // thu nhỏ nhẹ quanh tâm để tách các căn
-  let cx = 0, cz = 0; pts.forEach(p => { cx += p.x; cz += p.y }); cx /= pts.length; cz /= pts.length;
-  const sh = new THREE.Shape(pts.map(p => new THREE.Vector2(cx + (p.x - cx) * .9, cz + (p.y - cz) * .9)));
-  const h = TYPE[t].h * (code.startsWith('LP') || code.startsWith('ĐL') ? 1 : 1);
-  const g = new THREE.ExtrudeGeometry(sh, { depth: h, bevelEnabled: false, curveSegments: 1 });
-  g.rotateX(-Math.PI / 2);
-  const n = g.attributes.position.count;
-  // màu đỉnh: mái = các đỉnh trên cùng có pháp tuyến hướng lên
-  const col = new Float32Array(n * 3);
-  g.setAttribute('color', new THREE.BufferAttribute(col, 3));
-  geos.push(g);
-  const area = Math.abs(THREE.ShapeUtils.area(pts));
-  const L = { zone: zone || '?', dt, poly, ax: lotAxis(poly.map(([x, z]) => [X(x), Z(z)])), code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
-  lots.push(L); byCode.set(code, L); vtx += n;
+const P_ = [], N_ = [], U_ = [], C_ = [];
+const U = (c, a) => (c * CW_ + 3 + a * (CW_ - 6)) / (CW_ * NCOL);   // u trong một cột atlas (chừa mép chống loang)
+const faceDot = (a, b, c, n) => { const ux = b[0] - a[0], uy = b[1] - a[1], uz = b[2] - a[2], vx = c[0] - a[0], vy = c[1] - a[1], vz = c[2] - a[2];
+  return (uy * vz - uz * vy) * n[0] + (uz * vx - ux * vz) * n[1] + (ux * vy - uy * vx) * n[2] };
+function tri(A, B, C, n) { if (faceDot(A[0], B[0], C[0], n) < 0) [B, C] = [C, B];   // mặt trước luôn quay theo pháp tuyến
+  for (const [p, q] of [A, B, C]) { P_.push(...p); N_.push(...n); U_.push(...q); C_.push(1, 1, 1) } }
+function quad(a, b, c, d, n, uv) { tri([a, uv[0]], [b, uv[1]], [c, uv[2]], n); tri([a, uv[0]], [c, uv[2]], [d, uv[3]], n) }
+function inset(poly, D) {   // lùi từng cạnh đa giác lồi vào trong D[i] mét
+  const n = poly.length; let cx = 0, cz = 0; poly.forEach(p => { cx += p[0]; cz += p[1] }); cx /= n; cz /= n;
+  const lines = poly.map((p, i) => { const q = poly[(i + 1) % n]; let dx = q[0] - p[0], dz = q[1] - p[1]; const l = Math.hypot(dx, dz) || 1; dx /= l; dz /= l;
+    let nx = -dz, nz = dx; if ((cx - p[0]) * nx + (cz - p[1]) * nz < 0) { nx = -nx; nz = -nz } return { x: p[0] + nx * D[i], z: p[1] + nz * D[i], dx, dz, l } });
+  const out = lines.map((L1, i) => { const L0 = lines[(i + n - 1) % n]; const den = L0.dx * L1.dz - L0.dz * L1.dx;
+    if (Math.abs(den) < 1e-3) return [L1.x, L1.z]; const t = ((L1.x - L0.x) * L1.dz - (L1.z - L0.z) * L1.dx) / den; return [L0.x + L0.dx * t, L0.z + L0.dz * t] });
+  const ok = out.every(([x, z]) => Math.hypot(x - cx, z - cz) < 60) && Math.abs(THREE.ShapeUtils.area(out.map(p => new THREE.Vector2(...p)))) > 4;
+  return ok ? out : poly.map(([x, z]) => [cx + (x - cx) * .75, cz + (z - cz) * .75]);
 }
-const merged = mergeGeometries(geos, false); geos.forEach(g => g.dispose());
+for (const [code, t, poly, zone, dt] of data.lots) {
+  const start = P_.length / 3;
+  let cx = 0, cz = 0; poly.forEach(([x, z]) => { cx += X(x); cz += Z(z) }); cx /= poly.length; cz /= poly.length;
+  // co nhẹ để tách từng căn
+  let base = poly.map(([x, z]) => [cx + (X(x) - cx) * .94, cz + (Z(z) - cz) * .94]);
+  if (THREE.ShapeUtils.area(base.map(p => new THREE.Vector2(p[0], p[1]))) < 0) base = base.reverse();
+  const A = ARCH[t] || ARCH.Y, ax = lotAxis(base), hb = A.hb, isFront = (p, q) => { const dx = q[0] - p[0], dz = q[1] - p[1], l = Math.hypot(dx, dz) || 1; return Math.abs((dx * ax.ux + dz * ax.uz) / l) < .5 },
+    top = inset(base, base.map((p, i) => isFront(p, base[(i + 1) % base.length]) ? MIN : 0)), h = hb + MAN;
+  const n = base.length;
+  // tường thân: chia theo bước cột; cạnh ngang lô (mặt tiền/mặt hậu) dùng mặt đứng, cạnh dọc dùng tường hồi
+  for (let i = 0; i < n; i++) { const p = base[i], q = base[(i + 1) % n]; const dx = q[0] - p[0], dz = q[1] - p[1], len = Math.hypot(dx, dz); if (len < .2) continue;
+    let nx = dz / len, nz = -dx / len; if (((p[0] + q[0]) / 2 - cx) * nx + ((p[1] + q[1]) / 2 - cz) * nz < 0) { nx = -nx; nz = -nz }
+    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, col = front ? A.col : 3, nb = Math.max(1, Math.round(len / (front ? A.bay : 4)));
+    for (let k = 0; k < nb; k++) { const a0 = k / nb, a1 = (k + 1) / nb, x0 = p[0] + dx * a0, z0 = p[1] + dz * a0, x1 = p[0] + dx * a1, z1 = p[1] + dz * a1;
+      quad([x0, 0, z0], [x1, 0, z1], [x1, hb, z1], [x0, hb, z0], [nx, 0, nz], [[U(col, 0), 0], [U(col, 1), 0], [U(col, 1), 1], [U(col, 0), 1]]) } }
+  // mái mansard: mặt nghiêng từ mép thân lên đỉnh lùi vào
+  for (let i = 0; i < n; i++) { const p = base[i], q = base[(i + 1) % n], r = top[(i + 1) % n], s2 = top[i];
+    const dx = q[0] - p[0], dz = q[1] - p[1], len = Math.hypot(dx, dz); if (len < .2) continue;
+    let nx = dz / len, nz = -dx / len; if (((p[0] + q[0]) / 2 - cx) * nx + ((p[1] + q[1]) / 2 - cz) * nz < 0) { nx = -nx; nz = -nz }
+    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, ny = front ? MIN / MAN : 0, nl = Math.hypot(nx, ny, nz), nb = front ? Math.max(1, Math.round(len / A.bay)) : 1;
+    for (let k = 0; k < nb; k++) { const a0 = k / nb, a1 = (k + 1) / nb, L = (P, Q, a) => [P[0] + (Q[0] - P[0]) * a, P[1] + (Q[1] - P[1]) * a];
+      const b0 = L(p, q, a0), b1 = L(p, q, a1), t1 = L(s2, r, a1), t0 = L(s2, r, a0), c = front ? 4 : 3;
+      quad([b0[0], hb, b0[1]], [b1[0], hb, b1[1]], [t1[0], h, t1[1]], [t0[0], h, t0[1]], [nx / nl, ny / nl, nz / nl], [[U(c, 0), 0], [U(c, 1), 0], [U(c, 1), 1], [U(c, 0), 1]]) } }
+  // mặt mái trên cùng (tô màu loại căn / tình trạng)
+  { const v2 = top.map(p => new THREE.Vector2(p[0], p[1])), tr = THREE.ShapeUtils.triangulateShape(v2, []);
+    const uw = [U(6, .5), .5]; for (const [a, b, c] of tr) tri([[top[a][0], h, top[a][1]], uw], [[top[b][0], h, top[b][1]], uw], [[top[c][0], h, top[c][1]], uw], [0, 1, 0]) }
+  const cnt = P_.length / 3 - start;
+  const area = Math.abs(THREE.ShapeUtils.area(poly.map(([x, z]) => new THREE.Vector2(x, z))));
+  let tx = 0, tz = 0; top.forEach(p => { tx += p[0]; tz += p[1] }); tx /= top.length; tz /= top.length;
+  const L = { zone: zone || '?', dt, poly, ax: lotAxis(top), code, t, i: lots.length, start, n: cnt, cx: tx, cz: tz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
+  lots.push(L); byCode.set(code, L); vtx += cnt;
+}
+const merged = new THREE.BufferGeometry();
+merged.setAttribute('position', new THREE.Float32BufferAttribute(P_, 3)); merged.setAttribute('normal', new THREE.Float32BufferAttribute(N_, 3));
+merged.setAttribute('uv', new THREE.Float32BufferAttribute(U_, 2)); merged.setAttribute('color', new THREE.Float32BufferAttribute(C_, 3));
 const lotOf = new Int32Array(vtx); lots.forEach(L => lotOf.fill(L.i, L.start, L.start + L.n));
 const normals = merged.attributes.normal, colors = merged.attributes.color;
-const mesh = new THREE.Mesh(merged, new THREE.MeshLambertMaterial({ vertexColors: true }));
+const mesh = new THREE.Mesh(merged, new THREE.MeshLambertMaterial({ vertexColors: true, map: facade }));
 scene.add(mesh);
 const edges = new THREE.LineSegments(new THREE.EdgesGeometry(merged, 30), new THREE.LineBasicMaterial({ color: 0x5b5146, transparent: true, opacity: .35 }));
 scene.add(edges);
@@ -115,10 +186,10 @@ function roofCol(L) {
   return new THREE.Color(TYPE[L.t].roof);
 }
 function paint(L) {
-  const r = roofCol(L), w = L.i === sel ? SEL : (mode === 'mo-ban' && !L.av ? DIM : WALL);
+  const r = roofCol(L), w = L.i === sel ? SEL : (mode === 'mo-ban' && !L.av && !L.ck ? DIM : WHITE);
   const hv = L.i === hov ? 1.12 : 1;
   for (let k = L.start; k < L.start + L.n; k++) {
-    const c = normals.getY(k) > .5 ? r : w;
+    const c = normals.getY(k) > .99 ? r : w;
     colors.setXYZ(k, Math.min(1, c.r * hv), Math.min(1, c.g * hv), Math.min(1, c.b * hv));
   }
 }
@@ -395,6 +466,7 @@ function select(L, fly) {
   $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
   const tn = TYPE[L.t].name, lo = q?.loai && q.loai.toLowerCase() !== tn.toLowerCase() ? q.loai + ' · ' + tn : tn;
   const rows = [['Dự án', duAn(L.zone)], ['Phân khu', ZNAME[L.zone] || L.zone], ['Dãy', L.pre], ['Loại hình', lo]];
+  { const A = ARCH[L.t] || ARCH.Y; rows.push(['Kiến trúc', `Tân cổ điển · ${A.fl} tầng + 1 tầng áp mái <small style="color:var(--mut);font-weight:400">(minh họa theo phối cảnh CĐT)</small>`]) }
   if (q?.quy) rows.push(['Quỹ', q.quy]);
   if (q?.dt || L.dt) rows.push(['DT đất', (q?.dt || L.dt) + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
   if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
