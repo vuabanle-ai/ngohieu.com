@@ -103,9 +103,6 @@ def main():
             rows = grid(ws)
             print(f'  {ten} | {ws.title} (tab mới nhất) -> {name}: {len(rows)} căn', file=sys.stderr)
             emit(name, rows)
-            rows = grid(ws)
-            print(f'  {ten} | {ws.title} -> {name}: {len(rows)} căn', file=sys.stderr)
-            emit(name, rows)
     for ten, path in CFG.get('thu_cong', {}).items():
         dq, qc = manual(path); emit(ten + ':dq', dq); emit(ten + 'QC', qc)
     if not args: print('KHÔNG ĐỌC ĐƯỢC NGUỒN NÀO'); sys.exit(1)
