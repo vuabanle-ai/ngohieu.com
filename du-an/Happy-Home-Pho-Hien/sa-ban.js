@@ -314,16 +314,17 @@ const byCode=new Map(lots.map((L,i)=>[L.code.replace('Đ','D'),i]));
 
 // ---- biển giá nổi trên căn có giá: nền trắng, viền đỏ dày, số giá to (gồm VAT & KPBT, làm tròn 2 số lẻ)
 const badges=[];
+const chkStick=new THREE.MeshBasicMaterial({color:'#f2b705'});
 {const stickM=new THREE.MeshBasicMaterial({color:'#d7261e'});
  lots.forEach((L,i)=>{const pp=PRICE[L.code];if(!pp)return;
   const cn=document.createElement('canvas');cn.width=512;cn.height=200;const g=cn.getContext('2d');
-  const isT=!!pp.tdc;const t=((isT?pp.tdc*1e6:pp.tot)/1e9).toFixed(2).replace('.',',')+' tỷ';
-  g.fillStyle='#ffffff';g.strokeStyle=isT?'#d7261e':'#8a8580';g.lineWidth=22;g.beginPath();g.roundRect(14,14,484,172,86);g.fill();g.stroke();
+  const draw=(chk)=>{g.clearRect(0,0,512,200);const isT=!!pp.tdc;const t=((isT?pp.tdc*1e6:pp.tot)/1e9).toFixed(2).replace('.',',')+' tỷ';
+  g.fillStyle=chk?'#fff6cc':'#ffffff';g.strokeStyle=chk?'#f2b705':isT?'#d7261e':'#8a8580';g.lineWidth=22;g.beginPath();g.roundRect(14,14,484,172,86);g.fill();g.stroke();
   let px=118;g.font=`800 ${px}px "Be Vietnam Pro",Arial,sans-serif`;while(g.measureText(t).width>420&&px>60){px-=4;g.font=`800 ${px}px "Be Vietnam Pro",Arial,sans-serif`}
-  g.fillStyle=isT?'#c8102e':'#55504b';g.textAlign='center';g.textBaseline='middle';g.fillText(t,256,104);
-  const tex=new THREE.CanvasTexture(cn);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=8;
+  g.fillStyle=isT?'#c8102e':'#55504b';g.textAlign='center';g.textBaseline='middle';g.fillText(t,256,104)};
+  draw(false);const tex=new THREE.CanvasTexture(cn);tex.colorSpace=THREE.SRGBColorSpace;tex.anisotropy=8;
   const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,depthWrite:false}));sp.scale.set(15,5.9,1);sp.position.set(L.x,L.h+10.5,L.z);sp.renderOrder=5;sp.userData.lot=i;S.add(sp);
-  const st=new THREE.Mesh(new THREE.CylinderGeometry(.18,.18,7.4,6),pp.tdc?stickM:new THREE.MeshBasicMaterial({color:'#8a8580'}));st.position.set(L.x,L.h+4,L.z);S.add(st);sp.userData.st=st;
+  const st=new THREE.Mesh(new THREE.CylinderGeometry(.18,.18,7.4,6),pp.tdc?stickM:new THREE.MeshBasicMaterial({color:'#8a8580'}));st.position.set(L.x,L.h+4,L.z);S.add(st);sp.userData.st=st;sp.userData.setChk=c=>{draw(c);tex.needsUpdate=true;st.material=c?chkStick:(pp.tdc?stickM:st.material)};
   badges.push(sp);pick.push(sp)});}
 
 // ================= TIỆN ÍCH =================
@@ -605,14 +606,14 @@ document.getElementById('ptgImg').onclick=()=>{const v=document.getElementById('
 document.getElementById('ptgView').onclick=e=>{if(e.target.id!=='ptgDl2')document.getElementById('ptgView').hidden=true};
 document.getElementById('ptgDl2').onclick=e=>{e.stopPropagation();savePTG()};
 function show(info){cur=info;if(!info.rows)ptgBox.hidden=true;const im=document.getElementById('cImg');im.src=info.img;im.alt=info.title;
- document.getElementById('cTag').textContent=info.tag;document.getElementById('cTitle').textContent=info.title;document.getElementById('cText').textContent=info.text;document.getElementById('cRows').innerHTML=info.rows||'';card.classList.toggle('open',!!info.open);card.classList.toggle('lot',!!info.rows);card.classList.add('show')}
+ document.getElementById('cTag').textContent=info.tag;{const t=document.getElementById('cTag');t.style.background=info.tag==='Check admin'?'#f2b705':'';t.style.color=info.tag==='Check admin'?'#24272b':''}document.getElementById('cTitle').textContent=info.title;document.getElementById('cText').textContent=info.text;document.getElementById('cRows').innerHTML=info.rows||'';card.classList.toggle('open',!!info.open);card.classList.toggle('lot',!!info.rows);card.classList.add('show')}
 function paint(i,c){if(i<0)return;body.setColorAt(i,c);body.instanceColor.needsUpdate=true;if(cornerMesh[i])cornerMesh[i].color.copy(CW_BASE).multiply(c)}
 const esc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function selectLot(i,fly){paint(sel,lotCol(sel));sel=i;paint(i,SEL);const L=lots[i],m=MAU[L.type],d=L.d;showPTG(L.code);window.__track&&window.__track('xem_can',{code:L.code});
  const p=PRICE[L.code];const vnd=n=>n?n.toLocaleString('vi-VN')+' đ':'';
- const rows=[['Loại căn',(p?'LK · ':'')+CAT[L.cat][0]],['TCBG',p?p.tc:''],['Hướng',d[0]],['Vị trí',d[1]],['Mặt đường',L.face],['DT đất',(p&&p.dt?fmt(p.dt):L.area?fmt(L.area):'')+(p&&p.dt||L.area?' m²':'')],['DTXD',(p&&p.x)?fmt(p.x)+' m²':d[3]?fmt(d[3])+' m²':''],
+ const rows=[['Tình trạng',L.sold?'Đã bán':L.check?'Check admin':L.open?'Còn quỹ':''],['Loại căn',(p?'LK · ':'')+CAT[L.cat][0]],['TCBG',p?p.tc:''],['Hướng',d[0]],['Vị trí',d[1]],['Mặt đường',L.face],['DT đất',(p&&p.dt?fmt(p.dt):L.area?fmt(L.area):'')+(p&&p.dt||L.area?' m²':'')],['DTXD',(p&&p.x)?fmt(p.x)+' m²':d[3]?fmt(d[3])+' m²':''],
   ['Giá trước VAT',p&&p.pre?vnd(p.pre):''],['VAT',p&&p.vat?vnd(p.vat):''],['KPBT',p&&p.kp?vnd(p.kp):''],[p&&p.allin?'Giá all in':'Tổng giá sau VAT & KPBT',p&&p.tot?vnd(p.tot):''],['Giá tiến độ (TĐC)',p&&p.tdc?trd(p.tdc):''],['Thanh toán sớm (TTS)',p&&p.tts?trd(p.tts):''],['Vay 18 tháng',p&&p.v18?trd(p.v18):''],['Vay 24 tháng',p&&p.v24?trd(p.v24):''],['Vay 30 tháng',p&&p.v30?trd(p.v30):''],['Vay 36 tháng',p&&p.v36?trd(p.v36):''],['Tiện ích lân cận',d[4]]].filter(r=>r[1]);
- show({open:L.open,title:'Căn '+L.code,tag:L.sold?'Đã bán · cập nhật '+(L.soldSince||''):L.open?'Đang mở bán · '+(PRICE[L.code]?(PRICE[L.code].tdc?'Giá tiến độ ':'')+ty(pv(PRICE[L.code])):''):'Phố Hiến Heritage Collection',img:m.img,text:m.name+' – '+m.text,
+ show({open:L.open,title:'Căn '+L.code,tag:L.sold?'Đã bán · cập nhật '+(L.soldSince||''):L.check?'Check admin':L.open?'Đang mở bán · '+(PRICE[L.code]?(PRICE[L.code].tdc?'Giá tiến độ ':'')+ty(pv(PRICE[L.code])):''):'Phố Hiến Heritage Collection',img:m.img,text:m.name+' – '+m.text,
   rows:rows.map(([k,v])=>`<dt>${k}</dt><dd${/TĐC/.test(k)||(!(p&&p.tdc)&&/Tổng giá|all in/.test(k))?' class="big"':''}>${esc(v)}</dd>`).join('')+(p?`<dt></dt><dd class="sm">Giá theo bảng hàng ngày ${p.d}, có thể thay đổi.</dd>`:'')});
  if(fly)flyTo(W(L.x,L.z),150,.8)}
 function viewFront(i){const L=lots[i];const ry=L.ew?L.rot+Math.PI/2:0;const dh=(L.ew?L.l:L.w)/2;
@@ -625,9 +626,9 @@ cv.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY];setRot(false)})
 const tip=document.getElementById('tip');
 function showTip(id,e){if(id<0){tip.style.display='none';return}const L=lots[id],p=PRICE[L.code],d=L.d||[];
  const dt=(p&&p.dt)||L.area,x=(p&&p.x)||d[3];
- const rows=[['Loại căn',CAT[L.cat][0]],['Diện tích đất',dt?fmt(dt)+' m²':''],['DTXD',x?fmt(x)+' m²':''],['Hướng',d[0]],['Vị trí',d[1]],['Mặt đường',L.face],['Tiện ích',d[4]],
+ const rows=[['Tình trạng',L.sold?'Đã bán':L.check?'Check admin':L.open?'Còn quỹ':''],['Loại căn',CAT[L.cat][0]],['Diện tích đất',dt?fmt(dt)+' m²':''],['DTXD',x?fmt(x)+' m²':''],['Hướng',d[0]],['Vị trí',d[1]],['Mặt đường',L.face],['Tiện ích',d[4]],
   ['Giá',p?(p.tdc?'TĐC '+ty(pv(p)):ty(pv(p))):'']].filter(r=>r[1]);
- tip.innerHTML=`<b>${L.code}</b>${L.sold?' <i class="sold">Đã bán</i>':L.open?' <i>Đang mở bán</i>':''}<dl>${rows.map(([k,v])=>`<dt>${k}</dt><dd${k==='Giá'?' class="g"':''}>${esc(v)}</dd>`).join('')}</dl>`;
+ tip.innerHTML=`<b>${L.code}</b>${L.sold?' <i class="sold">Đã bán</i>':L.check?' <i class="chk">Check admin</i>':L.open?' <i>Đang mở bán</i>':''}<dl>${rows.map(([k,v])=>`<dt>${k}</dt><dd${k==='Giá'?' class="g"':''}>${esc(v)}</dd>`).join('')}</dl>`;
  tip.style.display='block';const r=tip.getBoundingClientRect();let lx=e.clientX+14,ly=e.clientY+14;if(lx+r.width>innerWidth-8)lx=e.clientX-r.width-14;if(ly+r.height>innerHeight-8)ly=innerHeight-r.height-8;tip.style.left=lx+'px';tip.style.top=ly+'px'}
 cv.addEventListener('pointerleave',()=>tip.style.display='none');
 cv.addEventListener('pointermove',e=>{if(e.pointerType!=='mouse')return;const h=hit(e);const id=h?(h.object===body?h.instanceId:(h.object.userData.lot??-1)):-1;showTip(id,e);
@@ -692,14 +693,15 @@ const ld=document.getElementById('load');ld.style.opacity=0;setTimeout(()=>ld.re
 window.__lots=NL;window.__go=(x,z,d,p,az)=>{setRot(false);flyTo(W(x,z),d,p,az)};window.__sel=c=>selectLot(byCode.get(c),true);window.__codes=()=>[...byCode.keys()];
 
 // ---- quỹ hàng: căn đã bán (bôi đỏ trên bảng hàng, hoặc hôm trước có – hôm sau mất) → nóc nhà màu xám
-const roofBlack=new THREE.MeshBasicMaterial({color:'#6e7176'});const roofOpen=new THREE.MeshBasicMaterial({color:'#5cbf5a'});const soldRoofs=[];
+const roofBlack=new THREE.MeshBasicMaterial({color:'#6e7176'});const roofCheck=new THREE.MeshBasicMaterial({color:'#f5c518'});const roofOpen=new THREE.MeshBasicMaterial({color:'#5cbf5a'});const soldRoofs=[];
 function applyQuy(q){if(!q||!q.sold)return;soldRoofs.forEach(m=>S.remove(m));soldRoofs.length=0;
  const av=q.available||{};const avail=new Set(Array.isArray(av)?av:Object.keys(av));
- lots.forEach((L,i)=>{const sd=q.sold[L.code];L.sold=!!sd;L.soldSince=sd?sd.since:'';if(L.sold)L.open=false;else if(avail.has(L.code))L.open=true;
+ const chk=q.check||{};
+ lots.forEach((L,i)=>{const sd=q.sold[L.code];L.sold=!!sd;L.soldSince=sd?sd.since:'';L.check=!L.sold&&!!chk[L.code];if(L.sold)L.open=false;else if(avail.has(L.code)||L.check)L.open=true;
   if(!L.sold&&!L.open)return;const w=(L.ew?L.l:L.w)*.97,l=(L.ew?L.w:L.l)*.97;
   const m=new THREE.Mesh(new THREE.PlaneGeometry(w,l),roofBlack);m.rotation.set(-Math.PI/2,0,L.ew?L.rot+Math.PI/2:0);m.rotation.order='YXZ';m.rotation.set(-Math.PI/2,L.ew?L.rot+Math.PI/2:0,0);
-  m.material=L.sold?roofBlack:roofOpen;m.position.set(L.x,L.h+.34,L.z);m.renderOrder=1;m.userData.lot=i;S.add(m);soldRoofs.push(m)});
- badges.forEach(sp=>{const L=lots[sp.userData.lot];const hide=L&&L.sold;sp.visible=!hide;if(sp.userData.st)sp.userData.st.visible=!hide});
+  m.material=L.sold?roofBlack:L.check?roofCheck:roofOpen;m.position.set(L.x,L.h+.34,L.z);m.renderOrder=1;m.userData.lot=i;S.add(m);soldRoofs.push(m)});
+ badges.forEach(sp=>{const L=lots[sp.userData.lot];const hide=L&&L.sold;sp.visible=!hide;if(sp.userData.st)sp.userData.st.visible=!hide;sp.userData.setChk&&sp.userData.setChk(!!(L&&L.check))});
  lots.forEach((L,i)=>paint(i,lotCol(i)));window.__quy=q}
 fetch('quy-hang.json?v='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).then(applyQuy).catch(()=>{});
 }
