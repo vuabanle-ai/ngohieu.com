@@ -193,8 +193,9 @@ const AMEN0 = [['VinWonders Hải Vân', 760, 330], ['Botanica Park', 430, 1138]
 // toạ độ tiện ích theo ảnh nền 2048px -> mét
 const k2m = W / 2048;
 for (const [t, x, z] of data.meta.amen || []) addLabel('zone tv', t, X(x), 30, Z(z), 0, 3400);
-for (const [t, x, z] of data.meta.zones || []) addLabel('zone', t, X(x), 40, Z(z), 700, 14000);
-addLabel('zone tv', 'VINHOMES OCEAN PARK 2 · THE EMPIRE', X(1700), 60, Z(150), 3000, 30000); addLabel('zone tv', 'VINHOMES OCEAN PARK 3 · THE CROWN', X(3700), 60, Z(400), 3000, 30000);
+for (const [t, x, z] of data.meta.zones || []) addLabel('zone', t, X(x), 40, Z(z), 500, 7500);
+for (const [t, set] of [['VINHOMES OCEAN PARK 2 · THE EMPIRE', l => !OCP3.has(l.zone)], ['VINHOMES OCEAN PARK 3 · THE CROWN', l => OCP3.has(l.zone)]]) {
+  const g = lots.filter(set); let x = 0, z = 1e9; g.forEach(l => { x += l.cx; z = Math.min(z, l.cz) }); addLabel('zone tv', t, x / g.length, 60, z - 120, 5000, 30000) }
 
 const v = new THREE.Vector3();
 function placeLabels() {
