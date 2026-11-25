@@ -392,7 +392,7 @@ const k2m = W / 2048;
 for (const [n, t, x, z] of data.meta.pins || []) { const el = addLabel('pin', n, X(x), 26, Z(z), 0, 9000); el.dataset.t = t; el.title = t;
   el.onclick = () => { document.querySelectorAll('.lb.pin.act').forEach(e => e.classList.remove('act')); el.classList.add('act') } }
 for (const [t, x, z] of data.meta.zones || []) addLabel('zone', t, X(x), 40, Z(z), 500, 7500);
-for (const r of ROADS) addLabel('road', r.name, X(r.at[0]), 4, Z(r.at[1]), 0, 1800);
+for (const r of ROADS) if (!/nối dài|cổng chào/.test(r.name)) addLabel('road', r.name, X(r.at[0]), 4, Z(r.at[1]), 0, r.w >= 30 ? 1600 : 650);
 for (const [t, x, z] of data.meta.rzones || []) addLabel('zone tv', t + ' · sắp mở bán', X(x), 40, Z(z), 300, 30000);
 
 const v = new THREE.Vector3();
