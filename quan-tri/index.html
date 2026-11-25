@@ -32,7 +32,7 @@ button{border:0;border-radius:10px;min-height:44px;padding:0 16px;background:var
 </div>
 </main>
 <script type="module">
-import { FIREBASE } from '../firebase-config.js';
+import { FIREBASE } from '../firebase-config.js?v=2';
 {
 const $=id=>document.getElementById(id);
 if(!FIREBASE.apiKey){$('hdr').textContent='Chưa cấu hình Firebase';}

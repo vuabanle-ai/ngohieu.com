@@ -1,6 +1,6 @@
 // Đăng ký / đăng nhập bằng số điện thoại (OTP SMS qua Firebase) + mật khẩu, ghi nhận lượt dùng sa bàn.
 // Cấu hình Firebase nằm ở ../../firebase-config.js. Khi chưa có cấu hình, sa bàn mở tự do như cũ.
-import { FIREBASE, ADMIN_PHONE } from '../../firebase-config.js';
+import { FIREBASE, ADMIN_PHONE } from '../../firebase-config.js?v=2';
 {
 const gate = document.getElementById('gate');
 const track = () => {};
