@@ -80,10 +80,29 @@ def main():
         if not data: print('BỎ QUA', ten, '(không tải được)', file=sys.stderr); continue
         try: wb = openpyxl.load_workbook(io.BytesIO(data))
         except Exception as e: print('BỎ QUA', ten, e, file=sys.stderr); continue
-        tabs = n.get('tabs')
+        tabs = n.get('tabs'); pick = {}
         for ws in wb.worksheets:
-            name = (tabs or {}).get(ws.title) if tabs else auto_tab(ten, ws.title)
-            if not name: continue
+            if tabs:
+                name = None
+                for k, v in tabs.items():
+                    if (k[3:] and re.search(k[3:], ws.title.strip(), re.I)) if k.startswith('re:') else k.strip() == ws.title.strip():
+                        name = v; break
+            else: name = auto_tab(ten, ws.title)
+            if not name:
+                print(f'  {ten} | {ws.title} (bỏ qua)', file=sys.stderr); continue
+            m = re.search(r'(\d{1,2})[./-](\d{1,2})', ws.title)
+            key = (int(m.group(2)), int(m.group(1))) if m else None
+            if key and name in pick and pick[name][0] and pick[name][0] >= key: continue   # tab ngày cũ -> bỏ
+            pick[name] = (key, ws) if key else pick.get(name, (None, None))
+            if key: continue
+            rows = grid(ws)
+            print(f'  {ten} | {ws.title} -> {name}: {len(rows)} căn', file=sys.stderr)
+            emit(name, rows)
+        for name, (key, ws) in pick.items():
+            if not key: continue
+            rows = grid(ws)
+            print(f'  {ten} | {ws.title} (tab mới nhất) -> {name}: {len(rows)} căn', file=sys.stderr)
+            emit(name, rows)
             rows = grid(ws)
             print(f'  {ten} | {ws.title} -> {name}: {len(rows)} căn', file=sys.stderr)
             emit(name, rows)
