@@ -27,7 +27,7 @@ CHECK_TXT = re.compile(r'CHECK\s*ADMIN')
 SKIP_TAB = re.compile(r'THÔNG SỐ|THONG SO|DIỆN TÍCH|DIEN TICH|GIỎ|BANK|STK|KPTM|ELITE|CSDL|^TK|DS K|TEST|BIỂU MẪU|CÂU TRẢ LỜI|'
                       r'NGƯỜI NƯỚC NGOÀI|NNN|TMDV|\(CŨ\)|\bCŨ\b|CSBH|CHÍNH SÁCH|PTG|PHIẾU|NHẬN TIỀN|NỘP TIỀN|TRC|KHÔNG ÁP DỤNG|TCBG|BÀN GIAO|FULLTON', re.I)
 UA = {'User-Agent': 'Mozilla/5.0 ngohieu-sync'}
-VER = 3
+VER = 4
 
 
 def norm_code(t):
@@ -84,6 +84,18 @@ HDR = [('gia', r'(gi[áa]|gía).*(gồm|full|niêm yết|bao gồm|sau vat)|tổ
        ('huong', r'^hướng'), ('tt', r'tình trạng|trạng thái')]
 
 
+def sanity(q):
+    """Bỏ giá vô lý: đơn giá/m² đất ngoài 40–600 triệu, hoặc TTTĐ/TTS/vay lệch quá xa giá gồm VAT."""
+    try: dt = float(str(q.get('dt', '')).replace(',', '.'))
+    except ValueError: dt = 0
+    ok = lambda v: v and (not dt or 4e7 <= v / dt <= 6e8)
+    for k in ('gia', 'tttd', 'tts', 'vay'):
+        if k in q and not ok(q[k]): q.pop(k)
+    ref = q.get('gia') or q.get('tttd')
+    for k in ('tttd', 'tts', 'vay'):
+        if k in q and ref and not (.7 <= q[k] / ref <= 1.35): q.pop(k)
+
+
 def read_tab(ws):
     """-> list of (code, marked, check, info dict)"""
     out, col = [], {}
@@ -112,6 +124,7 @@ def read_tab(ws):
                 x = g(k)
                 if x not in (None, '', '-') and not isinstance(x, (datetime.date, datetime.datetime)):
                     q[k] = str(x).replace('\n', ' ').strip()[:40]
+            sanity(q)
             st = str(g('tt') or '').upper()
             marked = red_cell(c) or bool(c.font and c.font.strike) or bool(SOLD_TXT.search(txt)) or bool(SOLD_TXT.search(st))
             out.append((code, marked, bool(CHECK_TXT.search(txt)), q))
