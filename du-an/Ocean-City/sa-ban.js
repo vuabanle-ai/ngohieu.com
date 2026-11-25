@@ -71,7 +71,7 @@ const texs = []; let nTex = 0;
 const land = new THREE.Mesh(new THREE.PlaneGeometry(W * 3, H * 3), new THREE.MeshBasicMaterial({ color: 0xe6ece0 }));
 land.rotation.x = -Math.PI / 2; land.position.y = -0.6; scene.add(land);
 for (const [gi, g] of data.meta.grounds.entries()) {
-  const t = new THREE.TextureLoader().load(`${g.img}${small ? '-nho' : ''}.webp`, () => { if (++nTex === data.meta.grounds.length) hideLoad() });
+  const t = new THREE.TextureLoader().load(`${g.img}${small ? '-nho' : ''}.webp?v=2`, () => { if (++nTex === data.meta.grounds.length) hideLoad() });
   t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy(); texs.push(t);
   const c = g.corners, geo = new THREE.BufferGeometry();
   geo.setAttribute('position', new THREE.Float32BufferAttribute(c.flatMap(([x, z]) => [x - W / 2, 0, z - H / 2]), 3));
