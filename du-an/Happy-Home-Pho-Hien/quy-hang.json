@@ -1,5 +1,5 @@
 {
- "updated": "15:56 25/11/2026",
+ "updated": "16:11 25/11/2026",
  "available": {
   "HK-13": [
    "DV"
@@ -19,6 +19,12 @@
   "HK-31": [
    "MD",
    "VIC"
+  ],
+  "HK-33": [
+   "MICC"
+  ],
+  "HK-35": [
+   "MICC"
   ],
   "HK-45": [
    "VHS"
@@ -92,11 +98,17 @@
    "THP",
    "VHS"
   ],
+  "HK-77": [
+   "MICC"
+  ],
   "HK-79": [
    "FS"
   ],
   "TC1-11": [
    "EC"
+  ],
+  "TC1-14": [
+   "MICC"
   ],
   "TC1-17": [
    "MH",
@@ -152,6 +164,7 @@
    "MD",
    "MDQC",
    "MH",
+   "MICCQC",
    "MVQC",
    "NSL",
    "NSLQC",
@@ -173,6 +186,7 @@
    "MD",
    "MDQC",
    "MH",
+   "MICCQC",
    "MVQC",
    "NSL",
    "NSLQC",
@@ -203,6 +217,7 @@
    "MD",
    "MDQC",
    "MH",
+   "MICCQC",
    "MVQC",
    "NSL",
    "NSLQC",
@@ -254,6 +269,7 @@
    "MD",
    "MDQC",
    "MH",
+   "MICCQC",
    "MVQC",
    "NSL",
    "NSLQC",
@@ -284,6 +300,9 @@
   "TC3-29": [
    "DV"
   ],
+  "TC3-47": [
+   "MICC"
+  ],
   "TC3-49": [
    "BH",
    "DMLQC",
@@ -294,6 +313,7 @@
    "MD",
    "MDQC",
    "MH",
+   "MICCQC",
    "MVQC",
    "NSL",
    "NSLQC",
@@ -324,6 +344,7 @@
    "MD",
    "MDQC",
    "MH",
+   "MICCQC",
    "MVQC",
    "NSL",
    "NSLQC",
@@ -371,18 +392,6 @@
    "since": "24/11/2026",
    "why": "không còn trên bảng hàng"
   },
-  "HK-33": {
-   "since": "24/11/2026",
-   "why": "không còn trên bảng hàng"
-  },
-  "HK-35": {
-   "since": "24/11/2026",
-   "why": "không còn trên bảng hàng"
-  },
-  "HK-77": {
-   "since": "24/11/2026",
-   "why": "bôi đỏ"
-  },
   "TC1-04": {
    "since": "25/11/2026",
    "why": "bôi đỏ"
@@ -400,10 +409,6 @@
    "why": "bôi đỏ"
   },
   "TC1-13": {
-   "since": "24/11/2026",
-   "why": "không còn trên bảng hàng"
-  },
-  "TC1-14": {
    "since": "24/11/2026",
    "why": "không còn trên bảng hàng"
   },
@@ -447,10 +452,6 @@
    "since": "24/11/2026",
    "why": "bôi đỏ"
   },
-  "TC3-47": {
-   "since": "24/11/2026",
-   "why": "không còn trên bảng hàng"
-  },
   "TC3-71": {
    "since": "24/11/2026",
    "why": "không còn trên bảng hàng"
@@ -487,6 +488,15 @@
    ],
    "boi_do": [
     "MD"
+   ]
+  },
+  "HK-77": {
+   "dq": [
+    "MICC"
+   ],
+   "boi_do": [
+    "HDHQC",
+    "THP"
    ]
   },
   "TC2-10": {
