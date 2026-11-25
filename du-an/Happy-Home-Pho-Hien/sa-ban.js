@@ -121,7 +121,7 @@ function cornerPath(xw,zTop,dz,R,xEnd){const zc=diagZ(xw)+dz,q=W(xw,zc),a=W(xw,z
  for(let k=1;k<12;k++){const t=k/12,u=1-t;out.push(W(u*u*a.x+2*u*t*q.x+t*t*b.x,u*u*a.z+2*u*t*q.z+t*t*b.z))}out.push(b,W(xEnd,diagZ(xEnd)+dz));return out}
 const RING=cornerPath(-8,-12,1,24,400);
 const DIVIDER=cornerPath(-17.5,-18,8.5,32,400).filter(p=>!(p.x>181&&p.x<213));
-const DIV_W=cornerPath(-17.5,-18,8.5,32,181),DIV_E=[W(213,diagZ(213)+8.5),W(400,diagZ(400)+8.5)];
+const DIV_W=cornerPath(-17.5,-3,8.5,32,181),DIV_E=[W(213,diagZ(213)+8.5),W(400,diagZ(400)+8.5)];
 const ROADS=[
  {p:DCT,w:70,name:'ĐCT Hưng Yên – Thái Bình 80,5m',at:W(-22,290),l:8,lh:21,lo:17},
  {p:poly([[-150,450],[40,345],[250,225],[560,90],[900,-40]]),w:30,name:'QL38B',at:P(150,286),l:4},
