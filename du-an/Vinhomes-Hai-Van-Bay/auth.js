@@ -123,7 +123,7 @@ const out = document.getElementById('logout'); if (out) out.onclick = async () =
 let first = true;
 A.onAuthStateChanged(auth, u => {
   if (!first) return; first = false;
-  if (u && u.providerData.some(p => p.providerId === 'password')) enter(u, false);
+  if (u && u.phoneNumber && u.providerData.some(p => p.providerId === 'password')) enter(u, false);
   else { gate.classList.add('ready'); show(store.get(KEY) ? 'login' : 'reg') }
 });
 }
