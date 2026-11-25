@@ -23,7 +23,7 @@ const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) 
 
 try { await Promise.race([document.fonts.load('800 25px "Be Vietnam Pro"'), new Promise(r => setTimeout(r, 2500))]) } catch (_) {}
 const [data, quy] = await Promise.all([
-  fetch(`lots-${KHU}.json?v=4`).then(r => r.json()),
+  fetch(`lots-${KHU}.json?v=5`).then(r => r.json()),
   fetch('quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
 ]);
 const W = data.meta.w, H = data.meta.h;
