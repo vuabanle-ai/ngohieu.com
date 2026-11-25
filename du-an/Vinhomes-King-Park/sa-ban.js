@@ -85,8 +85,10 @@ const ARCH = {   // số tầng thân (chưa tính tầng áp mái), chiều cao
   P: { fl: 3, hb: 10.8, col: 2, bay: 3.2 },
   K: { fl: 3, hb: 10.8, col: 2, bay: 3.2 }
 };
+const ZARCH = { TD: 'Hiện đại', HT: 'Tân cổ điển' };   // theo tài liệu CĐT: PK1 Thời Đại kiến trúc hiện đại, PK2 Hưng Thịnh kiến trúc tân cổ điển
+const MODERN = z => z === 'TD';
 const MAN = 3.2, MIN = 1.1;   // mái mansard: cao 3,2 m, lùi vào 1,1 m
-const NCOL = 8, CW_ = 256, CH_ = 1024;   // atlas: 0 LK, 1 SH, 2 BT, 3 tường hồi, 4 mái mansard, 5–7 trắng (mặt mái, giữ màu khi thu nhỏ)
+const NCOL = 12, CW_ = 256, CH_ = 1024;   // atlas: 0 LK, 1 SH, 2 BT, 3 tường hồi, 4 mái mansard, 5–7 trắng (mặt mái), 8 LK hiện đại, 9 SH hiện đại, 10 mái dốc kim loại hiện đại, 11 tường hồi hiện đại
 const facade = (() => {
   const cn = document.createElement('canvas'); cn.width = CW_ * NCOL; cn.height = CH_; const g = cn.getContext('2d');
   const CREAM = '#f4eee3', LINE = '#ddd2bf', GLASS = '#4f6272', FRAME = '#fbf9f4', IRON = '#26292d';
@@ -114,6 +116,29 @@ const facade = (() => {
   { const x0 = 4 * CW_; g.fillStyle = '#4d535b'; g.fillRect(x0, 0, CW_, CH_); g.fillStyle = 'rgba(0,0,0,.18)'; for (let k = 0; k < CH_; k += 26) g.fillRect(x0, k, CW_, 3);
     g.fillStyle = '#f6f2ea'; g.fillRect(x0 + 78, 300, 100, 560); g.beginPath(); g.moveTo(x0 + 66, 310); g.lineTo(x0 + 128, 230); g.lineTo(x0 + 190, 310); g.fill(); g.fillStyle = GLASS; g.fillRect(x0 + 92, 330, 72, 500); g.fillStyle = '#f6f2ea'; g.fillRect(x0 + 126, 330, 4, 500) }
   { const x0 = 5 * CW_; g.fillStyle = '#ffffff'; g.fillRect(x0, 0, CW_ * 3, CH_) }
+  // ---- kiến trúc hiện đại (Thời Đại, theo mặt đứng mẫu LKA/LKB/SHB/SHD): khung trắng, kính khổ lớn, gờ sàn ngang, lan can kính, chân đế ốp gỗ/đồng ----
+  const modern = (c, floors, ground, shop) => { const x0 = c * CW_; g.save(); g.translate(x0, 0);
+    const WHITE2 = '#f7f7f4', GREY = '#d9dcdf', DARKG = '#3a4047', MGLASS = '#5d7080';
+    g.fillStyle = WHITE2; g.fillRect(0, 0, CW_, CH_);
+    const gh = CH_ * ground, fh = (CH_ - gh - 30) / (floors - 1), y1 = CH_ - gh;
+    g.fillStyle = DARKG; g.fillRect(0, 0, CW_, 30);                          // diềm mái mỏng tối màu
+    for (let k = 0; k < floors - 1; k++) { const y = 30 + k * fh;
+      g.fillStyle = MGLASS; g.fillRect(22, y + fh * .1, CW_ - 44, fh * .78);   // kính khổ lớn gần kín tầng
+      g.fillStyle = 'rgba(255,255,255,.16)'; g.fillRect(30, y + fh * .12, (CW_ - 60) * .28, fh * .74);
+      g.fillStyle = WHITE2; g.fillRect(CW_ / 2 - 3, y + fh * .1, 6, fh * .78);   // đố kính
+      g.fillStyle = 'rgba(220,235,240,.55)'; g.fillRect(22, y + fh * .62, CW_ - 44, fh * .26);   // lan can kính
+      g.fillStyle = '#fbfbf9'; g.fillRect(0, y + fh - 14, CW_, 14); g.fillStyle = GREY; g.fillRect(0, y + fh, CW_, 4) }   // gờ sàn ngang
+    g.fillStyle = GREY; g.fillRect(0, 0, 14, CH_ - gh); g.fillRect(CW_ - 14, 0, 14, CH_ - gh);   // khung đứng hai bên
+    // tầng 1: chân đế ốp tông đồng/gỗ ấm, cửa kính sát đất
+    g.fillStyle = shop ? '#a8865c' : '#b99a72'; g.fillRect(0, y1, CW_, gh);
+    g.fillStyle = MGLASS; g.fillRect(shop ? 16 : 40, y1 + gh * .14, shop ? CW_ - 32 : CW_ - 80, gh * .82);
+    g.fillStyle = 'rgba(255,230,180,.25)'; g.fillRect(shop ? 16 : 40, y1 + gh * .5, shop ? CW_ - 32 : CW_ - 80, gh * .46);   // ánh đèn cửa hàng
+    g.fillStyle = DARKG; g.fillRect(0, y1, CW_, 12); g.restore() };
+  modern(8, 4, .27, false); modern(9, 4, .31, true);
+  { const x0 = 10 * CW_; g.fillStyle = '#3f454c'; g.fillRect(x0, 0, CW_, CH_); g.fillStyle = 'rgba(255,255,255,.07)'; for (let k = 8; k < CW_; k += 22) g.fillRect(x0 + k, 0, 3, CH_);   // mái kim loại sóng đứng
+    g.fillStyle = '#5d7080'; g.fillRect(x0 + 40, 260, CW_ - 80, 520); g.fillStyle = '#f7f7f4'; g.fillRect(x0 + 34, 254, CW_ - 68, 8); g.fillRect(x0 + 34, 778, CW_ - 68, 8) }   // ô kính lớn tầng tum
+  { const x0 = 11 * CW_; g.fillStyle = '#f2f2ef'; g.fillRect(x0, 0, CW_, CH_); for (let k = 1; k < 4; k++) { g.fillStyle = '#dcdfe2'; g.fillRect(x0, k * CH_ / 4, CW_, 5) } g.fillStyle = '#3a4047'; g.fillRect(x0, 0, CW_, 30) }
+
   const t = new THREE.CanvasTexture(cn); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; t.generateMipmaps = true; return t;
 })();
 const X = x => x - W / 2, Z = z => z - H / 2;
@@ -147,7 +172,7 @@ for (const [code, t, poly, zone, dt] of data.lots) {
   // tường thân: chia theo bước cột; cạnh ngang lô (mặt tiền/mặt hậu) dùng mặt đứng, cạnh dọc dùng tường hồi
   for (let i = 0; i < n; i++) { const p = base[i], q = base[(i + 1) % n]; const dx = q[0] - p[0], dz = q[1] - p[1], len = Math.hypot(dx, dz); if (len < .2) continue;
     let nx = dz / len, nz = -dx / len; if (((p[0] + q[0]) / 2 - cx) * nx + ((p[1] + q[1]) / 2 - cz) * nz < 0) { nx = -nx; nz = -nz }
-    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, col = front ? A.col : 3, nb = Math.max(1, Math.round(len / (front ? A.bay : 4)));
+    const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, col = MODERN(zone) ? (front ? (A.col === 1 ? 9 : 8) : 11) : (front ? A.col : 3), nb = Math.max(1, Math.round(len / (front ? A.bay : 4)));
     for (let k = 0; k < nb; k++) { const a0 = k / nb, a1 = (k + 1) / nb, x0 = p[0] + dx * a0, z0 = p[1] + dz * a0, x1 = p[0] + dx * a1, z1 = p[1] + dz * a1;
       quad([x0, 0, z0], [x1, 0, z1], [x1, hb, z1], [x0, hb, z0], [nx, 0, nz], [[U(col, 0), 0], [U(col, 1), 0], [U(col, 1), 1], [U(col, 0), 1]]) } }
   // mái mansard: mặt nghiêng từ mép thân lên đỉnh lùi vào
@@ -156,7 +181,7 @@ for (const [code, t, poly, zone, dt] of data.lots) {
     let nx = dz / len, nz = -dx / len; if (((p[0] + q[0]) / 2 - cx) * nx + ((p[1] + q[1]) / 2 - cz) * nz < 0) { nx = -nx; nz = -nz }
     const front = Math.abs((dx * ax.ux + dz * ax.uz) / len) < .5, ny = front ? MIN / MAN : 0, nl = Math.hypot(nx, ny, nz), nb = front ? Math.max(1, Math.round(len / A.bay)) : 1;
     for (let k = 0; k < nb; k++) { const a0 = k / nb, a1 = (k + 1) / nb, L = (P, Q, a) => [P[0] + (Q[0] - P[0]) * a, P[1] + (Q[1] - P[1]) * a];
-      const b0 = L(p, q, a0), b1 = L(p, q, a1), t1 = L(s2, r, a1), t0 = L(s2, r, a0), c = front ? 4 : 3;
+      const b0 = L(p, q, a0), b1 = L(p, q, a1), t1 = L(s2, r, a1), t0 = L(s2, r, a0), c = MODERN(zone) ? (front ? 10 : 11) : (front ? 4 : 3);
       quad([b0[0], hb, b0[1]], [b1[0], hb, b1[1]], [t1[0], h, t1[1]], [t0[0], h, t0[1]], [nx / nl, ny / nl, nz / nl], [[U(c, 0), 0], [U(c, 1), 0], [U(c, 1), 1], [U(c, 0), 1]]) } }
   // mặt mái trên cùng (tô màu loại căn / tình trạng)
   { const v2 = top.map(p => new THREE.Vector2(p[0], p[1])), tr = THREE.ShapeUtils.triangulateShape(v2, []);
@@ -466,7 +491,7 @@ function select(L, fly) {
   $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
   const tn = TYPE[L.t].name, lo = q?.loai && q.loai.toLowerCase() !== tn.toLowerCase() ? q.loai + ' · ' + tn : tn;
   const rows = [['Dự án', duAn(L.zone)], ['Phân khu', ZNAME[L.zone] || L.zone], ['Dãy', L.pre], ['Loại hình', lo]];
-  { const A = ARCH[L.t] || ARCH.Y; rows.push(['Kiến trúc', `Tân cổ điển · ${A.fl} tầng + 1 tầng áp mái <small style="color:var(--mut);font-weight:400">(minh họa theo phối cảnh CĐT)</small>`]) }
+  { const A = ARCH[L.t] || ARCH.Y, st = ZARCH[L.zone] || 'Tân cổ điển'; rows.push(['Kiến trúc', `${st} · ${A.fl} tầng + 1 tầng ${MODERN(L.zone) ? 'tum' : 'áp mái'} <small style="color:var(--mut);font-weight:400">(theo tài liệu CĐT)</small>`]) }
   if (q?.quy) rows.push(['Quỹ', q.quy]);
   if (q?.dt || L.dt) rows.push(['DT đất', (q?.dt || L.dt) + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
   if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
