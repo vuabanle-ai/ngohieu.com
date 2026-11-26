@@ -449,8 +449,11 @@ function stopRot() { rot = false }
 $('bRot').style.display = 'none'; $('bRot').textContent = 'Xem 3D'; $('bRot').title = 'Chuyển giữa mặt bằng nhìn thẳng và góc nghiêng 3D';
 $('bRot').onclick = () => { FLAT = !FLAT; applyMode(); $('bRot').textContent = FLAT ? 'Xem 3D' : 'Mặt bằng'; $('bRot').classList.toggle('on', !FLAT); $('bRot').setAttribute('aria-pressed', !FLAT);
   const d = camera.position.distanceTo(controls.target); flyTo(controls.target.x, controls.target.z, FLAT ? d * 1.25 : d * .5, .85, .35) };
-function openSide() { $('side').classList.add('open') }
-$('bInfo').onclick = () => $('side').classList.toggle('open');
+const wide = () => matchMedia('(min-width:1181px)').matches;
+function openSide() { $('side').classList.remove('closed'); if (!wide()) $('side').classList.add('open') }
+$('bInfo').onclick = () => { const s = $('side'); if (s.classList.contains('closed')) { s.classList.remove('closed'); if (!wide()) s.classList.add('open'); try { localStorage.removeItem('hlxSideClosed') } catch (_) {} } else if (wide()) { s.classList.add('closed'); try { localStorage.setItem('hlxSideClosed', '1') } catch (_) {} } else s.classList.toggle('open') };
+$('sideX').onclick = () => { $('side').classList.add('closed'); $('side').classList.remove('open'); try { localStorage.setItem('hlxSideClosed', '1') } catch (_) {} };
+try { if (localStorage.getItem('hlxSideClosed')) $('side').classList.add('closed') } catch (_) {}
 
 // ---------- loop ----------
 function size() { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix() }

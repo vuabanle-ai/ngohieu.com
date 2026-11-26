@@ -168,6 +168,10 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 #csbhView img{max-width:min(760px,100%);max-height:calc(100dvh - 110px);border-radius:10px;object-fit:contain}
 #csbhView .t{color:#fff;font-weight:700;font-size:15px;text-align:center}
 .csbhb{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.csbhb button,.csbhb a{border:0;border-radius:12px;min-height:46px;padding:0 18px;background:var(--mr);color:#fff;font-weight:700;display:grid;place-items:center;text-decoration:none}.csbhb .g{background:#5d636b}
+
+.side.closed{display:none!important}
+.sideX{position:sticky;top:-6px;float:right;margin:-8px -8px 0 6px;width:36px;height:36px;border-radius:50%;border:0;background:light-dark(#eceef0,#2c2f33);color:var(--ink);font-size:22px;line-height:1;z-index:2;display:grid;place-items:center}
+.sideX:hover{background:var(--mr);color:#fff}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script src="/assets/chong-copy.js?v=1"></script>
@@ -190,6 +194,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 </header>
 
 <aside class="side" id="side">
+ <button class="sideX" id="sideX" type="button" aria-label="Đóng ô thông tin dự án" title="Đóng (bấm Thông tin để mở lại)">×</button>
  <h2>Vinhomes Global Gate Hạ Long</h2>
  <p class="sub">Hạ Long Xanh · Quảng Yên &amp; Hạ Long, Quảng Ninh · Chủ đầu tư: Vinhomes</p>
  <div class="kv">
@@ -269,7 +274,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
  document.addEventListener('keydown',function(e){if(!$('csbhView').hidden){if(e.key==='Escape')$('csbhView').hidden=true;if(e.key==='ArrowRight')show(cur+1);if(e.key==='ArrowLeft')show(cur-1)}});
 })();
 </script>
-<script type="module" src="sa-ban.js?v=9"></script>
+<script type="module" src="sa-ban.js?v=10"></script>
 <script type="module" src="/assets/dem-truy-cap.js?v=1"></script>
 <script src="/assets/tim-3-can-re.js?v=3" data-quy="quy-hang.json" data-ten="Hạ Long Xanh"></script>
 </body>
