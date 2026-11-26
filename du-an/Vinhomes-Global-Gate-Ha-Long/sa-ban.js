@@ -451,9 +451,8 @@ $('bRot').onclick = () => { FLAT = !FLAT; applyMode(); $('bRot').textContent = F
   const d = camera.position.distanceTo(controls.target); flyTo(controls.target.x, controls.target.z, FLAT ? d * 1.25 : d * .5, .85, .35) };
 const wide = () => matchMedia('(min-width:1181px)').matches;
 function openSide() { $('side').classList.remove('closed'); if (!wide()) $('side').classList.add('open') }
-$('bInfo').onclick = () => { const s = $('side'); if (s.classList.contains('closed')) { s.classList.remove('closed'); if (!wide()) s.classList.add('open'); try { localStorage.removeItem('hlxSideClosed') } catch (_) {} } else if (wide()) { s.classList.add('closed'); try { localStorage.setItem('hlxSideClosed', '1') } catch (_) {} } else s.classList.toggle('open') };
-$('sideX').onclick = () => { $('side').classList.add('closed'); $('side').classList.remove('open'); try { localStorage.setItem('hlxSideClosed', '1') } catch (_) {} };
-try { if (localStorage.getItem('hlxSideClosed')) $('side').classList.add('closed') } catch (_) {}
+$('bInfo').onclick = () => { const s = $('side'); if (s.classList.contains('closed')) { s.classList.remove('closed'); if (!wide()) s.classList.add('open'); } else if (wide()) { s.classList.add('closed'); } else s.classList.toggle('open') };
+$('sideX').onclick = () => { $('side').classList.add('closed'); $('side').classList.remove('open'); };
 
 // ---------- loop ----------
 function size() { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix() }
