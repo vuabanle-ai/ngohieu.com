@@ -9,6 +9,7 @@ giỏ bank, STK, KPTM, danh sách chính sách...). Quy tắc giống sa bàn Ph
   * Căn trong quỹ độc quyền (tab ĐQ) chưa bôi mà đại lý khác bôi đỏ -> Check hàng (hỏi admin).
   * Dòng ghi "Check admin" -> Check hàng.
   * Căn lần trước còn hàng, nay không đại lý nào còn (và các nguồn cũ của nó đều đọc được) -> đã bán.
+  * Dòng bị ẩn (đại lý lọc/ẩn căn đã bán, đã rút) -> không tính còn hàng.
   * Mã che (PB10-3x, ĐLSH-14x...) bỏ qua.
 Giá: cột "Tổng giá gồm VAT & KPBT / giá full" (gia), "TTTĐ / tiến độ" (bg.tttd), "TTS" (bg.tts), "vay" (bg.vay);
 nhiều đại lý thì lấy giá của quỹ độc quyền, không có thì giá thấp nhất, kèm danh sách giá từng đại lý.
@@ -27,7 +28,7 @@ CHECK_TXT = re.compile(r'CHECK\s*ADMIN')
 SKIP_TAB = re.compile(r'THÔNG SỐ|THONG SO|DIỆN TÍCH|DIEN TICH|GIỎ|BANK|STK|KPTM|ELITE|CSDL|^TK|DS K|TEST|BIỂU MẪU|CÂU TRẢ LỜI|'
                       r'NGƯỜI NƯỚC NGOÀI|NNN|TMDV|\(CŨ\)|\bCŨ\b|CSBH|CHÍNH SÁCH|PTG|PHIẾU|NHẬN TIỀN|NỘP TIỀN|TRC|KHÔNG ÁP DỤNG|TCBG|BÀN GIAO|FULLTON', re.I)
 UA = {'User-Agent': 'Mozilla/5.0 ngohieu-sync'}
-VER = 6
+VER = 7
 
 
 def norm_code(t):
@@ -135,6 +136,8 @@ def read_tab(ws):
             st = str(g('tt') or '').upper()
             marked = red_cell(c) or bool(c.font and c.font.strike) or bool(SOLD_TXT.search(txt)) or bool(SOLD_TXT.search(st))
             if os.environ.get('DEBUG_SYNC') and len(out) < 2: print('    mẫu:', code, 'đã bán' if marked else '', q, file=sys.stderr)
+            if ws.row_dimensions[c.row].hidden and not marked:
+                break                            # dòng bị ẩn / lọc đi = đại lý đã rút khỏi quỹ -> không tính còn hàng
             out.append((code, marked, bool(CHECK_TXT.search(txt)), q))
             break                                # một mã căn mỗi dòng
     return out
