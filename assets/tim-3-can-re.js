@@ -33,7 +33,10 @@
       for (const [ma, o] of Object.entries(d.available || {})) add(ma, o, 'con');
       for (const [ma, o] of Object.entries(d.check || {})) if (!(d.available || {})[ma]) add(ma, typeof o === 'object' && !Array.isArray(o) ? o : (d.available || {})[ma] || {}, 'check');
     }));
-    return KHO = [...out.values()];
+    const ds = [...out.values()], g = {};
+    ds.forEach(u => { if (u.gia && u.dt) (g[u.loai] = g[u.loai] || []).push(u.gia / u.dt) });
+    ds.forEach(u => { const m = median(g[u.loai] || []); u.la = !!(m && u.gia && u.dt && u.gia / u.dt < .55 * m) });   // đơn giá thấp bất thường (thường là ghi nhầm tiền cọc/đợt)
+    return KHO = ds;
   }
 
   // ---------- hiểu tiêu chí ----------
@@ -95,7 +98,7 @@
   async function timBa(raw) {
     const c = hieu(raw);
     P.hidden = false; P.innerHTML = `<button class="x" type="button" aria-label="Đóng">×</button><h4>Đang tìm…</h4>`;
-    const all = await napKho(), con = all.filter(u => u.gia); all.forEach(u => delete u.gan);
+    const all = await napKho(), con = all.filter(u => u.gia && !u.la), la = all.filter(u => u.la); all.forEach(u => delete u.gan);
     let kq = chon(con, c, false), noi = false;
     if (kq.length < 3 && c.dt != null) {   // chưa đủ 3 căn đúng diện tích → bổ sung căn gần diện tích nhất (±12%)
       const them = chon(con, c, true).filter(u => !kq.includes(u)); if (them.length) { noi = true; them.forEach(u => u.gan = true); kq = [...kq, ...them] } }
@@ -107,7 +110,7 @@
     else html += kq.slice(0, 3).map((u, i) => `<div class="it" data-ma="${esc(u.ma)}" role="button" tabindex="0"><div class="md">${MED[i]}</div>
       <div><div class="rk">${RK[i]}</div><span class="ma">${esc(u.ma)}</span>${u.tt === 'check' ? '<span class="ck">Check admin</span>' : ''}${u.gan ? '<span class="ck" style="background:#eef3ff;color:#2a4a9a">DT gần</span>' : ''}</div><div class="gi">${ty(u.gia)}</div>
       <div class="sb">${[u.loai, u.dt ? String(u.dt).replace('.', ',') + ' m²' : '', u.dt ? Math.round(u.gia / u.dt / 1e6).toLocaleString('vi-VN') + ' tr/m²' : '', u.huong ? 'Hướng ' + u.huong : '', u.tcbg].filter(Boolean).map(esc).join(' · ')}</div></div>`).join('')
-      + `<div class="nt">Có ${kq.filter(u => !u.gan).length.toLocaleString('vi-VN')} căn khớp đúng tiêu chí. Giá là giá thấp nhất các đại lý đang chào. Bấm vào căn để xem trên sa bàn.</div>`;
+      + `<div class="nt">Có ${kq.filter(u => !u.gan).length.toLocaleString('vi-VN')} căn khớp đúng tiêu chí. Giá là giá thấp nhất các đại lý đang chào${la.length ? `; đã bỏ ${la.length} căn có giá thấp bất thường (${la.slice(0, 3).map(u => esc(u.ma)).join(', ')}…) cần check lại với đại lý` : ''}. Bấm vào căn để xem trên sa bàn.</div>`;
     P.innerHTML = html;
   }
 
