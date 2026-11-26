@@ -452,6 +452,7 @@ $('bRot').onclick = () => { FLAT = !FLAT; applyMode(); $('bRot').textContent = F
 const wide = () => matchMedia('(min-width:1181px)').matches;
 function openSide() { $('side').classList.remove('closed'); if (!wide()) $('side').classList.add('open') }
 $('bInfo').onclick = () => { const s = $('side'); if (s.classList.contains('closed')) { s.classList.remove('closed'); if (!wide()) s.classList.add('open'); } else if (wide()) { s.classList.add('closed'); } else s.classList.toggle('open') };
+if (!wide()) $('side').classList.add('open');   // mở sa bàn: luôn hiện ô thông tin (cả trên điện thoại)
 $('sideX').onclick = () => { $('side').classList.add('closed'); $('side').classList.remove('open'); };
 
 // ---------- loop ----------
