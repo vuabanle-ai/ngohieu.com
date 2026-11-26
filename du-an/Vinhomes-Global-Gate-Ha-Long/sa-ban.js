@@ -64,10 +64,15 @@ scene.add(new THREE.HemisphereLight(0xffffff, 0x8a9a7a, 1.15));
 const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(-600, 900, 500); scene.add(sun);
 
 // ground: mặt bằng làm nền
-const tex = new THREE.TextureLoader().load(small ? `nen-${KHU}-nho.jpg` : `nen-${KHU}.jpg`, () => { hideLoad(); if (curL) extras(curL, curQ) });
-tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
-const ground = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshLambertMaterial({ map: tex }));
-ground.rotation.x = -Math.PI / 2; scene.add(ground);
+// nền: bản đồ Khu 1 Vịnh Thiên Đường (2 nửa ảnh trên máy tính, 1 ảnh nhỏ trên điện thoại)
+const parts = small ? [[`nen-${KHU}-nho.jpg`, 0, 1]] : [[`nen-${KHU}-a.jpg`, 0, .5], [`nen-${KHU}-b.jpg`, .5, .5]];
+let nTex = 0; const TEXS = [];
+for (const [f, u0, uw] of parts) {
+  const t = new THREE.TextureLoader().load(f, () => { if (++nTex === parts.length) { hideLoad(); if (curL) extras(curL, curQ) } });
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = renderer.capabilities.getMaxAnisotropy(); TEXS.push([t, u0, uw]);
+  const g = new THREE.Mesh(new THREE.PlaneGeometry(W * uw, H), new THREE.MeshLambertMaterial({ map: t }));
+  g.rotation.x = -Math.PI / 2; g.position.x = -W / 2 + W * (u0 + uw / 2); scene.add(g);
+}
 const sea = new THREE.Mesh(new THREE.PlaneGeometry(W * 4, H * 4), new THREE.MeshBasicMaterial({ color: 0x8ec3cf }));
 sea.rotation.x = -Math.PI / 2; sea.position.y = -0.6; scene.add(sea);
 
@@ -168,7 +173,8 @@ function atlas(list, CW, CH, linesOf) {
         let px = Math.round(CH * size); g.font = F(px);
         while (g.measureText(t).width > CW - 10 && px > 10) { px--; g.font = F(px) }
         const y = y0 + CH * frac;
-        if (color === '#fff') { const w = g.measureText(t).width + 14; g.fillStyle = '#c8102e'; g.beginPath(); g.roundRect(x0 + (CW - w) / 2, y - px * .62, w, px * 1.24, px * .3); g.fill() }
+        if (color === '#chk') { const w = g.measureText(t).width + 14; g.fillStyle = '#f5c518'; g.strokeStyle = '#b58900'; g.lineWidth = 3; g.beginPath(); g.roundRect(x0 + (CW - w) / 2, y - px * .62, w, px * 1.24, px * .3); g.fill(); g.stroke(); color = '#1c1d21' }
+        else if (color === '#fff') { const w = g.measureText(t).width + 14; g.fillStyle = '#c8102e'; g.beginPath(); g.roundRect(x0 + (CW - w) / 2, y - px * .62, w, px * 1.24, px * .3); g.fill() }
         else { g.lineWidth = Math.max(3, px * .2); g.strokeStyle = 'rgba(255,255,255,.95)'; g.strokeText(t, x0 + CW / 2, y) }
         g.fillStyle = color; g.fillText(t, x0 + CW / 2, y);
       });
@@ -187,12 +193,46 @@ function atlas(list, CW, CH, linesOf) {
 }
 function drawRoofs() {
   roofMeshes.forEach(m => { scene.remove(m); m.geometry.dispose(); m.material.map.dispose(); m.material.dispose() }); roofMeshes.length = 0;
-  const priced = mode === 'mo-ban' ? lots.filter(L => L.av && tttd(AVL[L.code])) : [];
+  const qOf = L => AVL[L.code] || (L.ck ? CHK[L.code] : null);
+  const priced = mode === 'mo-ban' ? lots.filter(L => (L.av || L.ck) && tttd(qOf(L))) : [];
   const ps = new Set(priced);
   atlas(lots.filter(L => !ps.has(L)), 128, 40, L => [[L.code, L.sd ? '#3d3f44' : '#1c1d21', .5, .6]]);
-  // căn còn hàng: mã căn + ô đỏ giá TTTĐ
-  atlas(priced, 256, 84, L => [[L.code, '#1c1d21', .28, .44], [ty(tttd(AVL[L.code])), '#fff', .74, .4]]);
+  // căn còn hàng: mã căn + ô đỏ giá TTTĐ; căn check hàng: ô vàng (như sa bàn Phố Hiến)
+  atlas(priced, 128, 40, L => [[L.code, '#1c1d21', .5, .6]]);
 }
+// ---------- biển giá nổi trên căn (như sa bàn Phố Hiến): nền trắng, viền đỏ, số giá to ----------
+const badges = [];
+{ const stickR = new THREE.MeshBasicMaterial({ color: 0xd7261e }), stickY = new THREE.MeshBasicMaterial({ color: 0xf2b705 });
+  const stickG = new THREE.CylinderGeometry(.35, .35, 1, 6);
+  for (const L of lots) {
+    const q = AVL[L.code] || CHK[L.code], gia = q && (AVL[L.code] ? tttd(q) : (q.bg?.tttd || q.gia));
+    if (!gia || SOLD[L.code]) continue;
+    const chk = !AVL[L.code], cn = document.createElement('canvas'); cn.width = 512; cn.height = 200; const g = cn.getContext('2d');
+    const t = (gia / 1e9).toFixed(2).replace('.', ',') + ' tỷ';
+    g.fillStyle = chk ? '#fff6cc' : '#fff'; g.strokeStyle = chk ? '#f2b705' : '#d7261e'; g.lineWidth = 22;
+    g.beginPath(); g.roundRect(14, 14, 484, 172, 86); g.fill(); g.stroke();
+    let px = 118; g.font = `800 ${px}px "Be Vietnam Pro",Arial,sans-serif`;
+    while (g.measureText(t).width > 420 && px > 60) { px -= 4; g.font = `800 ${px}px "Be Vietnam Pro",Arial,sans-serif` }
+    g.fillStyle = chk ? '#8a6a00' : '#c8102e'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(t, 256, 104);
+    const tex = new THREE.CanvasTexture(cn); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthWrite: false, depthTest: false }));
+    sp.center.set(.5, 0); sp.renderOrder = 6; sp.userData.lot = L.i; scene.add(sp);
+    const st = new THREE.Mesh(stickG, chk ? stickY : stickR); st.renderOrder = 5; scene.add(st);
+    badges.push({ sp, st, L });
+  }
+}
+function placeBadges() {
+  const d = camera.position.distanceTo(controls.target) / (FLAT ? KF() / .82 : 1);
+  const w = Math.max(14, Math.min(170, d * .045)), h = w * 200 / 512, lift = FLAT ? 1 : Math.max(8, w * .35);
+  const show = d < 6500 && mode === 'mo-ban';
+  for (const b of badges) {
+    const vis = show && !SOLD[b.L.code]; b.sp.visible = vis; b.st.visible = vis && !FLAT;
+    if (!vis) continue;
+    b.sp.scale.set(w, h, 1); b.sp.position.set(b.L.cx, b.L.h + lift, b.L.cz);
+    b.st.scale.set(Math.max(.4, w / 40), lift, Math.max(.4, w / 40)); b.st.position.set(b.L.cx, b.L.h + lift / 2, b.L.cz);
+  }
+}
+
 // ---------- labels ----------
 const lbBox = $('labels'); const labels = [];
 function addLabel(cls, text, x, y, z, minD = 0, maxD = 1e9) {
@@ -327,13 +367,18 @@ $('ccDl').onclick = () => { save(chiCan(curL, 1600), `Chi-can-${curL.code}.png`)
 $('ccImg').onclick = () => $('ccDl').click();
 // ảnh chỉ căn: cắt mặt bằng quanh căn, khoanh đỏ căn và ghi mã
 function chiCan(L, size = 900) {
-  const im = tex.image; if (!im || !im.width) { const c = document.createElement('canvas'); c.width = 4; c.height = 3; return c } const k = im.width / W, R = 70;   // bán kính ~70 m quanh căn
+  if (!TEXS.length || TEXS.some(([t]) => !t.image || !t.image.width)) { const c = document.createElement('canvas'); c.width = 4; c.height = 3; return c } const R = 70;   // bán kính ~70 m quanh căn
   let mx = 0, mz = 0; L.poly.forEach(([x, z]) => { mx += x; mz += z }); mx /= L.poly.length; mz /= L.poly.length;
   const cn = document.createElement('canvas'), Hh = Math.round(size * .75); cn.width = size; cn.height = Hh; const g = cn.getContext('2d');
-  const sw = R * 2 * k, sh = sw * .75, sx = mx * k - sw / 2, sy = mz * k - sh / 2;
+  const swm = R * 2, shm = swm * .75, sxm = mx - swm / 2, sym = mz - shm / 2, s = size / swm;
   g.fillStyle = '#cfe0e6'; g.fillRect(0, 0, size, Hh);
-  try { g.drawImage(im, sx, sy, sw, sh, 0, 0, size, Hh) } catch (_) {}
-  const s = size / sw, P = ([x, z]) => [(x * k - sx) * s, (z * k - sy) * s];
+  for (const [t, u0, uw] of TEXS) {   // vẽ phần giao của khung với từng nửa ảnh nền
+    const im = t.image, k = im.width / (W * uw), a0 = Math.max(sxm, u0 * W), a1 = Math.min(sxm + swm, (u0 + uw) * W);
+    if (a1 <= a0) continue;
+    const b0 = Math.max(0, sym), b1 = Math.min(H, sym + shm);
+    try { g.drawImage(im, (a0 - u0 * W) * k, b0 * k, (a1 - a0) * k, (b1 - b0) * k, (a0 - sxm) * s, (b0 - sym) * s, (a1 - a0) * s, (b1 - b0) * s) } catch (_) {}
+  }
+  const P = ([x, z]) => [(x - sxm) * s, (z - sym) * s];
   // làm mờ nhẹ phần còn lại
   g.fillStyle = 'rgba(255,255,255,.18)'; g.fillRect(0, 0, size, Hh);
   g.beginPath(); L.poly.forEach((p, i) => { const [x, y] = P(p); i ? g.lineTo(x, y) : g.moveTo(x, y) }); g.closePath();
@@ -357,7 +402,9 @@ function chiCan(L, size = 900) {
 const ray = new THREE.Raycaster(), mp = new THREE.Vector2(); let down = null;
 function pick(e) {
   const r = canvas.getBoundingClientRect(); mp.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
-  ray.setFromCamera(mp, camera); const hit = ray.intersectObject(mesh)[0];
+  ray.setFromCamera(mp, camera);
+  const bh = ray.intersectObjects(badges.filter(b => b.sp.visible).map(b => b.sp))[0]; if (bh) return lots[bh.object.userData.lot];
+  const hit = ray.intersectObject(mesh)[0];
   return hit ? lots[lotOf[hit.face.a]] : null;
 }
 canvas.addEventListener('pointerdown', e => { down = [e.clientX, e.clientY]; stopRot() });
@@ -423,7 +470,7 @@ setTimeout(hideLoad, 6000);
 renderer.setAnimationLoop(t => {
   if (anim) anim(t);
   if (rot && !anim) { const a = .0012, o = camera.position.clone().sub(controls.target); o.applyAxisAngle(new THREE.Vector3(0, 1, 0), a); camera.position.copy(controls.target).add(o) }
-  controls.update(); renderer.render(scene, camera); placeLabels();
+  controls.update(); placeBadges(); renderer.render(scene, camera); placeLabels();
 });
 // mở theo #mã-căn
 const hc = decodeURIComponent(location.hash.slice(1)); if (hc && byCode.has(norm(hc))) setTimeout(() => select(byCode.get(norm(hc)), true), 1300);
