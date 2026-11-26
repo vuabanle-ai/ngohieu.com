@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sa bàn 3D Vinhomes Global Gate Hạ Long – Hạ Long Xanh</title>
-<meta name="description" content="Sa bàn 3D tương tác Vinhomes Global Gate Hạ Long (Hạ Long Xanh, Quảng Ninh): phân khu Vịnh Bình Minh 1 và Thiên Đường Nhiệt Đới 1 trên một sa bàn, mã căn từng lô và quỹ căn đang bán.">
+<title>Sa bàn Vinhomes Global Gate Hạ Long – Hạ Long Xanh</title>
+<meta name="description" content="Sa bàn tương tác Vinhomes Global Gate Hạ Long (Hạ Long Xanh, Quảng Ninh): phân khu Vịnh Bình Minh 1 và Thiên Đường Nhiệt Đới 1 trên một sa bàn, mã căn từng lô và quỹ căn đang bán.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&display=swap" rel="stylesheet">
 <style>
@@ -162,13 +162,13 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 <script src="/assets/chong-copy.js?v=1"></script>
 </head>
 <body>
-<canvas id="c" aria-label="Sa bàn 3D Vinhomes Global Gate Hạ Long"></canvas>
+<canvas id="c" aria-label="Sa bàn Vinhomes Global Gate Hạ Long"></canvas>
 <div id="labels"></div>
 <div id="tip" role="tooltip"></div>
 <div class="load" id="load">Đang dựng sa bàn Hạ Long Xanh…</div>
 
 <header class="top">
- <div class="brand"><b>HẠ LONG XANH</b><span>Bình Minh 1 · Nhiệt Đới 1 · 3D</span></div>
+ <div class="brand"><b>HẠ LONG XANH</b><span>Bình Minh 1 · Nhiệt Đới 1 · Sa bàn 2D</span></div>
  <nav class="chips" id="chips" aria-label="Chọn khu">
   <button data-v="toan-canh" class="on">Toàn cảnh</button>
  </nav>
@@ -207,7 +207,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
   <li><b>SL</b>Biệt thự song lập 9x18</li>
   <li><b>ĐL</b>Biệt thự đơn lập, biệt thự biển</li>
  </ul>
- <p class="note">Hai khu nằm trong phân khu Vịnh Thiên Đường, ghép chung một sa bàn cùng tỷ lệ (Thiên Đường Nhiệt Đới 1 bên trái, Vịnh Bình Minh 1 bên phải; khoảng cách giữa hai khu không theo thực tế). Mã căn đọc tự động từ tổng mặt bằng nên có thể còn thiếu một số căn; căn chưa định vị vẫn có trong danh sách quỹ. Hình khối và chiều cao mang tính minh họa; thông tin chính thức theo chủ đầu tư.</p>
+ <p class="note">Hai khu nằm trong phân khu Vịnh Thiên Đường, ghép chung một sa bàn cùng tỷ lệ (Thiên Đường Nhiệt Đới 1 bên trái, Vịnh Bình Minh 1 bên phải; khoảng cách giữa hai khu không theo thực tế). Mã căn đọc tự động từ tổng mặt bằng nên có thể còn thiếu một số căn; căn chưa định vị vẫn có trong danh sách quỹ. Thông tin chính thức theo chủ đầu tư.</p>
 </aside>
 
 <div class="card" id="card" role="dialog" aria-live="polite">
@@ -225,9 +225,9 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
  </div>
 </div>
 
-<div class="legend" id="legend"><div class="lgt">Tô màu sa bàn</div><div class="modes" id="lgModes"><button data-m="mo-ban" class="on">Còn / đã bán</button><button data-m="loai">Loại căn</button></div><ul id="lgItems"></ul><div class="tip">Kéo để di chuyển · cuộn/chụm để phóng · nút “Xem 3D” để xem nghiêng · mã căn ghi trên mái · bấm căn để xem bảng giá</div></div>
+<div class="legend" id="legend"><div class="lgt">Chú thích</div><ul id="lgItems"></ul><div class="tip">Kéo để di chuyển · cuộn/chụm để phóng · mã căn ghi trên mái · bấm căn để xem bảng giá</div></div>
 
-<script type="module" src="sa-ban.js?v=1795593982"></script>
+<script type="module" src="sa-ban.js?v=2"></script>
 <script type="module" src="/assets/dem-truy-cap.js?v=1"></script>
 <script src="/assets/tim-3-can-re.js?v=3" data-quy="quy-hang.json" data-ten="Hạ Long Xanh"></script>
 </body>

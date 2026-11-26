@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import * as PTG from './ptg.js?v=1795593815';
 {
-// ===== Sa bàn 3D Vinhomes Global Gate Hạ Long (Hạ Long Xanh) – Vịnh Bình Minh 1 + Thiên Đường Nhiệt Đới 1 =====
+// ===== Sa bàn 2D Vinhomes Global Gate Hạ Long (Hạ Long Xanh) – Vịnh Bình Minh 1 + Thiên Đường Nhiệt Đới 1 =====
 // lots-dao-ngoc.json: {meta:{w,h} (mét), lots:[[mã, loại Y|P|K, [[x,z]…] (mét, gốc góc trên-trái ảnh nền)]]}
 // quy-hang.json: {updated, available:{mã:{src,tcbg,loai,dt,dtxd,gia,huong}}, sold:{}}
 const $ = id => document.getElementById(id);
@@ -79,14 +79,14 @@ for (const [code, t, poly, zone] of data.lots) {
   const pts = poly.map(([x, z]) => new THREE.Vector2(X(x), -Z(z)));
   // thu nhỏ nhẹ quanh tâm để tách các căn
   let cx = 0, cz = 0; pts.forEach(p => { cx += p.x; cz += p.y }); cx /= pts.length; cz /= pts.length;
-  const sh = new THREE.Shape(pts.map(p => new THREE.Vector2(cx + (p.x - cx) * .9, cz + (p.y - cz) * .9)));
-  const h = TYPE[t].h * (code.startsWith('LP') || code.startsWith('ĐL') ? 1 : 1);
+  const sh = new THREE.Shape(pts);
+  const h = .3; // 2D: lớp phủ mỏng, giữ nguyên màu bản đồ bên dưới
   const g = new THREE.ExtrudeGeometry(sh, { depth: h, bevelEnabled: false, curveSegments: 1 });
   g.rotateX(-Math.PI / 2);
   const n = g.attributes.position.count;
   // màu đỉnh: mái = các đỉnh trên cùng có pháp tuyến hướng lên
-  const col = new Float32Array(n * 3);
-  g.setAttribute('color', new THREE.BufferAttribute(col, 3));
+  const col = new Float32Array(n * 4);
+  g.setAttribute('color', new THREE.BufferAttribute(col, 4));
   geos.push(g);
   const area = Math.abs(THREE.ShapeUtils.area(pts));
   const L = { zone: zone || 'BM', poly, ax: lotAxis(poly.map(([x, z]) => [X(x), Z(z)])), code, t, i: lots.length, start: vtx, n, cx, cz: -cz, h, area, pre: code.split('-')[0], av: !!AVL[code], sd: !!SOLD[code], ck: !!CHK[code] };
@@ -95,26 +95,48 @@ for (const [code, t, poly, zone] of data.lots) {
 const merged = mergeGeometries(geos, false); geos.forEach(g => g.dispose());
 const lotOf = new Int32Array(vtx); lots.forEach(L => lotOf.fill(L.i, L.start, L.start + L.n));
 const normals = merged.attributes.normal, colors = merged.attributes.color;
-const mesh = new THREE.Mesh(merged, new THREE.MeshLambertMaterial({ vertexColors: true }));
-scene.add(mesh);
+const mesh = new THREE.Mesh(merged, new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, depthWrite: false }));
+mesh.renderOrder = 1; scene.add(mesh);
 const edges = new THREE.LineSegments(new THREE.EdgesGeometry(merged, 30), new THREE.LineBasicMaterial({ color: 0x5b5146, transparent: true, opacity: .35 }));
-scene.add(edges);
+edges.visible = false;
 $('nLots').textContent = VN(lots.length) + ' căn';
+// viền căn còn hàng (xanh) / check hàng (cam): co đều từng cạnh vào trong
+function inset(pts, d) {
+  const n = pts.length, A = THREE.ShapeUtils.area(pts) > 0 ? 1 : -1, L = [];
+  for (let i = 0; i < n; i++) { const p = pts[i], q = pts[(i + 1) % n], dx = q.x - p.x, dy = q.y - p.y, l = Math.hypot(dx, dy) || 1, nx = -dy / l * A, ny = dx / l * A;
+    L.push([p.x + nx * d, p.y + ny * d, dx, dy]) }
+  const out = [];
+  for (let i = 0; i < n; i++) { const [x1, y1, a1, b1] = L[(i + n - 1) % n], [x2, y2, a2, b2] = L[i], den = a1 * b2 - b1 * a2;
+    if (Math.abs(den) < 1e-6) { out.push(new THREE.Vector2(x2, y2)); continue }
+    const t = ((x2 - x1) * b2 - (y2 - y1) * a2) / den; out.push(new THREE.Vector2(x1 + a1 * t, y1 + b1 * t)) }
+  return out;
+}
+for (const [key, col] of [['av', 0x16a34a], ['ck', 0xf59e0b]]) {
+  const gs = [];
+  for (const L of lots) {
+    if (!(key === 'av' ? L.av : (L.ck && !L.av))) continue;
+    const pts = L.poly.map(([x, z]) => new THREE.Vector2(X(x), -Z(z)));
+    const d = Math.min(.8, Math.min(L.ax.len, L.ax.wid) * .14), hole = inset(pts, d);
+    const cx = L.cx, cz = -L.cz, far = hole.some(p => Math.hypot(p.x - cx, p.y - cz) > Math.hypot(L.ax.len, L.ax.wid));
+    const sh = new THREE.Shape(pts); sh.holes.push(new THREE.Path(far ? pts.map(p => new THREE.Vector2(cx + (p.x - cx) * .8, cz + (p.y - cz) * .8)) : hole));
+    const g = new THREE.ShapeGeometry(sh); g.rotateX(-Math.PI / 2); gs.push(g);
+  }
+  if (!gs.length) continue;
+  const m = new THREE.Mesh(mergeGeometries(gs, false), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: .95, depthWrite: false, side: THREE.DoubleSide }));
+  m.position.y = .4; m.renderOrder = 2; scene.add(m); gs.forEach(g => g.dispose());
+}
 
 let mode = 'mo-ban', sel = -1, hov = -1;
-function roofCol(L) {
-  if (L.i === sel) return SEL;
-  if (mode === 'mo-ban') return L.av ? AV : L.sd ? SD : L.ck ? CK : DIM;
-  if (L.sd) return SD;
-  return new THREE.Color(TYPE[L.t].roof);
+// 2D giữ màu gốc bản đồ: chỉ phủ mờ căn đã bán / căn đang chọn, căn còn hàng & check hàng có viền
+function fillOf(L) {
+  if (L.i === sel) return [SEL, .45];
+  if (L.i === hov) return [SEL, .18];
+  if (L.sd && !L.av) return [SD, .55];
+  return [SD, 0];
 }
 function paint(L) {
-  const r = roofCol(L), w = L.i === sel ? SEL : (mode === 'mo-ban' && !L.av ? DIM : WALL);
-  const hv = L.i === hov ? 1.12 : 1;
-  for (let k = L.start; k < L.start + L.n; k++) {
-    const c = normals.getY(k) > .5 ? r : w;
-    colors.setXYZ(k, Math.min(1, c.r * hv), Math.min(1, c.g * hv), Math.min(1, c.b * hv));
-  }
+  const [c, a] = fillOf(L);
+  for (let k = L.start; k < L.start + L.n; k++) colors.setXYZW(k, c.r, c.g, c.b, a);
 }
 function paintAll() { lots.forEach(paint); colors.needsUpdate = true; legend(); drawRoofs() }
 
@@ -230,7 +252,7 @@ const VIEWS = {
   ps.forEach(p => VIEWS['d-' + p] = exactView(p));
   $('chips').innerHTML = `<button data-v="toan-canh" class="on">Toàn dự án</button><button data-v="z-TD">Thiên Đường Nhiệt Đới 1</button><button data-v="z-BM">Vịnh Bình Minh 1</button><i class="zs"></i><select id="daySel" aria-label="Chọn dãy"><option value="">Chọn dãy…</option>${ps.map(p => `<option value="${p}">Dãy ${p}</option>`).join('')}</select>`;
   $('daySel').onchange = e => { if (e.target.value) VIEWS['d-' + e.target.value]() };
-  document.querySelector('.brand span').textContent = 'Bình Minh 1 · Nhiệt Đới 1 · 3D'; document.title = 'Sa bàn 3D Vinhomes Global Gate Hạ Long';
+  document.querySelector('.brand span').textContent = 'Bình Minh 1 · Nhiệt Đới 1 · Sa bàn 2D'; document.title = 'Sa bàn Vinhomes Global Gate Hạ Long';
   const kv = $('side').querySelectorAll('.kv strong'); kv[0].textContent = '2 khu';
   $('q').placeholder = 'Tìm mã căn, VD: BM3-10, TĐ10-04' }
 $('chips').addEventListener('click', e => {
@@ -377,18 +399,14 @@ $('quy').onclick = e => { const b = e.target.closest('button'); if (b) select(by
 
 // ---------- legend ----------
 function legend() {
-  const items = mode === 'mo-ban'
-    ? [[AV.getStyle(), 'Còn hàng', lots.filter(l => l.av).length], [CK.getStyle(), 'Check hàng', lots.filter(l => l.ck).length], [SD.getStyle(), 'Đã bán', lots.filter(l => l.sd).length], [DIM.getStyle(), 'Chưa có trên bảng hàng', lots.filter(l => !l.av && !l.sd && !l.ck).length]]
-    : Object.entries(TYPE).map(([k, t]) => ['#' + new THREE.Color(t.roof).getHexString(), t.name, lots.filter(l => l.t === k).length]);
-  $('lgItems').innerHTML = items.map(([c, t, n]) => `<li><i style="background:${c}"></i>${t}<b>${VN(n)}</b></li>`).join('');
+  const items = [['#16a34a', 'Còn hàng (viền xanh)', lots.filter(l => l.av).length, 1], ['#f59e0b', 'Check hàng (viền cam)', lots.filter(l => l.ck && !l.av).length, 1],
+    ['rgba(138,140,144,.6)', 'Đã bán (phủ xám)', lots.filter(l => l.sd && !l.av).length], ['transparent', 'Chưa có trên bảng hàng (màu gốc)', lots.filter(l => !l.av && !l.sd && !l.ck).length]];
+  $('lgItems').innerHTML = items.map(([c, t, n, ring]) => `<li><i style="${ring ? `background:transparent;box-shadow:inset 0 0 0 3px ${c}` : `background:${c};box-shadow:inset 0 0 0 1px #c9c4b8`}"></i>${t}<b>${VN(n)}</b></li>`).join('');
 }
-$('lgModes').onclick = e => { const b = e.target.closest('button'); if (!b) return; mode = b.dataset.m;
-  $('lgModes').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); paintAll() };
-
 // ---------- tools ----------
 let rot = false;
 function stopRot() { rot = false }
-$('bRot').textContent = 'Xem 3D'; $('bRot').title = 'Chuyển giữa mặt bằng nhìn thẳng và góc nghiêng 3D';
+$('bRot').style.display = 'none'; $('bRot').textContent = 'Xem 3D'; $('bRot').title = 'Chuyển giữa mặt bằng nhìn thẳng và góc nghiêng 3D';
 $('bRot').onclick = () => { FLAT = !FLAT; applyMode(); $('bRot').textContent = FLAT ? 'Xem 3D' : 'Mặt bằng'; $('bRot').classList.toggle('on', !FLAT); $('bRot').setAttribute('aria-pressed', !FLAT);
   const d = camera.position.distanceTo(controls.target); flyTo(controls.target.x, controls.target.z, FLAT ? d * 1.25 : d * .5, .85, .35) };
 function openSide() { $('side').classList.add('open') }
