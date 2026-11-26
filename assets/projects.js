@@ -2,7 +2,8 @@
 // type: 'thap' (thấp tầng) | 'cao' (cao tầng) | 'ca-hai'; tags: 'hot' | 'moi' | 'sap-mo-ban'; saban: đường dẫn sa bàn 3D nếu có
 export const PROJECTS = [
  {id:'pho-hien',name:'Phố Hiến Heritage Collection',dev:'Vinhomes',area:'Phố Hiến, Hưng Yên',type:'thap',tags:['hot','moi'],img:'/du-an/Happy-Home-Pho-Hien/img/phoi-canh-tren-cao.jpg',saban:'/du-an/Happy-Home-Pho-Hien/',note:'303 căn liền kề shophouse · sở hữu lâu dài'},
- {id:'ocp23',name:'Vinhomes Ocean City (Ocean Park 2 & 3)',dev:'Vinhomes',area:'Văn Giang – Văn Lâm, Hưng Yên',type:'thap',tags:['hot','moi'],img:'/du-an/Ocean-City/anh-ocean-city.jpg',saban:'/du-an/Ocean-City/',note:'2 sa bàn riêng: Vinhomes Ocean Park 2 The Empire và Ocean Park 3 The Crown – mã căn, thông số từng căn, quỹ căn các đại lý tự cập nhật.'},
+ {id:'ocp2',name:'Vinhomes Ocean Park 2 – The Empire',dev:'Vinhomes',area:'Văn Lâm, Hưng Yên',type:'thap',tags:['hot','moi'],img:'/du-an/vinhomes-ocean-park-2/anh-ocean-park-2.jpg',saban:'/du-an/vinhomes-ocean-park-2/',note:'Sao Biển, Cọ Xanh, Chà Là có mã từng căn; Kinh Đô, San Hô, Hải Âu, Đảo Dừa, Ngọc Trai trên ảnh mặt bằng · thông số & quỹ căn đại lý tự cập nhật'},
+ {id:'ocp3',name:'Vinhomes Ocean Park 3 – The Crown',dev:'Vinhomes',area:'Văn Giang, Hưng Yên',type:'thap',tags:['hot','moi'],img:'/du-an/vinhomes-ocean-park-3/anh-ocean-park-3.jpg',saban:'/du-an/vinhomes-ocean-park-3/',note:'8.437 căn có mã từng căn: Hải Đăng, Thời Đại, Ánh Dương, Phố Biển, Vịnh Thiên Đường, Vịnh Tây, Vịnh Xanh, Đảo Ngọc · thông số & quỹ căn đại lý tự cập nhật'},
  {id:'global-gate',name:'Vinhomes Global Gate',dev:'Vinhomes',area:'Đông Anh, Hà Nội',type:'thap',tags:['hot']},
  {id:'wonder-city',name:'Vinhomes Wonder City',dev:'Vinhomes',area:'Đan Phượng, Hà Nội',type:'thap',tags:[]},
  {id:'green-paradise',name:'Vinhomes Green Paradise',dev:'Vinhomes',area:'Cần Giờ, TP. Hồ Chí Minh',type:'thap',tags:['hot']},
