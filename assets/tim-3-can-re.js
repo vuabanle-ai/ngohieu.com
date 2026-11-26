@@ -59,7 +59,8 @@
     c.laTieuChi = c.txt.length > 0 || /\bre\b|re nhat|gia tot|tim can|can nao/.test(x);
     return c;
   }
-  const hopHuong = (h, want) => { const s = bo(h).toUpperCase().replace(/[^A-Z]/g, ' '); return s.split(/\s+/).some(t => t === want) || bo(h).replace(/\s/g, '').toUpperCase().includes(want) && want.length > 1 };
+  const hopHuong = (h, want) => { let s = bo(h); for (const [k, v] of Object.entries(HUONG)) s = s.replace(new RegExp(k, 'g'), v.toLowerCase());   // "Đông Nam" → "dn"
+    return s.toUpperCase().split(/[^A-Z]+/).some(t => t === want) };
   function chon(list, c, noi) {
     const tol = noi ? Math.max(6, (c.dt || 0) * .12) : Math.max(3, (c.dt || 0) * .05);
     return list.filter(u => u.gia && (!c.loai || u.loai === c.loai || (c.loai === 'Biệt thự' && /Biệt thự|lập/.test(u.loai)))
@@ -94,18 +95,19 @@
   async function timBa(raw) {
     const c = hieu(raw);
     P.hidden = false; P.innerHTML = `<button class="x" type="button" aria-label="Đóng">×</button><h4>Đang tìm…</h4>`;
-    const all = await napKho(), con = all.filter(u => u.gia);
+    const all = await napKho(), con = all.filter(u => u.gia); all.forEach(u => delete u.gan);
     let kq = chon(con, c, false), noi = false;
-    if (!kq.length && c.dt != null) { kq = chon(con, c, true); noi = kq.length > 0 }
+    if (kq.length < 3 && c.dt != null) {   // chưa đủ 3 căn đúng diện tích → bổ sung căn gần diện tích nhất (±12%)
+      const them = chon(con, c, true).filter(u => !kq.includes(u)); if (them.length) { noi = true; them.forEach(u => u.gan = true); kq = [...kq, ...them] } }
     const MED = ['🥇', '🥈', '🥉'], RK = ['Rẻ nhất', 'Rẻ nhì', 'Rẻ ba'];
     const tc = c.txt.length ? c.txt.join(' · ') : 'mọi căn';
-    let html = `<button class="x" type="button" aria-label="Đóng">×</button><h4>3 căn rẻ nhất · ${esc(TEN)}</h4><div class="tc">Tiêu chí: ${esc(tc)}${noi ? ' (không có căn đúng diện tích, đã nới ±12%)' : ''}</div>`;
+    let html = `<button class="x" type="button" aria-label="Đóng">×</button><h4>3 căn rẻ nhất · ${esc(TEN)}</h4><div class="tc">Tiêu chí: ${esc(tc)}${noi ? ' (thêm căn diện tích gần nhất ±12%)' : ''}</div>`;
     if (!all.length) html += `<div class="em">Dự án này chưa có quỹ căn đang bán trên sa bàn.</div>`;
     else if (!kq.length) html += `<div class="em">Không có căn còn hàng khớp tiêu chí. Thử bỏ bớt điều kiện, VD chỉ gõ <b>${esc(c.dt ? c.dt + 'm2 rẻ nhất' : 'rẻ nhất')}</b>.</div>`;
     else html += kq.slice(0, 3).map((u, i) => `<div class="it" data-ma="${esc(u.ma)}" role="button" tabindex="0"><div class="md">${MED[i]}</div>
-      <div><div class="rk">${RK[i]}</div><span class="ma">${esc(u.ma)}</span>${u.tt === 'check' ? '<span class="ck">Check admin</span>' : ''}</div><div class="gi">${ty(u.gia)}</div>
+      <div><div class="rk">${RK[i]}</div><span class="ma">${esc(u.ma)}</span>${u.tt === 'check' ? '<span class="ck">Check admin</span>' : ''}${u.gan ? '<span class="ck" style="background:#eef3ff;color:#2a4a9a">DT gần</span>' : ''}</div><div class="gi">${ty(u.gia)}</div>
       <div class="sb">${[u.loai, u.dt ? String(u.dt).replace('.', ',') + ' m²' : '', u.dt ? Math.round(u.gia / u.dt / 1e6).toLocaleString('vi-VN') + ' tr/m²' : '', u.huong ? 'Hướng ' + u.huong : '', u.tcbg].filter(Boolean).map(esc).join(' · ')}</div></div>`).join('')
-      + `<div class="nt">Có ${kq.length.toLocaleString('vi-VN')} căn khớp tiêu chí. Giá là giá thấp nhất các đại lý đang chào. Bấm vào căn để xem trên sa bàn.</div>`;
+      + `<div class="nt">Có ${kq.filter(u => !u.gan).length.toLocaleString('vi-VN')} căn khớp đúng tiêu chí. Giá là giá thấp nhất các đại lý đang chào. Bấm vào căn để xem trên sa bàn.</div>`;
     P.innerHTML = html;
   }
 
