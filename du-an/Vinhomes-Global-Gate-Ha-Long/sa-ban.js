@@ -15,7 +15,7 @@ const TYPE = {
   P: { name: 'Biệt thự song lập', short: 'SL', h: 12.5, roof: 0x8f86d6 },
   K: { name: 'Biệt thự đơn lập', short: 'ĐL', h: 11.5, roof: 0xf07fb5 }
 };
-const WALL = new THREE.Color(0xfbf8f2), AV = new THREE.Color(0x25b768), SD = new THREE.Color(0x8a8c90), CK = new THREE.Color(0xf5a623), DIM = new THREE.Color(0xe4e2dc), SEL = new THREE.Color(0xe31b23);
+const WALL = new THREE.Color(0xfbf8f2), AV = new THREE.Color(0x12b336), SD = new THREE.Color(0x7d8085), CK = new THREE.Color(0xffd000), DIM = new THREE.Color(0xe4e2dc), SEL = new THREE.Color(0xe31b23);
 const SRC = { MV: 'Mai Việt Land', RBS: 'RBS', MH: 'Mayhomes', TP: 'Trường Phát (CEN)', RM: 'Roman', VHS: 'VHS' }; // tên khác hiển thị nguyên văn
 const VN = n => n.toLocaleString('vi-VN');
 const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' tỷ';
@@ -116,28 +116,16 @@ function inset(pts, d) {
     const t = ((x2 - x1) * b2 - (y2 - y1) * a2) / den; out.push(new THREE.Vector2(x1 + a1 * t, y1 + b1 * t)) }
   return out;
 }
-for (const [key, col] of [['av', 0x16a34a], ['ck', 0xf59e0b]]) {
-  const gs = [];
-  for (const L of lots) {
-    if (!(key === 'av' ? L.av : (L.ck && !L.av))) continue;
-    const pts = L.poly.map(([x, z]) => new THREE.Vector2(X(x), -Z(z)));
-    const d = Math.min(.8, Math.min(L.ax.len, L.ax.wid) * .14), hole = inset(pts, d);
-    const cx = L.cx, cz = -L.cz, far = hole.some(p => Math.hypot(p.x - cx, p.y - cz) > Math.hypot(L.ax.len, L.ax.wid));
-    const sh = new THREE.Shape(pts); sh.holes.push(new THREE.Path(far ? pts.map(p => new THREE.Vector2(cx + (p.x - cx) * .8, cz + (p.y - cz) * .8)) : hole));
-    const g = new THREE.ShapeGeometry(sh); g.rotateX(-Math.PI / 2); gs.push(g);
-  }
-  if (!gs.length) continue;
-  const m = new THREE.Mesh(mergeGeometries(gs, false), new THREE.MeshBasicMaterial({ color: col, transparent: true, opacity: .95, depthWrite: false, side: THREE.DoubleSide }));
-  m.position.y = .4; m.renderOrder = 2; scene.add(m); gs.forEach(g => g.dispose());
-}
 
 let mode = 'mo-ban', sel = -1, hov = -1;
 // 2D giữ màu gốc bản đồ: chỉ phủ mờ căn đã bán / căn đang chọn, căn còn hàng & check hàng có viền
 function fillOf(L) {
-  if (L.i === sel) return [SEL, .45];
-  if (L.i === hov) return [SEL, .18];
-  if (L.sd && !L.av) return [SD, .55];
-  return [SD, 0];
+  if (L.i === sel) return [SEL, .55];
+  if (L.i === hov) return [SEL, .25];
+  if (L.av) return [AV, .88];      // còn hàng: bôi xanh
+  if (L.ck) return [CK, .9];     // check admin: bôi vàng
+  if (L.sd) return [SD, .85];      // đã bán: bôi xám
+  return [SD, 0];                 // còn lại: giữ nguyên màu chủ đầu tư
 }
 function paint(L) {
   const [c, a] = fillOf(L);
@@ -191,15 +179,7 @@ function atlas(list, CW, CH, linesOf) {
     m.renderOrder = 2; scene.add(m); roofMeshes.push(m);
   }
 }
-function drawRoofs() {
-  roofMeshes.forEach(m => { scene.remove(m); m.geometry.dispose(); m.material.map.dispose(); m.material.dispose() }); roofMeshes.length = 0;
-  const qOf = L => AVL[L.code] || (L.ck ? CHK[L.code] : null);
-  const priced = mode === 'mo-ban' ? lots.filter(L => (L.av || L.ck) && tttd(qOf(L))) : [];
-  const ps = new Set(priced);
-  atlas(lots.filter(L => !ps.has(L)), 128, 40, L => [[L.code, L.sd ? '#3d3f44' : '#1c1d21', .5, .6]]);
-  // căn còn hàng: mã căn + ô đỏ giá TTTĐ; căn check hàng: ô vàng (như sa bàn Phố Hiến)
-  atlas(priced, 128, 40, L => [[L.code, '#1c1d21', .5, .6]]);
-}
+function drawRoofs() {} // mặt bằng gốc của chủ đầu tư đã có mã căn
 // ---------- biển giá nổi trên căn (như sa bàn Phố Hiến): nền trắng, viền đỏ, số giá to ----------
 const badges = [];
 { const stickR = new THREE.MeshBasicMaterial({ color: 0xd7261e }), stickY = new THREE.MeshBasicMaterial({ color: 0xf2b705 });
@@ -242,7 +222,7 @@ function addLabel(cls, text, x, y, z, minD = 0, maxD = 1e9) {
 // nhãn dãy (tiền tố) tại tâm nhóm
 const groups = new Map();
 lots.forEach(L => { const g = groups.get(L.pre) || { x: 0, z: 0, n: 0 }; g.x += L.cx; g.z += L.cz; g.n++; groups.set(L.pre, g) });
-for (const [pre, g] of groups) if (g.n >= 3) addLabel('day', pre, g.x / g.n, 22, g.z / g.n, 0, 1500);
+
 const AMEN0 = [];
 // toạ độ tiện ích theo ảnh nền 2048px -> mét
 const k2m = W / 2048;
@@ -446,9 +426,9 @@ $('quy').onclick = e => { const b = e.target.closest('button'); if (b) select(by
 
 // ---------- legend ----------
 function legend() {
-  const items = [['#16a34a', 'Còn hàng (viền xanh)', lots.filter(l => l.av).length, 1], ['#f59e0b', 'Check hàng (viền cam)', lots.filter(l => l.ck && !l.av).length, 1],
-    ['rgba(138,140,144,.6)', 'Đã bán (phủ xám)', lots.filter(l => l.sd && !l.av).length], ['transparent', 'Chưa có trên bảng hàng (màu gốc)', lots.filter(l => !l.av && !l.sd && !l.ck).length]];
-  $('lgItems').innerHTML = items.map(([c, t, n, ring]) => `<li><i style="${ring ? `background:transparent;box-shadow:inset 0 0 0 3px ${c}` : `background:${c};box-shadow:inset 0 0 0 1px #c9c4b8`}"></i>${t}<b>${VN(n)}</b></li>`).join('');
+  const items = [[AV.getStyle(), 'Còn hàng', lots.filter(l => l.av).length], [CK.getStyle(), 'Check admin', lots.filter(l => l.ck && !l.av).length],
+    [SD.getStyle(), 'Đã bán', lots.filter(l => l.sd && !l.av && !l.ck).length]];
+  $('lgItems').innerHTML = items.map(([c, t, n]) => `<li><i style="background:${c};opacity:.85"></i>${t}<b>${VN(n)}</b></li>`).join('');
 }
 // ---------- tools ----------
 let rot = false;
