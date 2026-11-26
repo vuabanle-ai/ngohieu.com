@@ -36,6 +36,7 @@ const [data, quy] = await Promise.all([
   fetch('../Ocean-City/quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
 ]);
 const W = data.meta.w, H = data.meta.h;
+let TS = {}; fetch('thong-so.json?v=1').then(r => r.ok ? r.json() : null).then(j => { if (j) TS = j.d }).catch(() => {});
 const AVL = quy.available || {}, SOLD = quy.sold || {}, CHK = quy.check || {};
 
 // ---------- scene ----------
@@ -282,7 +283,7 @@ for (const z of [...ZORD2, ...ZORD3]) VIEWS['z-' + z] = () => zoneView(z);
   ps.forEach(p => VIEWS['d-' + p] = exactView(p));
   const have = new Set(lots.map(l => l.zone)), RZ = data.meta.rzones || [];
   RZ.forEach(([n, x, z, w, h], i) => { VIEWS['r-' + i] = () => { if (FLAT) { const t = Math.tan(camera.fov * Math.PI / 360); flyTo(X(x), Z(z), Math.max(h * 1.15, w * 1.15 / camera.aspect) / (2 * t) / KF()) } else flyTo(X(x), Z(z), Math.hypot(w, h) * 1.1, .85) } });
-  $('chips').innerHTML = `<button data-v="toan-canh" class="on">Toàn dự án</button><a class="chipLink" href="/du-an/Ocean-Park-3/">Sang Ocean Park 3 ›</a>`
+  $('chips').innerHTML = `<button data-v="toan-canh" class="on">Toàn dự án</button><a class="chipLink" href="/du-an/vinhomes-ocean-park-3/">Sang Ocean Park 3 ›</a>`
     + [...ZORD2.filter(z => z !== 'KĐ'), ...ZORD3].filter(z => have.has(z)).map(z => `<button data-v="z-${z}">${ZNAME[z]}</button>`).join('')
     + RZ.map(([n], i) => `<button data-v="r-${i}" title="Ảnh mặt bằng, chưa bấm chọn từng căn">${n}<small>ảnh</small></button>`).join('')
     + `<select id="daySel" aria-label="Chọn dãy"><option value="">Chọn dãy…</option>${ps.map(p => `<option>${p}</option>`).join('')}</select>`;
@@ -310,14 +311,21 @@ function select(L, fly) {
   $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
   const tn = TYPE[L.t].name, lo = q?.loai && q.loai.toLowerCase() !== tn.toLowerCase() ? q.loai + ' · ' + tn : tn;
   const rows = [['Dự án', duAn(L.zone)], ['Phân khu', ZNAME[L.zone] || L.zone], ['Dãy', L.pre], ['Loại hình', lo]];
-  rows.push(['Kiến trúc', ARCHZ[L.zone] ? 'Phong cách ' + ARCHZ[L.zone] : '<span style="color:var(--mut)">Đang cập nhật</span>']);
   if (q?.quy) rows.push(['Quỹ', q.quy]);
-  if (q?.dt) rows.push(['DT đất', q.dt + ' m²']); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
-  if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
-  if (q?.so_tang) rows.push(['Số tầng', q.so_tang]);
-  if (q?.mat_tien) rows.push(['Mặt tiền', q.mat_tien + ' m']);
+  // thông số từng căn (bảng thông số diện tích của CĐT trong bảng hàng đại lý)
+  const S = TS[L.code], m2 = v => (+v).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' m²';
+  const dt = S?.[0] || q?.dt;
+  if (dt) rows.push(['DT đất', m2(dt)]); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
+  if (S?.[10]) rows.push(['Mặt tiền', S[10]]);
+  if (S?.[9] || q?.huong) rows.push(['Hướng', S?.[9] || q.huong]);
+  if (S) {
+    const fl = S.slice(1, 6), n = S[8] || fl.filter(Boolean).length;
+    if (n) rows.push(['Số tầng', n + (S[6] ? ' tầng + tum' : ' tầng')]);
+    fl.forEach((v, i) => { if (v) rows.push(['DT XD tầng ' + (i + 1), m2(v)]) });
+    if (S[6]) rows.push(['Tum / Áp mái', m2(S[6])]);
+    if (S[7]) rows.push(['<b>Tổng DTXD</b>', '<b>' + m2(S[7]) + '</b>']);
+  } else if (q?.dtxd) rows.push(['DT xây dựng', q.dtxd + ' m²']);
   if (q?.tcbg) rows.push(['Tiêu chuẩn bàn giao', q.tcbg]);
-  if (q?.huong) rows.push(['Hướng', q.huong]);
   let html = rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('');
   const bg = q?.bg || {}, d = n => n ? VN(n) : '–';
   if (q?.gia || Object.keys(bg).length) {
