@@ -7,5 +7,25 @@ service cloud.firestore {
       allow create, update: if day.matches('^20[0-9]{2}-[0-9]{2}-[0-9]{2}$')
         && request.resource.data.keys().hasOnly(['views', 'visitors', 'newV', 'returning', 'units', 'pages', 'src']);
     }
+
+    // Kho "hàng chợ" của trang Tìm căn rẻ (ngohieu.com/tim-can-re/): tin chào bán/cho thuê chép từ hội nhóm.
+    // Ai cũng đọc và thêm tin được (kiểm tra đúng khuôn dữ liệu); chỉ được sửa mỗi ô "đã bán"; không ai xoá qua web.
+    match /hang_cho/{id} {
+      allow read: if true;
+      allow create: if request.resource.data.keys().hasOnly(['ma','du_an','gd','loai','pn','dt','gia','huong','nt','sdt','nd','nguon','link','nguoi','ban','t'])
+        && request.resource.data.nd is string && request.resource.data.nd.size() > 5 && request.resource.data.nd.size() <= 3000
+        && request.resource.data.gd in ['ban','thue']
+        && request.resource.data.gia is number && request.resource.data.gia >= 0 && request.resource.data.gia < 1000000000000
+        && request.resource.data.dt is number && request.resource.data.dt >= 0 && request.resource.data.dt < 100000
+        && request.resource.data.ma is string && request.resource.data.ma.size() <= 30
+        && request.resource.data.du_an is string && request.resource.data.du_an.size() <= 80
+        && request.resource.data.nguoi is string && request.resource.data.nguoi.size() <= 80
+        && request.resource.data.link is string && request.resource.data.link.size() <= 400
+        && request.resource.data.ban == false
+        && request.resource.data.t == request.time;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['ban'])
+        && request.resource.data.ban == true;
+      allow delete: if false;
+    }
   }
 }
