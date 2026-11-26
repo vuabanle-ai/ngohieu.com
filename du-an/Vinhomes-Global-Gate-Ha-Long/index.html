@@ -157,6 +157,17 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 .pt{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:4px}.pt td{padding:4px 2px;border-bottom:1px solid var(--line);vertical-align:top}.pt td:last-child{text-align:right;white-space:nowrap;font-weight:700;font-variant-numeric:tabular-nums}.pt td:nth-child(2){color:var(--mut);font-size:12px}.pt tr.tt td{font-weight:800;color:#c8102e;font-size:14px}.ptn{font-size:11.5px;color:var(--mut);margin:6px 0 0}
 #cc{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}#ccImg{display:block;width:100%;border-radius:10px;border:1px solid var(--line);cursor:pointer;margin-top:8px}#ccLinks a{font-size:13px;font-weight:700;color:var(--mr);margin-left:8px}
 .nopos{font-size:12px;color:var(--mut);margin:6px 0 0}
+
+#csbhSec .cq{border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin:0 0 8px}
+#csbhSec .cq b{display:block;font-size:14px;color:var(--mr)}
+#csbhSec .cq p{margin:3px 0 6px;font-size:13px;color:var(--mut)}
+#csbhSec .cq button,.csbhLink{border:0;background:light-dark(#fdecee,#3a2a2c);color:var(--mr);border-radius:9px;padding:6px 10px;font-weight:700;font-size:13px;min-height:34px}
+#csbhSec table{width:100%;border-collapse:collapse;font-size:13px;margin:4px 0 10px}
+#csbhSec td{border-top:1px solid var(--line);padding:4px 2px;vertical-align:top}#csbhSec td:last-child{text-align:right;font-weight:700;white-space:nowrap}
+#csbhView{position:fixed;inset:0;z-index:40;background:rgba(18,18,22,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px}#csbhView[hidden]{display:none}
+#csbhView img{max-width:min(760px,100%);max-height:calc(100dvh - 110px);border-radius:10px;object-fit:contain}
+#csbhView .t{color:#fff;font-weight:700;font-size:15px;text-align:center}
+.csbhb{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}.csbhb button,.csbhb a{border:0;border-radius:12px;min-height:46px;padding:0 18px;background:var(--mr);color:#fff;font-weight:700;display:grid;place-items:center;text-decoration:none}.csbhb .g{background:#5d636b}
 </style>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
 <script src="/assets/chong-copy.js?v=1"></script>
@@ -196,6 +207,25 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
  <div class="sec">Đã bán · <span id="sdN"></span> căn</div>
  <ul class="quy" id="sold"></ul>
  <p class="nopos" id="nopos" hidden></p>
+ <div class="sec">Chính sách bán hàng · từ 19/11/2026</div>
+ <div id="csbhSec">
+  <table>
+   <tr><td>Thanh toán sớm (15% T+15, 85% T+30)</td><td>CK 7,5%</td></tr>
+   <tr><td>Thanh toán tiến độ</td><td>CK dòng tiền 11%</td></tr>
+   <tr><td>VinClub Vàng · Bạch kim · Kim cương</td><td>0,5% · 0,7% · 0,9%</td></tr>
+   <tr><td>Đặt cọc</td><td>200 tr (hoàn thiện 300 tr)</td></tr>
+  </table>
+  <div class="cq"><b>Quỹ thô giãn xây – Thiên Đường Nhiệt Đới 1</b><p>Tiến độ HĐMB: 10%+5% ký HĐMB (T+15) · 15% T+30, T+75, T+135, T+195 · 25% + VAT 5% + KPBT khi bàn giao. Có phương án HĐT và vay ngân hàng.</p><button type="button" data-i="0">Xem CSBH gốc</button></div>
+  <div class="cq"><b>Quỹ xây thô + giãn xây (F1 CĐT)</b><p>15%+5% ký HĐMB (T+15) · 15% T+30, T+75, T+135, T+195 · 25% T+285 · 100% giá trị xây dựng khi bàn giao. Có phương án TĐTT giá trị xây dựng.</p><button type="button" data-i="1">Xem CSBH gốc</button></div>
+  <div class="cq"><b>Quỹ căn xây luôn</b><p>Thêm ưu đãi về ở sớm 10% (theo danh sách CĐT) · 10%+5% ký HĐMB · 15% T+30, T+75, T+105, T+135 · 25% + VAT 5% + KPBT khi bàn giao.</p><button type="button" data-i="2">Xem CSBH gốc</button></div>
+  <div class="cq"><b>Quỹ hoàn thiện</b><p>Cọc 300 tr · 10%+5% ký HĐMB · 15% T+30, T+75, T+105, T+135 · 25% + VAT 5% + KPBT khi bàn giao. Gói quản lý nhà và nội thất đồ rời theo HĐ riêng.</p><button type="button" data-i="3">Xem CSBH gốc</button></div>
+  <table>
+   <tr><td colspan="2"><b>Hỗ trợ lãi suất</b> (vay 70%; quỹ thô/giãn xây có thêm vay 80%)</td></tr>
+   <tr><td>KH tự trả LS cố định 18 · 24 · 30 · 36 · 48 · 60 tháng</td><td>3 · 4,5 · 6 · 7,5 · 8,5 · 9%</td></tr>
+   <tr><td>HTLS 0% + trả thêm vào gốc, vay 70%: 18 · 24 · 30 · 36 tháng</td><td>3,5 · 8 · 13,5 · 19,5%</td></tr>
+   <tr><td>Vay 80% (quỹ thô/giãn xây): 18 · 24 · 30 · 36 tháng</td><td>5,5 · 10,5 · 17,5 · 25%</td></tr>
+  </table>
+ </div>
  <div class="sec">Hai phân khu trên sa bàn</div>
  <ul class="lk">
   <li><b>113,8ha</b>Thiên Đường Nhiệt Đới 1 (TĐ, NĐ, ĐLTĐ, ĐLTP)</li>
@@ -227,7 +257,19 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 
 <div class="legend" id="legend"><div class="lgt">Chú thích</div><ul id="lgItems"></ul><div class="tip">Kéo để di chuyển · cuộn/chụm để phóng · bấm căn hoặc biển giá để xem bảng giá</div></div>
 
-<script type="module" src="sa-ban.js?v=6"></script>
+<div id="csbhView" hidden role="dialog" aria-label="Chính sách bán hàng"><div class="t" id="csbhT"></div><img id="csbhImg" alt="Chính sách bán hàng Vinhomes Global Gate Hạ Long"><div class="csbhb"><button type="button" id="csbhP" class="g">‹ Trước</button><a id="csbhDl" download>⬇ Tải về</a><button type="button" id="csbhN" class="g">Sau ›</button><button type="button" id="csbhX" class="g">Đóng</button></div></div>
+<script>
+(function(){
+ var C=[['Quỹ thô giãn xây – TĐNĐ1','csbh/1-tho-gian-xay-tdnd1.jpg'],['Quỹ xây thô + giãn xây (F1 CĐT)','csbh/2-xay-tho-gian-xay-f1.jpg'],['Quỹ căn xây luôn','csbh/3-xay-luon.jpg'],['Quỹ hoàn thiện','csbh/4-hoan-thien.jpg']],cur=0,$=function(i){return document.getElementById(i)};
+ function show(i){cur=(i+C.length)%C.length;$('csbhT').textContent='CSBH 19/11/2026 · '+C[cur][0];$('csbhImg').src=C[cur][1];$('csbhDl').href=C[cur][1];$('csbhDl').setAttribute('download','CSBH-HLX-'+C[cur][1].split('/')[1]);$('csbhView').hidden=false;window.__track&&window.__track('xem_csbh',{q:cur})}
+ window.HLX_CSBH=function(t,z){if(!t)return {i:z==='TD'?0:1,name:'CSBH 19/11/2026 (theo quỹ căn)'};var s=String(t).toLowerCase();var i=s.indexOf('hoàn thiện')>=0?3:s.indexOf('xây luôn')>=0?2:(s.indexOf('thô')>=0||s.indexOf('giãn')>=0)?(z==='TD'?0:1):-1;return i<0?null:{i:i,name:C[i][0]}};
+ document.addEventListener('click',function(e){var b=e.target.closest('#csbhSec button[data-i],.csbhLink');if(b){show(+b.dataset.i)}});
+ $('csbhP').onclick=function(){show(cur-1)};$('csbhN').onclick=function(){show(cur+1)};$('csbhX').onclick=function(){$('csbhView').hidden=true};
+ $('csbhView').addEventListener('click',function(e){if(e.target.id==='csbhView')$('csbhView').hidden=true});
+ document.addEventListener('keydown',function(e){if(!$('csbhView').hidden){if(e.key==='Escape')$('csbhView').hidden=true;if(e.key==='ArrowRight')show(cur+1);if(e.key==='ArrowLeft')show(cur-1)}});
+})();
+</script>
+<script type="module" src="sa-ban.js?v=9"></script>
 <script type="module" src="/assets/dem-truy-cap.js?v=1"></script>
 <script src="/assets/tim-3-can-re.js?v=3" data-quy="quy-hang.json" data-ten="Hạ Long Xanh"></script>
 </body>

@@ -22,7 +22,7 @@ const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) 
 
 try { await Promise.race([document.fonts.load('800 25px "Be Vietnam Pro"'), new Promise(r => setTimeout(r, 2500))]) } catch (_) {}
 const [data, quy] = await Promise.all([
-  fetch(`lots-${KHU}.json?v=3`).then(r => r.json()),
+  fetch(`lots-${KHU}.json?v=4`).then(r => r.json()),
   fetch('quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
 ]);
 const W = data.meta.w, H = data.meta.h;
@@ -65,7 +65,7 @@ const sun = new THREE.DirectionalLight(0xffffff, 1.6); sun.position.set(-600, 90
 
 // ground: mặt bằng làm nền
 // nền: bản đồ Khu 1 Vịnh Thiên Đường (2 nửa ảnh trên máy tính, 1 ảnh nhỏ trên điện thoại)
-const parts = small ? [[`nen-${KHU}-nho.jpg`, 0, 1]] : [[`nen-${KHU}-a.jpg`, 0, .5], [`nen-${KHU}-b.jpg`, .5, .5]];
+const parts = small ? [[`nen-${KHU}-nho.jpg?v=2`, 0, 1]] : [[`nen-${KHU}-a.jpg?v=2`, 0, .5], [`nen-${KHU}-b.jpg?v=2`, .5, .5]];
 let nTex = 0; const TEXS = [];
 for (const [f, u0, uw] of parts) {
   const t = new THREE.TextureLoader().load(f, () => { if (++nTex === parts.length) { hideLoad(); if (curL) extras(curL, curQ) } });
@@ -313,6 +313,7 @@ function select(L, fly) {
   if (q?.so_tang) rows.push(['Số tầng', q.so_tang]);
   if (q?.mat_tien) rows.push(['Mặt tiền', q.mat_tien + ' m']);
   if (q?.tcbg) rows.push(['Tiêu chuẩn bàn giao', q.tcbg]);
+  { const c = window.HLX_CSBH && window.HLX_CSBH(q?.tcbg, L.zone); if (c) rows.push(['CSBH áp dụng', `<button type="button" class="csbhLink" data-i="${c.i}">${c.name} · xem</button>`]) }
   if (q?.huong) rows.push(['Hướng', q.huong]);
   let html = rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('');
   const bg = q?.bg || {}, d = n => n ? VN(n) : '–';
