@@ -323,11 +323,10 @@ function select(L, fly) {
   $('card').classList.toggle('chk', !!ck);
   $('card').classList.toggle('open', !!AVL[L.code]); $('card').classList.toggle('sold', !!sd);
   $('cTitle').textContent = L.code;
-  $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
+  $('cText').textContent = AVL[L.code] ? 'Căn đang còn trên bảng hàng.' : sd ? 'Căn đã bán.' : ck ? 'Cần check lại tình trạng căn.' : 'Chưa thấy trên bảng hàng đang theo dõi.';
   const tn = TYPE[L.t].name, lo = q?.loai && q.loai.toLowerCase() !== tn.toLowerCase() ? q.loai + ' · ' + tn : tn;
   const rows = [['Dự án', duAn(L.zone)], ['Phân khu', ZNAME[L.zone] || L.zone], ['Dãy', L.pre], ['Loại hình', lo]];
   rows.push(['Kiến trúc', ARCHZ[L.zone] ? 'Phong cách ' + ARCHZ[L.zone] : '<span style="color:var(--mut)">Đang cập nhật</span>']);
-  if (q?.quy) rows.push(['Quỹ', q.quy]);
   // thông số từng căn (bảng thông số diện tích của CĐT trong bảng hàng đại lý)
   const S = TS[L.code], m2 = v => (+v).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' m²';
   const dt = S?.[0] || q?.dt;
@@ -351,7 +350,6 @@ function select(L, fly) {
       ['Đơn giá / m² đất', bg.don_gia], ['Tổng tiền xây', bg.tong_xay], ['Tổng tiền đất', bg.tong_dat],
       ['Thanh toán sớm', bg.tts], ['Giá vay', bg.vay]];
     for (const [a, v, c] of P) if (v) html += `<dt>${a}</dt><dd${c ? ' class="big"' : ''}>${d(v)}</dd>`;
-    if (q.offers?.length > 1) html += `<dt class="h">Giá theo đại lý</dt><dd class="h"></dd>` + q.offers.map(o => `<dt>${SRC[o.src] || o.src}</dt><dd>${ty(o.gia)}${o.tcbg ? ' · ' + o.tcbg : ''}</dd>`).join('');
   }
   $('cRows').innerHTML = html;
   extras(L, q);

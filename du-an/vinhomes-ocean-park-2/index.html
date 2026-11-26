@@ -197,7 +197,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
  </div>
  <form class="srch" id="srch"><input id="q" placeholder="Tìm mã căn, VD: VX3-59, SB15-02" aria-label="Tìm mã căn" autocomplete="off"><button>Tìm</button></form><p class="srch-msg" id="qm"></p>
  <div class="sec">Quỹ căn còn hàng · <span id="quyN"></span> căn</div>
- <p class="note" style="margin:0 0 6px">Đã bán: căn trong quỹ đã bán hoặc bôi đỏ/gạch ngang trên bảng hàng đại lý. Check hàng: căn đại lý ghi CHECK/tô vàng, cần hỏi lại admin. Giá trên mái và trong danh sách là giá thanh toán theo tiến độ (TTTĐ), lấy giá thấp nhất giữa các đại lý. Cập nhật <span id="quyD"></span>, có thể thay đổi. Bấm để tới căn.</p>
+ <p class="note" style="margin:0 0 6px">Đã bán: căn trong quỹ đã bán hoặc bôi đỏ/gạch ngang trên bảng hàng. Check hàng: căn cần hỏi lại tình trạng. Giá trên mái và trong danh sách là giá thanh toán theo tiến độ (TTTĐ), lấy giá thấp nhất hiện có. Cập nhật <span id="quyD"></span>, có thể thay đổi. Bấm để tới căn.</p>
  <ul class="quy" id="quy"></ul>
  <div class="sec">Check hàng · <span id="ckN"></span> căn</div>
  <ul class="quy" id="chk"></ul>
@@ -213,7 +213,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
   <li><b>–</b>Đại lộ Bốn Mùa, Đại lộ Hừng Đông, Đại lộ Ngọc Trai</li>
  </ul>
  <p class="note"><b>Đang cập nhật:</b> OCP2 các phân khu Kinh Đô, San Hô, Ngọc Trai, Hải Âu, Đảo Dừa đang hiển thị bằng ảnh mặt bằng (xem được vị trí, chưa bấm chọn từng căn). Căn còn hàng ở các khu này nằm trong mục "Chưa định vị".</p>
- <p class="note">Mã căn và vị trí từng lô đọc từ tổng mặt bằng mã căn OCP3 và mặt bằng phân khu OCP2 (Sao Biển, Cọ Xanh, Chà Là). Các phân khu ghép trên một bản đồ chung, khoảng cách giữa OCP2 và OCP3 mang tính minh họa. Quỹ căn tổng hợp từ bảng hàng các đại lý (tab OCP2 &amp; 3 của sheet CHECK ĐL HUONG), tự cập nhật.</p>
+ <p class="note">Mã căn và vị trí từng lô đọc từ tổng mặt bằng mã căn OCP3 và mặt bằng phân khu OCP2 (Sao Biển, Cọ Xanh, Chà Là). Các phân khu ghép trên một bản đồ chung, khoảng cách giữa OCP2 và OCP3 mang tính minh họa. Quỹ căn tự cập nhật từ bảng hàng.</p>
 </aside>
 
 <div class="card" id="card" role="dialog" aria-live="polite">
@@ -233,7 +233,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--or);outline-offset:
 
 <div class="legend" id="legend"><div class="lgt">Trạng thái căn</div><div class="modes" id="lgModes" style="display:none"></div><ul id="lgItems"></ul><div class="tip">Kéo để di chuyển · cuộn/chụm để phóng · bấm căn để xem thông số & bảng giá</div></div>
 
-<script type="module" src="sa-ban.js?v=6"></script>
+<script type="module" src="sa-ban.js?v=7"></script>
 <script type="module" src="/assets/dem-truy-cap.js?v=1"></script>
 </body>
 </html>
