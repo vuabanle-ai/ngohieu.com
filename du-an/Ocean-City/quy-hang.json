@@ -1,6 +1,6 @@
 {
 "ver": 7,
-"updated": "08:57 26/11/2026",
+"updated": "11:16 26/11/2026",
 "nguon": "Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG",
 "doc_duoc": [
 "5S",
@@ -5307,7 +5307,7 @@
 "dt": "120.0",
 "dtxd": "448.5",
 "tcbg": "Thô",
-"huong": "Tây Nam",
+"huong": "TB",
 "gia": 28363679875,
 "bg": {
 "tttd": 28222000000,
@@ -10088,8 +10088,8 @@
 "tcbg": "Thô",
 "huong": "TN-ĐB",
 "bg": {
-"tts": 16791000000,
-"vay": 18802000000
+"tts": 19463000000,
+"vay": 21784000000
 },
 "quy": "Độc quyền Tân Hương Phát",
 "offers": [
