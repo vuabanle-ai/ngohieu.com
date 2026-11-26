@@ -452,7 +452,7 @@ $('bInfo').onclick = () => $('side').classList.toggle('open');
 function size() { const w = canvas.clientWidth, h = canvas.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix() }
 addEventListener('resize', size); size();
 camera.position.set(500, 4000, 3800); controls.target.set(0, 0, 0);
-paintAll(); VIEWS['toan-canh']();
+paintAll(); VIEWS['toan-canh'](); setTimeout(() => { if (!location.hash) VIEWS['toan-canh']() }, 900);
 let loaded = false;
 function hideLoad() { if (loaded) return; loaded = true; const l = $('load'); l.style.opacity = 0; setTimeout(() => l.remove(), 700) }
 setTimeout(hideLoad, 6000);
