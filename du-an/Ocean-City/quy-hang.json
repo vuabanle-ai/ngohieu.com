@@ -1,6 +1,6 @@
 {
 "ver": 7,
-"updated": "11:16 26/11/2026",
+"updated": "21:13 26/11/2026",
 "nguon": "Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG",
 "doc_duoc": [
 "5S",
@@ -483,7 +483,6 @@
 "KĐ-310": {
 "src": [
 "MICC",
-"Mayhomes",
 "Newstarland",
 "Đất Việt"
 ],
@@ -491,18 +490,13 @@
 "dt": "268.0",
 "dtxd": "477.4",
 "tcbg": "Thô",
-"huong": "Đông-Bắc Tây-Bắc",
+"huong": "ĐB-TB",
 "gia": 50182180547,
 "bg": {
 "tts": 41834000000
 },
 "quy": "Độc quyền Newstarland",
 "offers": [
-{
-"src": "Mayhomes",
-"gia": 50182180547,
-"tcbg": "Thô"
-},
 {
 "src": "Đất Việt",
 "gia": 50182180547,
@@ -613,7 +607,6 @@
 "dt": "150.0",
 "dtxd": "355.9",
 "tcbg": "Bàn giao thô",
-"huong": "Tây Nam",
 "gia": 27498244586,
 "bg": {
 "tts": 24417459993,
@@ -628,7 +621,7 @@
 {
 "src": "VHS",
 "gia": 27498244586,
-"tcbg": "Bàn giao thô"
+"tcbg": "Thô"
 }
 ]
 },
@@ -818,17 +811,32 @@
 },
 "KĐ5-33": {
 "src": [
+"Mayhomes",
 "Đất Việt"
 ],
 "loai": "Shophouse",
 "dt": "84.0",
 "dtxd": "316.6",
 "tcbg": "Hoàn thiện",
+"huong": "Tây-Nam",
 "gia": 18744113511,
 "bg": {
-"tts": 15295000000,
-"vay": 15590000000
+"tttd": 15591000000,
+"tts": 14418000000,
+"vay": 16138000000
+},
+"offers": [
+{
+"src": "Mayhomes",
+"gia": 18744113511,
+"tcbg": "Hoàn thiện"
+},
+{
+"src": "Đất Việt",
+"gia": 18744113511,
+"tcbg": "Hoàn thiện"
 }
+]
 },
 "KĐ5-37": {
 "src": [
@@ -842,32 +850,17 @@
 },
 "KĐ5-44": {
 "src": [
-"Mayhomes",
 "Đất Việt"
 ],
 "loai": "Shophouse",
 "dt": "84.0",
 "dtxd": "316.6",
 "tcbg": "Hoàn thiện",
-"huong": "Đông-Bắc",
 "gia": 18679370793,
 "bg": {
-"tttd": 15536000000,
-"tts": 14367000000,
-"vay": 15536000000
-},
-"offers": [
-{
-"src": "Mayhomes",
-"gia": 18679370793,
-"tcbg": "Hoàn thiện"
-},
-{
-"src": "Đất Việt",
-"gia": 18679370793,
-"tcbg": "Hoàn thiện"
+"tttd": 15535000000,
+"tts": 14366000000
 }
-]
 },
 "KĐ5-45": {
 "src": [
@@ -1483,7 +1476,6 @@
 "dt": "153.0",
 "dtxd": "351.1",
 "tcbg": "Bàn giao thô",
-"huong": "Tây Nam",
 "gia": 29360348434,
 "bg": {
 "tts": 26070418136,
@@ -1498,7 +1490,7 @@
 {
 "src": "VHS",
 "gia": 29360348434,
-"tcbg": "Bàn giao thô"
+"tcbg": "Thô"
 }
 ]
 },
@@ -3398,7 +3390,6 @@
 "dt": "140.0",
 "dtxd": "338.4",
 "tcbg": "Bàn giao thô",
-"huong": "Tây Nam",
 "gia": 32171428367,
 "bg": {
 "tts": 28566785489,
@@ -3413,7 +3404,7 @@
 {
 "src": "VHS",
 "gia": 32171428367,
-"tcbg": "Bàn giao thô"
+"tcbg": "Thô"
 }
 ]
 },
@@ -6227,8 +6218,8 @@
 "tcbg": "Thô",
 "huong": "ĐB",
 "bg": {
-"tts": 16791000000,
-"vay": 18802000000
+"tts": 16798000000,
+"vay": 18799000000
 },
 "quy": "Độc quyền Tân Hương Phát"
 },
@@ -6241,8 +6232,8 @@
 "tcbg": "Thô",
 "huong": "ĐB",
 "bg": {
-"tts": 16888000000,
-"vay": 18910000000
+"tts": 16895000000,
+"vay": 18908000000
 },
 "quy": "Độc quyền Tân Hương Phát"
 },
@@ -9967,8 +9958,8 @@
 "tcbg": "Thô",
 "gia": 31304101372,
 "bg": {
-"tttd": 26051000000,
-"tts": 24094000000
+"tttd": 26043000000,
+"tts": 24086000000
 },
 "offers": [
 {
