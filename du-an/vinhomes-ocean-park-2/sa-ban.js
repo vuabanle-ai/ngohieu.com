@@ -36,7 +36,7 @@ const [data, quy] = await Promise.all([
   fetch('../Ocean-City/quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
 ]);
 const W = data.meta.w, H = data.meta.h;
-let TS = {}; fetch('thong-so.json?v=1').then(r => r.ok ? r.json() : null).then(j => { if (j) TS = j.d }).catch(() => {});
+let TS = {}; fetch('thong-so.json?v=2').then(r => r.ok ? r.json() : null).then(j => { if (j) TS = j.d }).catch(() => {});
 const AVL = quy.available || {}, SOLD = quy.sold || {}, CHK = quy.check || {};
 
 // ---------- scene ----------
@@ -317,7 +317,8 @@ function select(L, fly) {
   const S = TS[L.code], m2 = v => (+v).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' m²';
   const dt = S?.[0] || q?.dt;
   if (dt) rows.push(['DT đất', m2(dt)]); else rows.push(['DT đất (ước tính)', '≈ ' + fmtArea(L.area / .81)]);
-  if (S?.[10]) rows.push(['Mặt tiền', S[10]]);
+  if (S?.[11]) rows.push(['Mẫu nhà', S[11]]);
+  if (S?.[10]) rows.push(['Mặt tiền × chiều sâu', S[10]]);
   if (S?.[9] || q?.huong) rows.push(['Hướng', S?.[9] || q.huong]);
   if (S) {
     const fl = S.slice(1, 6), n = S[8] || fl.filter(Boolean).length;
