@@ -6,7 +6,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 // lots-dao-ngoc.json: {meta:{w,h} (mét), lots:[[mã, loại Y|P|K, [[x,z]…] (mét, gốc góc trên-trái ảnh nền)]]}
 // quy-hang.json: {updated, available:{mã:{src,tcbg,loai,dt,dtxd,gia,huong}}, sold:{}}
 const $ = id => document.getElementById(id);
-const KHU = 'ocean-city';
+const KHU = 'ocean-park-3';
 const ZNAME = { 'HĐ': 'Hải Đăng', 'TĐ': 'Thời Đại', AD: 'Ánh Dương', PB: 'Phố Biển', 'VTĐ': 'Vịnh Thiên Đường', VT: 'Vịnh Tây', VX: 'Vịnh Xanh', 'ĐN': 'Đảo Ngọc', BM: 'Đại lộ Bốn Mùa', SB: 'Sao Biển', CX: 'Cọ Xanh', CL: 'Chà Là', 'KĐ': 'Kinh Đô', NT: 'Đại lộ Ngọc Trai' };
 const OCP3 = new Set(['HĐ', 'TĐ', 'AD', 'PB', 'VTĐ', 'VT', 'VX', 'ĐN', 'BM']);
 const duAn = z => OCP3.has(z) ? 'Ocean Park 3 – The Crown' : 'Ocean Park 2 – The Empire';
@@ -33,7 +33,7 @@ const ty = n => (n / 1e9).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) 
 try { await Promise.race([document.fonts.load('800 25px "Be Vietnam Pro"'), new Promise(r => setTimeout(r, 2500))]) } catch (_) {}
 const [data, quy] = await Promise.all([
   fetch(`lots-${KHU}.json?v=4`).then(r => r.json()),
-  fetch('quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+  fetch('../Ocean-City/quy-hang.json?v=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
 ]);
 const W = data.meta.w, H = data.meta.h;
 const AVL = quy.available || {}, SOLD = quy.sold || {}, CHK = quy.check || {};
@@ -236,7 +236,7 @@ for (const [t, x, z] of data.meta.amen || []) addLabel('zone tv', t, X(x), 30, Z
 for (const [t, x, z] of data.meta.zones || []) addLabel('zone', t, X(x), 40, Z(z), 500, 7500);
 for (const [t, x, z] of data.meta.rzones || []) addLabel('zone tv', t + ' · ảnh mặt bằng', X(x), 40, Z(z), 500, 7500);
 for (const [t, set] of [['VINHOMES OCEAN PARK 2 · THE EMPIRE', l => !OCP3.has(l.zone)], ['VINHOMES OCEAN PARK 3 · THE CROWN', l => OCP3.has(l.zone)]]) {
-  const g = lots.filter(set); let x = 0, z = 1e9; g.forEach(l => { x += l.cx; z = Math.min(z, l.cz) }); addLabel('zone tv', t, x / g.length, 60, z - 120, 5000, 30000) }
+  const g = lots.filter(set); if (!g.length) continue; let x = 0, z = 1e9; g.forEach(l => { x += l.cx; z = Math.min(z, l.cz) }); addLabel('zone tv', t, x / g.length, 60, z - 120, 5000, 30000) }
 
 const v = new THREE.Vector3();
 function placeLabels() {
@@ -282,7 +282,7 @@ for (const z of [...ZORD2, ...ZORD3]) VIEWS['z-' + z] = () => zoneView(z);
   ps.forEach(p => VIEWS['d-' + p] = exactView(p));
   const have = new Set(lots.map(l => l.zone)), RZ = data.meta.rzones || [];
   RZ.forEach(([n, x, z, w, h], i) => { VIEWS['r-' + i] = () => { if (FLAT) { const t = Math.tan(camera.fov * Math.PI / 360); flyTo(X(x), Z(z), Math.max(h * 1.15, w * 1.15 / camera.aspect) / (2 * t) / KF()) } else flyTo(X(x), Z(z), Math.hypot(w, h) * 1.1, .85) } });
-  $('chips').innerHTML = `<button data-v="toan-canh" class="on">Toàn Ocean City</button><button data-v="ocp2">OCP2 The Empire</button><button data-v="ocp3">OCP3 The Crown</button>`
+  $('chips').innerHTML = `<button data-v="toan-canh" class="on">Toàn dự án</button><a class="chipLink" href="/du-an/Ocean-Park-2/">Sang Ocean Park 2 ›</a>`
     + [...ZORD2.filter(z => z !== 'KĐ'), ...ZORD3].filter(z => have.has(z)).map(z => `<button data-v="z-${z}">${ZNAME[z]}</button>`).join('')
     + RZ.map(([n], i) => `<button data-v="r-${i}" title="Ảnh mặt bằng, chưa bấm chọn từng căn">${n}<small>ảnh</small></button>`).join('')
     + `<select id="daySel" aria-label="Chọn dãy"><option value="">Chọn dãy…</option>${ps.map(p => `<option>${p}</option>`).join('')}</select>`;
