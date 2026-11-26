@@ -198,15 +198,27 @@ const badges = [];
     const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthWrite: false, depthTest: false }));
     sp.center.set(.5, 0); sp.renderOrder = 6; sp.userData.lot = L.i; scene.add(sp);
     const st = new THREE.Mesh(stickG, chk ? stickY : stickR); st.renderOrder = 5; scene.add(st);
-    badges.push({ sp, st, L });
+    badges.push({ sp, st, L, gia, chk });
   }
+  badges.sort((a, b) => (b.chk - a.chk) || (a.gia - b.gia));
 }
 function placeBadges() {
   const d = camera.position.distanceTo(controls.target) / (FLAT ? KF() / .82 : 1);
   const w = Math.max(14, Math.min(170, d * .045)), h = w * 200 / 512, lift = FLAT ? 1 : Math.max(8, w * .35);
   const show = d < 6500 && mode === 'mo-ban';
+  // chống chồng biển: biển nào đè lên biển đã hiện thì ẩn (phóng gần sẽ hiện đủ)
+  const cw = canvas.clientWidth, chh = canvas.clientHeight, ppu = chh / (2 * camera.position.distanceTo(controls.target) * Math.tan(camera.fov * Math.PI / 360));
+  const bw = w * ppu + 4, bhh = h * ppu + 3, kept = [], pv = new THREE.Vector3();
   for (const b of badges) {
-    const vis = show && !SOLD[b.L.code]; b.sp.visible = vis; b.st.visible = vis && !FLAT;
+    let vis = show && !SOLD[b.L.code];
+    if (vis) {
+      pv.set(b.L.cx, b.L.h + lift, b.L.cz).project(camera);
+      const x = (pv.x + 1) / 2 * cw, y = (1 - pv.y) / 2 * chh;
+      if (x < -bw || x > cw + bw || y < -bhh || y > chh + bhh) vis = false;
+      else if (kept.some(([kx, ky]) => Math.abs(kx - x) < bw && Math.abs(ky - y) < bhh)) vis = false;
+      else kept.push([x, y]);
+    }
+    b.sp.visible = vis; b.st.visible = vis && !FLAT;
     if (!vis) continue;
     b.sp.scale.set(w, h, 1); b.sp.position.set(b.L.cx, b.L.h + lift, b.L.cz);
     b.st.scale.set(Math.max(.4, w / 40), lift, Math.max(.4, w / 40)); b.st.position.set(b.L.cx, b.L.h + lift / 2, b.L.cz);
