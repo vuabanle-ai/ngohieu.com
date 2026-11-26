@@ -311,6 +311,7 @@ function select(L, fly) {
   $('cText').textContent = AVL[L.code] ? 'Còn trên bảng hàng của ' + q.src.map(s => SRC[s] || s).join(', ') + '.' : sd ? 'Đã bán: ' + (sd.why || '') + '.' : ck ? 'Cần check lại với admin: ' + (ck.why || '') + '.' : 'Chưa thấy trên bảng hàng đại lý đang theo dõi.';
   const tn = TYPE[L.t].name, lo = q?.loai && q.loai.toLowerCase() !== tn.toLowerCase() ? q.loai + ' · ' + tn : tn;
   const rows = [['Dự án', duAn(L.zone)], ['Phân khu', ZNAME[L.zone] || L.zone], ['Dãy', L.pre], ['Loại hình', lo]];
+  rows.push(['Kiến trúc', ARCHZ[L.zone] ? 'Phong cách ' + ARCHZ[L.zone] : '<span style="color:var(--mut)">Đang cập nhật</span>']);
   if (q?.quy) rows.push(['Quỹ', q.quy]);
   // thông số từng căn (bảng thông số diện tích của CĐT trong bảng hàng đại lý)
   const S = TS[L.code], m2 = v => (+v).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + ' m²';
