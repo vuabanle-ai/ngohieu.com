@@ -9,7 +9,7 @@ export const PROJECTS = [
  {id:'green-paradise',name:'Vinhomes Green Paradise',dev:'Vinhomes',area:'Cần Giờ, TP. Hồ Chí Minh',type:'thap',tags:['hot']},
  {id:'king-park',name:'Vinhomes King Park',dev:'Vinhomes · MIK Group',area:'Kinh Bắc, Bắc Ninh',type:'thap',tags:['hot','moi'],img:'/du-an/Vinhomes-King-Park/anh-king-park.jpg',saban:'/du-an/Vinhomes-King-Park/',note:'268,8ha, sân golf 90ha · 1.210 căn Thời Đại & Hưng Thịnh có mã từng căn trên sa bàn'},
  {id:'hai-van-bay',name:'Vinhomes Hải Vân Bay',dev:'Vinhomes',area:'Đà Nẵng',type:'thap',tags:['moi'],img:'/du-an/Vinhomes-Hai-Van-Bay/anh-dao-ngoc.jpg',saban:'/du-an/Vinhomes-Hai-Van-Bay/',note:'Đảo Ngọc (2.303 căn), Vịnh Mây (457 căn) và Bạch Vân (2.518 căn) có mã từng căn trên sa bàn'},
- {id:'ha-long-xanh',name:'Vinhomes Global Gate Hạ Long',dev:'Vinhomes',area:'Hạ Long, Quảng Ninh',type:'thap',tags:[]},
+ {id:'ha-long-xanh',name:'Vinhomes Global Gate Hạ Long',dev:'Vinhomes',area:'Hạ Long Xanh, Quảng Ninh',type:'thap',tags:['moi'],img:'/du-an/Vinhomes-Global-Gate-Ha-Long/anh-ha-long-xanh.jpg',saban:'/du-an/Vinhomes-Global-Gate-Ha-Long/',note:'Vịnh Bình Minh 1 & Thiên Đường Nhiệt Đới 1 trên một sa bàn · quỹ căn đại lý'},
  {id:'lumiere-spring-bay',name:'Lumière Spring Bay',dev:'Masterise Homes',area:'Vinhomes Ocean Park 2, Hưng Yên',type:'cao',tags:[]},
  {id:'masteri-lakeside',name:'Masteri Lakeside',dev:'Masterise Homes',area:'Vinhomes Ocean Park 1, Hà Nội',type:'cao',tags:[]},
  {id:'masteri-trinity',name:'Masteri Trinity Square',dev:'Masterise Homes',area:'Vinhomes Ocean Park 2, Hưng Yên',type:'cao',tags:[]},

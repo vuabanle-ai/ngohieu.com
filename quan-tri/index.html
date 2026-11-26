@@ -49,7 +49,7 @@ const db=F.getFirestore(initializeApp(FIREBASE));
 const $=id=>document.getElementById(id), fmt=n=>(n||0).toLocaleString('vi-VN');
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const vnDay=(off=0)=>new Date(Date.now()+7*3600e3-off*864e5).toISOString().slice(0,10);
-const PAGE={'trang-chu':'Trang chủ','du-an':'Danh sách dự án','du-an_Ocean-City':'Trang chọn Ocean City','du-an_vinhomes-ocean-park-2':'Sa bàn Ocean Park 2','du-an_vinhomes-ocean-park-3':'Sa bàn Ocean Park 3','du-an_Happy-Home-Pho-Hien':'Sa bàn Happy Home Phố Hiến','du-an_Vinhomes-Hai-Van-Bay':'Sa bàn Hải Vân Bay','du-an_Vinhomes-King-Park':'Sa bàn King Park','chinh-sach-bao-mat':'Chính sách bảo mật'};
+const PAGE={'trang-chu':'Trang chủ','du-an':'Danh sách dự án','du-an_Ocean-City':'Trang chọn Ocean City','du-an_vinhomes-ocean-park-2':'Sa bàn Ocean Park 2','du-an_vinhomes-ocean-park-3':'Sa bàn Ocean Park 3','du-an_Happy-Home-Pho-Hien':'Sa bàn Happy Home Phố Hiến','du-an_Vinhomes-Hai-Van-Bay':'Sa bàn Hải Vân Bay','du-an_Vinhomes-King-Park':'Sa bàn King Park','du-an_Vinhomes-Global-Gate-Ha-Long':'Sa bàn Hạ Long Xanh','chinh-sach-bao-mat':'Chính sách bảo mật'};
 const SRC={truc_tiep:'Vào thẳng / gõ địa chỉ',facebook:'Facebook',tiktok:'TikTok',zalo:'Zalo',google:'Google',youtube:'YouTube',khac:'Trang khác'};
 let D={};
 try{(await F.getDocs(F.collection(db,'stats'))).forEach(d=>D[d.id]=d.data())}catch(e){$('upd').textContent='Không tải được số liệu: '+e.code;throw e}

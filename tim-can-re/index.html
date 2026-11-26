@@ -372,7 +372,7 @@ function docTin(raw){
  const q=r.ma&&BYMA.get(bo(r.ma));
  if(q){r.du_an=q.p;if(r.loai==='Khác')r.loai=q.loai;if(!r.dt)r.dt=q.dt}
  else{const ds=[...new Set([...ALL.map(i=>i.p),...PROJECTS.map(p=>p.name)])].sort((a,b)=>b.length-a.length);
-  const al=[['ocean park 2','Ocean Park 2'],['ocp2','Ocean Park 2'],['ocean park 3','Ocean Park 3'],['ocp3','Ocean Park 3'],['ocean park 1','Ocean Park 1'],['ocp1','Ocean Park 1'],['pho hien','Phố Hiến Heritage'],['hai van bay','Hải Vân Bay'],['king park','Vinhomes King Park'],['smart city','Vinhomes Smart City'],['times city','Times City'],['royal city','Royal City']];
+  const al=[['ocean park 2','Ocean Park 2'],['ocp2','Ocean Park 2'],['ocean park 3','Ocean Park 3'],['ocp3','Ocean Park 3'],['ocean park 1','Ocean Park 1'],['ocp1','Ocean Park 1'],['pho hien','Phố Hiến Heritage'],['hai van bay','Hải Vân Bay'],['king park','Vinhomes King Park'],['ha long xanh','Hạ Long Xanh'],['hlx','Hạ Long Xanh'],['global gate ha long','Hạ Long Xanh'],['smart city','Vinhomes Smart City'],['times city','Times City'],['royal city','Royal City']];
   const hit=al.find(([k])=>x.includes(k));r.du_an=hit?hit[1]:(ds.find(n=>x.includes(bo(n).replace(/^vinhomes /,'')))||'')}
  return r}
 
