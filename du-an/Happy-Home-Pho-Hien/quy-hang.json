@@ -1,5 +1,5 @@
 {
- "updated": "03:10 27/11/2026",
+ "updated": "09:50 27/11/2026",
  "available": {
   "HK-13": [
    "DV"
@@ -9,6 +9,8 @@
    "VIC"
   ],
   "HK-23": [
+   "DML",
+   "DMLQC",
    "DVQC",
    "EC",
    "FSQC",
@@ -24,6 +26,8 @@
    "VHS"
   ],
   "HK-25": [
+   "DML",
+   "DMLQC",
    "DVQC",
    "EC",
    "FSQC",
@@ -39,6 +43,8 @@
    "VHS"
   ],
   "HK-27": [
+   "DML",
+   "DMLQC",
    "DVQC",
    "EC",
    "FSQC",
@@ -76,6 +82,7 @@
    "MH"
   ],
   "HK-55": [
+   "DML",
    "DMLQC",
    "DVQC",
    "EC",
@@ -119,6 +126,7 @@
    "RM"
   ],
   "HK-73": [
+   "DML",
    "DMLQC",
    "DVQC",
    "EC",
@@ -138,6 +146,7 @@
    "VHS"
   ],
   "HK-75": [
+   "DML",
    "DMLQC",
    "DVQC",
    "EC",
@@ -180,12 +189,13 @@
    "SSM"
   ],
   "TC1-17": [
-   "EC",
    "MDQC",
    "MV",
    "THP"
   ],
   "TC1-22": [
+   "DML",
+   "DMLQC",
    "DVQC",
    "EC",
    "FSQC",
@@ -207,6 +217,8 @@
    "HDH"
   ],
   "TC1-27": [
+   "DML",
+   "DMLQC",
    "DV",
    "DVQC",
    "EC",
@@ -226,6 +238,8 @@
    "DML"
   ],
   "TC1-29": [
+   "DML",
+   "DMLQC",
    "DVQC",
    "EC",
    "FSQC",
@@ -247,6 +261,9 @@
   "TC1-33": [
    "RM"
   ],
+  "TC1-35": [
+   "MV"
+  ],
   "TC1-37": [
    "MD",
    "RM"
@@ -259,6 +276,9 @@
   ],
   "TC1-47": [
    "MICC"
+  ],
+  "TC1-49": [
+   "MV"
   ],
   "TC1-50": [
    "VHS"
@@ -284,6 +304,7 @@
    "MD"
   ],
   "TC1-68": [
+   "DML",
    "DMLQC",
    "DVQC",
    "EC",
@@ -306,6 +327,7 @@
    "DV"
   ],
   "TC1-72": [
+   "DML",
    "DMLQC",
    "DVQC",
    "EC",
@@ -338,6 +360,7 @@
    "THP"
   ],
   "TC1-84": [
+   "DML",
    "DMLQC",
    "DVQC",
    "EC",
@@ -372,16 +395,6 @@
   "TC2-28": [
    "DV"
   ],
-  "TC2-30": [
-   "EC",
-   "MDQC",
-   "SSM"
-  ],
-  "TC2-32": [
-   "EC",
-   "MDQC",
-   "SSM"
-  ],
   "TC2-34": [
    "DV"
   ],
@@ -396,6 +409,7 @@
    "FSQC"
   ],
   "TC2-44": [
+   "DML",
    "DMLQC",
    "DVQC",
    "EC",
@@ -429,6 +443,8 @@
    "VHS"
   ],
   "TC3-25": [
+   "DML",
+   "DMLQC",
    "DVQC",
    "EC",
    "FSQC",
@@ -461,18 +477,6 @@
   "TC3-47": [
    "MICC"
   ],
-  "TC3-49": [
-   "DMLQC",
-   "EC",
-   "FS",
-   "HDHQC",
-   "MDQC",
-   "MICCQC",
-   "MVQC",
-   "RMQC",
-   "SSM",
-   "VHS"
-  ],
   "TC3-51": [
    "FSQC"
   ],
@@ -490,6 +494,7 @@
    "DML"
   ],
   "TC3-67": [
+   "DML",
    "DMLQC",
    "DVQC",
    "EC",
@@ -589,10 +594,6 @@
    "since": "25/11/2026",
    "why": "bôi đỏ"
   },
-  "TC1-49": {
-   "since": "26/11/2026",
-   "why": "không còn trên bảng hàng"
-  },
   "TC1-56": {
    "since": "24/11/2026",
    "why": "bôi đỏ"
@@ -613,6 +614,14 @@
    "since": "24/11/2026",
    "why": "bôi đỏ"
   },
+  "TC2-30": {
+   "since": "27/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC2-32": {
+   "since": "27/11/2026",
+   "why": "bôi đỏ"
+  },
   "TC2-46": {
    "since": "24/11/2026",
    "why": "bôi đỏ"
@@ -623,6 +632,10 @@
   },
   "TC3-31": {
    "since": "24/11/2026",
+   "why": "bôi đỏ"
+  },
+  "TC3-49": {
+   "since": "27/11/2026",
    "why": "bôi đỏ"
   },
   "ĐLTC-16": {
@@ -649,6 +662,7 @@
  "check": {
   "HK-23": {
    "dq": [
+    "DML",
     "MD",
     "NSL",
     "RM",
@@ -679,13 +693,8 @@
     "MV"
    ],
    "boi_do": [
-    "DVQC",
     "FSQC",
     "MD",
-    "MVQC",
-    "NSL",
-    "NSLQC",
-    "RM",
     "VHS"
    ]
   },
@@ -697,67 +706,21 @@
     "MD"
    ]
   },
-  "TC2-30": {
-   "dq": [
-    "SSM"
-   ],
-   "boi_do": [
-    "DVQC",
-    "FSQC",
-    "MD",
-    "MVQC",
-    "NSL",
-    "NSLQC",
-    "RM",
-    "THP",
-    "VHS"
-   ]
-  },
-  "TC2-32": {
-   "dq": [
-    "SSM"
-   ],
-   "boi_do": [
-    "DVQC",
-    "FSQC",
-    "MD",
-    "MVQC",
-    "NSL",
-    "NSLQC",
-    "RM",
-    "THP",
-    "VHS"
-   ]
-  },
   "TC3-13": {
    "dq": [
     "MV",
     "SSM"
    ],
    "boi_do": [
-    "DMLQC",
     "HDHQC",
     "MD",
     "THP",
     "VHS"
    ]
   },
-  "TC3-49": {
-   "dq": [
-    "SSM"
-   ],
-   "boi_do": [
-    "DVQC",
-    "FSQC",
-    "MD",
-    "NSL",
-    "NSLQC",
-    "RM",
-    "THP"
-   ]
-  },
   "TC3-67": {
    "dq": [
+    "DML",
     "MD",
     "NSL",
     "RM",
