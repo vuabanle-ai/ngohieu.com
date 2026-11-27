@@ -1,6 +1,6 @@
 {
 "ver": 7,
-"updated": "12:03 27/11/2026",
+"updated": "22:06 27/11/2026",
 "nguon": "Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG",
 "doc_duoc": [
 "5S",
@@ -935,6 +935,7 @@
 },
 "KĐ5-52": {
 "src": [
+"Home Plus",
 "Mayhomes",
 "TPL",
 "Đất Việt"
@@ -960,6 +961,10 @@
 "src": "Đất Việt",
 "gia": 18981632724,
 "tcbg": "Hoàn thiện"
+},
+{
+"src": "Home Plus",
+"gia": 18981632724
 },
 {
 "src": "TPL",
@@ -2220,6 +2225,36 @@
 "tcbg": "Thô có thang",
 "gia": 20614595448
 },
+"NT1-02": {
+"src": [
+"Home Plus"
+],
+"loai": "Biệt thự song lập",
+"dt": "160.0",
+"dtxd": "377.0",
+"huong": "Đông Bắc",
+"gia": 39595679766,
+"bg": {
+"tttd": 35864000000,
+"tts": 36752000000,
+"vay": 40660000000
+}
+},
+"NT1-03": {
+"src": [
+"Home Plus"
+],
+"loai": "Biệt thự song lập",
+"dt": "160.0",
+"dtxd": "377.0",
+"huong": "Đông Bắc",
+"gia": 39018577717,
+"bg": {
+"tttd": 35346000000,
+"tts": 36220000000,
+"vay": 40066000000
+}
+},
 "NT1-06": {
 "src": [
 "Mayhomes"
@@ -2561,6 +2596,21 @@
 "gia": 32919062660
 }
 ]
+},
+"NT1-52": {
+"src": [
+"Home Plus"
+],
+"loai": "Biệt thự song lập",
+"dt": "142.0",
+"dtxd": "319.0",
+"huong": "Đông Bắc",
+"gia": 33388878752,
+"bg": {
+"tttd": 30242000000,
+"tts": 30991000000,
+"vay": 34286000000
+}
 },
 "NT1-66": {
 "src": [
@@ -5127,13 +5177,6 @@
 }
 ]
 },
-"SH20-18": {
-"src": [
-"Newstarland"
-],
-"loai": "Liền kề",
-"tcbg": "Hoàn thiện"
-},
 "SH20-30": {
 "src": [
 "Newstarland"
@@ -5246,20 +5289,6 @@
 },
 "quy": "Độc quyền Hoàng Sơn"
 },
-"SH22-21": {
-"src": [
-"Hoàng Sơn"
-],
-"loai": "Liền kề",
-"dtxd": "192.0",
-"tcbg": "Thô loại 1",
-"gia": 11609515503,
-"bg": {
-"tts": 9383690379,
-"vay": 10263806759
-},
-"quy": "Độc quyền Hoàng Sơn"
-},
 "SH22-69": {
 "src": [
 "Hoàng Sơn"
@@ -5275,13 +5304,6 @@
 "quy": "Độc quyền Hoàng Sơn"
 },
 "SH22-85": {
-"src": [
-"Newstarland"
-],
-"loai": "Liền kề",
-"tcbg": "Hoàn thiện"
-},
-"SH22-89": {
 "src": [
 "Newstarland"
 ],
@@ -6423,7 +6445,6 @@
 },
 "VTĐ8-04": {
 "src": [
-"Mayhomes",
 "Newstarland",
 "Đất Việt"
 ],
@@ -6431,18 +6452,12 @@
 "dt": "96.0",
 "dtxd": "383.4",
 "tcbg": "Thô",
-"huong": "Đông Nam",
 "gia": 25287656070,
 "bg": {
 "tts": 21022000000
 },
 "quy": "Độc quyền Newstarland",
 "offers": [
-{
-"src": "Mayhomes",
-"gia": 25287656070,
-"tcbg": "Thô"
-},
 {
 "src": "Đất Việt",
 "gia": 25287656070,
@@ -9721,20 +9736,6 @@
 "loai": "Liền kề",
 "tcbg": "Hoàn thiện"
 },
-"ĐD3-53": {
-"src": [
-"Newstarland"
-],
-"loai": "Liền kề",
-"tcbg": "Hoàn thiện"
-},
-"ĐD3-55": {
-"src": [
-"Newstarland"
-],
-"loai": "Liền kề",
-"tcbg": "Hoàn thiện"
-},
 "ĐD3-57": {
 "src": [
 "Newstarland"
@@ -9750,13 +9751,6 @@
 "tcbg": "Hoàn thiện"
 },
 "ĐD3-61": {
-"src": [
-"Newstarland"
-],
-"loai": "Liền kề",
-"tcbg": "Hoàn thiện"
-},
-"ĐD3-65": {
 "src": [
 "Newstarland"
 ],
@@ -12005,6 +11999,7 @@
 },
 "ĐĐD-48": {
 "src": [
+"Home Plus",
 "Newstarland",
 "SSM",
 "Đất Việt"
@@ -12013,6 +12008,7 @@
 "dt": "112",
 "dtxd": "330.7",
 "tcbg": "Thô có thang",
+"huong": "Đông Nam",
 "gia": 19930418031,
 "bg": {
 "tttd": 17957087730,
@@ -12035,6 +12031,10 @@
 "src": "Newstarland",
 "gia": 19930418031,
 "tcbg": "330.7"
+},
+{
+"src": "Home Plus",
+"gia": 19930418031
 }
 ]
 },
@@ -14162,6 +14162,21 @@
 ],
 "why": "bảng hàng ghi Check admin"
 },
+"SH22-21": {
+"src": [
+"Hoàng Sơn"
+],
+"loai": "Liền kề",
+"dtxd": "192.0",
+"tcbg": "Thô loại 1",
+"gia": 11609515503,
+"bg": {
+"tts": 9383690379,
+"vay": 10263806759
+},
+"quy": "Độc quyền Hoàng Sơn",
+"why": "quỹ độc quyền chưa bôi nhưng MICC bôi đỏ"
+},
 "SH8-81": {
 "src": [
 "SSM",
@@ -16251,6 +16266,7 @@
 },
 "ĐĐD-68": {
 "src": [
+"Home Plus",
 "Newstarland",
 "SSM",
 "VHS",
@@ -16260,6 +16276,7 @@
 "dt": "112",
 "dtxd": "330.7",
 "tcbg": "Thô có thang",
+"huong": "Đông Nam",
 "gia": 20110081021,
 "bg": {
 "tttd": 18117755160,
@@ -16282,6 +16299,10 @@
 "src": "Newstarland",
 "gia": 20110081021,
 "tcbg": "331.0"
+},
+{
+"src": "Home Plus",
+"gia": 20110081021
 },
 {
 "src": "VHS",
@@ -16405,6 +16426,10 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"BX-17": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "BX-194": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Bighomes"
@@ -16417,8 +16442,32 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"BX-53": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "BX-60": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL10-124": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL10-130": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL10-181": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL10-191": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL10-200": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CL10-26": {
@@ -16429,6 +16478,10 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CL11-06": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CL11-24": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
@@ -16437,24 +16490,84 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CL12-06": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL12-12": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CL12-41": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL12-94": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CL13-05": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CL13-109": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL14-144": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CL14-64": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL15-13": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL15-14": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL5-74": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL6-06": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL6-12": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL6-136": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL6-14": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CL6-20": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CL6-22": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CL6-40": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL6-50": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL7-11": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CL7-53": {
@@ -16463,6 +16576,10 @@
 },
 "CL8-116": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CL8-50": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CL8-70": {
@@ -16485,12 +16602,24 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX10-118": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX10-119": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX10-54": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX11-01": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX11-102": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX11-104": {
@@ -16527,6 +16656,22 @@
 },
 "CX11-146": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX11-150": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX11-160": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX11-162": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX11-33": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX11-36": {
@@ -16585,8 +16730,24 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX15-11": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX15-13": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX15-153": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX15-155": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX15-161": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX15-55": {
@@ -16605,12 +16766,24 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX15-74": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX15-76": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX15-78": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX15-99": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX16-102": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX16-107": {
@@ -16637,8 +16810,24 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX17-04": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX17-06": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX17-08": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX17-10": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX17-105": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX17-154": {
@@ -16649,12 +16838,32 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX17-18": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX17-20": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX17-51": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX17-64": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX17-65": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX17-87": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX17-91": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX17-95": {
@@ -16669,8 +16878,16 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX18-110": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX18-141": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX18-83": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX2-123": {
@@ -16685,8 +16902,20 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX2-49": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX3-146": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX3-160": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX3-24": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "CX3-66": {
@@ -16721,6 +16950,42 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX7-102": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX7-119": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX7-121": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX7-127": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX7-132": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX7-134": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX7-149": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX7-153": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX7-157": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX7-159": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
@@ -16749,12 +17014,28 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX8-49": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX8-78": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX9-09": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"CX9-157": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "CX9-162": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"CX9-19": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "HA1-09": {
@@ -16765,24 +17046,88 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"HA1-90": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA2-22": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "HA2-95": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA3-104": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "HA4-14": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"HA6-15": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA6-36": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA6-37": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA6-38": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA6-75": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "HA6-85": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA7-41": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA7-43": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA7-83": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA8-141": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA8-148": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "HA8-157": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"HA8-161": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "HA8-47": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA9-135": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"HA9-162": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "HA9-48": {
@@ -16800,6 +17145,14 @@
 "KĐ-115": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Newstarland"
+},
+"KĐ-176": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"KĐ-192": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "KĐ-270": {
 "since": "26/11/2026",
@@ -17013,8 +17366,16 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SB-231": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SB-233": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SB-235": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SB-245": {
@@ -17029,6 +17390,10 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SB-275": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SB-293": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Newstarland"
@@ -17039,6 +17404,22 @@
 },
 "SB-35": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SB10-108": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SB10-165": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SB10-177": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SB10-181": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SB10-184": {
@@ -17077,12 +17458,24 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SB6-316": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SB7-37": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SB8-219": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SB8-234": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SB9-223": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SB9-376": {
@@ -17097,6 +17490,14 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH10-04": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH10-06": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH10-13": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
@@ -17109,6 +17510,14 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn"
 },
+"SH10-60": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH10-62": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH11-02": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Bighomes"
@@ -17117,17 +17526,45 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn, QTC"
 },
+"SH11-04": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH11-06": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH11-13": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH11-19": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH11-41": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH11-52": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH11-56": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH12-03": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn, QTC"
+},
+"SH12-04": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH12-05": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH12-15": {
 "since": "26/11/2026",
@@ -17145,6 +17582,10 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH14-03": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH14-115": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
@@ -17155,6 +17596,10 @@
 },
 "SH14-120": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH14-19": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH14-21": {
@@ -17171,6 +17616,10 @@
 },
 "SH14-64": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH15-14": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH15-30": {
@@ -17197,9 +17646,25 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
 },
+"SH16-45": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH16-49": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH16-51": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
+},
+"SH16-53": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH16-55": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH16-63": {
 "since": "26/11/2026",
@@ -17209,8 +17674,16 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH17-53": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH18-01": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH19-14": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH19-48": {
@@ -17223,6 +17696,14 @@
 },
 "SH2-43": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH20-02": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH20-03": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH20-08": {
@@ -17249,6 +17730,10 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
 },
+"SH20-18": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH20-19": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
@@ -17269,8 +17754,16 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH20-35": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH20-39": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH20-41": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH20-49": {
@@ -17289,6 +17782,18 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH20-62": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH20-68": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH20-70": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH20-74": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn, QTC"
@@ -17297,13 +17802,45 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH21-06": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-08": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-10": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH21-12": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-128": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-18": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-19": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-21": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH21-27": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: TPL"
+},
+"SH21-29": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH21-39": {
 "since": "26/11/2026",
@@ -17313,6 +17850,14 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
 },
+"SH21-42": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-48": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH21-51": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
@@ -17321,8 +17866,48 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: TPL"
 },
+"SH21-65": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-67": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-71": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-73": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-75": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-91": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH21-93": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH22-04": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH22-06": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH22-07": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH22-08": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH22-11": {
@@ -17332,6 +17917,10 @@
 "SH22-22": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
+},
+"SH22-27": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH22-35": {
 "since": "26/11/2026",
@@ -17355,6 +17944,10 @@
 },
 "SH22-62": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH22-65": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH22-66": {
@@ -17381,6 +17974,10 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
 },
+"SH22-89": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH22-91": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
@@ -17393,16 +17990,56 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: 5S"
 },
+"SH3-04": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH3-21": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH4-04": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH4-10": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn, QTC"
+},
+"SH4-30": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH4-34": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH4-59": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH4-79": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH5-39": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH5-40": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH5-41": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH6-01": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH6-10": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH6-116": {
@@ -17417,8 +18054,16 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH6-38": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH6-52": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH6-54": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH6-55": {
@@ -17429,9 +18074,25 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH6-65": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH6-67": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH6-93": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH7-02": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Novasky"
+},
+"SH7-06": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH7-13": {
 "since": "26/11/2026",
@@ -17445,12 +18106,48 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"SH7-30": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH7-32": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH7-36": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH7-40": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Hương Phát"
 },
 "SH7-42": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH7-46": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH7-50": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH7-52": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH8-01": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH8-11": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH8-14": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "SH8-44": {
@@ -17469,8 +18166,20 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Hoàng Sơn, QTC"
 },
+"SH9-04": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "SH9-06": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH9-18": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"SH9-38": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "VTĐ2-137": {
@@ -17789,12 +18498,56 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"ĐD1-06": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "ĐD1-09": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"ĐD1-100": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD1-101": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD1-136": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD1-14": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD1-18": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD1-195": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "ĐD1-207": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD1-22": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD1-28": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD1-34": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD1-49": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "ĐD1-77": {
@@ -17803,6 +18556,14 @@
 },
 "ĐD2-122": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD2-21": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD2-22": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "ĐD2-30": {
@@ -17824,6 +18585,22 @@
 "ĐD3-17": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: Tân Thời Đại"
+},
+"ĐD3-27": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD3-53": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD3-55": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD3-65": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "ĐD4-63": {
 "since": "26/11/2026",
@@ -17849,6 +18626,22 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"ĐD6-32": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD6-38": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD6-46": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD6-52": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "ĐD6-54": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
@@ -17865,6 +18658,10 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
+"ĐD7-108": {
+"since": "27/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
 "ĐD7-55": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
@@ -17879,6 +18676,10 @@
 },
 "ĐD8-35": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐD9-21": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "ĐLBM-102": {
@@ -17955,6 +18756,10 @@
 },
 "ĐĐD-165": {
 "since": "26/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐĐD-203": {
+"since": "27/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
 },
 "ĐĐD-234": {
