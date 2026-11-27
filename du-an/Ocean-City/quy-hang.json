@@ -1,6 +1,6 @@
 {
 "ver": 7,
-"updated": "21:13 26/11/2026",
+"updated": "12:03 27/11/2026",
 "nguon": "Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG",
 "doc_duoc": [
 "5S",
@@ -9765,7 +9765,6 @@
 },
 "ĐD8-01": {
 "src": [
-"Home Plus",
 "TPL",
 "Đất Việt"
 ],
@@ -9773,17 +9772,12 @@
 "dt": "180.0",
 "dtxd": "405.0",
 "tcbg": "Thô không thang",
-"gia": 32904568405,
+"gia": 32910000000,
 "bg": {
-"tttd": 29607000000,
-"tts": 27381000000,
-"vay": 30646000000
+"tts": 30610000000,
+"vay": 32190000000
 },
 "offers": [
-{
-"src": "Home Plus",
-"gia": 32904568405
-},
 {
 "src": "Đất Việt",
 "gia": 32910000000,
