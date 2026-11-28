@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Sa bàn Vinhomes Riverside & The Harmony | ngohieu.com</title>
+<meta name="description" content="Sa bàn 2D quỹ căn biệt thự Vinhomes Riverside và The Harmony, Long Biên, Hà Nội: phân khu, loại hình, trạng thái còn hàng.">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e31b23;--ink:#1f2329;--mute:#6b7178;--line:#e3e5e8;--ok:#16a34a;--chk:#eab308;--sold:#9ca3af;--panel:#fff}
+*{box-sizing:border-box;min-width:0}
+html,body{margin:0;height:100%;overflow:hidden;font:14.5px/1.45 "Be Vietnam Pro",system-ui,sans-serif;color:var(--ink);background:#eceef0}
+button,input,select{font:inherit}
+#top{position:fixed;left:0;right:0;top:0;height:56px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:12px;padding:0 14px;z-index:10}
+#top a.logo{background:var(--red);color:#fff;font-weight:700;text-decoration:none;padding:6px 10px;border-radius:8px;white-space:nowrap}
+#top h1{font-size:16px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#top .sp{flex:1}
+#q{width:min(260px,40vw);font-size:16px;border:1px solid var(--line);border-radius:9px;padding:7px 10px}
+#view{position:fixed;left:0;right:340px;top:56px;bottom:0;overflow:hidden;touch-action:none;cursor:grab;background:#f6f7f8}
+#view.drag{cursor:grabbing}
+#world{position:absolute;left:0;top:0;transform-origin:0 0;will-change:transform}
+#world img{position:absolute;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
+#ov{position:absolute;left:0;top:0;overflow:visible}
+.u{cursor:pointer}
+.u rect{stroke:#fff;stroke-width:3}
+.u.available rect{fill:rgba(22,163,74,.78)}.u.check rect{fill:rgba(234,179,8,.85)}.u.sold rect{fill:rgba(156,163,175,.9)}
+.u.sel rect{stroke:var(--red);stroke-width:9}
+.u text{font-weight:700;fill:#fff;paint-order:stroke;stroke:rgba(0,0,0,.55);stroke-width:4px;pointer-events:none}
+.price{font-weight:700;pointer-events:none}
+.zl{position:absolute;pointer-events:auto;transform:translate(-50%,-50%);background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:10px;padding:5px 10px;font-weight:700;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,.15);cursor:pointer;font-size:13px}
+.zl small{display:block;font-weight:500;color:var(--mute);font-size:11px}
+#side{position:fixed;right:0;top:56px;bottom:0;width:340px;background:#fff;border-left:1px solid var(--line);display:flex;flex-direction:column;z-index:5}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:12px}
+.stat{border:1px solid var(--line);border-radius:10px;padding:7px 9px;background:#fff;text-align:left;cursor:pointer}
+.stat[aria-pressed=true]{border-color:var(--c);box-shadow:inset 0 0 0 1px var(--c)}
+.stat b{display:block;font-size:19px}.stat span{font-size:12px;color:var(--mute);display:flex;gap:5px;align-items:center}
+.dot{width:10px;height:10px;border-radius:3px;background:var(--c);display:inline-block;flex:none}
+.flt{display:flex;gap:6px;padding:0 12px 10px}.flt select{flex:1;border:1px solid var(--line);border-radius:9px;padding:6px 8px;background:#fff;font-size:14px}
+#list{flex:1;overflow:auto;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;width:100%;padding:9px 12px;border:0;border-bottom:1px solid var(--line);background:none;text-align:left;cursor:pointer}
+.row:hover{background:#f6f7f8}.row .t{font-weight:600}.row .m{font-size:12px;color:var(--mute)}.row .p{font-weight:700;white-space:nowrap}
+.empty{padding:18px 12px;color:var(--mute)}
+#legend{padding:10px 12px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mute);display:flex;gap:12px;flex-wrap:wrap}
+#legend span{display:flex;align-items:center;gap:5px}
+#card{position:fixed;right:352px;top:68px;width:330px;max-height:calc(100% - 80px);overflow:auto;background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:8;display:none}
+#card .hd{display:flex;justify-content:space-between;gap:8px;padding:12px 14px;border-bottom:1px solid var(--line)}
+#card h2{margin:0;font-size:19px}#card .x{border:0;background:none;font-size:22px;color:var(--mute);width:36px;height:36px;cursor:pointer}
+#card .bd{padding:12px 14px}
+dl{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;margin:10px 0 0}dt{color:var(--mute)}dd{margin:0;text-align:right;font-weight:600}
+.badge{display:inline-flex;gap:6px;align-items:center;padding:3px 10px;border-radius:99px;font-weight:600;font-size:13px;color:#fff;background:var(--c)}
+.btn{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 12px;font-weight:600;cursor:pointer}
+.btn.red{background:var(--red);color:#fff;border-color:var(--red)}
+#zoom{position:fixed;right:352px;bottom:12px;display:flex;flex-direction:column;gap:6px;z-index:6}
+#zoom button{width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:#fff;font-size:20px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.12)}
+#admin{position:fixed;left:12px;bottom:12px;z-index:9;background:#fff;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.2);padding:10px;width:min(520px,calc(100% - 24px));display:none}
+#admin textarea{width:100%;height:80px;font:12px/1.4 ui-monospace,monospace;border:1px solid var(--line);border-radius:8px}
+#note{position:fixed;left:12px;top:68px;z-index:6;background:rgba(255,255,255,.95);border-radius:10px;padding:6px 10px;font-size:12px;color:var(--mute);max-width:420px}
+@media(max-width:760px){#view{right:0;bottom:40vh}#side{top:auto;height:40vh;width:auto;left:0}#card{left:8px;right:8px;width:auto;top:64px;max-height:calc(60vh - 80px)}#zoom{right:8px;bottom:calc(40vh + 8px)}#top h1{display:none}#note{display:none}}
+</style>
+</head>
+<body>
+<header id="top"><a class="logo" href="/">ngohieu.com</a><h1>Vinhomes Riverside &amp; The Harmony · Long Biên</h1><span class="sp"></span><input id="q" type="search" placeholder="Tìm mã căn, VD HD4-25" aria-label="Tìm mã căn"></header>
+<div id="view"><div id="world"></div><div id="zl" style="position:absolute;inset:0;pointer-events:none"></div></div>
+<div id="note">Kéo để di chuyển · cuộn / chụm 2 ngón để phóng to · bấm vào căn để xem thông tin</div>
+<div id="zoom"><button type="button" id="zin" aria-label="Phóng to">+</button><button type="button" id="zout" aria-label="Thu nhỏ">−</button><button type="button" id="zfit" aria-label="Toàn cảnh" style="font-size:14px">⤢</button></div>
+<aside id="side">
+ <div class="stats">
+  <button class="stat" type="button" data-s="available" style="--c:var(--ok)" aria-pressed="false"><b id="nA">0</b><span><i class="dot"></i>Còn hàng</span></button>
+  <button class="stat" type="button" data-s="check" style="--c:var(--chk)" aria-pressed="false"><b id="nC">0</b><span><i class="dot"></i>Check hàng</span></button>
+  <button class="stat" type="button" data-s="sold" style="--c:var(--sold)" aria-pressed="false"><b id="nS">0</b><span><i class="dot"></i>Đã bán</span></button>
+ </div>
+ <div class="flt"><select id="fZone" aria-label="Phân khu"><option value="">Tất cả phân khu</option></select><select id="fType" aria-label="Loại hình"><option value="">Tất cả loại hình</option></select></div>
+ <div id="list"></div>
+ <div id="legend"><span><i class="dot" style="--c:var(--ok)"></i>Còn hàng</span><span><i class="dot" style="--c:var(--chk)"></i>Check hàng</span><span><i class="dot" style="--c:var(--sold)"></i>Đã bán</span><span>Giá: TTTĐ thấp nhất</span></div>
+</aside>
+<section id="card" aria-live="polite"></section>
+<div id="admin"><b>Gắn vị trí mã căn</b> <span style="color:var(--mute)">– bấm vào lô trên bản đồ, gõ mã, Enter. Xong sao chép các dòng dán vào bảng hàng.</span><textarea id="adminRows" spellcheck="false"></textarea><button class="btn red" id="copyRows" type="button">Sao chép các dòng</button></div>
+
+<script>
+{
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=v=>{v=+String(v||'').replace(/[^\d.]/g,'');if(!v)return'';return v>=1000?(v/1000).toLocaleString('vi-VN',{maximumFractionDigits:2})+' tỷ':v.toLocaleString('vi-VN')+' tr'};
+const KIND={1:'Biệt thự đơn lập',2:'Biệt thự song lập',3:'Biệt thự tứ lập',4:'Liền kề',5:'Nhà vườn',6:'Nhà phố (shophouse)',0:'Biệt thự Riverside'};
+const ST={available:{t:'Còn hàng',c:'#16a34a'},check:{t:'Check hàng',c:'#eab308'},sold:{t:'Đã bán',c:'#9ca3af'}};
+const ADMIN=new URLSearchParams(location.search).has('admin');
+let M,units=[],statusF='',sel=null,W=9844,H=9750;
+const view=$('#view'),world=$('#world');
+let s=0.1,tx=0,ty=0;
+const apply=()=>{world.style.transform=`translate(${tx}px,${ty}px) scale(${s})`;
+  document.querySelectorAll('#zl .zl').forEach(el=>{el.style.left=(tx+el.dataset.x*s)+'px';el.style.top=(ty+el.dataset.y*s)+'px';el.style.display=s>0.3?'none':''});
+  const lbl=s<0.16?'none':'';document.querySelectorAll('.u text,.price').forEach(e=>e.style.display=lbl)};
+function fit(){const r=view.getBoundingClientRect();const x0=0,y0=700,x1=W,y1=8560;s=Math.min(r.width/(x1-x0),r.height/(y1-y0))*0.98;tx=(r.width-(x1-x0)*s)/2-x0*s;ty=(r.height-(y1-y0)*s)/2-y0*s;apply()}
+function zoomAt(f,cx,cy){const ns=Math.max(0.04,Math.min(1.6,s*f));tx=cx-(cx-tx)*ns/s;ty=cy-(cy-ty)*ns/s;s=ns;apply()}
+function flyTo(px,py,ns){const r=view.getBoundingClientRect();s=ns||Math.max(s,0.45);tx=r.width/2-px*s;ty=r.height/2-py*s;apply()}
+view.addEventListener('wheel',e=>{e.preventDefault();const r=view.getBoundingClientRect();zoomAt(Math.exp(-e.deltaY*0.0015),e.clientX-r.left,e.clientY-r.top)},{passive:false});
+const pts=new Map();let moved=false,last=null,pinch=null;
+view.addEventListener('pointerdown',e=>{view.setPointerCapture(e.pointerId);pts.set(e.pointerId,{x:e.clientX,y:e.clientY});moved=false;view.classList.add('drag');
+  if(pts.size===2){const [a,b]=[...pts.values()];pinch={d:Math.hypot(a.x-b.x,a.y-b.y)}}});
+view.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;const p=pts.get(e.pointerId),dx=e.clientX-p.x,dy=e.clientY-p.y;pts.set(e.pointerId,{x:e.clientX,y:e.clientY});
+  if(Math.abs(dx)+Math.abs(dy)>2)moved=true;
+  if(pts.size===2&&pinch){const [a,b]=[...pts.values()],d=Math.hypot(a.x-b.x,a.y-b.y),r=view.getBoundingClientRect();zoomAt(d/pinch.d,(a.x+b.x)/2-r.left,(a.y+b.y)/2-r.top);pinch.d=d}
+  else if(pts.size===1){tx+=dx;ty+=dy;apply()}});
+const up=e=>{pts.delete(e.pointerId);if(pts.size<2)pinch=null;if(!pts.size)view.classList.remove('drag')};
+view.addEventListener('pointerup',e=>{const wasMoved=moved;up(e);if(!wasMoved)onClick(e)});view.addEventListener('pointercancel',up);
+$('#zin').onclick=()=>{const r=view.getBoundingClientRect();zoomAt(1.5,r.width/2,r.height/2)};
+$('#zout').onclick=()=>{const r=view.getBoundingClientRect();zoomAt(1/1.5,r.width/2,r.height/2)};
+$('#zfit').onclick=fit;
+addEventListener('resize',fit);
+
+/* nền bản vẽ */
+world.style.width=W+'px';world.style.height=H+'px';
+world.innerHTML='<img src="low.jpg" alt="" style="left:0;top:0;width:100%;height:100%">'+[['t00',0,0],['t01',1,0],['t10',0,1],['t11',1,1]].map(([n,c,r])=>`<img src="${n}.jpg" alt="" loading="eager" style="left:${c*50}%;top:${r*50}%;width:50%;height:50%">`).join('')+'<svg id="ov" width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'"></svg>';
+fit();
+
+/* dữ liệu */
+fetch('map.json?v=1').then(r=>r.json()).then(m=>{M=m;W=m.W;H=m.H;
+  m.zones.forEach((z,i)=>{if(!z.c)return;const el=document.createElement('div');el.className='zl';el.style.left=z.c[0]+'px';el.style.top=z.c[1]+'px';
+    el.innerHTML=`${esc(z.n)}<small>${esc(z.proj)}</small>`;el.dataset.x=z.c[0];el.dataset.y=z.c[1];
+    el.onpointerdown=e=>e.stopPropagation();el.onclick=()=>flyTo(z.c[0],z.c[1],0.24);$('#zl').appendChild(el)});apply();
+  $('#fZone').innerHTML+=m.zones.map((z,i)=>`<option value="${i}">${esc(z.n)} · ${esc(z.proj)}</option>`).join('');
+  $('#fType').innerHTML+=[1,2,3,4,5,6,0].map(k=>`<option value="${esc(KIND[k])}">${esc(KIND[k])}</option>`).join('');
+  loadUnits()});
+function parseCSV(t){const rows=[];let r=[],v='',q=false;for(let i=0;i<t.length;i++){const c=t[i];if(q){if(c=='"'){if(t[i+1]=='"'){v+='"';i++}else q=false}else v+=c}else if(c=='"')q=true;else if(c==','){r.push(v);v=''}else if(c=='\n'||c=='\r'){if(c=='\r'&&t[i+1]=='\n')i++;r.push(v);rows.push(r);r=[];v=''}else v+=c}if(v||r.length){r.push(v);rows.push(r)}return rows}
+const stOf=x=>{x=String(x||'').toLowerCase();return x.includes('bán')&&!x.includes('còn')?'sold':x.includes('check')||x.includes('giữ')||x.includes('cọc')?'check':'available'};
+function nearestSlot(x,y){let b=-1,bd=1e18;M.slots.forEach((sl,i)=>{const d=(sl[1]-x)**2+(sl[2]-y)**2;if(d<bd){bd=d;b=i}});return Math.sqrt(bd)<90?b:-1}
+function loadUnits(){fetch('units.csv',{cache:'no-store'}).then(r=>r.text()).then(t=>{
+  const rows=parseCSV(t).filter(r=>r.some(c=>c.trim()));if(!rows.length)return render();
+  const Hh=rows[0].map(h=>h.trim().toLowerCase()),col=n=>Hh.findIndex(h=>h.startsWith(n));
+  const I={code:col('mã'),st:col('trạng'),type:col('loại'),pk:col('phân'),area:col('dt đất'),size:col('kích'),build:col('dt xây'),gfa:col('tổng'),dir:col('hướng'),price:col('giá'),note:col('ghi'),x:Hh.indexOf('x'),y:Hh.indexOf('y')};
+  units=rows.slice(1).map(r=>{const g=k=>I[k]>=0?(r[I[k]]||'').trim():'';const u={code:g('code').toUpperCase(),st:stOf(g('st')),type:g('type'),pk:g('pk'),area:g('area'),size:g('size'),build:g('build'),gfa:g('gfa'),dir:g('dir'),price:g('price'),note:g('note'),x:+g('x'),y:+g('y')};
+    u.slot=u.x&&u.y?nearestSlot(u.x,u.y):-1;if(u.slot>=0){const sl=M.slots[u.slot];u.z=sl[6];if(!u.type)u.type=KIND[sl[0]]}return u}).filter(u=>u.code);
+  render();const c=new URLSearchParams(location.search).get('can');if(c){const u=units.find(x=>x.code===c.toUpperCase());if(u)pick(u,true)}
+ }).catch(()=>render())}
+
+/* vẽ trạng thái lên lô */
+function draw(){
+  const ov=$('#ov');
+  ov.innerHTML=units.filter(u=>u.slot>=0).map(u=>{const [k,cx,cy,w,h,a]=M.slots[u.slot];const fs=Math.max(14,Math.min(w,h)*0.32);
+    const cls=u.st+(sel===u.code?' sel':'');const pr=u.st!=='sold'&&money(u.price);
+    return `<g class="u ${cls}" data-c="${esc(u.code)}" transform="translate(${cx} ${cy}) rotate(${a})"><rect x="${-w/2}" y="${-h/2}" width="${w}" height="${h}" rx="4"/><text text-anchor="middle" dominant-baseline="central" font-size="${fs}">${esc(u.code)}</text></g>`+
+     (pr?`<g class="price" transform="translate(${cx} ${cy-h/2-34})"><rect x="-70" y="-24" width="140" height="44" rx="10" fill="#fff" stroke="${ST[u.st].c}" stroke-width="5"/><text text-anchor="middle" dominant-baseline="central" font-size="26" fill="#1f2329">${esc(pr)}</text></g>`:'')}).join('');
+  apply();
+}
+function visible(){const q=$('#q').value.trim().toUpperCase(),z=$('#fZone').value,t=$('#fType').value;
+  return units.filter(u=>(!q||u.code.includes(q))&&(!statusF||u.st===statusF)&&(!t||u.type===t)&&(z===''||u.z===+z))}
+function render(){
+  const c=x=>units.filter(u=>u.st===x).length;$('#nA').textContent=c('available');$('#nC').textContent=c('check');$('#nS').textContent=c('sold');
+  document.querySelectorAll('.stat').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s===statusF));
+  const v=visible().sort((a,b)=>a.code.localeCompare(b.code,'vi',{numeric:true}));
+  $('#list').innerHTML=v.length?v.map(u=>`<button class="row" type="button" data-c="${esc(u.code)}"><i class="dot" style="--c:${ST[u.st].c}"></i><span><span class="t">${esc(u.code)}</span><br><span class="m">${esc(u.type)}${u.area?' · '+esc(u.area)+' m²':''}${u.slot<0?' · chưa định vị':''}</span></span><span class="p">${u.st==='sold'?'':esc(money(u.price))}</span></button>`).join('')
+    :`<div class="empty">${units.length?'Không có căn nào khớp bộ lọc.':'Quỹ căn đang được cập nhật.'}</div>`;
+  draw();
+}
+['#q','#fZone','#fType'].forEach(x=>$(x).addEventListener('input',render));
+document.querySelectorAll('.stat').forEach(b=>b.onclick=()=>{statusF=statusF===b.dataset.s?'':b.dataset.s;render()});
+$('#list').onclick=e=>{const r=e.target.closest('.row');if(r)pick(units.find(u=>u.code===r.dataset.c),true)};
+
+function pick(u,fly){if(!u)return;sel=u.code;draw();
+  if(fly&&u.slot>=0){const sl=M.slots[u.slot];flyTo(sl[1],sl[2],0.6);if(innerWidth>760){tx-=180;apply()}}
+  history.replaceState(null,'','?can='+encodeURIComponent(u.code));
+  const zn=M.zones[u.z]?.n;
+  const c=$('#card');c.innerHTML=`<div class="hd"><div><h2>Lô ${esc(u.code)}</h2><div style="color:var(--mute)">${esc(u.type)}${zn?' · '+esc(zn):''}</div></div><button class="x" type="button" aria-label="Đóng">×</button></div>
+   <div class="bd"><span class="badge" style="--c:${ST[u.st].c}">${ST[u.st].t}</span>
+   <dl><dt>DT đất</dt><dd>${u.area?esc(u.area)+' m²':'–'}</dd>${u.size?`<dt>Kích thước</dt><dd>${esc(u.size)}</dd>`:''}<dt>DT xây dựng</dt><dd>${u.build?esc(u.build)+' m²':'–'}</dd><dt>Tổng sàn</dt><dd>${u.gfa?esc(u.gfa)+' m²':'–'}</dd><dt>Hướng</dt><dd>${esc(u.dir||'–')}</dd><dt>Giá TTTĐ</dt><dd>${u.st==='sold'?'–':esc(money(u.price)||'Liên hệ')}</dd>
+   ${u.note?`<dt>Ghi chú</dt><dd style="grid-column:1/-1;text-align:left;font-weight:400">${esc(u.note)}</dd>`:''}</dl>
+   <div style="margin-top:12px"><button class="btn" id="cp" type="button">Sao chép link căn</button> <span id="cpm" style="color:var(--mute);font-size:12px"></span></div></div>`;
+  c.style.display='block';c.querySelector('.x').onclick=()=>{c.style.display='none';sel=null;draw();history.replaceState(null,'',location.pathname)};
+  $('#cp').onclick=async()=>{try{await navigator.clipboard.writeText(location.origin+location.pathname+'?can='+encodeURIComponent(u.code));$('#cpm').textContent='Đã sao chép'}catch(e){$('#cpm').textContent=location.href}};
+}
+function onClick(e){
+  const g=e.target.closest&&e.target.closest('.u');if(g){pick(units.find(u=>u.code===g.dataset.c),false);return}
+  const r=view.getBoundingClientRect(),px=(e.clientX-r.left-tx)/s,py=(e.clientY-r.top-ty)/s;
+  if(ADMIN){const i=nearestSlot(px,py);const sl=i>=0?M.slots[i]:null;adminAsk(sl?sl:[null,px,py],sl)}
+}
+function adminAsk(p,sl){const c=$('#card');c.innerHTML=`<div class="hd"><div><h2>Gắn mã căn</h2><div style="color:var(--mute)">${sl?esc(KIND[sl[0]])+' · '+esc(M.zones[sl[6]]?.n||''):'Vị trí tự do'}</div></div><button class="x" type="button" aria-label="Đóng">×</button></div><div class="bd"><form id="af" style="display:flex;gap:8px"><input id="ac" placeholder="Mã căn" autocomplete="off" style="flex:1;font-size:16px;border:1px solid var(--line);border-radius:9px;padding:7px 10px"><button class="btn red" type="submit">Thêm</button></form></div>`;
+  c.style.display='block';c.querySelector('.x').onclick=()=>c.style.display='none';$('#ac').focus();
+  $('#af').onsubmit=ev=>{ev.preventDefault();const code=$('#ac').value.trim().toUpperCase();if(!code)return;
+    const row=[code,'Còn hàng',sl?KIND[sl[0]]:'',sl?M.zones[sl[6]]?.n||'':'','','','','','','','',Math.round(p[1]),Math.round(p[2])].join('\t');
+    $('#adminRows').value+=($('#adminRows').value?'\n':'')+row;c.style.display='none'}}
+if(ADMIN){$('#admin').style.display='block';$('#copyRows').onclick=async()=>{try{await navigator.clipboard.writeText($('#adminRows').value)}catch(e){$('#adminRows').select()}}}
+}
+</script>
+<script src="/assets/chong-copy.js?v=1"></script>
+<script src="/assets/nut-trang-chu.js?v=1" defer></script>
+<script type="module" src="/assets/dem-truy-cap.js?v=1"></script>
+</body>
+</html>
