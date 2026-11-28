@@ -1,6 +1,6 @@
 {
 "ver": 7,
-"updated": "22:06 27/11/2026",
+"updated": "11:54 28/11/2026",
 "nguon": "Bảng hàng đại lý – tab OCP2 & 3, sheet CHECK ĐL HUONG",
 "doc_duoc": [
 "5S",
@@ -936,27 +936,20 @@
 "KĐ5-52": {
 "src": [
 "Home Plus",
-"Mayhomes",
 "TPL",
 "Đất Việt"
 ],
 "loai": "Shophouse",
 "dt": "84.0",
-"dtxd": "316.6",
+"dtxd": "317.0",
 "tcbg": "Hoàn thiện",
-"huong": "Đông-Bắc",
+"huong": "Đông Bắc",
 "gia": 18981632724,
 "bg": {
-"tttd": 15788000000,
-"tts": 14601000000,
-"vay": 15788000000
+"tts": 15539000000,
+"vay": 16343000000
 },
 "offers": [
-{
-"src": "Mayhomes",
-"gia": 18981632724,
-"tcbg": "Hoàn thiện"
-},
 {
 "src": "Đất Việt",
 "gia": 18981632724,
@@ -2735,7 +2728,6 @@
 },
 "NT1-70": {
 "src": [
-"Newstarland",
 "Đất Việt"
 ],
 "loai": "Biệt thự song lập",
@@ -2744,21 +2736,9 @@
 "tcbg": "Thô",
 "gia": 33030890149,
 "bg": {
-"tts": 27537000000
-},
-"quy": "Độc quyền Newstarland",
-"offers": [
-{
-"src": "Đất Việt",
-"gia": 33030890149,
-"tcbg": "Thô"
-},
-{
-"src": "Newstarland",
-"gia": 33030890149,
-"tcbg": "Thô"
+"tts": 29329000000,
+"vay": 30794000000
 }
-]
 },
 "NT1-71": {
 "src": [
@@ -9430,20 +9410,6 @@
 }
 ]
 },
-"ĐD-01": {
-"src": [
-"Newstarland"
-],
-"loai": "Liền kề",
-"dt": "132.0",
-"dtxd": "442.1",
-"tcbg": "Thô có thang",
-"gia": 23675496253,
-"bg": {
-"tts": 19619000000
-},
-"quy": "Độc quyền Newstarland"
-},
 "ĐD1-05": {
 "src": [
 "Hoàng Sơn",
@@ -9893,7 +9859,6 @@
 },
 "ĐLBM-107": {
 "src": [
-"Mayhomes",
 "Newstarland",
 "Đất Việt"
 ],
@@ -9901,18 +9866,12 @@
 "dt": "110.0",
 "dtxd": "402.9",
 "tcbg": "Thô",
-"huong": "Đông Bắc",
 "gia": 23877171749,
 "bg": {
 "tts": 19869000000
 },
 "quy": "Độc quyền Newstarland",
 "offers": [
-{
-"src": "Mayhomes",
-"gia": 23877171749,
-"tcbg": "Thô"
-},
 {
 "src": "Đất Việt",
 "gia": 23877171749,
@@ -11036,7 +10995,6 @@
 },
 "ĐLBM-63": {
 "src": [
-"Newstarland",
 "Đất Việt"
 ],
 "loai": "Shophouse",
@@ -11045,21 +11003,9 @@
 "tcbg": "Thô",
 "gia": 28813982790,
 "bg": {
-"tts": 23974000000
-},
-"quy": "Độc quyền Newstarland",
-"offers": [
-{
-"src": "Đất Việt",
-"gia": 28813982790,
-"tcbg": "Thô"
-},
-{
-"src": "Newstarland",
-"gia": 28813982790,
-"tcbg": "Thô"
+"tts": 25514000000,
+"vay": 26835000000
 }
-]
 },
 "ĐLBM-68": {
 "src": [
@@ -13752,34 +13698,6 @@
 ],
 "why": "bảng hàng ghi Check admin"
 },
-"NT2-80": {
-"src": [
-"Newstarland",
-"Đất Việt"
-],
-"loai": "Biệt thự song lập",
-"dt": "141.7",
-"dtxd": "322.6",
-"tcbg": "Thô",
-"gia": 33735583132,
-"bg": {
-"tts": 28125000000
-},
-"quy": "Độc quyền Newstarland",
-"offers": [
-{
-"src": "Đất Việt",
-"gia": 33735583132,
-"tcbg": "Thô"
-},
-{
-"src": "Newstarland",
-"gia": 33735583132,
-"tcbg": "Thô"
-}
-],
-"why": "quỹ độc quyền chưa bôi nhưng Bighomes bôi đỏ"
-},
 "NT2-95": {
 "src": [
 "Bighomes",
@@ -14747,7 +14665,6 @@
 "gia": 15959639478,
 "bg": {
 "tttd": 14356841840,
-"tts": 13274680160,
 "vay": 14861850620
 },
 "quy": "Độc quyền SSM",
@@ -16144,102 +16061,6 @@
 ],
 "why": "bảng hàng ghi Check admin"
 },
-"ĐLSH-45": {
-"src": [
-"5S",
-"Bighomes",
-"Home Plus",
-"Mayhomes",
-"Newstarland",
-"Novasky",
-"Phúc Lộc",
-"Queen Land",
-"SSM",
-"Tân Hương Phát",
-"Tân Thời Đại",
-"VHS",
-"VSL",
-"Đất Việt"
-],
-"loai": "SH",
-"dt": "120",
-"dtxd": "448.5",
-"tcbg": "Thô",
-"huong": "Tây - Nam Đông - Bắc",
-"gia": 26013208481,
-"bg": {
-"tttd": 23435865660,
-"tts": 21686933650,
-"vay": 24252033930
-},
-"quy": "Độc quyền Newstarland, SSM, Tân Hương Phát",
-"offers": [
-{
-"src": "Novasky",
-"gia": 26013000000,
-"tcbg": "Thô"
-},
-{
-"src": "Mayhomes",
-"gia": 26013208481,
-"tcbg": "Thô"
-},
-{
-"src": "Đất Việt",
-"gia": 26013208481,
-"tcbg": "Thô"
-},
-{
-"src": "Queen Land",
-"gia": 26013208481,
-"tcbg": "Thô"
-},
-{
-"src": "Bighomes",
-"gia": 26013208481
-},
-{
-"src": "Phúc Lộc",
-"gia": 26013208481,
-"tcbg": "Thô"
-},
-{
-"src": "Tân Thời Đại",
-"gia": 26013208481,
-"tcbg": "Thô"
-},
-{
-"src": "SSM",
-"gia": 26013208481,
-"tcbg": "Thô"
-},
-{
-"src": "5S",
-"gia": 26013208481,
-"tcbg": "Thô"
-},
-{
-"src": "Newstarland",
-"gia": 26013208481,
-"tcbg": "Shophouse"
-},
-{
-"src": "Home Plus",
-"gia": 26013208481
-},
-{
-"src": "VHS",
-"gia": 26013208481,
-"tcbg": "Bàn giao thô"
-},
-{
-"src": "Tân Hương Phát",
-"gia": 26013208481,
-"tcbg": "Thô"
-}
-],
-"why": "bảng hàng ghi Check admin"
-},
 "ĐLSH-47": {
 "src": [
 "Bighomes",
@@ -17301,6 +17122,10 @@
 "NT2-73": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"NT2-80": {
+"since": "28/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: Bighomes"
 },
 "NT2-81": {
 "since": "26/11/2026",
@@ -18494,6 +18319,13 @@
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: 5S"
 },
+"ĐD-01": {
+"loai": "Liền kề",
+"dt": "132.0",
+"gia": 23675496253,
+"since": "28/11/2026",
+"why": "không còn trên bảng hàng đại lý"
+},
 "ĐD1-01": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
@@ -18737,6 +18569,10 @@
 "ĐLSH-34": {
 "since": "26/11/2026",
 "why": "đại lý bôi đỏ / ghi đã bán: MICC"
+},
+"ĐLSH-45": {
+"since": "28/11/2026",
+"why": "đại lý bôi đỏ / ghi đã bán: Bighomes, Newstarland, Novasky, SSM, Tân Hương Phát, VHS, VSL"
 },
 "ĐLSH-48": {
 "since": "26/11/2026",
