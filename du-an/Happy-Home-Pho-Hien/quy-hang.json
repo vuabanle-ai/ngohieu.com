@@ -1,5 +1,5 @@
 {
- "updated": "09:38 28/11/2026",
+ "updated": "17:50 28/11/2026",
  "available": {
   "HK-13": [
    "DV"
@@ -234,17 +234,10 @@
   "TC1-29": [
    "DML",
    "DMLQC",
-   "DVQC",
-   "EC",
    "FSQC",
    "MD",
    "MDQC",
-   "MH",
-   "MVQC",
-   "NSL",
-   "NSLQC",
    "RM",
-   "SSM",
    "VHS",
    "VIC"
   ],
@@ -386,9 +379,6 @@
   "TC2-14": [
    "VIC"
   ],
-  "TC2-28": [
-   "DV"
-  ],
   "TC2-34": [
    "DV"
   ],
@@ -405,7 +395,6 @@
   "TC2-44": [
    "DML",
    "DMLQC",
-   "DVQC",
    "EC",
    "FSQC",
    "HDHQC",
@@ -413,14 +402,7 @@
    "MDQC",
    "MH",
    "MICCQC",
-   "MVQC",
-   "NSL",
-   "NSLQC",
-   "RM",
-   "RMQC",
-   "SSM",
-   "VHS",
-   "VIC"
+   "RMQC"
   ],
   "TC2-48": [
    "EC",
@@ -583,6 +565,10 @@
    "since": "24/11/2026",
    "why": "bôi đỏ"
   },
+  "TC2-28": {
+   "since": "28/11/2026",
+   "why": "bôi đỏ"
+  },
   "TC2-30": {
    "since": "27/11/2026",
    "why": "bôi đỏ"
@@ -679,6 +665,21 @@
     "MD"
    ]
   },
+  "TC2-44": {
+   "dq": [
+    "DML",
+    "MD"
+   ],
+   "boi_do": [
+    "DVQC",
+    "MVQC",
+    "NSL",
+    "NSLQC",
+    "RM",
+    "VHS",
+    "VIC"
+   ]
+  },
   "TC3-13": {
    "dq": [
     "MV",
@@ -695,10 +696,8 @@
     "DML"
    ],
    "boi_do": [
-    "DVQC",
     "FSQC",
     "MD",
-    "MVQC",
     "VHS",
     "VIC"
    ]
