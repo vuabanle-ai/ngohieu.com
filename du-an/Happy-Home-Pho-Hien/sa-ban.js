@@ -52,6 +52,7 @@ R.setPixelRatio(Math.min(devicePixelRatio,2));R.shadowMap.enabled=true;R.shadowM
 R.outputColorSpace=THREE.SRGBColorSpace;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.05;
 const S=new THREE.Scene();S.background=new THREE.Color('#d6e6ec');S.fog=new THREE.Fog('#d6e6ec',1700,3800);
 const cam=new THREE.PerspectiveCamera(38,1,3,30000);
+const TVC=W(100,140);   // tâm khu Thịnh Vượng
 const ctl=new OrbitControls(cam,cv);ctl.enableDamping=true;ctl.dampingFactor=.08;ctl.maxPolarAngle=1.38;ctl.minDistance=18;ctl.maxDistance=9500;ctl.autoRotate=true;ctl.autoRotateSpeed=.35;
 ctl.touches={ONE:THREE.TOUCH.ROTATE,TWO:THREE.TOUCH.DOLLY_ROTATE};ctl.zoomToCursor=false;
 S.add(new THREE.HemisphereLight('#f4f8ff','#6f8a4a',1.2));
@@ -575,13 +576,14 @@ function updateCars(dt){if(!carMesh)return;
 updateCars(0);
 // ================= CAMERA =================
 const VIEWS={
- 'toan-canh':[W(110,120),950,.88,-.25],'hanh-phuc':[P(320,640),900,.9,-.2],'thinh-vuong':[W(110,120),520,.85,-.15],
+ 'toan-canh':[TVC,950,.88,-.25],'hanh-phuc':[P(320,640),900,.9,-.2],'thinh-vuong':[TVC,520,.85,-.15],
  'the-link':[P(175,575),360,.85,-.4],'the-nest':[P(360,520),430,.85,-.1],'the-haven':[P(255,995),400,.85,-.35],'the-rise':[P(470,420),400,.85,.2],'giao-duc':[W(-150,1300),8200,.55,-.1]};
 let fly=null;
 function flyTo(t,dist,pol=.9,az=null){const a=az??Math.atan2(cam.position.x-ctl.target.x,cam.position.z-ctl.target.z);
  const to=new THREE.Vector3(t.x+dist*Math.sin(pol)*Math.sin(a),dist*Math.cos(pol),t.z+dist*Math.sin(pol)*Math.cos(a));
  fly={t0:performance.now(),d:matchMedia('(prefers-reduced-motion:reduce)').matches?1:1400,fp:cam.position.clone(),ft:ctl.target.clone(),tp:to,tt:t.clone()}}
-function go(v){window.__track&&window.__track('xem_khu',{view:v});const [t,d,p,a]=VIEWS[v]||VIEWS['toan-canh'];flyTo(t,d,p,a);document.querySelectorAll('#chips button').forEach(b=>b.classList.toggle('on',b.dataset.v===v))}
+let curView='toan-canh';
+function go(v){curView=VIEWS[v]?v:'toan-canh';window.__track&&window.__track('xem_khu',{view:v});const [t,d,p,a]=VIEWS[v]||VIEWS['toan-canh'];flyTo(t,d,p,a);document.querySelectorAll('#chips button').forEach(b=>b.classList.toggle('on',b.dataset.v===v))}
 document.getElementById('chips').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;try{history.replaceState(null,'','#'+b.dataset.v)}catch(_){}go(b.dataset.v)});
 addEventListener('hashchange',()=>{if(VIEWS[location.hash.slice(1)])go(location.hash.slice(1))});
 
@@ -680,15 +682,25 @@ document.getElementById('gDl').onclick=async()=>{const i=Math.round(stripEl.scro
 addEventListener('keydown',e=>{if(!gal.classList.contains('show'))return;if(e.key==='ArrowLeft')step(-1);if(e.key==='ArrowRight')step(1);if(e.key==='Escape')gal.classList.remove('show')});
 
 // ================= VÒNG LẶP =================
-function size(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
+function size(){R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;
+ // tâm khung hình = giữa khoảng trống còn lại giữa bảng trái (#side) và thẻ căn (#card) -> Thịnh Vượng luôn ở giữa phần nhìn thấy
+ let l=0,r=innerWidth,t=0,b=innerHeight;const Wd=innerWidth,Hd=innerHeight;
+ ['side','card','legend'].forEach(id=>{const e=document.getElementById(id);if(!e||e.hidden||getComputedStyle(e).display==='none')return;const q=e.getBoundingClientRect();if(q.width<2||q.height<2)return;
+  if(q.width<Wd*.5&&q.left<40&&q.height>Hd*.4)l=Math.max(l,q.right);                 // cột trái
+  else if(q.width<Wd*.5&&q.right>Wd-40&&q.height>Hd*.4)r=Math.min(r,q.left);          // cột phải
+  else if(q.width>=Wd*.5&&q.top>Hd*.25)b=Math.min(b,q.top)});                         // tấm dưới
+ const ox=((l+r)/2-Wd/2),oy=((t+b)/2-Hd/2);
+ if(Math.abs(ox)>2||Math.abs(oy)>2)cam.setViewOffset(Wd,Hd,-ox,-oy,Wd,Hd);else cam.clearViewOffset();cam.updateProjectionMatrix()}
+{let _sz=0;const MO=new MutationObserver(()=>{if(!_sz)_sz=requestAnimationFrame(()=>{_sz=0;size()})});['side','card','legend'].forEach(id=>{const e=document.getElementById(id);e&&MO.observe(e,{attributes:true,attributeFilter:['hidden','class','style']})})}
 addEventListener('resize',size);size();
-cam.position.set(300,2600,1400);ctl.target.copy(W(110,120));
+cam.position.set(300,2600,1400);ctl.target.copy(TVC);
 const h0=location.hash.slice(1);go(VIEWS[h0]?h0:'toan-canh');
 const ease=t=>t<.5?4*t*t*t:1-(-2*t+2)**3/2;
 let lastT=0;const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
 function loop(now){requestAnimationFrame(loop);{const dt=Math.min(.1,(now-(lastT||now))/1000);lastT=now;if(!RM)updateCars(dt)}
  if(fly){const k=Math.min(1,(now-fly.t0)/fly.d),e=ease(k);cam.position.lerpVectors(fly.fp,fly.tp,e);ctl.target.lerpVectors(fly.ft,fly.tt,e);if(k>=1)fly=null}
- ctl.update();{const d=cam.position.distanceTo(ctl.target);S.fog.near=Math.max(1700,d*.9);S.fog.far=Math.max(3800,d*2.6)}orientRoadTags();R.render(S,cam);placeLabels()}
+ ctl.update();if(!fly&&(curView==='toan-canh'||curView==='thinh-vuong')){const t=ctl.target,cx=Math.min(Math.max(t.x,TVC.x-140),TVC.x+140),cz=Math.min(Math.max(t.z,TVC.z-160),TVC.z+160);if(cx!==t.x||cz!==t.z){const dx=cx-t.x,dz=cz-t.z;t.x=cx;t.z=cz;cam.position.x+=dx;cam.position.z+=dz}}
+ {const d=cam.position.distanceTo(ctl.target);S.fog.near=Math.max(1700,d*.9);S.fog.far=Math.max(3800,d*2.6)}orientRoadTags();R.render(S,cam);placeLabels()}
 requestAnimationFrame(loop);
 const ld=document.getElementById('load');ld.style.opacity=0;setTimeout(()=>ld.remove(),700);
 window.__lots=NL;window.__go=(x,z,d,p,az)=>{setRot(false);flyTo(W(x,z),d,p,az)};window.__sel=c=>selectLot(byCode.get(c),true);window.__codes=()=>[...byCode.keys()];
